@@ -98,7 +98,19 @@ describe("safeVaultPath", () => {
 
   it("refuses traversal out of the vault", () => {
     expect(safeVaultPath(vault, "../../../etc/passwd")).toBeNull();
+  });
+
+  it("refuses a backslash path identically on every platform", () => {
+    // This assertion used to sit in the test above and passed only on Windows,
+    // where `\` is a path separator. On Linux the same string is one ordinary
+    // filename, so it resolved to a harmless path inside the vault and the
+    // expectation failed — green on windows-latest, red on ubuntu-latest.
+    //
+    // The fix was in the guard rather than here: a vault-relative path is
+    // POSIX by contract, so a backslash is refused outright and the answer no
+    // longer depends on which OS is asking.
     expect(safeVaultPath(vault, "..\\..\\keys.enc")).toBeNull();
+    expect(safeVaultPath(vault, "NPCs\\Ser Alric.md")).toBeNull();
   });
 
   it("refuses an absolute path", () => {

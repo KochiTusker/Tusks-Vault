@@ -122,6 +122,19 @@ export function noteTitle(relPath: string): string {
 export function safeVaultPath(vaultPath: string, relPath: string): string | null {
   if (typeof relPath !== "string" || relPath.length === 0) return null;
   if (relPath.includes("\0")) return null;
+  // A vault-relative path is POSIX by contract — walkVaultNotes always emits
+  // `NPCs/Ser Alric.md`, never a backslash — so refusing backslashes rejects
+  // nothing legitimate.
+  //
+  // It is here to make this function's answer independent of the OS. On
+  // Windows `\` is a separator, so `..\..\keys.enc` escapes the vault and was
+  // refused; on Linux it is an ordinary filename character, so the same string
+  // resolved to a (harmless, non-existent) file INSIDE the vault and was
+  // allowed. Neither behaviour was unsafe, but a guard whose answer depends on
+  // the platform is one that has to be reasoned about twice, and its test can
+  // only be right on one of them — which is exactly how this reached CI green
+  // on Windows and red on Ubuntu.
+  if (relPath.includes("\\")) return null;
   const root = path.resolve(vaultPath) + path.sep;
   const candidate = path.resolve(vaultPath, relPath);
   if (candidate + path.sep === root) return null; // the vault root itself is not a note
