@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE9A8"/>
+      <stop offset="55%" stop-color="#C9A55C"/>
+      <stop offset="100%" stop-color="#5C4419"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8B1A1A"/>
+      <stop offset="100%" stop-color="#4A0808"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.55" r="0.55">
+      <stop offset="0%" stop-color="#FFE9A8" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FFE9A8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Soft ambient glow behind the lock -->
+  <circle cx="32" cy="36" r="26" fill="url(#glow)"/>
+
+  <!-- Shackle (open ring on top) -->
+  <path
+    d="M 20 30 L 20 22 A 12 12 0 0 1 44 22 L 44 30"
+    fill="none"
+    stroke="url(#gold)"
+    stroke-width="5"
+    stroke-linecap="round"
+  />
+  <!-- Shackle inner highlight -->
+  <path
+    d="M 22.5 28 L 22.5 22 A 9.5 9.5 0 0 1 41.5 22 L 41.5 28"
+    fill="none"
+    stroke="#FFE9A8"
+    stroke-width="1.1"
+    stroke-linecap="round"
+    opacity="0.55"
+  />
+
+  <!-- Lock body -->
+  <rect
+    x="13" y="28"
+    width="38" height="28"
+    rx="4"
+    fill="url(#body)"
+    stroke="url(#gold)"
+    stroke-width="1.8"
+  />
+
+  <!-- Lock body decorative inner border -->
+  <rect
+    x="16" y="31"
+    width="32" height="22"
+    rx="2.5"
+    fill="none"
+    stroke="#C9A55C"
+    stroke-width="0.6"
+    opacity="0.55"
+  />
+
+  <!-- Corner studs -->
+  <circle cx="17" cy="32" r="1.1" fill="#E5C77A"/>
+  <circle cx="47" cy="32" r="1.1" fill="#E5C77A"/>
+  <circle cx="17" cy="52" r="1.1" fill="#E5C77A"/>
+  <circle cx="47" cy="52" r="1.1" fill="#E5C77A"/>
+
+  <!-- Keyhole (circle + tapered slot) -->
+  <circle cx="32" cy="40" r="3.6" fill="#1A1410" stroke="#3D2A0E" stroke-width="0.6"/>
+  <path d="M 30.4 42.4 L 29.4 50 L 34.6 50 L 33.6 42.4 Z" fill="#1A1410" stroke="#3D2A0E" stroke-width="0.6"/>
+
+  <!-- Tiny gold gleam on keyhole rim -->
+  <path d="M 29.8 38.2 A 3.6 3.6 0 0 1 33.2 37.4" stroke="#FFE9A8" stroke-width="0.7" fill="none" opacity="0.7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🪶 Tusk's Tomes (companion project)
+    url: https://github.com/KochiTusker/Tusks-Tomes
+    about: Issues about recording / chronicling Discord voice sessions belong on the Tomes repo.
+  - name: 🔐 Report a security vulnerability privately
+    url: https://github.com/KochiTusker/Tusks-Vault/security/advisories/new
+    about: Please don't open a public issue for a vulnerability. Use a private security advisory instead.

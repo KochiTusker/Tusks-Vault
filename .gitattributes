@@ -1,0 +1,44 @@
+# Line endings for the scripts users run directly.
+#
+# Every .bat / .ps1 blob in this repo was stored LF-only, so whether a fresh
+# clone produced a working installer depended entirely on the cloner's
+# core.autocrlf. On Windows that default is usually `true` and it worked by
+# luck; with autocrlf=false, or via GitHub's "Download raw file" button, the
+# user gets an LF-only batch file. cmd.exe tolerates LF for simple lines but
+# not reliably for the multi-line parenthesised blocks and goto targets these
+# installers are built from, and the failure is a syntax error mid-install
+# rather than a clean refusal.
+#
+# Pinning the ending in the repo makes the shipped artefact deterministic
+# instead of dependent on the reader's configuration.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# The POSIX side is the mirror case: a CR would reach the shebang line and
+# produce "bad interpreter: /usr/bin/env bash^M".
+*.sh   text eol=lf
+
+# Binary assets, marked explicitly rather than left to git's NUL-byte sniffing.
+#
+# Every bundled web font shipped corrupt for the site's whole existence: each
+# .woff2 was ~80% larger than the size in its own header, Chromium refused all
+# twelve with "OTS parsing error", and the site quietly fell back to Georgia for
+# anyone who did not happen to have Cinzel installed locally. That is invisible
+# on a machine that does have them, which is how it survived.
+#
+# `binary` is shorthand for `-text -diff`: it takes these files out of eol
+# conversion entirely, so no combination of core.autocrlf on any contributor's
+# machine can rewrite a byte of them. Cheap insurance for a class of bug whose
+# symptom appears nowhere near its cause.
+*.woff2 binary
+*.woff  binary
+*.ttf   binary
+*.otf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.zip   binary

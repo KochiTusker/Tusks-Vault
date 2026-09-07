@@ -1,0 +1,136 @@
+{
+  "_comment": [
+    "SAMPLE OUTPUT for the /examples/ page — proof the thing works, shown to a",
+    "reader who has not installed anything yet.",
+    "",
+    "EVERY `answer` STRING IS VERBATIM MODEL OUTPUT. Citation markers included,",
+    "wording unedited, nothing tidied. That is the whole value of the page: the",
+    "reader is looking at what the tool actually wrote, not at a mock-up of what",
+    "it might write. If you find yourself improving a sentence, stop — publish a",
+    "worse answer or publish a different question, but do not publish a polished",
+    "one and call it output.",
+    "",
+    "The renderer typesets those `[Filename.md]` markers into the numbered",
+    "source list under each answer. It does not add, remove or reorder them.",
+    "",
+    "THE GATE: `approved` must be exactly `true` before any of this renders.",
+    "It is true here because the corpus is invented, ships in the repo, and",
+    "carries nobody's real campaign. Any FUTURE edit that pastes in output from",
+    "a real table resets that calculation — set it back to false, read every",
+    "line for names and places, and only then flip it again.",
+    "",
+    "TO REGENERATE after a prompt change:",
+    "  npx tsx scripts/grade-models.mjs --provider claudeCode --models sonnet \\",
+    "    --out results.json",
+    "  …then copy the strings out of results.json. The case ids below match",
+    "  scripts/grading/cases.mjs, so a changed answer is easy to trace back to",
+    "  the case that produced it."
+  ],
+  "approved": true,
+  "heading": "What the answers actually look like",
+  "lede": "Real questions against a corpus that ships with the source, with the citations left in — including the two it refuses to answer, because that is the behaviour that makes the rest trustworthy.",
+  "provenance": {
+    "caption": "How this page was produced",
+    "facts": [
+      {
+        "label": "Corpus",
+        "value": "scripts/grading/corpus/ — four short files: a drowned city, its houses, a session log, and the party"
+      },
+      {
+        "label": "Model",
+        "value": "Claude Sonnet, through a Claude subscription"
+      },
+      {
+        "label": "Prompt path",
+        "value": "The real one — the same assembly a Discord question takes"
+      },
+      {
+        "label": "Editing",
+        "value": "None. Every answer is the model's own text"
+      }
+    ],
+    "note": "The corpus is deliberately small and deliberately trappy. It contains two houses one letter apart (Vane and Vayne), two rivers with similar names, three gates that held next to one that did not, and several facts it simply never establishes. Those are the cases worth showing, because retrieving a fact that appears once in three files is something anything can do.",
+    "corpusNote": "Nothing was anonymised because nothing needed to be — this campaign is invented, and the whole corpus is in the repository. Re-run them yourself and you will get the same facts and the same filenames, worded differently: a language model is not deterministic, so the citations are the part that reproduces, not the prose.",
+    "reproduce": "npm run grade -- --provider claudeCode --models sonnet"
+  },
+  "answers": {
+    "label": "Five it can answer",
+    "note": "Each one names the file it came from",
+    "meta": "Cited",
+    "intro": "The question as a player would type it, then the reply exactly as it came back. The numbers are the model's own citation markers, typeset as references.",
+    "items": [
+      {
+        "question": "What is House Vane's banner?",
+        "answer": "A grey heron on a black field [Houses.md].",
+        "why": "The corpus also contains House <em>Vayne</em>, one letter apart, whose banner is a red stag. A near-identical name is where a retrieval system quietly hands back the wrong house."
+      },
+      {
+        "question": "Which of Dunmar's gates was breached?",
+        "answer": "The Ashen Gate, on the eastern wall — the only one breached, the night the sea took Dunmar's lower quarter. The Salt Gate, Rook Gate, and Chandler's Gate all held [Dunmar.md].",
+        "why": "Three other gates are named in the same paragraph, and all of them held. Answering this needs the negation read, not the nearest nouns pattern-matched — and the volunteered detail about which ones held is the part that shows it was."
+      },
+      {
+        "question": "How large is the bounty on Maera?",
+        "answer": "The bounty on Maera, posted by the Ashen Court, is **four hundred crowns** [Sessions.md].",
+        "why": "The number lives in a session log rather than in an entity note, so it is only found if the whole folder is read rather than the file whose name matches the question."
+      },
+      {
+        "question": "Why does nobody salvage Dunmar in winter?",
+        "answer": "Because the winter tides run through the drowned quarter hard enough to pull a boat under [Dunmar.md].",
+        "why": "The answer is spread across two sentences that have to be joined. Nothing in the corpus states it outright."
+      },
+      {
+        "question": "Who rules Kelmoor, and for how long?",
+        "answer": "Lady Ismet Corrin has ruled Kelmoor for eleven years [Houses.md].",
+        "why": "Two facts asked in one breath. A partial answer would be the easy failure here."
+      }
+    ]
+  },
+  "refusal": {
+    "label": "Two it won't",
+    "note": "The corpus genuinely doesn't say, so neither does it",
+    "meta": "Refused, and logged",
+    "intro": "The phrasing is fixed and identical every time, which is the point — a refusal that varied would eventually read like an answer.",
+    "callout": "Both questions have obvious, satisfying, completely invented answers available. A strongbox contains something; a brother presumed dead is a plot hook. Producing either would be the single most damaging thing this tool could do, because it arrives cited-looking and in the archivist's voice, at a table that has no reason to doubt it.",
+    "items": [
+      {
+        "question": "What was inside the Vane strongbox the party recovered?",
+        "answer": "I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify.",
+        "why": "The session log records that the party recovered the strongbox and that <strong>nobody has opened it</strong>. Everything needed to invent a plausible answer is present; the one thing that is absent is the answer."
+      },
+      {
+        "question": "Is Corwin Vane actually dead?",
+        "answer": "I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify.",
+        "why": "The corpus says only that Ser Alric <em>believes</em> his brother died at the Ashen Gate. Belief is not death, and the difference is exactly the sort of thing a confident summariser flattens."
+      }
+    ]
+  },
+  "judgement": {
+    "label": "Four it has an opinion about",
+    "note": "Judgement calls, still sourced",
+    "meta": "Cited",
+    "intro": "None of these has an answer written down anywhere. Each one is the model weighing facts that ARE written down — and naming the file it weighed.",
+    "items": [
+      {
+        "question": "Who in the party is most likely to start a tavern fight?",
+        "answer": "Roswyn Kett is the likeliest — she has already put one person in the water after an argument with the harbourmaster at Kelmoor, and has since been barred from the Ninefold Rest twice (and readmitted twice) [Party.md].",
+        "why": "Nobody wrote \"Roswyn starts fights\". Two incidents are recorded, and the conclusion is drawn from them rather than invented around them."
+      },
+      {
+        "question": "Would Ser Alric Vane get on with Vesper?",
+        "answer": "Unlikely, and pointedly so. Vesper is \"formally correct with strangers to the point that two innkeepers have assumed an insult where none was meant,\" and — more to the point — has \"read every account of the fall of Dunmar that survives, and corrects people who have not — including, on one occasion, Ser Alric Vane\" [Party.md]. Ser Alric himself \"would not discuss Dunmar\" when the party found him at the Ninefold Rest [Sessions.md], and generally \"refuses to speak of the siege\" [Houses.md]. A scholar who has already corrected the Grey Knight on the one subject he won’t touch is not a natural friend for him.",
+        "why": "Three files joined into one answer about two people who have never shared a scene."
+      },
+      {
+        "question": "Is it a bad idea to bring Roswyn back to Kelmoor?",
+        "answer": "Roswyn’s history with Kelmoor is contentious. She lost her salvage licence after an argument with the harbourmaster there that ended with him in the water [Party.md], and she has been barred from the Ninefold Rest twice, though readmitted twice each time [Party.md]. Lady Ismet Corrin, who rules Kelmoor, has described her in writing as \"an asset best kept at sea\" [Party.md] [Houses.md]. None of this bars her outright, but it suggests friction with both the harbourmaster and Kelmoor’s ruling house is likely to resurface.",
+        "why": "A practical planning question. It gives the reasons and stops short of deciding for the table."
+      },
+      {
+        "question": "Should we be worried that nobody has asked Odo to see the ledger?",
+        "answer": "No — nothing in the record suggests concern. Odo keeps the money and the party has simply never asked to see the ledger; that’s stated as a fact of the arrangement, not as a flagged irregularity [Party.md]. He has talked the party out of three fights and into one, which is the only accounting of his judgment on record [Party.md].",
+        "why": "The interesting part is what it does NOT do: there is an obvious suspicious reading available, and it declines to manufacture one."
+      }
+    ]
+  }
+}

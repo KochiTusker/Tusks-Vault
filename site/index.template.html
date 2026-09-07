@@ -1,0 +1,1018 @@
+<!doctype html>
+<!--
+  Landing page source. Double-brace placeholders are filled in by the site
+  generator (maintainer tooling).
+
+  Do NOT write a placeholder name inside a comment: substitution is a plain
+  string replace over the whole file, so a name mentioned here would be
+  expanded here too. (The builder strips comments before substituting, which
+  makes that safe, but keep the habit.)
+
+  The copy here is deliberately NOT a paste of README.md. Two near-identical
+  pages would compete with each other in search results instead of covering
+  different queries; the README serves people already on GitHub, this page
+  serves people who have not heard of the project yet.
+
+  STRUCTURE — "the ruled page".
+  Every section below hangs off one page grid: a narrow ruled margin carrying
+  a numeral and, occasionally, a note in the maintainer's own voice; then a
+  text block at a fixed measure. That rail is the through-line, and it is the
+  reason the sections read as one document rather than as a stack of
+  independently-designed blocks, which is what this page had become.
+
+  The order answers a visitor's questions in the order they actually ask them:
+  what is it, what does it produce, why not the tool I already have, how does
+  it work, what is it like to use, where can I ask from, what will it
+  cost, what happens to my campaign's contents, and only then how to install.
+-->
+<html lang="en-GB">
+<head>
+{{HEAD}}
+</head>
+<body class="landing">
+<a class="skip" href="#main">Skip to content</a>
+{{SVG_DEFS}}
+{{EMBER_FIELD}}
+{{HEADER}}
+
+<main id="main">
+
+  <!-- ===================================================================
+       HERO — the thesis.
+       Not a screenshot of the app, and not a comparison against something
+       else. The product is an answer you can check, so the hero IS one:
+       annotated, sourced, and honest about where it stops.
+       =================================================================== -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Free · Open source · Runs on your own machine</p>
+      <h1>Ask your campaign anything</h1>
+      <p class="lede">
+        Point it at your D&amp;D, Pathfinder or Call of Cthulhu notes and ask from Discord,
+        Foundry's chat bar, or any MCP client. You bring the model — Vault does the wiring:
+        finding the passages that bear on the question, holding the model to your notes, and
+        citing the file every claim came from.
+      </p>
+      <p class="lede lede-2">
+        Which means you can ask it daft questions and still trust the answer.
+      </p>
+      <p class="cta">
+        <a class="btn primary" href="{{BASE}}/docs/getting-started/installation/">Install it</a>
+        <a class="btn" href="#demo">See what comes back</a>
+      </p>
+      <ul class="runestones">
+        <li><b>MIT</b> licensed</li>
+        <li><b>No</b> account</li>
+        <li><b>No</b> subscription</li>
+        <li><b>Zero</b> telemetry</li>
+        <li>v<b>{{VERSION}}</b></li>
+      </ul>
+    </div>
+
+    <!-- The product is an ANSWER WITH PROVENANCE, so the hero is one — a single
+         object, annotated, the way a reference work annotates a claim. Not a
+         two-state before/after: that frames the pitch as "the other thing is
+         wrong", which is an argument, where this is the thing itself. The
+         closing line matters most and is styled to be read last. -->
+    <figure class="answer" aria-labelledby="answer-cap">
+      <p class="answer-ask"><span class="answer-at">@Tusk</span> who's the party member least fit to be the ship's captain?</p>
+
+      <div class="answer-said">
+        <p>
+          Bryn Tallow. He cannot swim, has twice refused to board a boat — once at Dunmar, once
+          at the Kelmoor quay — and gets sick on still water<a class="cite" href="#answer-src-1"><span class="vh">source </span>1</a>,
+          which makes him the least seaworthy of the four regardless of any question of
+          leadership.
+        </p>
+      </div>
+
+      <ol class="answer-sources">
+        <li id="answer-src-1"><span class="src-n">1</span><code>Party.md</code></li>
+      </ol>
+
+      <figcaption id="answer-cap">
+        A daft question, answered from the file it came out of. That is the
+        whole trick: it is funny <em>because</em> it is true to your campaign.
+      </figcaption>
+    </figure>
+  </section>
+
+
+  <!-- ===================================================================
+       I — Why this exists. The origin story, at its sharpest. No general
+       chatbot can claim this, which is why it comes first.
+       =================================================================== -->
+  <section class="leaf" id="why" aria-labelledby="why-h">
+    <div class="rail">
+      <span class="numeral">I</span>
+      <p class="rail-label">Why this exists</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="why-h">The answer that sounds right is the dangerous one</h2>
+      <p class="measure">
+        My campaign notes were spread across six documents, two of which contradicted the other
+        four. Players asked me the same questions between sessions &mdash; who was that merchant,
+        what did we actually agree to, whose brother is the king &mdash; and I answered from memory,
+        badly, and sometimes differently than last time.
+      </p>
+      <p class="measure">
+        The obvious fix is to ask an AI, and it fails in a specific way: a general chatbot handed
+        your setting answers <em>every</em> question confidently, including the ones your documents
+        say nothing about.
+      </p>
+
+      <!-- The section's thesis, made visual: two answers to one question,
+           deliberately styled identically because that IS the argument. The
+           only difference is the footer. Nothing here is decorative — remove
+           the citations and you cannot tell them apart, which is the point. -->
+      <figure class="tell" aria-labelledby="tell-cap">
+        <p class="tell-q"><span class="tell-at">@Tusk</span> what was the innkeeper at Greywater called?</p>
+        <div class="tell-pair">
+          <div class="tell-card">
+            <p class="tell-who">A general chatbot</p>
+            <p class="tell-said">Her name was <em>Mira Ashdown</em>, and she had run the Drowned Lantern since her father passed.</p>
+            <p class="tell-foot is-none"><span class="tell-mark" aria-hidden="true"></span>No source. Nothing in your notes says this.</p>
+          </div>
+          <div class="tell-card is-vault">
+            <p class="tell-who">Tusk's Vault</p>
+            <p class="tell-said">I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify.</p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Refused, and added to Lore Gaps</p>
+          </div>
+        </div>
+        <figcaption id="tell-cap">
+          Both read like an answer. Only one of them is one &mdash; and at the table, in front of
+          everyone, the citation is the only thing that tells you which.
+        </figcaption>
+      </figure>
+
+      <p class="measure">
+        So the whole design is one idea: <strong>it may only tell you what your documents say, and
+        it must show you where it got it.</strong> Answer a logged gap once and that answer is
+        reused from then on.
+      </p>
+
+      <!-- The project video, and the reason it sits in section I rather than
+           in "See it run" below: it is this section's argument in a voice,
+           plus a walk through everything the rest of the page explains. Offered
+           here it is an alternative to reading; offered at section V it would
+           be a recap of what the reader just read.
+
+           Both hooks render nothing at all until storyVideo.id is set in
+           site/site.json — unlike {{VIDEO}}, which holds a frame open on
+           purpose. There is no promise to keep here, so there is nothing to
+           hold open. -->
+{{STORY_VIDEO}}
+
+{{STORY_CHAPTERS}}
+
+      <p class="marginalia">
+        Nobody needs this until the evening a player asks something specific and four people
+        remember it four different ways.
+        <span class="sign">Then it is the only thing you want.</span>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       II — What happens when it doesn't know.
+       The differentiating behaviour, and the only genuinely cyclical thing on
+       the page, so it gets the drawing. Placed second because a reader who has
+       just seen a cited answer immediately wonders what happens to the
+       questions the notes do not cover — which is the honest sales pitch.
+       =================================================================== -->
+  <section class="leaf" id="writes" aria-labelledby="writes-h">
+    <div class="rail">
+      <span class="numeral">II</span>
+      <p class="rail-label">When it doesn't know</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="writes-h">The best thing it does is admit defeat</h2>
+      <p class="measure">
+        Any assistant can answer a question your documents cover. The one that decides whether you
+        can trust it at the table is the question they don't &mdash; and the useful behaviour there
+        is to stop, say so, and remember that you were asked.
+      </p>
+
+      <!-- The gap loop. This is the behaviour nothing else on the market has,
+           so it gets the drawing rather than a bullet list. It is a CYCLE on
+           purpose: the point is that the last step feeds the first one forever
+           afterwards, which a row of cards cannot say. -->
+      <figure class="gaploop" aria-labelledby="gaploop-cap">
+        <ol class="gaploop-steps">
+          <li class="gstep">
+            <p class="gstep-when">Wednesday, in a channel</p>
+            <h3>Someone asks</h3>
+            <p>&ldquo;Whose brother is the king?&rdquo; &mdash; a question your notes never actually settled.</p>
+          </li>
+          <li class="gstep is-refusal">
+            <p class="gstep-when">Two seconds later</p>
+            <h3>It says it doesn't know</h3>
+            <p>Not a guess dressed as an answer. A fixed phrase, so nobody mistakes it for canon.</p>
+          </li>
+          <li class="gstep">
+            <p class="gstep-when">Same moment</p>
+            <h3>The gap is logged</h3>
+            <p>The question lands in your dashboard, waiting for the one person who can settle it.</p>
+          </li>
+          <li class="gstep is-key">
+            <p class="gstep-when">Once, ever</p>
+            <h3>You answer it</h3>
+            <p>One sentence from you. That ruling is now part of the archive, cited like any document.</p>
+          </li>
+        </ol>
+        <p class="gaploop-return">
+          <span>and every later phrasing of that question &mdash; however differently it is asked &mdash; gets your answer</span>
+        </p>
+        <figcaption id="gaploop-cap">
+          The archive gets better every time it admits it doesn't know something.
+          That only works because it is willing to admit it.
+        </figcaption>
+      </figure>
+
+      <p class="measure outro">
+        A ruling recorded this way is cited like any other source, so six months later nobody has
+        to remember whether it was decided or imagined.
+        <a href="{{BASE}}/docs/about/use-cases/">What people actually ask it &rarr;</a>
+      </p>
+      <p class="measure outro">
+        Real questions, real citations, and one refusal, against a corpus written to be published.
+        <a href="{{BASE}}/examples/">See the answers in full &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       III — How it compares.
+       Most visitors arrive having already tried something, and the question
+       in their head is "why not the thing I already have?". It is answered
+       here, straight after the proof of what comes out, because answering it
+       later means answering it after they have left.
+
+       The rows are a deliberate feature set — what a table actually wants
+       from a session recorder — not a list of this project's strengths.
+       Three rules keep it honest, and they matter more than the ticks.
+
+       One: every claim is a capability that can be checked, never a quality
+       judgement. The project's own model bake-off refuses to reduce prose
+       quality to a number, so this page will not either.
+
+       Two: the crosses are drawn quietly, in the muted colour. A comparison
+       that shouts is one nobody believes, including the true parts.
+
+       Three: the tabletop-native column earns a lot of ticks, and they stay.
+       That category is built for exactly this job and several of them do it
+       well; a grid that quietly marked them down would be the kind of
+       comparison rule one and two exist to prevent. What separates this
+       project from them is three rows, not eleven, and the table should show
+       that plainly rather than manufacture a sweep. The browser row is there
+       for the same reason and points the other way -- it is the row this
+       project loses, and it is the honest cost of the attribution row.
+
+       Four, and the easiest to get wrong: the last column is a PERSON, and
+       a person is not scored on software criteria. An earlier draft marked
+       them unable to revise part of a write-up, which is plainly false —
+       anyone can edit a paragraph — and left them looking beaten on rows
+       like "choose the model" that were never part of that conversation.
+       The only axis where the comparison with doing it yourself is real is
+       time and setup. Someone who does the work produces the best version
+       there is; the claim is that this gets close for an evening less
+       effort, and the paragraph under the table says so outright.
+
+       The long, fair version lives in the docs and is linked underneath.
+       =================================================================== -->
+  <section class="leaf" id="compare" aria-labelledby="compare-h">
+    <div class="rail">
+      <span class="numeral">III</span>
+      <p class="rail-label">How it compares</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="compare-h">Why not use something that already exists?</h2>
+      <p class="measure">
+        Often you should. Most people arrive here having already pasted their notes into
+        ChatGPT &mdash; good software, and for a question your documents genuinely answer it will
+        usually answer correctly. The trouble is the question they don't.
+      </p>
+      <p class="measure">
+        <strong>NotebookLM is the closest comparison, and on its own ground it is better than
+        this.</strong> Google's budget, excellent retrieval, exact citations, nothing to install.
+        If you are working alone through a pile of documents, use it. The difference is not
+        quality &mdash; it is what the two things are built for.
+      </p>
+
+      <!-- Two lists rather than four paragraphs. This section had grown to 697
+           words of prose around a 252-word table, most of it narrating cells
+           the reader can already see. What prose is still needed is the part
+           the grid cannot say: what the other tool is not TRYING to do, and
+           what this one charges you for that. Putting them side by side also
+           makes the honesty structural rather than asserted — the costs are
+           not a paragraph further down, they are level with the wins. -->
+      <figure class="ledger" aria-labelledby="ledger-cap">
+        <div class="ledger-pair">
+          <div class="ledger-card">
+            <p class="ledger-head">What a research notebook isn't trying to do</p>
+            <ul>
+              <li>Put the answer where the whole table sees it</li>
+              <li>Turn up in Discord, or Foundry's chat bar</li>
+              <li>Sound like your table</li>
+              <li>Guess &mdash; and label the guess</li>
+              <li>Read a cruel scene back as written</li>
+            </ul>
+          </div>
+          <div class="ledger-card is-cost">
+            <p class="ledger-head">What this one charges you for that</p>
+            <ul>
+              <li>Node, Git and a terminal to begin</li>
+              <li>A machine that has to stay awake</li>
+              <li>A folder corpus that stops near 200 pages</li>
+              <li>One maintainer, and no support desk</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption id="ledger-cap">
+          Neither column is a failing. The left one is a tool built for a reader alone with a PDF;
+          the right one is the bill for being built for a table instead.
+        </figcaption>
+      </figure>
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <caption>What a table actually needs from a lore assistant</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="vh">Capability</span></th>
+              <th scope="col" class="is-us">Tusk&rsquo;s Vault</th>
+              <th scope="col">NotebookLM <small>Google, in the cloud</small></th>
+              <th scope="col">ChatGPT / Claude <small>a general assistant</small></th>
+              <th scope="col">Obsidian + AI plugins <small>notes you already keep</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="matrix-band">
+              <th scope="row" colspan="5">At the table</th>
+            </tr>
+            <tr>
+              <th scope="row">Everyone at the table sees the answer</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Ask it from Discord, or Foundry&rsquo;s chat bar</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Answers in a voice your table picked</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr class="matrix-band">
+              <th scope="row" colspan="5">Whether it can play</th>
+            </tr>
+            <tr>
+              <th scope="row">Will speculate when you let it, and labels it</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Recounts a grim scene without sanding it down</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr class="matrix-band">
+              <th scope="row" colspan="5">Whether you can trust it</th>
+            </tr>
+            <tr>
+              <th scope="row">Says it doesn&rsquo;t know, instead of inventing</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Cites the document behind every claim</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">A ruling you make once is remembered and reused</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Your campaign documents never leave your machine</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+            </tr>
+            <tr class="matrix-band">
+              <th scope="row" colspan="5">What it costs you</th>
+            </tr>
+            <tr>
+              <th scope="row">Holds a campaign bigger than about 200 pages</th>
+              <td class="m is-us"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Ready in five minutes, without a terminal</th>
+              <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Still answers while your own machine is asleep</th>
+              <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">A team behind it, and somewhere to report a bug</th>
+              <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="measure outro">
+        Which is the honest shape of it. This is not a better NotebookLM &mdash; it is a worse one,
+        pointed somewhere NotebookLM is not pointed. Keep theirs for research; use this when the
+        question is being shouted across a table. Campaign wikis and your own GM are not in that
+        grid at all, because neither is a thing you ask &mdash; both, and the case for using them
+        instead, are in <a href="{{BASE}}/docs/about/comparison/">the full comparison</a>.
+      </p>
+      <p class="marginalia">
+        A grid where one column ticks every row is a grid whose rows were chosen by whoever owns
+        that column. The four this one does not win are there so the nine it does are worth
+        something.
+        <span class="sign">Read those four first.</span>
+      </p>
+  </section>
+
+
+  <!-- ===================================================================
+       IV — How it works. A drawn pipeline rather than a list of nouns.
+
+       FOUR stages, because four is how many there are. This was six, which
+       is the number of phases the sibling project's pipeline has, and the
+       comment here used to say "Phase 1" — a word this codebase does not
+       otherwise use. Two pairs had been split to reach it: "read your
+       documents" and "find what's relevant" are one call
+       (assemblePromptParts), and "read the answer back" and "log the gap"
+       are one branch. Padding a four-step flow to six also cost the
+       differentiator its prominence — the rules block was step three of six
+       and is now two of four.
+       =================================================================== -->
+  <section class="leaf" id="how" aria-labelledby="how-h">
+    <div class="rail">
+      <span class="numeral">IV</span>
+      <p class="rail-label">How it works</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="how-h">Four stages, and one of them is the point</h2>
+      <p class="measure">
+        A question goes in one end. Stage two is the one you cannot configure away, and the reason
+        the answer at the far end can be trusted.
+      </p>
+
+      <ol class="pipeline" aria-label="How a question is answered">
+        <li class="stage">
+          <span class="stage-n" aria-hidden="true">1</span>
+          <h3>Find what bears on the question</h3>
+          <p>
+            Reads a folder on your disk &mdash; PDF, DOCX, Markdown, plain text &mdash; or an
+            Obsidian vault, read-only, nothing moved. Passage-level retrieval then picks out the
+            parts that matter, so a large campaign is not a large bill.
+          </p>
+        </li>
+        <li class="stage is-key">
+          <span class="stage-n" aria-hidden="true">2</span>
+          <h3>Force the rules on top</h3>
+          <p>
+            Cite every claim; refuse rather than invent. The block is force-appended to every
+            prompt, so editing the system prompt &mdash; or picking a persona &mdash; cannot
+            remove it.
+          </p>
+          <p class="stage-note">The reason this exists</p>
+        </li>
+        <li class="stage">
+          <span class="stage-n" aria-hidden="true">3</span>
+          <h3>Ask your model</h3>
+          <p>
+            Gemini, ~400 models through OpenRouter, a Claude subscription, or one running on your
+            own machine. Swappable mid-campaign.
+          </p>
+        </li>
+        <li class="stage">
+          <span class="stage-n" aria-hidden="true">4</span>
+          <h3>Check what came back</h3>
+          <p>
+            A refusal is labelled rather than served as content in the archivist's voice &mdash;
+            and the question it could not answer lands in your dashboard as a lore gap.
+          </p>
+        </li>
+      </ol>
+
+      <p class="measure outro">
+        The corpus travels with every question, so every cloud request pins a zero-data-retention
+        routing floor.
+        <a href="{{BASE}}/docs/about/how-its-built/">How the retrieval pipeline works →</a>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       V — See it run.
+       Placed here on purpose: III has just described the mechanism in the
+       abstract, and this is the moment a reader wants to know what that
+       actually looks like. It is also the ONLY place on the page where the
+       application itself appears — every other section argues from output —
+       so it earns a numeral rather than being tucked into a corner.
+
+       The section renders in two states from one hook. Today {{VIDEO}} is a
+       held-open frame and {{CHAPTERS}} is a written outline; setting
+       `video.id` in site/site.json turns the first into the click-to-load
+       player and the second into clickable timestamps, and adds the page's
+       VideoObject markup. Nothing here changes.
+
+       id="demo" is load-bearing — site.js finds the main player as
+       `#demo .video` so a chapter click plays in place instead of
+       navigating away.
+       =================================================================== -->
+  <section class="leaf" id="demo" aria-labelledby="demo-h">
+    <div class="rail">
+      <span class="numeral">V</span>
+      <p class="rail-label">Ask it anything</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="demo-h">Not every question is a lookup</h2>
+      <p class="measure">
+        Most of what gets asked at a table is not "when did Dunmar fall". It is an argument two
+        players are having, or a joke someone wants settled with evidence. Those work — and they
+        work for the same reason the serious ones do. It can only answer from what you wrote
+        down, and it shows you where.
+      </p>
+
+      <!-- Real output, not a mock-up: every answer below came back from the
+           corpus in scripts/grading/corpus/, which ships in the repo. The
+           section exists because the page spent nine other sections arguing
+           that this thing is trustworthy and none arguing that it is any fun,
+           which is the half most tables actually feel first. -->
+      <figure class="answer is-inline" aria-labelledby="daft-cap-1">
+        <p class="answer-ask"><span class="answer-at">@Tusk</span> who's most likely to start a tavern fight?</p>
+        <div class="answer-said">
+          <p>
+            Roswyn Kett is the likeliest — she has already put one person in the water after an
+            argument with the harbourmaster at Kelmoor, and has since been barred from the
+            Ninefold Rest twice (and readmitted twice)<a class="cite" href="#daft-src-1"><span class="vh">source </span>1</a>.
+          </p>
+        </div>
+        <ol class="answer-sources">
+          <li id="daft-src-1"><span class="src-n">1</span><code>Party.md</code></li>
+        </ol>
+        <figcaption id="daft-cap-1">
+          Nobody wrote "Roswyn starts fights" anywhere. It read two incidents and drew the
+          obvious conclusion — then told you which file they were in.
+        </figcaption>
+      </figure>
+
+      <figure class="answer is-inline" aria-labelledby="daft-cap-2">
+        <p class="answer-ask"><span class="answer-at">@Tusk</span> would Ser Alric get on with Vesper?</p>
+        <div class="answer-said">
+          <p>
+            Unlikely, and pointedly so. Vesper has read every surviving account of the fall of
+            Dunmar, and corrects people who have not — including, on one occasion, Ser Alric
+            Vane<a class="cite" href="#daft-src-2"><span class="vh">source </span>1</a>. Ser Alric
+            would not discuss Dunmar when the party found him at the Ninefold
+            Rest<a class="cite" href="#daft-src-3"><span class="vh">source </span>2</a>, and
+            refuses to speak of the siege at
+            all<a class="cite" href="#daft-src-4"><span class="vh">source </span>3</a>. A scholar
+            who has already corrected the Grey Knight on the one subject he won't touch is not a
+            natural friend for him.
+          </p>
+        </div>
+        <ol class="answer-sources">
+          <li id="daft-src-2"><span class="src-n">1</span><code>Party.md</code></li>
+          <li id="daft-src-3"><span class="src-n">2</span><code>Sessions.md</code></li>
+          <li id="daft-src-4"><span class="src-n">3</span><code>Houses.md</code></li>
+        </ol>
+        <figcaption id="daft-cap-2">
+          Three files, joined into one answer about two people who have never
+          shared a scene. This is the kind of thing a table argues about for
+          twenty minutes.
+        </figcaption>
+      </figure>
+
+      <h3 class="trust-sub">And it doesn't have to sound like a librarian</h3>
+      <p class="measure">
+        A persona replaces the whole voice, and the citation rules survive it. Same question,
+        same corpus, same sources — two of the eight that ship:
+      </p>
+
+      <!-- The tell layout, reused: one question, two answers, styled
+           identically so the only variable a reader sees is the voice. The
+           hero already answered this question plainly, which is the point —
+           a third rendering of the same facts is what makes "persona" legible
+           without a paragraph explaining it. -->
+      <figure class="tell" aria-labelledby="persona-cap">
+        <p class="tell-q"><span class="tell-at">@Tusk</span> who's least fit to be the ship's captain?</p>
+        <div class="tell-pair">
+          <div class="tell-card is-vault">
+            <p class="tell-who">The Archmage</p>
+            <p class="tell-said">
+              Ah, a question of seamanship, not of secrecy — this one the chronicle answers
+              plainly. Bryn Tallow is the least fit hand to stand at the helm. He cannot swim,
+              and has twice refused to board a boat at all — once at Dunmar, once at the Kelmoor
+              quay — and takes ill even on still water. A captain who will not set foot on his
+              own ship is no captain at all.
+            </p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Cited <code>Party.md</code></p>
+          </div>
+          <div class="tell-card is-vault">
+            <p class="tell-who">The Sellsword</p>
+            <p class="tell-said">
+              Bryn Tallow, and it ain't close — the poor bastard can't swim, gets sick on still
+              water, and has flat-out refused to board a boat twice, once at Dunmar and once at
+              the Kelmoor quay. Roswyn's the only one of the four who's ever actually crewed a
+              boat, so hand her the wheel instead.
+            </p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Cited <code>Party.md</code></p>
+          </div>
+        </div>
+        <figcaption id="persona-cap">
+          Same facts, same file, same refusal to invent. Only the register moved.
+          <a href="{{BASE}}/examples/">The rest of the answers, in full &rarr;</a>
+        </figcaption>
+      </figure>
+
+      <h3 class="trust-sub">And you decide whether it's allowed to guess</h3>
+      <p class="measure">
+        "Who would lose a duel to a chicken" is not in anybody's notes, so by default it is
+        refused like any other question the documents don't answer. Turn on
+        <strong>Speculative Mode</strong> and it will reason from what the chronicle establishes
+        about each character &mdash; then cite the evidence it used and tag the conclusion, so a
+        guess can never be mistaken later for something you wrote down.
+      </p>
+
+      <!-- One switch, two behaviours, one question. The same device as the
+           persona pair above: change exactly one variable so the reader can
+           see what it does without being told. This is also the sharpest
+           difference from a grounded cloud notebook, which will not
+           speculate at all — deliberately, and permanently. -->
+      <figure class="tell" aria-labelledby="spec-cap">
+        <p class="tell-q"><span class="tell-at">@Tusk</span> which of them is most likely to lose a duel to a chicken?</p>
+        <div class="tell-pair">
+          <div class="tell-card">
+            <p class="tell-who">Speculative Mode off &mdash; the default</p>
+            <p class="tell-said">I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify.</p>
+            <p class="tell-foot is-none"><span class="tell-mark" aria-hidden="true"></span>Refused. It isn't in your notes.</p>
+          </div>
+          <div class="tell-card is-vault">
+            <p class="tell-who">Speculative Mode on</p>
+            <p class="tell-said">
+              Bryn Tallow &mdash; he's the one party member who's never drawn a weapon in any
+              recorded session, can't swim, and has twice refused to even board a boat because
+              still water makes him sick. A creature this jumpy and non-combative would fold
+              against a chicken's raw aggression before a blade ever cleared its sheath.
+            </p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Cited <code>Party.md</code>, tagged <code>[speculation]</code></p>
+          </div>
+        </div>
+        <figcaption id="spec-cap">
+          The evidence is real even when the conclusion isn't &mdash; and it says which is which.
+          A factual question still gets the refusal, whichever way the switch is set.
+        </figcaption>
+      </figure>
+
+{{VIDEO}}
+
+{{CHAPTERS}}
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       VI — Getting a session in. A genuine either/or, so cards earn their
+       place here and only here.
+       =================================================================== -->
+  <section class="leaf" id="routes" aria-labelledby="routes-h">
+    <div class="rail">
+      <span class="numeral">VI</span>
+      <p class="rail-label">Getting a session in</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="routes-h">Three ways in, one answer</h2>
+      <p class="measure">
+        A lore assistant nobody opens is a lore assistant nobody uses, so it answers where the
+        question already gets asked.
+      </p>
+
+      <!-- Three entry points, one engine. Built from boxes rather than an SVG
+           on purpose: a fixed viewBox cannot reflow, and at 375px a 700-wide
+           drawing put every label at half size. This stacks. -->
+      <figure class="converge">
+        <div class="cv">
+          <ul class="cv-ins">
+            <li>Discord</li>
+            <li>Foundry VTT</li>
+            <li>MCP client</li>
+          </ul>
+          <span class="cv-arrow" aria-hidden="true"></span>
+          <div class="cv-core">
+            <span>one corpus</span>
+            <span>one rule block</span>
+          </div>
+          <span class="cv-arrow" aria-hidden="true"></span>
+          <div class="cv-out">
+            <span class="cv-out-t">cited answer</span>
+            <span class="cv-out-s">or a refusal</span>
+          </div>
+        </div>
+        <figcaption>
+          The surface only decides where the question comes from and who sees the reply. Persona,
+          corpus and citation discipline are identical on all three.
+        </figcaption>
+      </figure>
+
+      <div class="choice">
+        <article class="option">
+          <p class="option-flow"><span>Discord</span><span>@mention the bot</span><span>Cited answer</span></p>
+          <h3>In your campaign Discord</h3>
+          <p>
+            Between sessions, which is when most of the questions actually arrive. Mention the bot
+            and the answer lands in the channel, citations and all, where everyone can see it &mdash;
+            so the same question doesn't get asked three more times that week.
+          </p>
+          <p class="option-needs"><strong>Wants</strong> a bot token. You paste one string; the rest is derived.</p>
+          <p class="cta"><a class="btn" href="{{BASE}}/docs/surfaces/discord/">Set up Discord</a></p>
+        </article>
+
+        <article class="option">
+          <p class="option-flow"><span>Foundry VTT</span><span>/tusk your question</span><span>Cited answer</span></p>
+          <h3>Mid-session, in the chat bar</h3>
+          <p>
+            Type <code>/tusk</code> and the answer posts into the chat log without anyone leaving the
+            game. A per-world access mode decides whether players may ask at all, and whether the
+            answer is whispered to them or posted for the table &mdash; because not every answer is
+            one the party should have.
+          </p>
+          <p class="option-needs"><strong>Wants</strong> the companion module. Pairs in one click.</p>
+          <p class="cta"><a class="btn" href="{{BASE}}/docs/surfaces/foundry-vtt/">Set up Foundry</a></p>
+        </article>
+      </div>
+
+      <p class="measure outro">
+        The third route needs no setup screen at all: any MCP client &mdash; Claude Code, Claude
+        Desktop, anything speaking the protocol &mdash; can pair and ask directly.
+        <a href="{{BASE}}/docs/about/use-cases/">What people actually ask it →</a>
+      </p>
+
+      <p class="measure outro">
+        <strong>And it doesn't have to be a campaign.</strong> Nothing in the machinery knows what
+        a campaign is &mdash; it indexes a folder, cites what it finds, and refuses what isn't
+        there. Point it at a handbook or a wiki export and you get the same bot.
+      </p>
+      <p class="marginalia">
+        The prompts, the citation styles and the refusal wording all assume a GM and a table.
+        <span class="sign">Everything else is a happy accident.</span>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       VII — Cost. The competitive argument, not a footnote. Figures are
+       regenerated from the live model catalogue on every publish.
+       =================================================================== -->
+  <section class="leaf" id="cost" aria-labelledby="cost-h">
+    <div class="rail">
+      <span class="numeral">VII</span>
+      <p class="rail-label">What it costs</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="cost-h">A question, not a month</h2>
+      <p class="measure">
+        Tusk's Vault is free. The only money involved is whatever your chosen model charges for the
+        tokens, and a single question is a very small number of them &mdash; one retrieval-augmented
+        request, not a generation pipeline. Gemini's free tier covers most home games outright, and a
+        local model costs nothing at all.
+      </p>
+
+{{LEDGER}}
+
+      <!-- The recurrence argument, which the ledger above cannot make: its
+           rows are per-session and per-month, so a bar comparing them directly
+           would be apples to oranges. A year of months says it honestly —
+           one line bills on the months you played, the other bills on all
+           twelve. The assumption is stated in the caption rather than buried. -->
+      <figure class="year" aria-labelledby="year-cap">
+        <div class="year-row">
+          <p class="year-who">Tusk's Vault</p>
+          <ol class="year-months" aria-label="Months you are charged with Tusk's Vault: eight of twelve">
+            <li class="on"></li><li class="on"></li><li></li><li class="on"></li>
+            <li class="on"></li><li></li><li class="on"></li><li class="on"></li>
+            <li></li><li class="on"></li><li class="on"></li><li></li>
+          </ol>
+          <p class="year-sum">only when you played</p>
+        </div>
+        <div class="year-row is-them">
+          <p class="year-who">A wiki subscription</p>
+          <ol class="year-months" aria-label="Months you are charged with a wiki subscription: twelve of twelve">
+            <li class="on"></li><li class="on"></li><li class="on"></li><li class="on"></li>
+            <li class="on"></li><li class="on"></li><li class="on"></li><li class="on"></li>
+            <li class="on"></li><li class="on"></li><li class="on"></li><li class="on"></li>
+          </ol>
+          <p class="year-sum">every month, regardless</p>
+        </div>
+        <figcaption id="year-cap">
+          Twelve months, for a table that played through eight of them and lost four to
+          scheduling. The four gaps are the whole difference: a subscription bills them,
+          and a per-question cost doesn't exist to bill.
+        </figcaption>
+      </figure>
+
+      <p class="measure outro">
+        <a href="{{BASE}}/docs/troubleshooting/faq/">The full cost breakdown →</a>
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       VIII — What it does with your friends' voices. The concern that stops
+       people, drawn rather than asserted.
+       =================================================================== -->
+  <section class="leaf" id="trust" aria-labelledby="trust-h">
+    <div class="rail">
+      <span class="numeral">VIII</span>
+      <p class="rail-label">What leaves your machine</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="trust-h">You're handing this your whole campaign</h2>
+      <p class="measure">
+        Years of somebody's worldbuilding, and often things said at a table that were never meant to
+        leave it. So it's worth being exact about where everything goes. Almost all of it stays on
+        the machine you installed it on.
+      </p>
+
+      <figure class="boundary" aria-labelledby="boundary-cap">
+        <div class="boundary-box">
+          <p class="boundary-title">Your machine</p>
+          <ul class="boundary-items">
+            <li>Every campaign document</li>
+            <li>The index built from them</li>
+            <li>Your rulings and lore gaps</li>
+            <li>The embedding model, running locally</li>
+            <li>Your API keys, encrypted</li>
+          </ul>
+        </div>
+        <div class="boundary-link" aria-hidden="true">
+          <span class="boundary-arrow"></span>
+          <span class="boundary-what">the question, and the passages that answer it</span>
+        </div>
+        <div class="boundary-box is-remote">
+          <p class="boundary-title">The model you chose</p>
+          <ul class="boundary-items">
+            <li>Reads those passages</li>
+            <li>Writes the answer</li>
+            <li>Pinned to keep nothing</li>
+          </ul>
+        </div>
+        <figcaption id="boundary-cap">
+          Choose a model that runs on your own machine and the right-hand side disappears entirely &mdash;
+          nothing leaves at all.
+        </figcaption>
+      </figure>
+
+      <ul class="nevers">
+        <li>No account, no sign-up, no licence check.</li>
+        <li>No telemetry, no analytics, nothing phoning home. Ever.</li>
+        <li>Keys encrypted at rest and tied to the machine — copying the file elsewhere gains nothing.</li>
+        <li>Cloud requests pin a zero-data-retention floor, because the corpus travels with the question.</li>
+        <li>MIT licensed, every line readable, including the setup scripts.</li>
+      </ul>
+
+      <p class="marginalia">
+        One person, one Windows PC, no support desk &mdash; which is why the feedback button sits
+        next to the coffee one in the app. Telling me what broke gets it seen; it does not promise
+        the fix sticks.
+        <a href="{{BASE}}/docs/security/privacy/">The unvarnished version is here.</a>
+      </p>
+
+      <h3 class="trust-sub">So what happens if I stop?</h3>
+      <p class="measure">
+        Worth asking of anything you hand years of worldbuilding. The answer splits cleanly.
+      </p>
+
+      <figure class="fate" aria-labelledby="fate-cap">
+        <div class="fate-col is-keep">
+          <p class="fate-head">Stays yours</p>
+          <ul>
+            <li><strong>Your documents</strong> &mdash; the same folder, never converted or imported</li>
+            <li><strong>Your rulings and gaps</strong> &mdash; readable JSON, sitting beside them</li>
+            <li><strong>The code</strong> &mdash; MIT, fork it or hand it on</li>
+            <li><strong>Your install</strong> &mdash; nothing runs on my servers, so there is nothing to switch off</li>
+          </ul>
+          <p class="fate-note">No export step, because nothing was ever captured.</p>
+        </div>
+        <div class="fate-col is-lose">
+          <p class="fate-head">Stops</p>
+          <ul>
+            <li><strong>Fixes</strong> &mdash; known issues stay known issues</li>
+            <li><strong>Adapting</strong> &mdash; Discord or a provider changes something and nothing follows it</li>
+            <li><strong>Dependency triage</strong> &mdash; advisories stop being watched</li>
+          </ul>
+          <p class="fate-note">This is how it would actually die: drift, not deletion.</p>
+        </div>
+        <figcaption id="fate-cap">
+          A real risk, but a differently shaped one. A hosted tool fails by making your material
+          inaccessible on someone else's schedule. This fails as a tool that stops improving, next
+          to a folder that never depended on it.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       IX — The questions people actually send. Kept on this page rather
+       than moved into the FAQ doc because the answers must be visible here
+       for this page's FAQ structured data to be legitimate.
+       =================================================================== -->
+  <section class="leaf" id="faq" aria-labelledby="faq-h">
+    <div class="rail">
+      <span class="numeral">IX</span>
+      <p class="rail-label">Questions</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="faq-h">The ones people actually ask</h2>
+{{FAQ}}
+    </div>
+  </section>
+
+
+  <!-- ===================================================================
+       X — Start. Requirements fold in here, where they are finally
+       relevant, rather than occupying a section of their own.
+       =================================================================== -->
+  <section class="leaf is-final" id="start" aria-labelledby="start-h">
+    <div class="rail">
+      <span class="numeral">X</span>
+      <p class="rail-label">Start</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="start-h">Two things, then one command</h2>
+      <p class="measure">
+        You need <strong>Node 20 or newer</strong> and <strong>Git</strong>. That is the whole
+        requirement &mdash; no Python, no Docker, no database, no admin rights, and no paid key: a
+        free Gemini tier covers most home games, and a local model costs nothing at all.
+      </p>
+
+      <p class="cta">
+        <a class="btn primary" href="{{BASE}}/docs/getting-started/installation/">Install it</a>
+        <a class="btn" href="{{BASE}}/docs/surfaces/discord/">Connect it to Discord</a>
+      </p>
+
+      <div class="doc-index">
+{{DOCS_LINKS}}
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <p>Tusk's Vault &mdash; free, open source, MIT licensed. Runs on your own machine. No telemetry.</p>
+  <p>
+    <a href="{{REPO}}" rel="noopener">GitHub</a> ·
+    <a href="{{BASE}}/docs/">Documentation</a> ·
+    <a href="{{BASE}}/docs/getting-started/installation/">Setup</a> ·
+    <a href="{{REPO}}/blob/main/LICENSE" rel="noopener">Licence</a> ·
+    <a href="https://buymeacoffee.com/kochitusker" rel="noopener">Buy me a coffee</a>
+  </p>
+</footer>
+
+<script src="{{BASE}}/site.js" defer></script>
+</body>
+</html>

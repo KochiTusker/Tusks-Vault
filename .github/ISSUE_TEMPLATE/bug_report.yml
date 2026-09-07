@@ -1,0 +1,93 @@
+name: 🐛 Bug report
+description: Something is broken or behaving unexpectedly.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug! The more we know, the faster we can fix it. Please don't paste API keys, tokens, or full Discord chat logs — redact them with `[REDACTED]`.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear, concise description of the bug.
+      placeholder: When I @-mention the bot with X, it replies with Y instead of Z.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal numbered steps. If it involves a specific document, attach a small redacted sample.
+      placeholder: |
+        1. Drop `example.pdf` in `Lore/`
+        2. In Discord, send `@Tusk who is X?`
+        3. Observe …
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11 / macOS 14.5 / Ubuntu 24.04
+    validations:
+      required: true
+
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version
+      description: Output of `node --version`
+      placeholder: v20.18.0
+    validations:
+      required: true
+
+  - type: input
+    id: vault-version
+    attributes:
+      label: Tusk's Vault version / commit
+      description: The version from package.json, or the output of `git rev-parse --short HEAD`.
+      placeholder: 1.0.0 / abc1234
+    validations:
+      required: true
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: LLM provider in use
+      options:
+        - OpenRouter
+        - Google Gemini
+        - Claude Code (subscription)
+        - Ollama (local)
+        - Not relevant / not LLM-related
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs / screenshots
+      description: Paste error output from the terminal that ran `run.bat` / `run.sh`, or attach a screenshot. Use code fences (triple backticks).
+      render: shell
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I've redacted any API keys, Discord tokens, and player-identifying info before submitting.
+          required: true
+        - label: I've searched existing issues and this isn't a duplicate.
+          required: true

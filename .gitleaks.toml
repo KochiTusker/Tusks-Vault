@@ -1,0 +1,43 @@
+# Gitleaks configuration for Tusk's Vault.
+#
+# The dev → public split means every push to `public` runs through both:
+#   - Layer 1: custom regex patterns in scripts/audit-patterns.mjs
+#   - Layer 2: gitleaks (this config), invoked by scripts/audit-push-range.mjs
+#     and scripts/audit-history.mjs
+#
+# Default ruleset is extended. The allowlist below suppresses known-fake
+# fixtures in our own test suite — they're synthetic strings used to verify
+# the regex layer actually works, and would otherwise be flagged on every
+# push and history audit.
+#
+# Adding a new test file? If it contains intentional fake secrets, add it
+# to the `paths` list below. Anything outside this list is still scanned.
+
+[extend]
+# Build on gitleaks' default ruleset (the ~150 community-maintained
+# patterns). Set to false to disable defaults and use only custom rules.
+useDefault = true
+
+[allowlist]
+description = "Test fixtures with intentional synthetic secrets — see scrub-secrets.ts for the runtime version of these patterns"
+paths = [
+  '''^scripts/audit-patterns\.test\.mjs$''',
+  '''^scripts/lib/scanners\.test\.mjs$''',
+  '''^src/server/util/scrub-secrets\.test\.ts$''',
+  '''^src/server/util/env-file\.test\.ts$''',
+  '''^src/server/keys/store\.test\.ts$''',
+  '''^src/server/util/updater\.test\.ts$''',
+  '''^src/server/prompt/system\.test\.ts$''',
+  '''^src/server/prompt/assemble\.test\.ts$''',
+  '''^src/server/util/host-origin-guard\.test\.ts$''',
+  '''^src/server/util/safe-slug\.test\.ts$''',
+  '''^src/server/util/security-headers\.test\.ts$''',
+  '''^src/server/util/dev-credential\.test\.ts$''',
+  '''^src/server/personas/store\.test\.ts$''',
+  '''^src/server/llm/claude-code-cli\.test\.ts$''',
+  # The shared pattern module itself (regexes look like secrets to gitleaks)
+  '''^scripts/audit-patterns\.mjs$''',
+  # Documentation about the secret-scan system. References fake tokens for
+  # explanation; not actual leaks.
+  '''^SHIP_FIXES\.md$''',
+]

@@ -1,0 +1,87 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+
+# Project-local binaries (gitleaks etc.) — drop the binary here and the
+# audit scripts auto-discover it. Otherwise they fall back to PATH.
+/.bin/
+
+# Secrets — never commit. Leading slash anchors to repo root so any
+# source files happening to match a name (e.g. src/something/api-keys.json
+# in some future refactor) don't get silently hidden.
+.env*
+!.env.example
+/api-keys.json
+
+# Per-user local configuration for the audit scripts. See
+# .private-names.example for the format. Root-anchored, like every other
+# local-state entry in this file.
+/.private-names
+/.osint-canaries
+
+# Diagnostic bundles — machine state snapshots written on demand and on
+# reply errors. Local debugging artefacts, never committed.
+/.diagnose/
+
+# Runtime state (per-install; never commit). All root-anchored so nested
+# directories in src/ with similar names (e.g. src/server/knowledge,
+# src/server/lore-gaps) are NOT collaterally ignored. Earlier versions
+# of this file used `knowledge/` without the leading slash, which
+# silently excluded src/server/knowledge from git for several commits.
+/.port-runtime
+/run.log
+# Browser-automation scratch: page snapshots, console logs and screenshots
+# written by the Playwright MCP server whenever anyone drives the dashboard
+# from a tool. Anchored like everything else here. Added after a `git add -A`
+# swept a snapshot and two screenshots into a commit — the tree audit noticed
+# the file count, which is a poor substitute for not generating them inside
+# the repo in the first place.
+/.playwright-mcp/
+/knowledge/
+/clarifications.json
+/clarifications.embeddings.json
+/lore_gaps.json
+/settings.json
+# Quarantined copies of a settings.json that would not parse (see
+# config/settings.ts). They hold the same content as the live file — system
+# prompt, lore paths — so they must be ignored by the same rule.
+/settings.json.corrupt-*
+/models/
+
+# Lore/ holds the user's campaign documents — never committed — but we
+# keep the folder visible in the repo via a tracked README so fresh
+# clones see where their lore is supposed to go. Anything else inside
+# Lore/ is ignored.
+/Lore/*
+!/Lore/README.md
+
+# Output from the grading and refusal-probe tools (scripts/grade-models.mjs,
+# grade-maturity.mjs, probe-refusal.mjs). Each writes the model's ANSWERS to
+# --out, so on a real install these files contain campaign material verbatim —
+# probe-refusal.mjs says so itself, but only after it has written the file. The
+# usage strings suggest all four of these names.
+#
+# The release pipeline builds from a committed tree and refuses a dirty
+# working copy, so an untracked file cannot reach the public mirror. What
+# this guards is a routine `git add -A` here, after which the content is in
+# history. Anchored with a leading / per the convention above.
+/probe*.json
+/results*.json
+/maturity*.json
+/grade*.json
+
+# Built output of the public site generator (maintainer tooling). Regenerated
+# on each build and published to the gh-pages branch. Never committed to main.
+/site-dist/
+
+# Claude Code per-machine state. `.claude/launch.json` is tracked on purpose,
+# so this cannot be a directory entry. `settings.local.json` holds a local
+# permission allowlist and `worktrees/` holds absolute checkout paths — both
+# were covered only by the maintainer's global gitignore and .git/info/exclude,
+# neither of which travels with a clone. A fresh checkout or a new worktree
+# would have committed them to origin on the next `git add -A`.
+/.claude/settings.local.json
+/.claude/worktrees/

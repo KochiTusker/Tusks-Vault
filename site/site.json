@@ -1,0 +1,276 @@
+{
+  "_comment": [
+    "Hand-authored content for the public site. Everything else on the site is",
+    "generated from docs/**/*.md, so this file holds only the things that have",
+    "no markdown source: the landing page's video slots, the SEO metadata, and",
+    "the FAQ block that search engines read as structured data.",
+    "",
+    "The build fails loudly on anything here that points at a file which does",
+    "not exist. That is deliberate — a silently-broken poster or a stale slug",
+    "is worse than a build error, because it ships."
+  ],
+  "video": {
+    "_comment": [
+      "MAIN WALKTHROUGH — the one video on the landing page.",
+      "",
+      "`id` is a YouTube video id and is EMPTY until one is recorded. While it",
+      "is empty the section renders nothing at all; it does not render a broken",
+      "player. So this block is safe to leave as-is indefinitely.",
+      "",
+      "TO ADD ONE:",
+      "  1. Upload to YouTube (unlisted is fine — it still embeds and still",
+      "     gets indexed as VideoObject structured data).",
+      "  2. Put the id here, plus uploadDate (YYYY-MM-DD) and duration in ISO 8601",
+      "     (PT4M13S = 4m13s). Both feed the structured data; wrong values are",
+      "     worse than absent ones.",
+      "  3. Fill in each chapter's `start`. The chapter list becomes jump links",
+      "     under the player and SEO clip markers.",
+      "  4. `poster` is a repo-relative image path. Leave empty to use YouTube's",
+      "     own thumbnail."
+    ],
+    "id": "",
+    "title": "Tusk's Vault — asking your D&D campaign questions and getting cited answers",
+    "description": "A walkthrough: pointing Vault at your campaign documents, connecting it to Discord, asking a question from the table, and what happens when the answer genuinely is not in your notes.",
+    "uploadDate": "",
+    "duration": "",
+    "poster": "",
+    "chapters": [
+      {
+        "slug": "install",
+        "label": "Install and first launch",
+        "start": "",
+        "end": "",
+        "blurb": "Node, one command, the dashboard open in a browser"
+      },
+      {
+        "slug": "lore",
+        "label": "Pointing it at your campaign",
+        "start": "",
+        "end": "",
+        "blurb": "The Tusks-Lore folder, what formats work, and what indexing does"
+      },
+      {
+        "slug": "provider",
+        "label": "Choosing a connection",
+        "start": "",
+        "end": "",
+        "blurb": "Free-tier Gemini, OpenRouter, a Claude subscription, or a local model"
+      },
+      {
+        "slug": "discord",
+        "label": "Connecting Discord",
+        "start": "",
+        "end": "",
+        "blurb": "Creating the application, the token, and the invite URL"
+      },
+      {
+        "slug": "asking",
+        "label": "Asking from the table",
+        "start": "",
+        "end": "",
+        "blurb": "Mentioning the bot, reading the citations, and the refusal path"
+      },
+      {
+        "slug": "gaps",
+        "label": "Filling a lore gap",
+        "start": "",
+        "end": "",
+        "blurb": "Answering a question once so it is remembered however it is asked next"
+      }
+    ]
+  },
+  "storyVideo": {
+    "_comment": [
+      "SECONDARY VIDEO — the narrative \"why this exists\" cut, distinct from the",
+      "walkthrough above. Same rules: empty id renders prose only, never a",
+      "broken player. Chapter slugs must not collide with the walkthrough's,",
+      "because both feed the same CLIP structured data namespace."
+    ],
+    "id": "",
+    "title": "Tusk's Vault — why a lore bot has to be allowed to say no",
+    "description": "Why a general chatbot pointed at a campaign invents a duke, what that costs at the table, and the design that prevents it.",
+    "uploadDate": "",
+    "duration": "",
+    "poster": "",
+    "chapters": [
+      {
+        "slug": "story-problem",
+        "label": "The problem",
+        "start": "",
+        "end": "",
+        "blurb": "Six documents, two of them disagreeing"
+      },
+      {
+        "slug": "story-invention",
+        "label": "Why chatbots invent",
+        "start": "",
+        "end": "",
+        "blurb": "A confident answer that reads exactly like a real one"
+      },
+      {
+        "slug": "story-citations",
+        "label": "Citations as the fix",
+        "start": "",
+        "end": "",
+        "blurb": "Every claim traceable to the document behind it"
+      },
+      {
+        "slug": "story-refusal",
+        "label": "Letting it say no",
+        "start": "",
+        "end": "",
+        "blurb": "The refusal path, and the lore gap it opens"
+      }
+    ]
+  },
+  "videos": {
+    "_comment": [
+      "GUIDE VIDEOS — one short upload per how-to page, keyed by the page slug",
+      "exactly as it appears in the site generator's root-page list.",
+      "",
+      "Why per-page rather than one long walkthrough: a video costs a re-record",
+      "every time the thing it shows changes, so the split that pays is along",
+      "change-rate boundaries. A guide covering somebody else's interface — the",
+      "Discord Developer Portal, Foundry's module installer — never churns when",
+      "this project releases. A guide covering this app's own dashboard churns",
+      "with every interface change, so keep those steps TOGETHER in one video.",
+      "",
+      "That lands at a handful of videos, not one per page.",
+      "",
+      "TO ADD ONE: add \"docs/getting-started/installation\": { \"id\": \"...\", \"title\": \"...\" } here.",
+      "An unknown slug is a build error, not a silent no-op."
+    ],
+    "docs/surfaces/discord": {
+      "id": "",
+      "title": "Connecting Tusk's Vault to your campaign Discord",
+      "anchor": "setting-it-up"
+    },
+    "docs/surfaces/foundry-vtt": {
+      "id": "",
+      "title": "Pairing the Tusk's Vault module with Foundry VTT",
+      "anchor": "setting-it-up"
+    }
+  },
+  "seo": {
+    "landing": {
+      "title": "Tusk's Vault — Self-Hosted AI Lore Assistant for D&D and TTRPG Campaigns",
+      "description": "Ask your D&D, Pathfinder or TTRPG campaign anything and get answers cited from your own notes — never invented. Free, open source, runs on your machine, answers in Discord and Foundry VTT. Works for any folder of documents, not just campaigns."
+    },
+    "audience": "Game masters, tabletop RPG players, worldbuilders, Foundry VTT and Discord campaign groups, and anyone wanting cited answers from their own documents",
+    "about": [
+      "Tabletop role-playing games",
+      "Dungeons & Dragons",
+      "Retrieval-augmented generation",
+      "Question answering",
+      "Open-source software"
+    ],
+    "keywords": [
+      "D&D AI assistant",
+      "campaign lore AI",
+      "self-hosted TTRPG assistant",
+      "NotebookLM alternative for D&D",
+      "Discord bot campaign lore",
+      "Foundry VTT AI module",
+      "source-grounded AI",
+      "retrieval augmented generation D&D",
+      "grounded Discord bot for your own documents",
+      "cited answers from your own docs",
+      "self-hosted RAG Discord bot",
+      "document Q&A bot"
+    ],
+    "pages": {
+      "docs/getting-started/installation": {
+        "title": "Set Up a Self-Hosted D&D Lore Assistant — Install Guide",
+        "description": "Install Tusk's Vault, point it at your campaign documents, connect a language model and a Discord bot. Free and open source, runs on your own machine.",
+        "priority": "0.9",
+        "keywords": [
+          "install D&D AI assistant",
+          "self-hosted campaign lore bot setup",
+          "Discord bot for D&D campaign notes",
+          "how to set up a lore assistant"
+        ]
+      },
+      "docs/surfaces/foundry-vtt": {
+        "title": "Ask Your Campaign Lore From Foundry VTT — Module Setup",
+        "description": "Pair the Tusk's Vault module with your running Vault and ask lore questions from Foundry's chat bar with /tusk. Per-world control over what players can pull from the archive.",
+        "priority": "0.9",
+        "keywords": [
+          "Foundry VTT AI module",
+          "Foundry lore assistant",
+          "Foundry VTT campaign question bot",
+          "ask lore from Foundry chat"
+        ]
+      },
+      "docs/getting-started/choosing-a-provider": {
+        "title": "Which AI Model to Use for a D&D Lore Assistant",
+        "description": "Four connections and only two take a key: free-tier Gemini, OpenRouter for ~400 models, a Claude Code subscription, or fully offline local models via Ollama.",
+        "priority": "0.8",
+        "keywords": [
+          "best LLM for D&D campaign",
+          "free AI for tabletop RPG",
+          "local LLM D&D assistant",
+          "OpenRouter D&D"
+        ]
+      },
+      "docs/about/use-cases": {
+        "title": "What GMs and Players Actually Ask a Campaign Lore Bot",
+        "description": "Mid-session recall, worldbuilding consistency checks, onboarding a new player into a long campaign, and catching up after a missed session.",
+        "priority": "0.8",
+        "keywords": [
+          "D&D campaign question bot",
+          "session recall tool",
+          "worldbuilding consistency check",
+          "onboard new D&D player"
+        ]
+      },
+      "docs/security/privacy": {
+        "title": "Privacy in a Self-Hosted TTRPG AI Assistant",
+        "description": "What stays on your machine, every outbound network call enumerated, and how API keys are stored. Local-first by default with no telemetry.",
+        "priority": "0.7",
+        "keywords": [
+          "private AI for D&D",
+          "self-hosted campaign privacy",
+          "local-first TTRPG tool"
+        ]
+      }
+    }
+  },
+  "faq": [
+    {
+      "q": "Does it make up lore when it does not know?",
+      "a": "No — that is the whole point of the design. A canonical rule block is appended to every prompt at assembly time, so citation discipline is structural rather than configurable. When the answer is not in your documents the bot emits a fixed refusal phrase, and the question is logged in the dashboard's Lore Gaps tab so you can answer it once and have that answer reused afterwards."
+    },
+    {
+      "q": "Do my campaign documents get uploaded anywhere?",
+      "a": "Your documents stay in a folder on your machine. Only the question and the snippets that answer it are sent to whichever model you chose, and if you run a local model through Ollama then nothing leaves the machine at all."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "The software is MIT-licensed and free forever. The only cost is the model you pick: Google Gemini's free tier covers most home games, OpenRouter is pay-as-you-go at roughly $0.60 to $4 per three-hour session, a Claude Pro or Max subscription costs nothing extra, and a local model through Ollama costs nothing at all."
+    },
+    {
+      "q": "Do I need to be technical to run it?",
+      "a": "You need to be comfortable installing Node.js and running a script. On Windows there is a one-file installer that prints its whole plan and asks before it changes anything; on macOS and Linux it is a clone and one command."
+    },
+    {
+      "q": "Can players use it, or only the GM?",
+      "a": "Both, and how much players can see is yours to set. In Foundry VTT there is a per-world access mode controlling whether players may ask at all, and answers can be whispered rather than posted publicly."
+    },
+    {
+      "q": "What file formats can it read?",
+      "a": "PDF, DOCX, Markdown, plain text, JSON, YAML, CSV, HTML and RTF. It can also read an existing Obsidian vault directly, strictly read-only, without you having to move or copy anything."
+    },
+    {
+      "q": "Does it work with Foundry VTT?",
+      "a": "Yes, through a companion module that pairs with your running Vault in one click. You ask with /tusk in the chat bar and the answer posts into the chat log, whispered or public depending on the world's access mode."
+    },
+    {
+      "q": "How is this different from asking ChatGPT about my campaign?",
+      "a": "A general chatbot will answer every question confidently, including the ones your documents say nothing about, and the invented answer reads exactly like a real one. Vault cites the document behind every claim and refuses when it has no source, which is the behaviour that makes it usable at the table."
+    },
+    {
+      "q": "Does it only work for tabletop campaigns?",
+      "a": "That is what it was built and tuned for — the prompts, citation styles and refusal wording all assume a game master and a table. But nothing in the machinery knows what a campaign is. It indexes a folder of documents, answers with citations, and refuses when the folder does not cover the question, so pointing it at a handbook, a wiki export, a set of house rules or any other body of documents gives you the same behaviour over those instead."
+    }
+  ]
+}

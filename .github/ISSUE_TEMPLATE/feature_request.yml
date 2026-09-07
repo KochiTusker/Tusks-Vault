@@ -1,0 +1,59 @@
+name: 💡 Feature request
+description: Suggest a new feature or improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for pitching a feature! The roadmap is shaped by what real DMs ask for, so this kind of issue is one of the most impactful things you can file.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation you ran into. Don't jump straight to the solution — start with the friction.
+      placeholder: "When my session ran late, I wanted Tusk to summarise the last 10 messages, but..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like Tusk's Vault to do?
+      description: Your proposed feature or behaviour. Sketches, mockups, or example commands welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've considered
+      description: Any workarounds you tried, or other tools that solve this differently.
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: Where would this feature live?
+      options:
+        - Discord bot behaviour
+        - Dashboard UI
+        - Knowledge / lore ingestion
+        - LLM provider / model
+        - Tomes integration
+        - Setup / installer
+        - Documentation
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I've searched existing issues and the roadmap to make sure this isn't already tracked.
+          required: true
+        - label: I understand this is a community-driven project — maintainers may not pick this up immediately.
+          required: true

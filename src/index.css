@@ -1,0 +1,888 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Fondamento:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ===========================================================================
+   Tusk's Vault — Scriptorium Theme (complementary to Tusk's Tomes)
+   ===========================================================================
+
+   Tusk's Tomes is the cool half of the pair: a spellbook open on a violet-
+   lit altar at 2am. Amethyst primary, ember orange accent.
+
+   Tusk's Vault is the warm half: a parchment-strewn scriptorium under
+   candle-light at dusk. *Ember primary*, amethyst accent. The hue families
+   match Tomes exactly — same OKLCH stops at the ~55° (ember) and ~295°
+   (amethyst) ends of the wheel — but the emphasis is flipped. Where Tomes
+   bathes a button in amethyst with an ember halo, Vault bathes the same
+   button in ember with an amethyst halo. Identical visual DNA, opposite
+   temperature.
+
+   Legacy palette names (gold-*, ink-*, parchment-*, crimson-*, verdigris-*,
+   candle) are preserved as aliases so existing utility classes
+   (text-gold-400, bg-ink-900, …) keep working — they now resolve to the
+   ember/umber/parchment palette below. `verdigris-*` is now the cool
+   amethyst counter-note (Vault's accent = Tomes' primary), preserving the
+   meaning of the original "secondary informational tone" slot.
+   ─────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-script:  "Fondamento", "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cinzel", "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ── Vault palette (OKLCH — same space as Tomes, different emphasis) ── */
+
+  /* "Gold" name kept for back-compat; resolves to the ember scale (Vault's
+     primary axis — the warm half of the Tomes/Vault complementary pair). */
+  --color-gold-300:      oklch(0.82 0.16 60);     /* light ember — hover */
+  --color-gold-400:      oklch(0.72 0.19 55);     /* ember — primary */
+  --color-gold-500:      oklch(0.60 0.18 50);     /* deep ember */
+  --color-gold-600:      oklch(0.45 0.14 50);     /* muted ember / burnt umber */
+
+  /* "Parchment" name kept; warm cream foreground that reads beautifully on
+     the umber base. Identical to Tomes' --foreground so cross-app
+     screenshots feel like the same book. */
+  --color-parchment-50:  oklch(0.97 0.025 90);
+  --color-parchment-100: oklch(0.94 0.025 90);    /* default foreground */
+  --color-parchment-200: oklch(0.85 0.04 70);     /* warm parchment highlight */
+
+  /* "Ink" name kept; resolves to a warm umber stack — same value steps as
+     Tomes' void-violet stack, just shifted to the ~50° hue family. */
+  --color-ink-950:       oklch(0.11 0.025 50);    /* page background — deep umber */
+  --color-ink-900:       oklch(0.16 0.04 50);     /* card / surface */
+  --color-ink-800:       oklch(0.20 0.05 50);     /* muted surface */
+  --color-ink-700:       oklch(0.27 0.05 50);     /* input surface */
+  --color-ink-600:       oklch(0.32 0.07 55);     /* surface-strong / border */
+
+  /* Crimson — still danger; same hue as Tomes. */
+  --color-crimson-400:   oklch(0.65 0.22 25);
+  --color-crimson-500:   oklch(0.58 0.22 25);
+  --color-crimson-600:   oklch(0.45 0.20 25);
+
+  /* "Verdigris" name kept for the secondary/informational slot. In Vault
+     it carries the AMETHYST counter-note — the cool dash against the warm
+     ember field, mirroring how Tomes uses ember against its violet field. */
+  --color-verdigris-400: oklch(0.65 0.22 295);
+  --color-verdigris-500: oklch(0.50 0.18 295);
+
+  /* Candle / ember — warm spell-flame. Same hue as primary now (since
+     primary IS ember in Vault). Used for halos, drifting ember particles,
+     and the candle-flame loader. */
+  --color-candle:        oklch(0.78 0.20 55);
+  --color-candle-bright: oklch(0.88 0.18 60);
+
+  /* Named tokens for cross-app components (parity with Tomes). In Vault,
+     --color-arcane is the AMETHYST counter-note (Tomes' primary, used as
+     Vault's accent) and --color-ember is the warm primary. */
+  --color-arcane:        oklch(0.65 0.22 295);
+  --color-ember:         oklch(0.72 0.19 55);
+  --color-moonsilver:    oklch(0.85 0.04 70);
+
+  /* ──────────────────────────────────────────────────────────────────────
+     Semantic token layer — shared between Vault and Tomes.
+
+     Component code (bg-primary, text-foreground, border-border,
+     shadow-glow-md, …) stays palette-agnostic. The two projects resolve
+     these to OPPOSITE palettes — same hue families, flipped emphasis —
+     so the same component looks "siblings, not twins" across the two
+     apps. See docs/design-system.md for the cross-project mapping table.
+     ────────────────────────────────────────────────────────────────────── */
+
+  /* Brand — ember in Vault */
+  --color-primary:        var(--color-gold-400);   /* ember */
+  --color-primary-hover:  var(--color-gold-300);
+  --color-primary-strong: var(--color-gold-500);
+  --color-primary-muted:  var(--color-gold-600);
+
+  /* Surfaces (dark theme) — warm umber stack */
+  --color-background:       var(--color-ink-950);
+  --color-surface:          var(--color-ink-900);
+  --color-surface-elevated: var(--color-ink-800);
+  --color-surface-input:    var(--color-ink-700);
+  --color-surface-strong:   var(--color-ink-600);
+
+  /* Foreground (use opacity modifiers at the call site, e.g. text-foreground/70) */
+  --color-foreground:        var(--color-parchment-100);
+  --color-foreground-strong: var(--color-parchment-50);
+
+  /* Borders (use opacity modifiers at the call site, e.g. border-border/20) */
+  --color-border: var(--color-gold-400);
+
+  /* Semantic states (success is emerald — universal across both palettes) */
+  --color-danger:  var(--color-crimson-500);
+  --color-success: #34D399;
+  --color-warning: var(--color-candle);
+  --color-info:    var(--color-verdigris-400);   /* amethyst splash */
+
+  /* Glow color (palette-tinted halo). Ember in Vault. */
+  --color-glow: var(--color-ember);
+
+  /* Glow shadows — ember halo in Vault (Tomes uses an amethyst halo at the
+     same intensities). Both share the same shadow shape; only the colour
+     differs. */
+  --shadow-glow-sm: 0 0 12px oklch(0.78 0.20 55 / 0.35);
+  --shadow-glow-md: 0 0 18px oklch(0.78 0.20 55 / 0.45);
+  --shadow-glow-lg: 0 0 28px oklch(0.78 0.20 55 / 0.55);
+
+  /* Glow shadows — semantic states. Success uses emerald (universal). */
+  --shadow-glow-success-sm: 0 0 8px  rgb(52 211 153 / 0.35);
+  --shadow-glow-success-md: 0 0 18px rgb(52 211 153 / 0.35);
+  --shadow-glow-success-lg: 0 0 28px rgb(52 211 153 / 0.40);
+  --shadow-glow-danger-md:  0 0 18px oklch(0.65 0.22 25 / 0.45);
+
+  /* ──────────────────────────────────────────────────────────────────────
+     shadcn-vocabulary aliases — the token names the sibling project's
+     components reference (bg-card, text-muted-foreground, border-border,
+     ring-ring, …), resolved onto Vault's ember/umber values. With these in
+     place, a component written against the sibling's amethyst theme can be
+     pasted here and it renders in the warm palette with no per-component
+     retinting — the cross-project contract described in
+     docs/design-system.md.
+     ────────────────────────────────────────────────────────────────────── */
+  --color-card:                 var(--color-ink-900);
+  --color-card-foreground:      var(--color-parchment-100);
+  --color-popover:              var(--color-ink-900);
+  --color-popover-foreground:   var(--color-parchment-100);
+  --color-muted:                var(--color-ink-800);
+  --color-muted-foreground:     oklch(0.70 0.045 70);  /* warm counterpart of moonsilver */
+  --color-secondary:            var(--color-ink-700);
+  --color-secondary-foreground: var(--color-parchment-100);
+  /* Accent carries the counter-note: amethyst here, ember in the sibling. */
+  --color-accent:               var(--color-verdigris-400);
+  --color-accent-foreground:    var(--color-ink-950);
+  --color-destructive:            var(--color-crimson-500);
+  --color-destructive-foreground: oklch(0.98 0 0);
+  --color-input:                var(--color-ink-700);
+  --color-ring:                 var(--color-gold-300);
+  --color-primary-foreground:   var(--color-ink-950);
+}
+
+/* Body background: deep warm umber with an ember aurora overhead and a
+   small amethyst corner glow — the complementary inverse of Tomes'
+   atmosphere (which is void-violet with amethyst aurora and ember corner). */
+body {
+  /* The page never scrolls sideways, at any width. Wide content (tables,
+     code blocks, the model browser) scrolls inside its own overflow-x-auto
+     container instead; clip (not hidden) so no stray scroll container is
+     created. Belt and braces under the fixed ambient layers. */
+  overflow-x: clip;
+  background-color: var(--color-ink-950);
+  background-image:
+    radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      oklch(0.40 0.18 55 / 0.30),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 110%,
+      oklch(0.22 0.10 45 / 0.45),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 15% 30%,
+      oklch(0.45 0.16 50 / 0.12),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 70%,
+      oklch(0.55 0.16 295 / 0.08),
+      transparent 75%
+    );
+  background-attachment: fixed;
+  color: var(--color-parchment-100);
+}
+
+/* Subtle paper grain overlay for cards. Warm tint matches the umber base. */
+.parchment {
+  position: relative;
+}
+.parchment::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(oklch(0.85 0.04 60 / 0.03) 1px, transparent 1px);
+  background-size: 3px 3px;
+  border-radius: inherit;
+  mix-blend-mode: overlay;
+}
+
+/* Illuminated title — cream → ember → deep ember gradient with an
+   amethyst tip at the foot. The cool dip at the very end is the
+   "complementary" splash that ties Vault to Tomes; the rest is pure
+   warm-scriptorium light.
+
+   Historical note: an earlier gold version applied filter:drop-shadow
+   + -webkit-text-stroke and ended up looking blurry. This version uses
+   only a tiny dark text-shadow for depth — sharp glyphs in every browser. */
+.illuminated {
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: linear-gradient(
+    180deg,
+    oklch(0.97 0.02 80)  0%,
+    oklch(0.85 0.16 60)  25%,
+    oklch(0.72 0.20 55)  55%,
+    oklch(0.55 0.18 50)  80%,
+    oklch(0.65 0.22 295) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 1px oklch(0.06 0.03 50 / 0.6);
+}
+
+/* Candle-flame loader — warm flame, drop-shadow tracks the new ember
+   primary so the glow halo matches the rest of the theme. */
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1)    translateY(0);    opacity: 1; }
+  20%      { transform: scale(1.04) translateY(-0.5px); opacity: 0.94; }
+  40%      { transform: scale(0.97) translateY(0.5px);  opacity: 1; }
+  60%      { transform: scale(1.05) translateY(-0.3px); opacity: 0.92; }
+  80%      { transform: scale(0.99) translateY(0.2px);  opacity: 0.97; }
+}
+@keyframes flame-glow {
+  0%, 100% { filter: drop-shadow(0 0 6px oklch(0.78 0.20 55 / 0.55)); }
+  50%      { filter: drop-shadow(0 0 14px oklch(0.88 0.18 60 / 0.75)); }
+}
+.candle-flame {
+  animation:
+    flame-flicker 0.85s ease-in-out infinite,
+    flame-glow    1.7s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+/* Section dividers — ember rune-trace, brightest at the centre. Class
+   name kept (.rune-divider) so RuneDivider.tsx callers continue to work;
+   the colour is now ember (Vault's primary). */
+.rune-divider {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.72 0.19 55 / 0.25) 40%,
+    oklch(0.82 0.20 60 / 0.60) 50%,
+    oklch(0.72 0.19 55 / 0.25) 60%,
+    transparent 100%
+  );
+}
+
+/* Hoverable cards — ember rim glow on hover. Class name kept (.gold-hover)
+   for back-compat; the colour is now ember. */
+.gold-hover {
+  transition: box-shadow 250ms ease, border-color 250ms ease, transform 250ms ease;
+}
+.gold-hover:hover {
+  box-shadow: 0 0 24px oklch(0.78 0.20 55 / 0.30);
+  border-color: oklch(0.72 0.19 55 / 0.50);
+}
+
+/* Selection — ember tint. */
+::selection {
+  background: oklch(0.72 0.19 55 / 0.45);
+  color: oklch(0.98 0.02 80);
+}
+
+/* Warm-tinted scrollbar. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.13 0.03 50);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.32 0.08 55);
+  border-radius: 6px;
+  border: 2px solid oklch(0.13 0.03 50);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.50 0.14 55);
+}
+
+/* In-app docs: native <details> elements wrapped around each H2 section
+   are styled to look like expandable cards. Same shape as Tomes; ember
+   colour stops instead of amethyst so the cards feel native to the warm
+   palette. */
+details.docs-section {
+  background: linear-gradient(180deg, var(--color-surface), oklch(0.14 0.035 50));
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  margin: 0.75rem 0;
+  overflow: hidden;
+  transition: box-shadow 250ms ease, border-color 250ms ease;
+}
+details.docs-section:hover {
+  border-color: oklch(0.55 0.16 55);
+}
+details.docs-section[open] {
+  border-color: oklch(0.65 0.18 55 / 0.6);
+  box-shadow:
+    0 0 0 1px oklch(0.65 0.18 55 / 0.18) inset,
+    0 0 24px -2px oklch(0.78 0.20 55 / 0.35);
+}
+details.docs-section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+details.docs-section > summary::-webkit-details-marker {
+  display: none;
+}
+details.docs-section > summary h2 {
+  margin: 0;
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--color-foreground);
+}
+details.docs-section > summary::after {
+  content: '';
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid var(--color-ember);
+  border-bottom: 1.5px solid var(--color-ember);
+  transform: rotate(45deg);
+  transition: transform 220ms ease;
+  margin-right: 0.25rem;
+}
+details.docs-section[open] > summary::after {
+  transform: rotate(-135deg);
+}
+details.docs-section > .docs-section-body {
+  padding: 0 1.1rem 1.1rem;
+}
+
+
+/* Entrance rise for cards and revealed disclosure content. Runs once. */
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Tab-panel cross-fade. Same shape, shorter. */
+@keyframes tab-fade-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Diagonal moving highlight across a progress bar. */
+@keyframes progress-sheen {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Brand wordmark — ember aura with a secondary amethyst halo. 4s loop so
+   the pulse is visible at a glance. */
+@keyframes brand-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 18px oklch(0.72 0.19 55 / 0.4),
+      0 0 36px oklch(0.72 0.19 55 / 0.2),
+      0 0 60px oklch(0.65 0.22 295 / 0.08);
+  }
+  50% {
+    text-shadow:
+      0 0 24px oklch(0.78 0.20 55 / 0.65),
+      0 0 48px oklch(0.78 0.20 55 / 0.35),
+      0 0 80px oklch(0.65 0.22 295 / 0.18);
+  }
+}
+
+/* Rune-trace shimmer for header underlines and dividers — an ember line
+   being drawn left to right, with a brief amethyst peak. 12s loop for a
+   contemplative pace. */
+@keyframes rune-trace {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 220% 50%; }
+}
+
+/* Slow rotations for the halo rings behind the brand mark. Full revolution
+   every 60s/90s — barely noticeable unless watched for. */
+@keyframes halo-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes halo-rotate-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Pulsing sigil breath — for dropzone empty states: inviting, not
+   demanding. */
+@keyframes sigil-pulse {
+  0%, 100% { opacity: 0.4;  transform: scale(1); }
+  50%      { opacity: 0.75; transform: scale(1.04); }
+}
+
+/* Ambient candle flicker — the slow, irregular brightness dip on warm
+   corner glows. Distinct from flame-flicker (the fast dance the loader's
+   actual flame does). */
+@keyframes candle-flicker {
+  0%, 100% { opacity: 1;    filter: brightness(1); }
+  18%      { opacity: 0.88; filter: brightness(0.92); }
+  22%      { opacity: 1;    filter: brightness(1.05); }
+  60%      { opacity: 0.93; filter: brightness(0.96); }
+  64%      { opacity: 1;    filter: brightness(1.02); }
+}
+
+/* Ember-charge — the continuous glow ring on primary CTAs; the slow build
+   of banked heat. Lifts on hover via the data-slot selectors below. */
+@keyframes ember-charge {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px oklch(0.72 0.19 55 / 0.4),
+      0 8px 24px -8px oklch(0.72 0.19 55 / 0.45),
+      0 0 0 0 oklch(0.78 0.20 55 / 0);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px oklch(0.80 0.21 55 / 0.6),
+      0 10px 28px -6px oklch(0.78 0.20 55 / 0.55),
+      0 0 0 4px oklch(0.78 0.20 55 / 0.08);
+  }
+}
+
+
+
+/* Dust motes in candlelight — slow meandering orbs. Six distinct paths so
+   the field never looks staged; each pairs with mote-pulse + mote-sway for
+
+
+/* "Answer being composed" breath along the working area's top edge. */
+@keyframes thinking-breath {
+  0%, 100% { opacity: 0.25; }
+  50%      { opacity: 0.7; }
+}
+
+@layer components {
+  /* Brand wordmark — cream → ember gradient text with the pulsing aura. */
+  .brand-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(
+      180deg,
+      oklch(0.98 0.02 80),
+      oklch(0.82 0.18 60) 55%,
+      oklch(0.66 0.19 52)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brand-pulse 4s ease-in-out infinite;
+  }
+  .brand-subtitle {
+    font-family: var(--font-script);
+    font-style: italic;
+    color: oklch(0.78 0.06 70);
+    letter-spacing: 0.02em;
+  }
+
+  /* Ornamental divider — thin ember line with centred content. */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-ember);
+    opacity: 0.65;
+  }
+  .ornament::before,
+  .ornament::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-ember), transparent);
+  }
+
+  /* Scriptorium-card — the primary card treatment. Warm umber gradient,
+     ember rim, entrance rise; on hover the rim brightens and the shadow
+     extends as if the candlelight caught it. */
+  .scriptorium-card {
+    position: relative;
+    background: linear-gradient(180deg, oklch(0.19 0.045 52), oklch(0.15 0.035 50));
+    border: 1px solid oklch(0.34 0.075 55);
+    box-shadow:
+      0 1px 0 oklch(0.60 0.16 55 / 0.18) inset,
+      0 24px 48px -24px oklch(0.04 0.015 50 / 0.8);
+    animation: card-rise 320ms ease-out backwards;
+    transition: box-shadow 280ms ease, border-color 280ms ease;
+  }
+  .scriptorium-card:hover {
+    border-color: oklch(0.44 0.12 55);
+    box-shadow:
+      0 1px 0 oklch(0.68 0.18 55 / 0.25) inset,
+      0 0 0 1px oklch(0.60 0.18 55 / 0.18),
+      0 28px 56px -20px oklch(0.04 0.015 50 / 0.85);
+  }
+
+  /* Tab-panel cross-fade on activation. */
+  [role="tabpanel"][data-state="active"] {
+    animation: tab-fade-in 260ms ease-out;
+  }
+
+  /* Moving ember highlight over a filled progress bar. */
+  .progress-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.88 0.10 60 / 0) 25%,
+      oklch(0.94 0.15 65 / 0.4) 50%,
+      oklch(0.88 0.10 60 / 0) 75%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: progress-sheen 1.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Drifting seam for header underlines + dividers — ember sweep with a
+     brief amethyst peak (the counter-note). */
+  .ornament-shimmer,
+  .rune-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.72 0.19 55 / 0) 15%,
+      oklch(0.80 0.21 58 / 0.65) 45%,
+      oklch(0.65 0.22 295 / 0.45) 55%,
+      oklch(0.72 0.19 55 / 0) 85%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    animation: rune-trace 12s linear infinite;
+  }
+
+  /* Primary CTA — continuous ember-charge glow. Button sets
+     data-slot="primary-cta" on its default variant's important calls. */
+  button[data-slot="primary-cta"]:not(:disabled) {
+    animation: ember-charge 3.6s ease-in-out infinite;
+  }
+  button[data-slot="primary-cta"]:not(:disabled):hover {
+    animation-play-state: paused;
+    box-shadow:
+      0 0 0 1px oklch(0.86 0.20 58 / 0.7),
+      0 10px 32px -4px oklch(0.78 0.20 55 / 0.65),
+      0 0 0 6px oklch(0.78 0.20 55 / 0.14);
+  }
+
+  /* Amethyst counter-note CTAs — the cool splash against the warm field. */
+  button[data-slot="arcane-cta"]:not(:disabled) {
+    box-shadow:
+      0 0 0 1px oklch(0.65 0.22 295 / 0.5),
+      0 8px 24px -8px oklch(0.65 0.22 295 / 0.4);
+  }
+  button[data-slot="arcane-cta"]:not(:disabled):hover {
+    box-shadow:
+      0 0 0 1px oklch(0.72 0.24 295 / 0.7),
+      0 12px 32px -6px oklch(0.70 0.22 295 / 0.55);
+  }
+
+  /* Prose treatment for the scribe's answers — serif ink on aged paper. */
+  .scribe-prose {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .scribe-prose p + p {
+    margin-top: 0.9em;
+  }
+
+  /* Rising sparks — fixed full-viewport layer, no layout interaction.
+     Shared name with the sibling (it is ember in both). Render as
+
+  /* Candle-halo — slow counter-rotating rings behind the brand mark.
+     Ember outer ring, amethyst inner (the sibling runs the inverse). */
+  .candle-halo {
+    position: absolute;
+    inset: -40%;
+    pointer-events: none;
+    color: var(--color-ember);
+    animation: halo-rotate 60s linear infinite;
+    opacity: 0.6;
+  }
+  .candle-halo--inner {
+    position: absolute;
+    inset: -25%;
+    pointer-events: none;
+    color: var(--color-arcane);
+    animation: halo-rotate-cw 90s linear infinite;
+    opacity: 0.35;
+  }
+
+  /* Per-tab atmospheric backdrops on the <main data-tab=…> wrapper.
+     Pseudo-elements, z-index -1, no layout interaction. */
+  .tab-bg {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Home — the reading room: a faint parchment wash overhead and ruled
+     lines, like light falling on a page left open on the desk. */
+  .tab-bg[data-tab="home"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 30% at 50% 20%, oklch(0.92 0.06 75 / 0.05), transparent 70%),
+      repeating-linear-gradient(
+        180deg,
+        transparent 0,
+        transparent 28px,
+        oklch(0.70 0.04 85 / 0.025) 28px,
+        oklch(0.70 0.04 85 / 0.025) 29px
+      );
+  }
+
+  /* Lore — bookshelf candlelight pooling at the foot of the stacks. */
+  .tab-bg[data-tab="lore"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 25% at 50% 100%, oklch(0.60 0.18 55 / 0.18), transparent 70%),
+      radial-gradient(ellipse 30% 15% at 20% 95%, oklch(0.60 0.18 55 / 0.10), transparent 75%);
+    animation: candle-flicker 4s ease-in-out infinite;
+  }
+
+  /* Settings — faint sigil-grid motif in warm umber. */
+  .tab-bg[data-tab="settings"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 25% at 50% 0%, oklch(0.50 0.14 55 / 0.12), transparent 70%),
+      repeating-linear-gradient(
+        60deg,
+        transparent 0,
+        transparent 40px,
+        oklch(0.50 0.14 55 / 0.03) 40px,
+        oklch(0.50 0.14 55 / 0.03) 41px
+      ),
+      repeating-linear-gradient(
+        -60deg,
+        transparent 0,
+        transparent 40px,
+        oklch(0.50 0.14 55 / 0.03) 40px,
+        oklch(0.50 0.14 55 / 0.03) 41px
+      );
+  }
+
+
+  .ember-glow {
+    box-shadow:
+      0 0 0 1px oklch(0.72 0.19 55 / 0.4),
+      0 0 24px -2px oklch(0.78 0.20 55 / 0.4);
+    animation: ember-charge 4s ease-in-out infinite;
+  }
+}
+
+/* ── Answer-reactive ambience ─────────────────────────────────────────
+   The astrolabe turns at the same rate whether the app is idle or
+   composing. Keying it off data-thinking on <html> makes the chrome
+   respond to real work: the rings quicken, and a slow breath glows
+   along the working area's top edge — visible even when the reply is
+   scrolled out of view.
+
+   Decoration only — no layout shifts, nothing that moves under the
+   pointer, and the whole block is disabled under reduced-motion. */
+
+
+
+
+
+:root[data-thinking="true"] .astro-ring {
+  animation-duration: 24s;
+}
+
+:root[data-thinking="true"] .tab-bg::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.78 0.20 55 / 0.9),
+    oklch(0.65 0.22 295 / 0.7),
+    transparent
+  );
+  animation: thinking-breath 3.2s ease-in-out infinite;
+}
+
+/* Settings sections lift on hover so the collapsible rows read as
+   interactive, and reveal their contents with the same easing the cards
+   already use. */
+details[id^="page-section-"] > summary:hover {
+  box-shadow: inset 0 0 0 1px oklch(0.78 0.20 55 / 0.25);
+}
+details[id^="page-section-"][open] > div {
+  animation: card-rise 260ms ease both;
+}
+
+/* Every other disclosure opens with the same rise — one motion language,
+   not several. Opt in with .reveal-on-open on the content wrapper. */
+details[open] > .reveal-on-open {
+  animation: card-rise 260ms ease both;
+}
+
+/* Docs callouts — colour-coded blocks in rendered markdown. Body prose
+   mixes the hue toward the foreground (fully saturated paragraph text is
+   why coloured callouts usually fail); emphasis and inline code take the
+   hue near full strength so the load-bearing half of a sentence lands. */
+.docs-alert {
+  --docs-alert-hue: var(--color-border);
+  margin: 0.9rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--docs-alert-hue);
+  border-radius: 0.5rem;
+  background: color-mix(in oklab, var(--docs-alert-hue) 9%, transparent);
+  color: color-mix(in oklab, var(--docs-alert-hue) 34%, var(--color-foreground));
+}
+.docs-alert > .docs-alert-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--docs-alert-hue);
+  margin-bottom: 0.3rem;
+}
+.docs-alert > :last-child { margin-bottom: 0; }
+.docs-alert > p:first-of-type { margin-top: 0; }
+.docs-alert strong,
+.docs-alert b {
+  color: color-mix(in oklab, var(--docs-alert-hue) 72%, var(--color-foreground));
+  font-weight: 650;
+}
+.docs-alert em,
+.docs-alert i {
+  color: color-mix(in oklab, var(--docs-alert-hue) 60%, var(--color-foreground));
+}
+.docs-alert code {
+  color: color-mix(in oklab, var(--docs-alert-hue) 78%, var(--color-foreground));
+  background: color-mix(in oklab, var(--docs-alert-hue) 14%, transparent);
+}
+.docs-alert a {
+  color: color-mix(in oklab, var(--docs-alert-hue) 82%, var(--color-foreground));
+  text-decoration-color: color-mix(in oklab, var(--docs-alert-hue) 50%, transparent);
+}
+.docs-alert li::marker { color: var(--docs-alert-hue); }
+/* Red — a warning. Something can break, cost money, or lose data. */
+.docs-alert-caution   { --docs-alert-hue: oklch(0.68 0.20 25); }
+/* Orange — a notice. A caveat worth reading before you act. */
+.docs-alert-warning   { --docs-alert-hue: oklch(0.75 0.16 65); }
+/* Green — streamlined. Something that got simpler, faster, or automatic. */
+.docs-alert-tip       { --docs-alert-hue: oklch(0.72 0.17 150); }
+/* Blue — a neutral aside. */
+.docs-alert-note      { --docs-alert-hue: oklch(0.70 0.14 240); }
+/* Amethyst — load-bearing detail that is easy to miss. The counter-note. */
+.docs-alert-important { --docs-alert-hue: oklch(0.70 0.18 295); }
+
+/* ── Astrolabe — the ambient background ────────────────────────────────
+   A working instrument behind the page: a graduated scale, a ring of
+   runes, a hexagram, each turning at its own speed. Fixed to the
+   viewport so it does not scroll with the content, screen-blended so the
+   strokes ADD light to the warm ground rather than painting over it,
+   and entirely non-interactive.
+
+   It replaced a hearth-and-embers stage. The reason is worth keeping:
+   that stage put a fire, drifting sparks and floating motes ALL in the
+   same warm hue as the page, so the motion registered as smear rather
+   than atmosphere. This leans on the amethyst counter-note the palette
+   already carries, which is what makes it legible at 15–22% opacity.
+   See docs/design-system.md. */
+/* Sized in vw, and deliberately WIDER than the window.
+
+   The visible band is the margin either side of the reading column, which
+   is a function of viewport WIDTH — so the size must be too. vmin ties it
+   to the height instead, and on a short wide window that pulls every ring
+   inward behind the cards. At 118vw the graduated scale (0.375–0.41 of the
+   artwork) lands in that margin at every width from 768px up: the column
+   sits inside the hub, and what shows beside it is instrument detail
+   rather than a bare outer rim.
+
+   Historical note, since it cost a round: filling the viewport
+   scales the 400-unit artwork by ~3x on a desktop, which puts the rune ring
+   right through the reading column and leaves only disconnected fragments
+   visible — it stops reading as an instrument and starts reading as debris.
+   At 108vmin the whole circle is present, slightly overspilling the short
+   edge, so it reads as one large object seen behind the page. */
+.astrolabe {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(118vw, 2200px);
+  height: min(118vw, 2200px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+.astro-ring {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  fill: none;
+}
+/* Four periods, none a multiple of another, so the rings never resolve
+   back into a single repeating pose. */
+.astro-r1 { animation: astro-spin 200s linear infinite; }
+.astro-r2 { animation: astro-spin 140s linear infinite reverse; }
+.astro-r3 { animation: astro-spin 260s linear infinite; }
+.astro-r4 { animation: astro-spin 90s linear infinite reverse; }
+@keyframes astro-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Reduced-motion compliance — collapse every bespoke animation so users
+   who opt out of motion see a static interface. Tailwind utility classes
+   (animate-spin etc.) are unaffected; only our keyframes are quieted.
+   The astrolabe still PAINTS — its geometry stays on the page — it just
+   stops turning. */
+@media (prefers-reduced-motion: reduce) {
+  .astro-ring,
+  .candle-flame,
+  .illuminated,
+  .brand-title,
+  .ornament-shimmer,
+  .rune-shimmer,
+  .scriptorium-card,
+  .progress-sheen::after,
+  .candle-halo,
+  .candle-halo--inner,
+  .ember-glow,
+  .tab-bg[data-tab="lore"]::before,
+  [role="tabpanel"][data-state="active"],
+  button[data-slot="primary-cta"]:not(:disabled),
+  details[id^="page-section-"][open] > div,
+  details[open] > .reveal-on-open,
+  :root[data-thinking="true"] .tab-bg::after {
+    animation: none !important;
+  }
+}
