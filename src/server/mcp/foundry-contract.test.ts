@@ -1,15 +1,15 @@
 // The wire contract between this repo and the Foundry module.
 //
-// The module lives in its own repository now (`Tusks-Vault-VTT`), so nothing in
+// The module lives in its own repository now (`Tusks-Vault-Foundry`), so nothing in
 // this repo compiles, imports or tests it. That is a deliberate split — see
-// docs/FoundryContract.md for why — but it removes the one mechanism that used
+// docs/tooling/foundry-contract.md for why — but it removes the one mechanism that used
 // to keep the two ends honest: a change here that broke the module used to fail
 // this repo's suite, and now it cannot.
 //
 // This file is the replacement. Every assertion below corresponds to a line in
 // the module that would break if the assertion stopped holding, and the module
 // repo carries a mirror suite asserting it SENDS what these tests accept. The
-// pair is the contract; docs/FoundryContract.md is its prose.
+// pair is the contract; docs/tooling/foundry-contract.md is its prose.
 //
 // The rule that makes it work: **a change to anything asserted here is a change
 // to both repositories.** If an assertion below has to be edited to make a
@@ -235,7 +235,7 @@ describe("pairing — the fields the module sends and reads", () => {
     // from another local port, Foundry's own :30000 included, is NOT refused
     // here. Reaching that position needs code already running on the machine
     // (a hostile Foundry module, say), which is a real vector but a different
-    // one. See docs/FoundryContract.md; tightening this to a true same-origin
+    // one. See docs/tooling/foundry-contract.md; tightening this to a true same-origin
     // check is tracked there, not silently assumed.
     const requested = await fetch(`${base}/api/mcp/pair/request`, {
       method: "POST",

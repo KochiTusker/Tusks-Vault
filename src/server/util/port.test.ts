@@ -119,13 +119,45 @@ describe("bindWithFallback", () => {
     expect(listenAttempts).toHaveLength(20);
   });
 
+  // The EACCES hint is platform-specific, so these override process.platform
+  // rather than reading it. An earlier version asserted the Windows wording
+  // unconditionally: it passed on the maintainer's machine and failed on the
+  // Linux CI leg — a test that only checks the host it happens to run on is
+  // half a test, and on a cross-platform project it is the wrong half.
+  async function messageOnPlatform(platform: string): Promise<string> {
+    const original = Object.getOwnPropertyDescriptor(process, "platform")!;
+    Object.defineProperty(process, "platform", { value: platform, configurable: true });
+    try {
+      state.failures = Object.fromEntries(
+        Array.from({ length: 20 }, (_, i) => [3000 + i, "EACCES"])
+      );
+      return await bindWithFallback(app, 3000).then(
+        // Throw rather than return a sentinel string. A sentinel is caught only
+        // by each test's POSITIVE assertion; the POSIX case's
+        // `not.toMatch(/netsh/)` would happily pass on it, so reordering or
+        // dropping one line would turn this into a silent pass.
+        () => { throw new Error("bindWithFallback resolved; expected it to reject"); },
+        (err: Error) => err.message
+      );
+    } finally {
+      Object.defineProperty(process, "platform", original);
+    }
+  }
+
   it("points at the Windows reservation list when the range dies of EACCES", async () => {
     // The diagnosis is not guessable from "could not bind": the ports are not
     // in use, they are administratively excluded, and the fix is a different
     // PORT rather than closing something.
-    state.failures = Object.fromEntries(
-      Array.from({ length: 20 }, (_, i) => [3000 + i, "EACCES"])
-    );
-    await expect(bindWithFallback(app, 3000)).rejects.toThrow(/excludedportrange/);
+    const message = await messageOnPlatform("win32");
+    expect(message).toMatch(/excludedportrange/);
+    expect(message).toMatch(/3000\.\.3019/);
+  });
+
+  it("points POSIX users at privileged ports instead, not at netsh", async () => {
+    // Same errno, unrelated cause. Telling a Linux user who set PORT=80 to run
+    // a Windows networking command sends them nowhere.
+    const message = await messageOnPlatform("linux");
+    expect(message).toMatch(/below 1024 need root/);
+    expect(message).not.toMatch(/netsh|excludedportrange/);
   });
 });

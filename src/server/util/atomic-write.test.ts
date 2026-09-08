@@ -81,8 +81,11 @@ describe("writeFileAtomic", () => {
     expect([...fs.readFileSync(target)]).toEqual([1, 2, 3]);
   });
 
-  it("applies mode before publishing the file", () => {
-    if (process.platform === "win32") return; // POSIX modes only
+  // skipIf, not an early `return`: a bare return reports the test as PASSED on
+  // Windows without having asserted anything, which is the same assertion-free
+  // green that let the platform-specific port hint ship broken. Skipped shows
+  // up as skipped.
+  it.skipIf(process.platform === "win32")("applies mode before publishing the file", () => {
     const target = path.join(dir, "secret");
     writeFileAtomic(target, "s3cret", { mode: 0o600 });
     expect(fs.statSync(target).mode & 0o777).toBe(0o600);

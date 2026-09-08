@@ -210,11 +210,29 @@ Vault probes which models a key can *actually* call — catalogues advertise
 models that a given key or privacy policy will refuse — and marks the picker
 accordingly, so you find out before a session rather than during one.
 
-**Where you can ask from:** Discord, Foundry VTT's chat bar via a companion
-module that pairs in one click — it lives in its own repository,
-[Tusks-Vault-VTT](https://github.com/KochiTusker/Tusks-Vault-VTT) — and any MCP
+**Where you can ask from:** Discord, Foundry VTT's chat bar, and any MCP
 client. The dashboard is where you configure and inspect Vault; questions are
 asked from the surfaces your table already uses.
+
+> [!IMPORTANT]
+> **Foundry needs a second install**, and it is worth knowing what you get for
+> it. The chat-bar integration is a separate companion module, from the
+> [Foundry package registry](https://foundryvtt.com/packages/tusks-vault)
+> (search *Tusk's Vault* in Foundry's own **Install Module** browser) or from
+> [Tusks-Vault-Foundry](https://github.com/KochiTusker/Tusks-Vault-Foundry).
+> It runs two ways:
+>
+> - **Lite** needs nothing else installed. It answers from the journal entries
+>   in one Foundry folder, cites the entry it used, and respects your journal
+>   permissions. A two-minute trial with no download of Vault at all.
+> - **Bridge** points the module at Vault running on the GM's machine. The
+>   answers then come from everything you keep — Word, PDF, Markdown, an
+>   Obsidian vault — rather than one journal folder, with your choice of model
+>   and your API key never held in a browser.
+>
+> Lite is the trial; Bridge is the archive. The module versions on its own
+> schedule, so a Vault release does not imply a module release. Full
+> walkthrough: [Foundry VTT](docs/surfaces/foundry-vtt.md).
 
 **Personas** swap the bot's voice without weakening citation discipline — seven
 presets, or author your own from a template or a description.

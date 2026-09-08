@@ -19,8 +19,14 @@ export default defineConfig({
       // `npm test`.
       "scripts/**/*.test.mjs",
     ],
-    // Keep test runs deterministic — no parallel file execution by default.
-    // Individual suites are still parallelized within a file.
+    // Keep test runs deterministic — no parallel file execution.
+    //
+    // Suites and tests WITHIN a file are also sequential: that is Vitest's
+    // default (`sequence.concurrent: false`) and nothing here opts into
+    // `.concurrent`. An earlier version of this comment claimed the opposite,
+    // which matters because that guarantee is what licenses the
+    // `process.platform` overrides in port.test.ts and win-spawn.test.ts — a
+    // reader who believed the old comment would think those could interleave.
     fileParallelism: false,
 
     // Vitest defaults (5s test / 10s hook) are too tight for this suite, which

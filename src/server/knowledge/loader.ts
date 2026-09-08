@@ -26,9 +26,10 @@ const require = createRequire(import.meta.url);
  * Is `target` outside the repository working tree?
  *
  * path.relative rather than a string prefix: a prefix test says
- * "D:/Tusks-Vault-VTT" is inside "D:/Tusks-Vault", and on Windows it also
- * disagrees with itself over drive-letter case. A relative path that starts
- * with ".." (or is absolute, meaning a different drive) is genuinely outside.
+ * "<root>-something" is inside "<root>" — a sibling directory whose name
+ * merely starts with the root's — and on Windows it also disagrees with
+ * itself over drive-letter case. A relative path that starts with ".." (or is
+ * absolute, meaning a different drive) is genuinely outside.
  *
  * `repoRoot` is a parameter only so this can be tested against paths that do
  * not exist on the machine running the suite; callers pass nothing.

@@ -7,7 +7,7 @@ agreement.
 | | |
 |---|---|
 | **Server** | Tusk's Vault — this repository. Owns `/mcp` and `/api/mcp/*`. |
-| **Client** | The Tusk's Vault module — repository `Tusks-Vault-VTT`. Owns the chat trigger, the pairing UI and the relay. |
+| **Client** | The Tusk's Vault module — repository `Tusks-Vault-Foundry`. Owns the chat trigger, the pairing UI and the relay. |
 
 ## Why they are separate repositories
 

@@ -50,17 +50,30 @@ than swallowing the question.
 ## Setting it up
 
 1. **Switch the surface on.** Dashboard → **Home** → **Surfaces** → **Foundry VTT**. Off by default, as is the player ceiling below it.
-2. **Install the module.** In Foundry: **Setup → Add-on Modules → Install
-   Module**, then either search the package list for *Tusk's Vault*, or paste
-   this into **Manifest URL**:
+2. **Install the module.** Vault answers in Foundry through a separate
+   companion module. It runs in two modes, picked under *Module Settings →
+   Where answers come from*: **Lite** answers from the journal entries in one
+   Foundry folder and needs nothing else installed, and **Bridge** relays to
+   Vault running on the GM's machine so the answers come from your whole
+   archive instead. This page is about Bridge — for Lite, the module's own
+   [README](https://github.com/KochiTusker/Tusks-Vault-Foundry) is the guide.
+
+   In Foundry: **Setup → Add-on Modules → Install Module**, then search the
+   package list for *Tusk's Vault*. It is
+   [listed on the Foundry package registry](https://foundryvtt.com/packages/tusks-vault),
+   so searching is the shortest route and updates arrive through Foundry's own
+   update check.
+
+   If you would rather paste a manifest, this is the URL:
 
    ```
-   https://github.com/KochiTusker/Tusks-Vault-VTT/releases/latest/download/module.json
+   https://github.com/KochiTusker/Tusks-Vault-Foundry/releases/latest/download/module.json
    ```
 
-   It lives in its own repository,
-   [Tusks-Vault-VTT](https://github.com/KochiTusker/Tusks-Vault-VTT), and
-   updates on Foundry's own schedule rather than this app's.
+   The module lives in its own repository,
+   [Tusks-Vault-Foundry](https://github.com/KochiTusker/Tusks-Vault-Foundry),
+   and versions independently of this app — a Vault release does not imply a
+   module release, or the reverse.
 3. **Enable it.** In your world: Settings sidebar → **Module Management** →
    tick **Tusk's Vault** → *Save Module Settings*. Foundry reloads every
    connected client when you do this, so pick a moment between scenes.
