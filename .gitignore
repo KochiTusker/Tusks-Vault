@@ -85,3 +85,12 @@ coverage/
 # would have committed them to origin on the next `git add -A`.
 /.claude/settings.local.json
 /.claude/worktrees/
+
+# Scratch lore folder created by scripts/boot-check.mjs. Anchored with a
+# leading slash like every other runtime-state entry here.
+/.boot-check-lore-*/
+
+# Scratch site builds from the site tests (they build into a per-pid
+# directory at the repo root and remove it in a finally). A hard-killed
+# run would otherwise strand an untracked build that blocks a release.
+/site-dist-test-*/

@@ -989,6 +989,27 @@
         free Gemini tier covers most home games, and a local model costs nothing at all.
       </p>
 
+      <!-- Placed before the install button, not after it: the point is to stop
+           someone cloning a repo they cannot run, which is no use as a footnote
+           on the page they land on next. -->
+      <div class="notice warn">
+        <h3>One machine is supported so far</h3>
+        <p class="measure">
+          Tusk&rsquo;s Vault is built and used daily on <strong>64-bit Windows 10 / 11</strong>, and
+          that is the only platform where a clean install has been run start to finish.
+          <strong>Windows on ARM, macOS and Linux should work but are unverified</strong> &mdash;
+          nothing in the code is Windows-only and the test suite runs on Linux on every commit, but
+          nobody has yet booted the app on a Mac, a Linux desktop, or an ARM laptop.
+        </p>
+        <p class="measure">
+          Nothing here can harm your computer; the realistic failure is that the server does not
+          start. If you try one of those, please
+          <a href="https://github.com/KochiTusker/Tusks-Vault/issues">say what happened</a> &mdash;
+          that is exactly what moves a platform to supported.
+          <a href="{{BASE}}/docs/troubleshooting/known-issues/">The full platform table &rarr;</a>
+        </p>
+      </div>
+
       <p class="cta">
         <a class="btn primary" href="{{BASE}}/docs/getting-started/installation/">Install it</a>
         <a class="btn" href="{{BASE}}/docs/surfaces/discord/">Connect it to Discord</a>

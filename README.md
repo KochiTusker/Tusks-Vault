@@ -139,6 +139,18 @@ this project dies* in the [Comparison](docs/about/comparison.md).
 
 You **don't** need Python, Docker, a database, admin rights, or a paid LLM key.
 
+> [!WARNING]
+> **Supported today: 64-bit Windows 10 / 11.** That is the platform this is
+> built and used on daily, and the only one where a clean install has been run
+> end to end. **Windows on ARM, macOS and Linux are expected to work but are
+> unverified** — the code has no Windows-only calls and the test suite runs on
+> Linux in CI, but nobody has booted the app on a Mac, a Linux desktop, or an
+> ARM machine. Nothing will harm your computer; the realistic failure is that
+> the server doesn't start. Please
+> [tell us what happened](https://github.com/KochiTusker/Tusks-Vault/issues) if
+> you try one — that's how these move to supported. Details:
+> [Platform support](docs/troubleshooting/known-issues.md).
+
 ## Quick start
 
 **Mac / Linux**

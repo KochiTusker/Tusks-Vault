@@ -188,7 +188,43 @@
           "self-hosted campaign lore bot setup",
           "Discord bot for D&D campaign notes",
           "how to set up a lore assistant"
-        ]
+        ],
+        "howTo": {
+          "name": "Install Tusk's Vault and connect it to your campaign",
+          "totalTime": "PT10M",
+          "supply": ["A folder of campaign documents"],
+          "tool": ["Node.js 20 or newer", "Git"],
+          "steps": [
+            {
+              "name": "Install the prerequisites",
+              "text": "Install Node.js 20 or newer and Git. No Python, no Docker, no database.",
+              "anchor": "step-1-install-the-prerequisites-above"
+            },
+            {
+              "name": "Get the code onto your machine",
+              "text": "Clone the repository, or download and extract the ZIP if you would rather not use Git.",
+              "anchor": "step-2-get-the-code-onto-your-machine"
+            },
+            {
+              "name": "Launch",
+              "text": "Run the launcher. It installs dependencies the first time — about a minute — then starts the dashboard on localhost.",
+              "anchor": "step-3-launch"
+            },
+            {
+              "name": "Configure from the dashboard",
+              "text": "Choose a model provider, add a key if that provider needs one, and point Vault at the folder holding your campaign documents.",
+              "anchor": "step-4-configure-from-the-dashboard"
+            },
+            {
+              "name": "Test it",
+              "text": "Ask a question you know the answer to, and check the citation names the document it came from.",
+              "anchor": "step-5-test-it"
+            }
+          ]
+        }
+      },
+      "docs/troubleshooting/faq": {
+        "faqFromHeadings": true
       },
       "docs/surfaces/foundry-vtt": {
         "title": "Ask Your Campaign Lore From Foundry VTT — Module Setup",

@@ -2052,6 +2052,12 @@ tbody tr:nth-child(even) td {
 
 .leaf-body > * + * { margin-top: 1.15rem; }
 
+/* h1 shares this exactly. The examples page is a standalone page rather than a
+   section of the landing page, so its top heading is an <h1> — a page whose
+   highest heading is an <h2> has no document title for a screen reader or a
+   search engine to anchor on. The two selectors are one rule so promoting the
+   tag changed the semantics and nothing about the appearance. */
+.leaf-body h1,
 .leaf-body h2 {
   font-family: var(--font-serif);
   font-weight: 400;

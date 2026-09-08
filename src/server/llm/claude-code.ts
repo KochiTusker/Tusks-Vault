@@ -19,12 +19,10 @@
 // reply. Explaining the request honestly works; asserting authority over it
 // does not.
 
-import { createRequire } from "module";
+import { describePdfFailure, extractPdfText } from "../util/pdf-text";
 import { ContentPart, GenerateInput, GenerateResult, LlmAdapter, ModelInfo } from "./types";
 import { CLAUDE_CODE_MODELS, ClaudeCodeError, runClaudeCode } from "./claude-code-cli";
 
-const require = createRequire(import.meta.url);
-const pdf = require("pdf-parse");
 
 /**
  * The last thing the model reads, and it is an instruction to answer.
@@ -168,10 +166,10 @@ async function flattenParts(parts: ContentPart[]): Promise<string> {
       out.push(part.text);
     } else if (part.type === "document") {
       try {
-        const data = await pdf(Buffer.from(part.base64, "base64"));
-        out.push(`Context from PDF ${part.name}:\n${(data.text as string).substring(0, 30000)}`);
-      } catch {
-        out.push(`(Could not parse PDF ${part.name})`);
+        const text = await extractPdfText(Buffer.from(part.base64, "base64"));
+        out.push(`Context from PDF ${part.name}:\n${text.substring(0, 30000)}`);
+      } catch (err) {
+        out.push(describePdfFailure(err, part.name));
       }
     } else {
       out.push(

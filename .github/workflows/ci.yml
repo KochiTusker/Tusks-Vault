@@ -44,6 +44,16 @@ jobs:
       - run: npm run lint
       - run: npm test
 
+      # Runs on BOTH matrix legs, unlike the audits below, because it is the
+      # only step that starts the application. Every unit test can pass while
+      # the server fails at import — that is not hypothetical: a transitive
+      # native dependency with no binary for the host arch took the whole boot
+      # down while the suite stayed green. This catches that class on each OS
+      # we claim to run on, and it is the closest thing in CI to "a stranger
+      # cloned it and double-clicked run.bat".
+      - name: Boot check (server actually starts)
+        run: npm run boot-check
+
       # Linux-only below: the audit scripts run once per build — no benefit
       # to repeating them on Windows.
       #

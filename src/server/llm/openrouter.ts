@@ -34,14 +34,12 @@
 // shared hold makes sure it doesn't.
 
 import OpenAI from "openai";
-import { createRequire } from "module";
+import { describePdfFailure, extractPdfText } from "../util/pdf-text";
 import { ContentPart, GenerateInput, GenerateResult, LlmAdapter, MissingApiKeyError, ModelInfo } from "./types";
 import { maskKey } from "../config/env";
 import { getCatalogue, readCachedCatalogue, findModel, isTextModel } from "./openrouter-catalogue";
 import { withRetry } from "./retry";
 
-const require = createRequire(import.meta.url);
-const pdf = require("pdf-parse");
 
 export const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1";
 
@@ -376,12 +374,11 @@ async function toOpenRouterContent(part: ContentPart): Promise<OpenAiUserContent
       // Chat Completions takes no native PDFs — pre-extract to text, same as
       // the OpenAI adapter.
       try {
-        const data = await pdf(Buffer.from(part.base64, "base64"));
-        const text = (data.text as string).substring(0, 30000);
-        return { type: "text", text: `Context from PDF ${part.name}:\n${text}` };
+        const extracted = await extractPdfText(Buffer.from(part.base64, "base64"));
+        return { type: "text", text: `Context from PDF ${part.name}:\n${extracted.substring(0, 30000)}` };
       } catch (err) {
         console.error(`[openrouter] failed to extract PDF text from ${part.name}:`, err);
-        return { type: "text", text: `(Could not parse PDF ${part.name})` };
+        return { type: "text", text: describePdfFailure(err, part.name) };
       }
     }
   }

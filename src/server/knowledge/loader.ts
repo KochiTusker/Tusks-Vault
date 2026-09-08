@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import multer from "multer";
 import { createRequire } from "module";
+import { extractPdfText } from "../util/pdf-text";
+import { movePath } from "../util/move-path";
 import {
   KNOWLEDGE_DIR,
   KNOWLEDGE_DIR_IS_EXTERNAL,
@@ -36,7 +38,6 @@ export function isOutsideRepo(target: string, repoRoot: string = REPO_ROOT_DIR):
   return rel !== "" && (rel.startsWith("..") || path.isAbsolute(rel));
 }
 
-const pdf = require("pdf-parse");
 const mammoth = require("mammoth");
 
 // Names that aren't user lore — kept in BOTH source and destination during a
@@ -84,7 +85,12 @@ export function ensureKnowledgeDir(): void {
         const from = path.join(REPO_LORE_DIR, entry);
         const to = path.join(KNOWLEDGE_DIR, entry);
         if (fs.existsSync(to)) continue; // destination wins — don't clobber
-        fs.renameSync(from, to);
+        // movePath, not renameSync: the destination is frequently on a
+        // different drive from the install (C: and D: is an ordinary Windows
+        // setup), and rename cannot span volumes. It failed with EXDEV, the
+        // catch below logged a warning, and the user's lore stayed in ./Lore
+        // while the app read the folder it had just failed to fill.
+        movePath(from, to);
         moved++;
       }
       if (moved > 0) {
@@ -357,8 +363,7 @@ export async function getKnowledgeBaseContent(): Promise<string> {
     try {
       if (ext === ".pdf") {
         const buffer = fs.readFileSync(file.absPath);
-        const data = await pdf(buffer);
-        fileContent = data.text;
+        fileContent = await extractPdfText(buffer);
       } else if (ext === ".docx") {
         const buffer = fs.readFileSync(file.absPath);
         const result = await mammoth.extractRawText({ buffer });

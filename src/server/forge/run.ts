@@ -13,6 +13,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
+import { extractPdfText } from "../util/pdf-text";
 import { FORGED_VAULT_MARKER } from "../knowledge/loader";
 import { deleteVaultMap } from "../knowledge/obsidian/map";
 import { isSessionMaterial } from "../knowledge/sessions";
@@ -24,7 +25,6 @@ import { linkAll } from "./link";
 
 const require = createRequire(import.meta.url);
 const mammoth = require("mammoth");
-const pdf = require("pdf-parse");
 
 /** Formats worth reading as prose. Images and archives are not lore. */
 const READABLE = new Set([".md", ".markdown", ".txt", ".docx", ".pdf"]);
@@ -98,7 +98,7 @@ async function readDocument(abs: string, ext: string): Promise<string> {
     return (await mammoth.extractRawText({ buffer: fs.readFileSync(abs) })).value as string;
   }
   if (ext === ".pdf") {
-    return ((await pdf(fs.readFileSync(abs))) as { text: string }).text;
+    return await extractPdfText(fs.readFileSync(abs));
   }
   return fs.readFileSync(abs, "utf-8");
 }

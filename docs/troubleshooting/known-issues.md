@@ -9,6 +9,35 @@ For the security threat model, see [SECURITY.md](../../SECURITY.md). For the pla
 ---
 
 <details class="docs-section" open>
+<summary><h2>💻 Platform support</h2></summary>
+<div class="docs-section-body">
+
+The single most useful thing to know before you install. Full table with the
+reasoning in [Installation](../getting-started/installation.md#which-machines-this-has-actually-been-run-on).
+
+| Platform | State | Detail |
+|---|---|---|
+| **Windows 10 / 11 (x64)** | **Supported** | The developed-and-used-daily platform. A clean clone → `npm ci` → boot is verified, and the test suite runs on Windows in CI on every commit. |
+| **Windows on ARM** | **Unverified** | Until v1.0.2 this could not start at all: `pdf-parse` depends on `@napi-rs/canvas`, whose pinned 0.1.80 ships no `win32-arm64` binary, and the failed load surfaced as `DOMMatrix is not defined` at boot. Fixed two ways — the canvas version is pinned forward via `overrides`, and PDF support now loads lazily so a missing binary costs you PDF ingest instead of the whole server. **Not yet run on real ARM hardware.** If it fails, install the **x64** Node build and it will run emulated. Reports very welcome. |
+| **macOS** | **Untested** | `run.sh` exists and nothing in the code is Windows-only, but the app has never been started on a Mac. Expect any problems in the launcher scripts rather than the app. |
+| **Linux** | **Partly tested** | The full suite runs on Linux in CI every commit, and since v1.0.2 CI also starts the real server on Linux and checks it answers. So the code boots; what is untested is the desktop experience — the launcher script, the browser auto-open, and a first run driven by a person rather than a script. |
+
+> [!WARNING]
+> Only 64-bit Windows is *supported* today. The rest are expected to work and
+> have not been proven to. Please don't plan a session around an untested
+> platform before you've watched it run.
+
+**What "untested" does and doesn't mean.** The risk is that the program fails
+to start or a launcher script misbehaves — not that anything on your machine is
+harmed. Vault writes only to its own folder, its config directory, and the lore
+folder you point it at.
+
+</div>
+</details>
+
+---
+
+<details class="docs-section" open>
 <summary><h2>⚠️ Known limitations</h2></summary>
 <div class="docs-section-body">
 
@@ -19,7 +48,7 @@ Things that work but have known edges. None of these block normal use.
 | **The folder source re-parses on every question.** No cache, no per-question retrieval — the whole corpus goes into every prompt. | ~10–30 s and a full-corpus token bill at around 50 PDFs. | The [Obsidian source](../lore/obsidian-vault.md) already narrows once a vault outgrows the budget. Bringing that to the folder source is the biggest token reduction the architecture can deliver — on the [Roadmap](../../ROADMAP.md). |
 | **`KB_CHAR_LIMIT` caps the folder corpus at 500,000 characters** (~200 pages). | Documents past the cap are dropped rather than retrieved. | It cuts on a document boundary, never mid-sentence, and the prompt names the files that did not fit and tells the model not to cite them — so you get "I don't have that document", not a fabrication. Same fix path as above. |
 | **The stricter production CSP never activates.** It is selected by `NODE_ENV=production`, and nothing sets it — `npm start` is identical to `npm run dev`, and the launchers do not build. | Little, in practice. Scripts are limited to the app's own origin under both policies, so no third-party script can load either way; what the running policy additionally permits is inline scripts and `eval`, which Vite needs. Nothing renders lore, model output or user content as raw HTML, so there is no paired XSS sink. | A missing layer of defence in depth, not a live hole. Making the modes real means `npm start` would serve a build the documented install never produces, so it is a v1.0.1 change rather than a release-eve one. |
-| **Document parsing has no timeout or size cap.** | A crafted PDF/DOCX could stall the parser. | Only ingest documents you trust. Per-parse bounds are a tracked hardening item. |
+| **DOCX parsing has no timeout or size cap.** | A crafted DOCX could stall the parser. | Only ingest documents you trust. PDFs gained a 64 MB ceiling and a 60-second extraction timeout in v1.0.2; DOCX has neither yet. |
 | **The refusal detector matches a substring** — `"i am unsure about this detail"`. | If a model paraphrases, the lore gap may not get logged. | It still refuses to invent; it just does not record the question. Rule 3 instructs the exact phrase, so this is rare. |
 | **Discord replies over 2000 characters are sliced on a regex boundary.** | Occasionally cuts a citation marker across two messages. | Cosmetic. |
 | **First boot downloads ~25 MB** of the MiniLM model from Hugging Face. | On an air-gapped machine you get `[embeddings] Failed to load model`. | The server still starts; everything except semantic clarification matching works. Copy `models/` from a networked machine. |

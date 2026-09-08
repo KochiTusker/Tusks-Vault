@@ -6,6 +6,34 @@ This guide takes you from "nothing installed" to **"the bot is answering in Disc
 
 ---
 
+## Which machines this has actually been run on
+
+Tusk's Vault is a Node application and nothing in it is Windows-specific, so it
+*should* run anywhere Node 20 does. But "should" is not "has been", and this is
+a one-maintainer project — so here is the honest state, before you spend time
+cloning it.
+
+| Platform | State | What that means for you |
+|---|---|---|
+| **Windows 10 / 11, 64-bit (x64)** | **Supported.** Developed and used here daily; a clean clone → install → boot is verified. | Use it. `setup.bat` and `run.bat` are the tested path. |
+| **Windows on ARM** (Snapdragon X, Surface Pro 11, Copilot+ PCs) | **Unverified.** The dependency that used to make it fail at startup is fixed, but nobody has run it on real ARM hardware. | It may work. If it doesn't, installing the **x64** build of Node instead of the arm64 one will run it under emulation. Please [open an issue](https://github.com/KochiTusker/Tusks-Vault/issues) either way — a report from an ARM machine is genuinely useful. |
+| **macOS** | **Untested.** `run.sh` exists and the code has no Windows-only calls, but the app has never been started on a Mac. | Expect rough edges in the launcher scripts rather than in the app. Reports welcome. |
+| **Linux** | **Partly tested.** The full suite runs on Linux in CI on every commit, and CI also boots the real server there and checks it answers. | The code is exercised. What is not: the launcher script, the browser auto-open, and a first run driven by a person on a desktop. |
+
+> [!WARNING]
+> Only 64-bit Windows is a *supported* platform today. Everything else is
+> expected to work and has not been proven to. Nothing here will damage your
+> machine — the worst case is that the server fails to start and you delete the
+> folder — but please don't plan a session around an untested platform until
+> you have seen it run.
+
+**Before you clone, read [Known issues → Platform support](../troubleshooting/known-issues.md).**
+It carries the same table plus what specifically went wrong on each platform and
+what was done about it — worth two minutes if you are not on 64-bit Windows.
+Windows-on-ARM and macOS support are both tracked on the [Roadmap](../../ROADMAP.md).
+
+---
+
 ## ⚡ Quick start (the 3-line version)
 
 If you've used Git and Node before:
@@ -290,7 +318,9 @@ Vault downloads ~25 MB of MiniLM embedding weights from Hugging Face on first la
 
 Dependencies changed in the last update. The launcher normally catches this itself by comparing `package-lock.json` to its snapshot — if it didn't, run `npm install --no-audit --no-fund` from a terminal in the repo root and re-launch. To force the launcher to re-install on its own, delete `node_modules/.tv-lockfile-snapshot`; the missing snapshot triggers a fresh install on the next start.
 
-More entries: see **[docs/FAQ.md → Troubleshooting](../troubleshooting/faq.md)**.
+More entries: see **[FAQ → Troubleshooting](../troubleshooting/faq.md)**. If the
+server will not start at all, check **[Known issues → Platform support](../troubleshooting/known-issues.md)**
+first — the cause may be that your platform has never been verified.
 
 </div>
 </details>
@@ -307,4 +337,4 @@ More entries: see **[docs/FAQ.md → Troubleshooting](../troubleshooting/faq.md)
 - 📚 [Obsidian vault as a lore source → ObsidianVault.md](../lore/obsidian-vault.md)
 - 🪶 [The Tomes companion → tomes.md](../lore/tusks-tomes.md)
 - ❓ [FAQ — including realistic costs → FAQ.md](../troubleshooting/faq.md)
-- 🐞 [Hit a snag? → Issues.md](../troubleshooting/known-issues.md)
+- 🐞 [Known issues — including which platforms are supported](../troubleshooting/known-issues.md)

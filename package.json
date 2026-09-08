@@ -3,10 +3,34 @@
   "description": "Tusk's Vault — a locally-hosted fantasy-scribe AI that grounds D&D lore answers in your campaign documents.",
   "license": "MIT",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "engines": {
     "node": ">=20"
+  },
+  "comments": {
+    "overrides": [
+      "pdf-parse pins @napi-rs/canvas to exactly 0.1.80, and 0.1.80 publishes no",
+      "win32-arm64-msvc build. Windows on ARM therefore resolved no canvas binary,",
+      "and importing pdf-parse threw 'DOMMatrix is not defined' — which used to",
+      "happen at boot, so the server could not start at all on those machines.",
+      "1.0.8 is the first line that ships win32-arm64-msvc. Verified: the override",
+      "resolves cleanly and pdf-parse's v2 getText() extracts text unchanged under",
+      "it, end to end through the lore loader.",
+      "",
+      "Note it is a GLOBAL override, so it retargets pdfjs-dist too — the other",
+      "dependent, which asks for ^0.1.80 and is the code that actually consumes",
+      "the DOMMatrix/Path2D/ImageData surface. That is deliberate: scoping the",
+      "override to pdf-parse alone would resolve two different canvas copies, and",
+      "the ARM binary would be missing from the one that matters.",
+      "",
+      "Revisit when pdf-parse bumps its own pin. Until then removing this",
+      "silently drops Windows-on-ARM support, and a canvas security update has to",
+      "be taken by hand. See src/server/util/pdf-text.ts."
+    ]
+  },
+  "overrides": {
+    "@napi-rs/canvas": "1.0.8"
   },
   "scripts": {
     "dev": "tsx server.ts",
@@ -28,6 +52,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:uninstall": "bash scripts/test-uninstall.sh",
+    "boot-check": "node scripts/boot-check.mjs",
     "smoke-test": "node scripts/smoke-test.mjs",
     "docs:tone": "node scripts/docs-tone.mjs",
     "grade": "tsx scripts/grade-models.mjs",

@@ -33,12 +33,31 @@ export async function bindWithFallback(
       return { server, port: candidate };
     } catch (err) {
       lastError = err;
-      if (!isAddressInUse(err)) throw err;
+      if (!isPortUnavailable(err)) throw err;
     }
   }
 
+  // An EACCES on the last attempt almost always means the whole range sits
+  // inside a Windows reserved block rather than that twenty programs are
+  // listening — say so, because the fix (pick a different PORT) is not what
+  // "could not bind" suggests on its own.
+  // Platform-gated, because the two EACCES causes have nothing in common and
+  // the wrong advice is worse than none: on POSIX it means privileged ports,
+  // and telling that user to run a `netsh` command sends them nowhere.
+  let reserved = "";
+  if ((lastError as NodeJS.ErrnoException | undefined)?.code === "EACCES") {
+    reserved =
+      process.platform === "win32"
+        ? "\nOn Windows this range may be reserved by Hyper-V, WSL2 or Docker Desktop. " +
+          "Check with:  netsh interface ipv4 show excludedportrange protocol=tcp\n" +
+          "Then set a port outside those ranges in .env.local, e.g.  PORT=3500"
+        : "\nPorts below 1024 need root on this platform. " +
+          "Set a higher port in .env.local, e.g.  PORT=3500";
+  }
+
   throw new Error(
-    `Could not bind a port in the range ${preferred}..${preferred + MAX_PORT_ATTEMPTS - 1}. Last error: ${String(lastError)}`
+    `Could not bind a port in the range ${preferred}..${preferred + MAX_PORT_ATTEMPTS - 1}. ` +
+      `Last error: ${String(lastError)}${reserved}`
   );
 }
 
@@ -63,12 +82,29 @@ function tryBind(
   });
 }
 
-function isAddressInUse(err: unknown): boolean {
-  return (
-    typeof err === "object" &&
-    err !== null &&
-    (err as NodeJS.ErrnoException).code === "EADDRINUSE"
-  );
+/**
+ * Is this the kind of bind failure that the NEXT port might survive?
+ *
+ * EADDRINUSE is the obvious one: something else holds the port.
+ *
+ * EACCES matters just as much on Windows, and used to abort the whole walk.
+ * Windows reserves blocks of TCP ports for Hyper-V, WSL2 and Docker Desktop
+ * (`netsh interface ipv4 show excludedportrange protocol=tcp`), and binding
+ * inside a reserved block fails with EACCES, not EADDRINUSE. A user whose
+ * reservation happened to cover 3000 got a hard `listen EACCES` on the first
+ * attempt and the remaining nineteen candidates were never tried — the exact
+ * situation the fallback exists for. Retrying is also correct on POSIX, where
+ * EACCES means a privileged port (<1024) and the next candidate is usually
+ * fine too.
+ *
+ * Anything else — EADDRNOTAVAIL from a bad HOST, for instance — still throws
+ * immediately: walking twenty ports cannot fix an address that does not exist,
+ * and the real error is more useful than a range summary.
+ */
+function isPortUnavailable(err: unknown): boolean {
+  if (typeof err !== "object" || err === null) return false;
+  const code = (err as NodeJS.ErrnoException).code;
+  return code === "EADDRINUSE" || code === "EACCES";
 }
 
 function writeRuntimePort(port: number): void {
