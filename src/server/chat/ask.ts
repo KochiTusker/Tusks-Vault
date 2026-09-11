@@ -20,6 +20,7 @@ import {
 import { assemblePromptParts, buildSystemInstruction, retrievalOpts } from "../prompt/assemble";
 import { sourceNamesIn, stripReferenceMarkers } from "../prompt/strip-references";
 import { recordLoreGap, responseContainsLoreGapTrigger } from "../lore-gaps/store";
+import { LORE_GAP_TRIGGER_FRAGMENT } from "../prompt/system";
 import { detectRefusal } from "../llm/refusal";
 import { getAdapter } from "../llm/registry";
 import { generationStarted, generationFinished } from "../util/generation-state";
@@ -110,13 +111,15 @@ export async function ask(question: Question): Promise<AskResult> {
     ? activePersona!.prompt
     : settings.systemInstruction || DEFAULT_SYSTEM_INSTRUCTION;
 
+  // Attachments go THROUGH the assembler, not after it. Pushing them onto the
+  // finished array put a player's uploaded file after the closing fence and
+  // after the INSTRUCTIONS block — the most persuasive position in the prompt,
+  // and the only asker-controlled text that reached the model unsanitised.
   const parts = await assemblePromptParts(question.text, {
     ...retrievalOpts(settings),
     personaActive,
+    askerParts: question.parts,
   });
-  if (question.parts && question.parts.length > 0) {
-    parts.push(...question.parts);
-  }
 
   const systemPrompt = buildSystemInstruction(basePrompt, {
     botName: settings.botName,
@@ -175,7 +178,26 @@ export async function ask(question: Question): Promise<AskResult> {
   // trigger phrase nor a decline carries a citation marker, so stripping
   // would not change either result — but doing it in this order keeps the
   // contract obvious.
-  const loreGapRecorded = !refusal.refused && responseContainsLoreGapTrigger(result.text);
+  // An asker who simply QUOTES the trigger phrase gets it echoed back, and the
+  // detector is a substring match by design (providers rewrap the sentence), so
+  // parroting used to write the asker s own text straight into the GM s Lore
+  // Gaps queue. Verified before this guard: asking the bot to repeat the phrase
+  // verbatim did exactly that. A gap the asker dictated is not a gap, so a
+  // question already carrying the phrase cannot record one.
+  // Everything the ASKER supplied, not just what they typed. An attachment is
+  // the same untrusted person with a bigger payload, and discord.ts accepts a
+  // message with no text at all when a file is attached — so reading only
+  // question.text left the guard structurally unable to fire on the channel
+  // that carries the whole payload.
+  const askerSupplied = [
+    question.text,
+    ...(question.parts ?? []).filter(p => p.type === "text").map(p => p.text),
+  ]
+    .join(" ")
+    .toLowerCase();
+  const askerParroted = askerSupplied.includes(LORE_GAP_TRIGGER_FRAGMENT);
+  const loreGapRecorded =
+    !refusal.refused && !askerParroted && responseContainsLoreGapTrigger(result.text);
   if (loreGapRecorded) recordLoreGap(question.text);
 
   // Display text is then optionally stripped per the dashboard toggle — the

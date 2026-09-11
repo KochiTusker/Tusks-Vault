@@ -189,6 +189,49 @@ export function listProviderStatuses(settings: Settings): ProviderStatus[] {
   }));
 }
 
+/**
+ * What a CHAT SURFACE is allowed to say when a call fails.
+ *
+ * formatAdapterError below is written for the operator: it names the provider,
+ * the env var to set, the CLI that is missing, the model that was refused. That
+ * is the right message in the dashboard, which only the GM can reach — and the
+ * wrong one in a Discord channel or a Foundry chat log, where it is broadcast
+ * to the table. A real example, before this existed:
+ *
+ *     "OpenRouter returned an empty response. Model: <id>.
+ *      Finish reason: length. Hit the output ceiling (4096 tokens)."
+ *
+ * posted to a channel the players read. That discloses the provider, the exact
+ * model, the configured ceiling and the GM's spending shape, none of which is
+ * theirs to know, in exchange for advice only the GM can act on.
+ *
+ * So the audience decides the message. Two buckets, because two is what a
+ * player can usefully act on:
+ *   - it is busy, ask again      → the asker retries and that is the fix
+ *   - it needs the GM            → nothing the asker does will help
+ * Anything more specific is operator detail wearing a player's clothes.
+ *
+ * The detail is NOT lost: every caller logs the full error to Vault's own
+ * console first, which is exactly where the GM is going to look.
+ */
+export function chatSafeError(err: unknown): string {
+  const msg = err instanceof Error ? err.message || String(err) : String(err ?? "");
+
+  // Transient and self-resolving: saying "try again" is true and complete.
+  // Matched on the same substrings formatAdapterError uses, so the two cannot
+  // disagree about what counts as retryable.
+  const transient =
+    /quota|RESOURCE_EXHAUSTED|rate.?limit|rate-limited upstream|SHARED_FREE_POOL|usage limit|timed? out|ETIMEDOUT|ECONNRESET|503|overloaded/i;
+  if (transient.test(msg)) {
+    return "The archive is busy at the moment — ask me again shortly.";
+  }
+
+  // Everything else — a missing key, a rejected key, an absent CLI, an
+  // unreachable Ollama, a refused model, an empty completion. All of it needs
+  // the GM, and none of it needs naming.
+  return "I can't reach the archive right now. The GM will need to check Tusk's Vault.";
+}
+
 export function formatAdapterError(err: unknown): string {
   if (err instanceof MissingApiKeyError) {
     return `Error: missing key for ${err.provider}. Open the dashboard's Key Vault section and add one, or set ${err.envVar} in .env.local.`;

@@ -1,4 +1,5 @@
 import { describePdfFailure, extractPdfText } from "../util/pdf-text";
+import { pdfAsPromptText } from "../prompt/sanitize";
 import { ContentPart, GenerateInput, GenerateResult, LlmAdapter, ModelInfo } from "./types";
 
 
@@ -69,7 +70,7 @@ export function createOllamaAdapter(opts: OllamaAdapterOptions): LlmAdapter {
         } else if (part.type === "document") {
           try {
             const extracted = await extractPdfText(Buffer.from(part.base64, "base64"));
-            textBuf.push(`Context from PDF ${part.name}:\n${extracted.substring(0, 30000)}`);
+            textBuf.push(pdfAsPromptText(part.name, extracted));
           } catch (err) {
             console.error(`[ollama] failed to extract PDF text from ${part.name}:`, err);
             textBuf.push(describePdfFailure(err, part.name));

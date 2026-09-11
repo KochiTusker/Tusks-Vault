@@ -642,7 +642,13 @@ describe("tools", () => {
     const body = await res.json();
     expect(res.status).toBe(200);
     expect(body.result.isError).toBe(true);
-    expect(body.result.content[0].text).toContain("provider key rejected");
+    // The SHAPE is the contract the module depends on — isError plus a string
+    // in content[0].text — and it is unchanged. What the string says is not:
+    // the module prints it into the Foundry chat log, which every connected
+    // player reads, so the provider's own words must not survive the trip.
+    expect(typeof body.result.content[0].text).toBe("string");
+    expect(body.result.content[0].text).not.toContain("provider key rejected");
+    expect(body.result.content[0].text.length).toBeGreaterThan(10);
   });
 
   it("rejects an unknown tool", async () => {

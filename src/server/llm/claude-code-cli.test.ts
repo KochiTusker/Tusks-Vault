@@ -2,19 +2,19 @@ import { describe, expect, it } from "vitest";
 import {
   CLAUDE_CODE_MODELS,
   ClaudeCodeError,
-  childEnvWithoutApiKeys,
+  childEnvForCli,
   detectUsageLimit,
   parseClaudeJson,
   runClaudeCode,
 } from "./claude-code-cli";
 
-describe("childEnvWithoutApiKeys — subscription billing guard", () => {
+describe("childEnvForCli — allowlisted child environment", () => {
   // The entire point of this provider is that it bills the user's Claude
   // subscription and not an API key. A key left in the environment silently
   // takes precedence inside the CLI, so a leak here is a billing bug the
   // user only discovers on an invoice.
-  it("strips the three variables that would switch the CLI onto API billing", () => {
-    const out = childEnvWithoutApiKeys({
+  it("never passes the three variables that would switch the CLI onto API billing", () => {
+    const out = childEnvForCli({
       ANTHROPIC_API_KEY: "sk-ant-leakleakleak",
       ANTHROPIC_AUTH_TOKEN: "tok-leakleakleak",
       ANTHROPIC_BASE_URL: "https://proxy.example",
@@ -26,11 +26,12 @@ describe("childEnvWithoutApiKeys — subscription billing guard", () => {
     expect(out.PATH).toBe("/usr/bin");
   });
 
-  it("strips case-INSENSITIVELY (Windows env names are case-insensitive)", () => {
-    // A plain `delete env.ANTHROPIC_API_KEY` is case-sensitive, so this
-    // lowercase spelling would survive the strip while the child still
-    // resolved it. That is the regression this test exists for.
-    const out = childEnvWithoutApiKeys({
+  it("excludes them case-INSENSITIVELY (Windows env names are case-insensitive)", () => {
+    // Under the old denylist a plain `delete env.ANTHROPIC_API_KEY` was
+    // case-sensitive, so this lowercase spelling survived while the child
+    // still resolved it. The allowlist inherits the same hazard in mirror
+    // image, so it is asserted the same way.
+    const out = childEnvForCli({
       anthropic_api_key: "sk-ant-leakleakleak",
       Anthropic_Auth_Token: "tok-leakleakleak",
       aNtHrOpIc_BaSe_UrL: "https://proxy.example",
@@ -38,24 +39,57 @@ describe("childEnvWithoutApiKeys — subscription billing guard", () => {
     expect(Object.keys(out)).toHaveLength(0);
   });
 
-  it("passes every unrelated variable through untouched", () => {
-    const out = childEnvWithoutApiKeys({
-      OPENAI_API_KEY: "sk-unrelated",
-      HOME: "/home/x",
-      ANTHROPIC_MODEL: "opus",
+  // The reason this function was inverted from a denylist. By the time it
+  // runs, dotenv has loaded .env.local into process.env, so a pass-through
+  // handed the child every credential the app owns — while the prompt it is
+  // about to receive contains untrusted player text.
+  it("withholds Vault's own secrets, which a denylist of ANTHROPIC_* let through", () => {
+    const out = childEnvForCli({
+      DISCORD_TOKEN: "discord-leakleakleak",
+      GEMINI_API_KEY: "gem-leakleakleak",
+      OPENROUTER_API_KEY: "sk-or-leakleakleak",
+      OPENAI_API_KEY: "sk-leakleakleak",
+      PATH: "/usr/bin",
     });
-    // ANTHROPIC_MODEL is not a credential and not on the strip list —
-    // over-stripping would break users who set it deliberately.
-    expect(out).toEqual({
-      OPENAI_API_KEY: "sk-unrelated",
+    expect(out.DISCORD_TOKEN).toBeUndefined();
+    expect(out.GEMINI_API_KEY).toBeUndefined();
+    expect(out.OPENROUTER_API_KEY).toBeUndefined();
+    expect(out.OPENAI_API_KEY).toBeUndefined();
+    expect(out.PATH).toBe("/usr/bin");
+  });
+
+  it("excludes an unknown variable rather than guessing it is harmless", () => {
+    // Fail closed: a name nobody has reviewed is withheld. The cost of being
+    // wrong is one entry added to ENV_ALLOWLIST; the cost of the opposite
+    // default is a credential the reviewer never considered.
+    const out = childEnvForCli({ SOME_FUTURE_TOKEN: "nope", PATH: "/bin" });
+    expect(out.SOME_FUTURE_TOKEN).toBeUndefined();
+    expect(out.PATH).toBe("/bin");
+  });
+
+  it("passes the infrastructure the CLI cannot start or reach the network without", () => {
+    const out = childEnvForCli({
+      PATH: "/usr/bin",
       HOME: "/home/x",
-      ANTHROPIC_MODEL: "opus",
+      USERPROFILE: "C:\\Users\\x",
+      SystemRoot: "C:\\Windows",
+      HTTPS_PROXY: "http://corp:8080",
+      NODE_EXTRA_CA_CERTS: "/etc/ssl/corp.pem",
+      LANG: "en_GB.UTF-8",
     });
+    expect(out.PATH).toBe("/usr/bin");
+    expect(out.HOME).toBe("/home/x");
+    // Matched case-insensitively: the allowlist spells it SYSTEMROOT, Windows
+    // spells it SystemRoot, and they are the same variable.
+    expect(out.SystemRoot).toBe("C:\\Windows");
+    expect(out.HTTPS_PROXY).toBe("http://corp:8080");
+    expect(out.NODE_EXTRA_CA_CERTS).toBe("/etc/ssl/corp.pem");
+    expect(out.LANG).toBe("en_GB.UTF-8");
   });
 
   it("does not mutate the environment object it was handed", () => {
     const source = { ANTHROPIC_API_KEY: "sk-ant-xxxx", PATH: "/bin" };
-    childEnvWithoutApiKeys(source);
+    childEnvForCli(source);
     expect(source.ANTHROPIC_API_KEY).toBe("sk-ant-xxxx");
   });
 });

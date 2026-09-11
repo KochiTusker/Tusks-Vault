@@ -35,6 +35,7 @@
 
 import OpenAI from "openai";
 import { describePdfFailure, extractPdfText } from "../util/pdf-text";
+import { pdfAsPromptText } from "../prompt/sanitize";
 import { ContentPart, GenerateInput, GenerateResult, LlmAdapter, MissingApiKeyError, ModelInfo } from "./types";
 import { maskKey } from "../config/env";
 import { getCatalogue, readCachedCatalogue, findModel, isTextModel } from "./openrouter-catalogue";
@@ -375,7 +376,7 @@ async function toOpenRouterContent(part: ContentPart): Promise<OpenAiUserContent
       // the OpenAI adapter.
       try {
         const extracted = await extractPdfText(Buffer.from(part.base64, "base64"));
-        return { type: "text", text: `Context from PDF ${part.name}:\n${extracted.substring(0, 30000)}` };
+        return { type: "text", text: pdfAsPromptText(part.name, extracted) };
       } catch (err) {
         console.error(`[openrouter] failed to extract PDF text from ${part.name}:`, err);
         return { type: "text", text: describePdfFailure(err, part.name) };

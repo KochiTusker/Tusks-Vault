@@ -250,8 +250,8 @@
        later means answering it after they have left.
 
        The rows are a deliberate feature set — what a table actually wants
-       from a session recorder — not a list of this project's strengths.
-       Three rules keep it honest, and they matter more than the ticks.
+       from a lore assistant — not a list of this project's strengths.
+       Five rules keep it honest, and they matter more than the ticks.
 
        One: every claim is a capability that can be checked, never a quality
        judgement. The project's own model bake-off refuses to reduce prose
@@ -260,24 +260,28 @@
        Two: the crosses are drawn quietly, in the muted colour. A comparison
        that shouts is one nobody believes, including the true parts.
 
-       Three: the tabletop-native column earns a lot of ticks, and they stay.
-       That category is built for exactly this job and several of them do it
-       well; a grid that quietly marked them down would be the kind of
-       comparison rule one and two exist to prevent. What separates this
-       project from them is three rows, not eleven, and the table should show
-       that plainly rather than manufacture a sweep. The browser row is there
-       for the same reason and points the other way -- it is the row this
-       project loses, and it is the honest cost of the attribution row.
+       Three: the other columns keep every row they win, and NotebookLM wins
+       several. It is the closest comparison and better than this on its own
+       ground, so its ticks for citing and for refusing stay exactly where
+       they are — marking the nearest rival down is the kind of comparison
+       rules one and two exist to prevent. The middle mark is there for the
+       same reason: a tool that half does something is not a cross.
 
-       Four, and the easiest to get wrong: the last column is a PERSON, and
-       a person is not scored on software criteria. An earlier draft marked
-       them unable to revise part of a write-up, which is plainly false —
-       anyone can edit a paragraph — and left them looking beaten on rows
-       like "choose the model" that were never part of that conversation.
-       The only axis where the comparison with doing it yourself is real is
-       time and setup. Someone who does the work produces the best version
-       there is; the claim is that this gets close for an evening less
-       effort, and the paragraph under the table says so outright.
+       Four, and the easiest to lose in an edit: the rows this project does
+       not win are what make the rest worth reading, so they are guarded
+       rather than remembered. One test in landing-links.test.mjs fails if
+       the grid stops showing losses at all, a second fails if the counts in
+       the marginalia drift away from the marks, and a third catches a row
+       that contradicts another row. Adding or rewording a row means running
+       that file.
+
+       Five: the second column is this project's other half, and it is in a
+       grid of other people's tools for one reason — most of the people who
+       read this arrive from the Foundry module, where Lite is what they
+       already have. "What does the full one add?" is then the only question
+       they have, and a paragraph answering it is worse than a column they
+       can read across. It is scored by the same rules as everything else,
+       which is why it wins the setup row this project loses.
 
        The long, fair version lives in the docs and is linked underneath.
        =================================================================== -->
@@ -334,13 +338,22 @@
           the right one is the bill for being built for a table instead.
         </figcaption>
       </figure>
+      <p class="measure">
+        <strong>The second column is also this project.</strong> The
+        <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">Foundry module</a>
+        answers on its own, out of the journal entries in the folders you choose, with nothing
+        else installed &mdash; that is Lite, and for a campaign that already lives in Foundry it
+        may be the whole answer. It sits in the grid because the honest way to show what the full
+        application adds is to put the two beside each other and let the rows say it.
+      </p>
       <div class="matrix-wrap">
         <table class="matrix">
           <caption>What a table actually needs from a lore assistant</caption>
           <thead>
             <tr>
               <th scope="col"><span class="vh">Capability</span></th>
-              <th scope="col" class="is-us">Tusk&rsquo;s Vault</th>
+              <th scope="col" class="is-us">Tusk&rsquo;s Vault <small>the full application</small></th>
+              <th scope="col" class="is-kin"><a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">Tusk&rsquo;s Vault Lite</a> <small>the Foundry module alone</small></th>
               <th scope="col">NotebookLM <small>Google, in the cloud</small></th>
               <th scope="col">ChatGPT / Claude <small>a general assistant</small></th>
               <th scope="col">Obsidian + AI plugins <small>notes you already keep</small></th>
@@ -348,11 +361,12 @@
           </thead>
           <tbody>
             <tr class="matrix-band">
-              <th scope="row" colspan="5">At the table</th>
+              <th scope="row" colspan="6">At the table</th>
             </tr>
             <tr>
               <th scope="row">Everyone at the table sees the answer</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
@@ -360,6 +374,7 @@
             <tr>
               <th scope="row">Ask it from Discord, or Foundry&rsquo;s chat bar</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
@@ -367,16 +382,18 @@
             <tr>
               <th scope="row">Answers in a voice your table picked</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
             </tr>
             <tr class="matrix-band">
-              <th scope="row" colspan="5">Whether it can play</th>
+              <th scope="row" colspan="6">Whether it can play</th>
             </tr>
             <tr>
               <th scope="row">Will speculate when you let it, and labels it</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
@@ -384,16 +401,18 @@
             <tr>
               <th scope="row">Recounts a grim scene without sanding it down</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
             </tr>
             <tr class="matrix-band">
-              <th scope="row" colspan="5">Whether you can trust it</th>
+              <th scope="row" colspan="6">Whether you can trust it</th>
             </tr>
             <tr>
               <th scope="row">Says it doesn&rsquo;t know, instead of inventing</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
@@ -401,6 +420,7 @@
             <tr>
               <th scope="row">Cites the document behind every claim</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
@@ -408,6 +428,7 @@
             <tr>
               <th scope="row">A ruling you make once is remembered and reused</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
@@ -415,16 +436,18 @@
             <tr>
               <th scope="row">Your campaign documents never leave your machine</th>
               <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
             </tr>
             <tr class="matrix-band">
-              <th scope="row" colspan="5">What it costs you</th>
+              <th scope="row" colspan="6">What it costs you</th>
             </tr>
             <tr>
               <th scope="row">Holds a campaign bigger than about 200 pages</th>
               <td class="m is-us"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
@@ -432,6 +455,7 @@
             <tr>
               <th scope="row">Ready in five minutes, without a terminal</th>
               <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
@@ -439,6 +463,7 @@
             <tr>
               <th scope="row">Still answers while your own machine is asleep</th>
               <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
@@ -446,6 +471,7 @@
             <tr>
               <th scope="row">A team behind it, and somewhere to report a bug</th>
               <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
               <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
@@ -462,10 +488,8 @@
         instead, are in <a href="{{BASE}}/docs/about/comparison/">the full comparison</a>.
       </p>
       <p class="marginalia">
-        A grid where one column ticks every row is a grid whose rows were chosen by whoever owns
-        that column. The four this one does not win are there so the nine it does are worth
-        something.
-        <span class="sign">Read those four first.</span>
+        Nine of these rows go this project&rsquo;s way. Four do not.
+        <span class="sign">You would have found the four out on your own soon enough.</span>
       </p>
   </section>
 
@@ -974,6 +998,28 @@
           to a folder that never depended on it.
         </figcaption>
       </figure>
+
+      <h3 class="trust-sub">And who should be allowed to ask?</h3>
+      <p class="measure">
+        A different question from where the data goes, and the one more likely to matter at a
+        table. Anyone who can ask reaches the whole corpus, because retrieval follows the
+        question &mdash; ask about a mystery and you get the notes about that mystery. That is
+        what makes it useful, and it is worth knowing before you point it at a group.
+      </p>
+      <p class="measure">
+        Players will also try talking it into simply reciting what it was handed. Some of them
+        will manage it. What comes out is <em>your own lore</em> &mdash; not your keys, your
+        files, or anything else on the machine. The archivist has no filesystem, no shell and no
+        network of its own, and that is tested rather than hoped for. So the thing to plan
+        around is spoilers and timing, not a breach.
+      </p>
+      <p class="measure">
+        Which makes this a tool for <strong>a private Discord</strong> or <strong>a Foundry
+        table of trusted players</strong> rather than a public server. Player questions are off
+        by default on Foundry; on Discord the bot only reads the channels you put it in.
+        <a href="{{BASE}}/docs/security-policy/">What a prompt injection can and cannot do</a>
+        spells out both halves.
+      </p>
     </div>
   </section>
 

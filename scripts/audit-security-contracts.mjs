@@ -343,6 +343,124 @@ function ruleNoDiscordInvite() {
   }
 }
 
+// ─── R15: the Claude Code spawn keeps its tool gate and env allowlist ──────
+// This spawn runs a prompt built from lore plus untrusted asker text — the
+// Foundry and MCP surfaces can pin provider: "claude-code", so a player's
+// question reaches it. `claude -p` with no gating flags registers the HOST
+// user's entire tool surface (Bash, Write, WebFetch, cron, and every tool from
+// their personal MCP servers), governed only by a ~/.claude allowlist that
+// Vault does not set and cannot read.
+//
+// Verified against the real CLI, not assumed: without --disallowedTools an
+// injected instruction read a canary file; with it, the read was refused. Also
+// verified that an EMPTY --allowedTools does NOT deny-all — it was ignored and
+// the canary was read anyway — which is why the gate is a denylist.
+function ruleClaudeCodeSandbox() {
+  const file = "src/server/llm/claude-code-cli.ts";
+  const raw = read(file);
+  if (!raw) return;
+
+  // Match against a COMMENT-STRIPPED copy. Tightening these to call-site
+  // regexes was not enough on its own: this file's comments reproduce the call
+  // sites almost verbatim, so `stdin ... .write(` was satisfied by a doc
+  // comment even with the real call deleted, and "--strict-mcp-config" or
+  // "--disallowedTools", DENIED_TOOLS survived removal whenever the change
+  // left a comment behind — which is what a careful refactor does. Verified by
+  // mutating each one and re-running.
+  const src = raw.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^\s*\/\/.*$/gm, "");
+
+  // Match the CALL SITES, not the vocabulary. This file is heavily commented
+  // and every one of these identifiers also appears in its prose — `mkdtemp`
+  // twice in doc comments, `childEnvForCli` in its own export declaration — so
+  // a substring check passed on a source where both controls had been deleted
+  // and only the comments describing them remained. Verified by mutating the
+  // source and re-running: all four substrings survived, the rule reported
+  // nothing. Same lesson CLAUDE.md records for atomic-write.ts: assert that
+  // the helper is USED, not that its name appears.
+  const required = [
+    [/(^|[^\w"'])"--disallowedTools"\s*,\s*\n?\s*DENIED_TOOLS\b/m,
+      "the tool denylist is no longer passed to the spawn. An injected instruction in a player's question then reaches whatever that host user happened to pre-approve in ~/.claude."],
+    [/"--strict-mcp-config"/,
+      "the MCP gate is gone. The host user's own MCP servers register as tools on a call carrying untrusted text, and a denylist cannot enumerate them — their names come from that user's config."],
+    [/env:\s*childEnvForCli\(/,
+      "the child environment is no longer allowlisted at the spawn. dotenv has loaded .env.local into process.env by this point, so a pass-through hands the CLI DISCORD_TOKEN and every provider key."],
+    [/await\s+fs\.mkdtemp\(/,
+      "the per-call temp directory is no longer created. A fixed name in a world-writable /tmp lets another local account pre-create it and plant a CLAUDE.md, which the CLI reads as instructions before it reads the prompt."],
+    [/cwd:\s*sandboxCwd\b/,
+      "the sandbox directory is created but not USED as the child's cwd, so the child inherits the server's own — the repo root, holding .env.local and .git."],
+  ];
+  for (const [pattern, why] of required) {
+    if (!pattern.test(src)) {
+      report(file, null, "claude-code-sandbox", String(pattern) + " does not match: " + why);
+    }
+  }
+
+  // DENIED_TOOLS is joined into one argv value, so an emptied array still
+  // produces a syntactically valid `--disallowedTools ""` that denies nothing
+  // while every name above still matches.
+  const denied = /const DENIED_TOOLS = \[([\s\S]*?)\]\s*\.join/.exec(src);
+  if (!denied) {
+    report(file, null, "claude-code-sandbox",
+      "DENIED_TOOLS is no longer a joined array literal — the denylist cannot be checked for content.");
+  } else {
+    for (const needed of ['"Bash"', '"Write"', '"WebFetch"', '"*"']) {
+      if (!denied[1].includes(needed)) {
+        report(file, null, "claude-code-sandbox",
+          `DENIED_TOOLS no longer contains ${needed}. An emptied or trimmed denylist passes a valid flag that denies nothing.`);
+      }
+    }
+  }
+
+  // The prompt is untrusted text; it must reach the child on stdin, never argv,
+  // or shell:true on the Windows shim becomes an injection surface.
+  if (!/stdin[\s\S]{0,80}?\.write\(/.test(src)) {
+    report(file, null, "claude-code-sandbox",
+      "the prompt no longer reaches the child via stdin. On Windows the spawn uses shell:true, so a prompt on argv is a shell-injection surface.");
+  }
+
+  // Catch the tempting "simplification". An empty allowlist reads like
+  // "nothing is permitted" and is not: the real CLI ignored it.
+  const lines = src.split("\n");
+  lines.forEach((line, i) => {
+    if (line.includes('"--allowedTools"') && !auditOptOut(lines, i)) {
+      report(file, i + 1, "claude-code-sandbox",
+        "--allowedTools in the spawn. An empty allowlist does NOT deny-all (verified against the real CLI), and a non-empty one re-opens the surface. Use --disallowedTools.");
+    }
+  });
+}
+
+// ─── R16: chat surfaces do not broadcast operator error detail ─────────────
+// formatAdapterError names the provider, the model, the env var to set and the
+// local CLI that is missing. In the dashboard — loopback-only, GM-operated —
+// that is exactly right. In a Discord channel or a Foundry chat log it is a
+// broadcast to the table, and it happened: a provider's empty-response error
+// was posted verbatim, disclosing the exact model id and the configured output
+// ceiling to every player present.
+//
+// So the audience picks the formatter. Chat-bound code paths use
+// chatSafeError; the dashboard keeps the detail; both log the full error to
+// Vault's own console, which is where the GM looks.
+function ruleChatErrorDisclosure() {
+  const CHAT_SURFACES = ["src/server/surfaces/discord.ts", "src/server/mcp/server.ts"];
+  for (const file of CHAT_SURFACES) {
+    const src = read(file);
+    if (!src) continue;
+    const lines = src.split("\n");
+    lines.forEach((line, i) => {
+      if (line.includes("formatAdapterError") && !auditOptOut(lines, i)) {
+        report(file, i + 1, "chat-error-disclosure",
+          "formatAdapterError in a chat surface. That message names the provider, the model and the env var to set — a channel or a Foundry chat log is the wrong audience for all three. Use chatSafeError and log the detail to the console.");
+      }
+    });
+  }
+  // The chat-safe formatter must still exist and be reachable, or the rule
+  // above is satisfied by deleting the guard rather than keeping it.
+  if (!read("src/server/llm/registry.ts").includes("export function chatSafeError")) {
+    report("src/server/llm/registry.ts", null, "chat-error-disclosure",
+      "chatSafeError is gone. Chat surfaces have nothing safe to call, so error detail will reach the table again.");
+  }
+}
+
 // ─── Run everything ────────────────────────────────────────────────────────
 
 rulePinnedIdentity();
@@ -359,9 +477,11 @@ ruleShellTrue();
 ruleGitignoreAnchors();
 ruleBareAudit();
 ruleNoDiscordInvite();
+ruleClaudeCodeSandbox();
+ruleChatErrorDisclosure();
 
 if (findings.length === 0) {
-  console.log("✓ Security contracts hold (14 rules).");
+  console.log("✓ Security contracts hold (16 rules).");
   process.exit(0);
 }
 

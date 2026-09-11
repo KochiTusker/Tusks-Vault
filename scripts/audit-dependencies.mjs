@@ -50,6 +50,35 @@ const ACCEPTED = [
       'huggingface.co on first boot. The only ZIP it opens is that one; no ' +
       'user-supplied archive reaches it.',
   },
+  {
+    id: 'GHSA-rgj7-g3m4-5g8c',
+    package: 'sharp',
+    reviewed: '2026-09-11',
+    why:
+      'libheif CVEs, reachable only by decoding an attacker-supplied image. ' +
+      'Nothing in the application invokes sharp: it arrives under ' +
+      '@huggingface/transformers, whose only three call sites are inside the ' +
+      'RawImage class, and Vault asks transformers for one thing — a ' +
+      'feature-extraction pipeline over all-MiniLM-L6-v2, which is text. ' +
+      'Verified by poisoning the sharp module before transformers loads and ' +
+      'running a real embedding: it returned 384 dimensions with sharp ' +
+      'untouched. Discord image attachments are base64-ed straight to the ' +
+      'provider, never decoded locally. The one real caller is the social-card ' +
+      'build script, which is dev-only and stripped from the release.',
+  },
+  {
+    id: 'GHSA-vwc7-r8mq-g2x9',
+    package: 'adm-zip',
+    reviewed: '2026-09-11',
+    why:
+      'Extraction follows destination symlinks, allowing arbitrary file ' +
+      'overwrite — reachable only by extracting an attacker-supplied archive. ' +
+      'adm-zip is required by exactly one file in onnxruntime-node, ' +
+      'script/install-utils.js, reached from its postinstall hook and not from ' +
+      'its main entry (dist/index.js). It never runs at Vault runtime, and the ' +
+      'only archive it opens is the onnxruntime binary bundle fetched over ' +
+      'HTTPS during install. No user-supplied ZIP reaches it.',
+  },
 ]
 
 const LEVELS = ['info', 'low', 'moderate', 'high', 'critical']

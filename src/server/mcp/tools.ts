@@ -176,6 +176,20 @@ const askLore: ToolDefinition = {
       });
     }
 
+    // `modelUsed` and `costUsd` are operator detail — the same two facts that
+    // were deliberately kept out of the chat log, where the table can read
+    // them. They are fine HERE, and the reason is architectural rather than
+    // anything this file does: the module stores its bridge token in `client`
+    // scope, and only the elected active GM relays. A player's `/tusk` is
+    // picked up by the GM's client, which makes this request and posts the
+    // answer back, so this payload is only ever received by a GM's browser.
+    //
+    // That is the whole of the guarantee, so it is worth stating: it is the
+    // MODULE keeping this GM-only, not Vault. Gating on `asker.isGM` would
+    // look like a second lock and would not be one — that flag is a claim the
+    // caller makes and Vault has no channel to verify. If the module ever
+    // world-scopes the token, or lets a non-GM client relay, this block
+    // becomes a disclosure and no change here would have prevented it.
     return text(result.text!, {
       _meta: {
         "tusks-vault": {

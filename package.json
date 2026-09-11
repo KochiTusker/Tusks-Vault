@@ -3,7 +3,7 @@
   "description": "Tusk's Vault — a locally-hosted fantasy-scribe AI that grounds D&D lore answers in your campaign documents.",
   "license": "MIT",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "engines": {
     "node": ">=20"

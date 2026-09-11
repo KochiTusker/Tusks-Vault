@@ -42,13 +42,68 @@ export { CLAUDE_CODE_MODELS };
  *  shell:true spawn injection-free. */
 const MODEL_RE = /^[A-Za-z0-9._-]+$/;
 
-/** Neutral empty working directory. Pins the child's cwd AWAY from the repo:
- *  answering a lore question is a stdin→stdout text transform that needs no
- *  project context, and the prompt contains the user's lore plus a Discord
- *  message — untrusted text. If the user has pre-approved tools in their own
- *  ~/.claude config, a prompt-injected tool call then sees an empty sandbox
- *  rather than .git, .env.local, or the source tree. */
-const SANDBOX_DIR = path.join(os.tmpdir(), "tusks-vault-claude-sandbox");
+/** Prefix for the child's working directory. A FRESH directory is created per
+ *  call via mkdtemp and removed afterwards — never reused, never guessable.
+ *
+ *  Pinning cwd away from the repo was right and is kept: answering a lore
+ *  question is a stdin→stdout text transform that needs no project context, so
+ *  an injected tool call sees an empty directory rather than .git, .env.local
+ *  or the source tree.
+ *
+ *  What changed is the FIXED name. It used to be a constant path in the shared
+ *  temp dir, published in open source. On Linux and macOS /tmp is
+ *  world-writable, so any other local account could pre-create that directory
+ *  and leave a CLAUDE.md in it, which the CLI reads as project instructions
+ *  before it reads the prompt. That is prompt injection that never travels
+ *  through the prompt, so no upstream input validation could ever see it.
+ *  Reproduced against the real CLI before this change; the planted instruction
+ *  was obeyed.
+ *
+ *  Same class as the fixed .tmp filename that corrupted settings.json: a
+ *  predictable shared path is a rendezvous point for whatever else is on the
+ *  box. */
+const SANDBOX_PREFIX = path.join(os.tmpdir(), "tusks-vault-claude-");
+/** Tried in order. The second exists only so that an unwritable system temp
+ *  degrades to a different PRIVATE directory rather than to the repo root. */
+const SANDBOX_PREFIXES = [SANDBOX_PREFIX, path.join(os.homedir(), ".tusks-vault-claude-")]
+  // os.tmpdir() returns TEMP/TMPDIR verbatim, so a relative or empty value
+  // yields a relative prefix and mkdtemp then resolves it against cwd — the
+  // repo root. Claude Code walks PARENT directories for CLAUDE.md, so a
+  // sandbox inside the repo still reaches the instructions this control
+  // exists to keep away from it. An unusable prefix must fail loudly.
+  .filter(p => path.isAbsolute(p) && !p.startsWith(process.cwd() + path.sep));
+
+/** Tools the child may NOT use.
+ *
+ *  The CLI is invoked here as a text transform: lore plus an untrusted player
+ *  question in, prose out. It has no business touching the filesystem, the
+ *  network, or a shell. But `claude -p` with no flags registers the host
+ *  user's ENTIRE tool surface, governed only by their own ~/.claude allowlist —
+ *  which Vault does not set and cannot read. Measured on one developer machine,
+ *  that surface included Bash, PowerShell, Write, WebFetch, cron creation, and
+ *  every tool from whatever MCP servers that user had configured.
+ *
+ *  The wildcard first, then the explicit names: belt and braces. The wildcard
+ *  is not documented in `claude --help`, so it is not load-bearing on its own —
+ *  it is there to cover tools that future CLI versions add and this list cannot
+ *  know about. The explicit half is the verified one.
+ *
+ *  Do NOT "simplify" this to an empty --allowedTools. That was tested against
+ *  the real CLI and does NOT deny-all: the empty allowlist was ignored and the
+ *  child read a protected file anyway. An empty allowlist permits everything;
+ *  it does not forbid anything. */
+const DENIED_TOOLS = [
+  "*",
+  "Bash", "BashOutput", "KillShell", "PowerShell",
+  "Read", "Write", "Edit", "NotebookEdit", "Glob", "Grep",
+  "WebFetch", "WebSearch",
+  "Task", "Agent", "Skill", "SlashCommand", "Artifact", "Workflow", "ToolSearch",
+  "SendMessage", "ListAgents", "Monitor", "TodoWrite", "ExitPlanMode",
+  "CronCreate", "CronDelete", "CronList", "RemoteTrigger", "PushNotification",
+  "DesignSync", "EnterWorktree", "ExitWorktree", "ScheduleWakeup", "ReportFindings",
+  "TaskCreate", "TaskGet", "TaskList", "TaskOutput", "TaskStop", "TaskUpdate",
+  "ListMcpResourcesTool", "ReadMcpResourceTool", "ReadMcpResourceDirTool",
+].join(",");
 
 /** Exit codes at or above 0xC0000000 are NTSTATUS failures: the process was
  *  created but could not start. That is emphatically NOT "the CLI is
@@ -178,17 +233,56 @@ export function claudeCodeInstalledSync(): boolean {
   }
 }
 
-/** Strip the variables that would silently switch the CLI onto API billing.
- *  Case-INSENSITIVE: Windows treats env names case-insensitively, but a
- *  plain JS object delete is case-sensitive, so `anthropic_api_key` would
- *  otherwise survive the strip while the child still resolved it. */
-export function childEnvWithoutApiKeys(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
-  const STRIP = new Set(
-    ["ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_BASE_URL"].map(k => k.toLowerCase())
-  );
+/** Environment variables the CLI is allowed to inherit.
+ *
+ *  This is an ALLOWLIST, and the direction is the point. It used to exclude
+ *  just three ANTHROPIC_* variables, which meant the child inherited
+ *  everything else — and by the time this runs, dotenv has loaded .env.local
+ *  into process.env, so "everything else" included DISCORD_TOKEN,
+ *  GEMINI_API_KEY and OPENROUTER_API_KEY. A process that runs untrusted text
+ *  through a model should not be holding the user's Discord token, and no
+ *  exclusion list keeps up with secrets added later.
+ *
+ *  Entries are infrastructure only: what the process needs to start, find its
+ *  own config, resolve TLS, and traverse a corporate proxy. Adding a name here
+ *  is a security decision — it belongs only if the CLI genuinely cannot work
+ *  without it. */
+const ENV_ALLOWLIST = [
+  // Process + shell basics.
+  "PATH", "PATHEXT", "COMSPEC", "SHELL", "TMPDIR", "TEMP", "TMP",
+  // Where the CLI finds ~/.claude and its credentials.
+  "HOME", "USERPROFILE", "HOMEDRIVE", "HOMEPATH",
+  "APPDATA", "LOCALAPPDATA", "XDG_CONFIG_HOME", "XDG_CACHE_HOME",
+  "CLAUDE_CONFIG_DIR",
+  // Windows needs these for spawn/shell resolution at all.
+  "SYSTEMROOT", "SYSTEMDRIVE", "WINDIR", "PROGRAMDATA",
+  "PROGRAMFILES", "PROGRAMFILES(X86)", "PROGRAMW6432",
+  "NUMBER_OF_PROCESSORS", "PROCESSOR_ARCHITECTURE", "OS",
+  // Network egress: a user behind a corporate proxy has no route without these.
+  "HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY", "ALL_PROXY",
+  // TLS trust stores — self-signed corporate roots break the CLI without them.
+  "NODE_EXTRA_CA_CERTS", "SSL_CERT_FILE", "SSL_CERT_DIR",
+  // Locale, so output encoding matches the parent.
+  "LANG", "LC_ALL", "LC_CTYPE", "TZ",
+].map(k => k.toLowerCase());
+
+/** Build the child environment from the allowlist above.
+ *
+ *  Comparison is case-INSENSITIVE because Windows env names are, but a plain
+ *  JS object lookup is not. The original version carried the same note for the
+ *  same reason: on Windows, `Path` and `PATH` are one variable, and a
+ *  case-sensitive check would drop the former while matching the latter.
+ *
+ *  ANTHROPIC_API_KEY / _AUTH_TOKEN / _BASE_URL are absent from the allowlist by
+ *  construction, which preserves the original billing guarantee: this provider
+ *  exists to bill the user's subscription, and a stray key in the environment
+ *  silently takes precedence inside the CLI and bills the API instead — a bug
+ *  the user only discovers on an invoice. Asserted by test. */
+export function childEnvForCli(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+  const allowed = new Set(ENV_ALLOWLIST);
   const next: NodeJS.ProcessEnv = {};
   for (const [k, v] of Object.entries(env)) {
-    if (!STRIP.has(k.toLowerCase())) next[k] = v;
+    if (allowed.has(k.toLowerCase())) next[k] = v;
   }
   return next;
 }
@@ -263,6 +357,50 @@ export interface RunClaudeCodeInput {
   /** Called with a kill function once the child exists, so an HTTP caller can
    *  terminate it if the client hangs up. */
   onSpawn?: (kill: () => void) => void;
+  /** Wall-clock ceiling for the whole call. Injectable so tests can exercise
+   *  the timeout path in milliseconds instead of minutes. */
+  timeoutMs?: number;
+}
+
+/** Wall-clock ceiling on one CLI answer.
+ *
+ *  Deliberately far above a real answer rather than close to it. A question
+ *  takes 5-10 s; the corpus can push that, and a timeout that trips on a slow
+ *  but working answer would turn a working install into a broken one, which is
+ *  worse than the hang it is guarding. Five minutes matches the updater's
+ *  wall-clock guard — by then the call is not slow, it is stuck.
+ *
+ *  Without this the promise simply never settles. runQueued holds the surface's
+ *  slot until it does, and concurrencyFor() gives Claude Code a limit of ONE,
+ *  so a single stuck child silently stops that surface answering anyone at all
+ *  until the server is restarted. */
+const DEFAULT_CLI_TIMEOUT_MS = 5 * 60 * 1000;
+
+/** Terminate the child AND anything it started.
+ *
+ *  On Windows the spawn goes through cmd.exe (the claude.cmd shim needs a
+ *  shell), so child.kill() kills the shim and can leave `claude` running,
+ *  holding the sandbox directory open and still spending the subscription call
+ *  the caller just cancelled. taskkill /T walks the tree; same approach as
+ *  scripts/boot-check.mjs. Everywhere else the direct kill is the tree. */
+function killProcessTree(child: { pid?: number; kill: (sig?: NodeJS.Signals) => boolean }): void {
+  if (process.platform === "win32" && child.pid) {
+    const killer = spawn("taskkill", ["/F", "/T", "/PID", String(child.pid)], { stdio: "ignore" });
+    // spawn reports a FAILED LAUNCH asynchronously, via 'error'. A try/catch
+    // around it catches nothing, and a ChildProcess with no 'error' listener
+    // rethrows as an uncaught exception — which on this path would take the
+    // whole server down at the exact moment the wall-clock guard exists to
+    // keep it up. Same trap this file already documents for child.stdin.
+    // The realistic trigger is not a missing taskkill (it lives in System32)
+    // but a refused one: policy-blocked by AppLocker or EDR, or EMFILE under
+    // the resource pressure that a hung call tends to come with.
+    killer.on("error", () => {
+      try { child.kill(); } catch { /* already gone */ }
+    });
+    killer.unref?.();
+    return;
+  }
+  try { child.kill(); } catch { /* already gone */ }
 }
 
 /**
@@ -282,12 +420,35 @@ export function runClaudeCode(input: RunClaudeCodeInput): Promise<ClaudeCodeResu
   }
 
   return (async () => {
+    // Fresh, unguessable directory per call. mkdtemp creates it with the
+    // caller's own permissions and never reuses a name, so there is no window
+    // in which another local account can plant anything at a path it predicted.
+    // Two candidate locations, then give up. The previous fallback was
+    // `undefined`, which Node reads as "inherit the parent's cwd" — the repo
+    // root, holding .env.local, .git, settings.json and (on a dev checkout) a
+    // CLAUDE.md the CLI reads as project instructions before it reads the
+    // prompt. That is the exact channel this sandbox exists to close, so it is
+    // the one thing the failure path must never fall back to. A second
+    // location under the home directory covers the realistic failure (a
+    // locked-down or full %TEMP%) without weakening the control; if both fail
+    // the machine cannot give us a private directory at all, and an error the
+    // operator can read beats a silently unsandboxed spawn.
     let sandboxCwd: string | undefined;
-    try {
-      await fs.mkdir(SANDBOX_DIR, { recursive: true });
-      sandboxCwd = SANDBOX_DIR;
-    } catch {
-      sandboxCwd = undefined; // temp not writable — better than failing the call
+    let sandboxError: unknown;
+    for (const prefix of SANDBOX_PREFIXES) {
+      try {
+        sandboxCwd = await fs.mkdtemp(prefix);
+        break;
+      } catch (err) {
+        sandboxError = err;
+      }
+    }
+    if (!sandboxCwd) {
+      console.error("[claude-code] could not create a private working directory:", sandboxError);
+      throw new ClaudeCodeError(
+        "Could not create a private working directory for the Claude Code CLI. Check that the system temp folder is writable.",
+        "cli_failed"
+      );
     }
 
     return await new Promise<ClaudeCodeResult>((resolve, reject) => {
@@ -305,11 +466,32 @@ export function runClaudeCode(input: RunClaudeCodeInput): Promise<ClaudeCodeResu
           "json",
           "--model",
           chosenModel,
+          // Deny the tool surface outright rather than trusting the host's own
+          // ~/.claude allowlist, which Vault neither sets nor can read. The
+          // prompt below carries untrusted player text; without this, an
+          // injected instruction reaches whatever that user pre-approved.
+          // See DENIED_TOOLS.
+          "--disallowedTools",
+          DENIED_TOOLS,
+          // The user's own MCP servers register as tools on this call too, and
+          // an exclusion list cannot cover them: the identifiers come from that user's
+          // config and are arbitrary, so there is nothing to enumerate ahead of
+          // time. This flag is the only thing that closes the whole class.
+          "--strict-mcp-config",
+          // With the tools denied, a model that still decides it wants one
+          // emits raw <function_calls> markup as ANSWER TEXT — which Vault
+          // then posts to Foundry or Discord as the archivist's reply. The
+          // gate holds either way; this keeps the failure legible to the
+          // table instead of shipping them XML. Observed, not theorised.
+          "--append-system-prompt",
+          "You have no tools and no filesystem, shell, or network access. Answer only "
+            + "from the text supplied in this prompt. Never emit tool-call syntax; if you "
+            + "cannot answer from the supplied text, say so in plain prose.",
         ]);
         child = spawn(cmd.command, cmd.args, {
           shell: cmd.shell,
           stdio: ["pipe", "pipe", "pipe"],
-          env: childEnvWithoutApiKeys(process.env),
+          env: childEnvForCli(process.env),
           cwd: sandboxCwd,
         });
       } catch (err) {
@@ -325,17 +507,40 @@ export function runClaudeCode(input: RunClaudeCodeInput): Promise<ClaudeCodeResu
       let stdout = "";
       let stderr = "";
       let settled = false;
+      let timer: NodeJS.Timeout | undefined;
       const fail = (e: ClaudeCodeError) => {
-        if (!settled) { settled = true; reject(e); }
+        if (!settled) { settled = true; clearTimeout(timer); reject(e); }
       };
       const succeed = (v: ClaudeCodeResult) => {
-        if (!settled) { settled = true; resolve(v); }
+        if (!settled) { settled = true; clearTimeout(timer); resolve(v); }
       };
+
+      const timeoutMs = input.timeoutMs ?? DEFAULT_CLI_TIMEOUT_MS;
+      timer = setTimeout(() => {
+        if (settled) return;
+        // Log for the operator, then answer the caller with the chat-safe
+        // message the surfaces already know how to render. The child is killed
+        // as a TREE: leaving it alive would keep burning the subscription call
+        // nobody is waiting for any more.
+        console.error(
+          `[claude-code] no response after ${Math.round(timeoutMs / 1000)}s — terminating the CLI process.`
+        );
+        killProcessTree(child);
+        fail(
+          new ClaudeCodeError(
+            `Claude Code did not respond within ${Math.round(timeoutMs / 1000)}s and was stopped.`,
+            "cli_failed"
+          )
+        );
+      }, timeoutMs);
+      // A pending answer must not be the reason the process refuses to exit.
+      timer.unref?.();
 
       input.onSpawn?.(() => {
         if (settled) return;
         settled = true;
-        try { child.kill(); } catch { /* already gone */ }
+        clearTimeout(timer);
+        killProcessTree(child);
         reject(new ClaudeCodeError("Claude Code call was cancelled.", "cli_failed"));
       });
 
@@ -408,6 +613,11 @@ export function runClaudeCode(input: RunClaudeCodeInput): Promise<ClaudeCodeResu
           )
         );
       }
+    }).finally(async () => {
+      // One directory per call would otherwise accumulate in temp forever.
+      // Best-effort: a failed cleanup must not turn a good answer into an
+      // error, and the next call gets its own directory regardless.
+      if (sandboxCwd) await fs.rm(sandboxCwd, { recursive: true, force: true }).catch(() => {});
     });
   })();
 }

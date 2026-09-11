@@ -70,6 +70,33 @@ offline through Ollama.
 comfortable installing Node.js and running a script. [Known issues](docs/troubleshooting/known-issues.md)
 lists the known limitations and the trade-offs that are deliberate.
 
+### Who this is for — and who it isn't
+
+Tusk's Vault assumes **you know and trust whoever can ask it questions**: a
+small private Discord, or a Foundry table of trusted players. It is not built
+for a public server, an open community, or a convention table of strangers.
+
+The reason is worth stating plainly rather than burying, because it is a
+property of how the thing works rather than a bug waiting to be fixed:
+
+- **Anyone allowed to ask can reach the whole corpus.** Retrieval is steered by
+  the question, so a player asking about a mystery pulls the notes about that
+  mystery. Per-player lore scoping is [on the roadmap](ROADMAP.md); it is not
+  here yet.
+- **A player can talk the bot into reciting its context.** People try it, and it
+  works often enough to plan around. What comes out is *your own lore* — the
+  material you deliberately handed it — not your API keys, your files, or
+  anything else on the machine. The archivist has no filesystem, no shell and no
+  network of its own, and that is [tested rather than assumed](SECURITY.md). The
+  failure mode is **spoilers, not a breach**.
+- **A refusal still tells them something.** "I won't say who the traitor is"
+  confirms there is a traitor.
+
+Which is why player questions are **off by default** on Foundry, and why on
+Discord the bot only reads the channels you put it in. Those two switches are
+the access model. [What a prompt injection can and cannot do](SECURITY.md) is
+the exact version.
+
 ---
 
 ## What Tusk's Vault does

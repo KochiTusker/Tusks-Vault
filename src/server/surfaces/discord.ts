@@ -12,7 +12,7 @@
 
 import { Message } from "discord.js";
 import { parseDiscordAttachments } from "../knowledge/attachments";
-import { formatAdapterError } from "../llm/registry";
+import { chatSafeError } from "../llm/registry";
 import { buildDiagnosticBundle } from "../diagnose/bundle";
 import { answerGate, ask } from "../chat/ask";
 import { discordClient } from "../discord/client";
@@ -89,7 +89,11 @@ async function handleMessage(message: Message): Promise<void> {
     void buildDiagnosticBundle(`discord reply error: ${(error as Error)?.message ?? String(error)}`).catch(
       () => {}
     );
-    await message.reply(formatAdapterError(error));
+    // Verbose to Vault's own console (above) and to the diagnostic bundle;
+    // generic to the channel. The operator message names the provider, the
+    // model and the env var to set — a channel is the wrong audience for all
+    // three, and the GM reads the console, not the chat log.
+    await message.reply(chatSafeError(error));
   }
 }
 

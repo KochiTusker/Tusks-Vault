@@ -30,6 +30,7 @@ import {
   type PairedClient,
 } from "./auth";
 import { findTool, toolListing, type ToolResult } from "./tools";
+import { chatSafeError } from "../llm/registry";
 import { appVersion } from "../util/app-version";
 
 /** Newest first. `initialize` echoes the client's version when we know it, and
@@ -237,9 +238,13 @@ async function dispatch(
         // can show it and carry on. A JSON-RPC error here would look like the
         // server is broken and take the session down with it.
         const message = (err as Error)?.message ?? String(err);
+        // Full detail to Vault's console; a generic line to the caller. The
+        // Foundry module posts this text into the chat log, which every
+        // connected player reads — so provider names, model ids and local
+        // paths must not reach it. The GM has the real message here.
         console.error(`[mcp] tool ${name} failed:`, message);
         return rpcResult(id, {
-          content: [{ type: "text", text: message }],
+          content: [{ type: "text", text: chatSafeError(err) }],
           isError: true,
         });
       }

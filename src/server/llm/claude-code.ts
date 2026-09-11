@@ -20,6 +20,7 @@
 // does not.
 
 import { describePdfFailure, extractPdfText } from "../util/pdf-text";
+import { pdfAsPromptText } from "../prompt/sanitize";
 import { ContentPart, GenerateInput, GenerateResult, LlmAdapter, ModelInfo } from "./types";
 import { CLAUDE_CODE_MODELS, ClaudeCodeError, runClaudeCode } from "./claude-code-cli";
 
@@ -167,7 +168,7 @@ async function flattenParts(parts: ContentPart[]): Promise<string> {
     } else if (part.type === "document") {
       try {
         const text = await extractPdfText(Buffer.from(part.base64, "base64"));
-        out.push(`Context from PDF ${part.name}:\n${text.substring(0, 30000)}`);
+        out.push(pdfAsPromptText(part.name, text));
       } catch (err) {
         out.push(describePdfFailure(err, part.name));
       }

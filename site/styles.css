@@ -1248,8 +1248,27 @@ tbody tr:nth-child(even) td {
   break-inside: avoid;
 }
 
+/* The measure belongs to the prose, not to the column it sits in.
+   A comparison table is not prose — it is read across rather than down, and
+   46rem of it is five columns of three-line cells, or a sideways scroll. Both
+   lose the comparison, which is the only reason the table is there.
+
+   So the article takes the whole docs column and the measure moves onto what
+   it holds: everything read as prose keeps 46rem, section panels and tables
+   take the column. Uniformly, rather than only where a table is wide — one
+   panel stepping out past its neighbours reads as a layout bug, and a reader
+   cannot tell that it was deliberate. */
 .prose {
+  max-width: none;
+}
+.prose > *,
+.docs-section-body > * {
   max-width: 46rem;
+}
+.prose > details,
+.prose > .table-wrap,
+.docs-section-body > .table-wrap {
+  max-width: none;
 }
 .prose h1 {
   font-family: var(--font-deco);
@@ -2396,11 +2415,26 @@ tbody tr:nth-child(even) td {
   border: 1px solid var(--border);
   border-radius: var(--panel-r);
   background: var(--card);
+  /* ...and it reaches right, into the margin the page is not using. The grid
+     did not fit the leaf's text block even at four tools — a 1440px monitor
+     still scrolled it — and Lite made a fifth. Sideways-scrolling to read a
+     comparison is how a reader loses the comparison, which is the one thing
+     this block exists to give them.
+
+     Only the right side bleeds. The rail on the left carries the rule that
+     runs down the whole page, and a table sliding under a sticky numeral
+     would break the single device holding the sections together. Clamped, so
+     nothing moves until there is genuinely unused margin beside the page, and
+     capped, so the grid never drifts free of the column of prose it belongs
+     to. Below --maxw this is 0 and the box behaves exactly as it did. */
+  margin-right: calc(-1 * clamp(0rem, (100vw - var(--maxw)) / 2 - 1.5rem, 9rem));
 }
 .matrix {
-  /* Five comparison columns plus the row header. Below this the mark columns
-     hit their 9.5rem floor and the row headings crush; the wrap scrolls. */
-  min-width: 62rem;
+  /* Six columns: the row header, this project, Lite, and three other tools.
+     Below this the mark columns hit their floor and the row headings crush;
+     the wrap scrolls. With the bleed above, this fits unscrolled from about a
+     1280px viewport up. */
+  min-width: 58rem;
   font-size: 0.92rem;
 }
 .matrix caption {
@@ -2422,7 +2456,7 @@ tbody tr:nth-child(even) td {
    one word per line. Floor them instead and let the row-header column take
    whatever is left. */
 .matrix thead th:not(:first-child) {
-  min-width: 9.5rem;
+  min-width: 8rem;
 }
 .matrix thead th small {
   display: block;
@@ -2451,6 +2485,27 @@ tbody tr:nth-child(even) td {
 .matrix thead th.is-us {
   color: var(--flame-bright);
   border-bottom-color: oklch(0.55 0.18 55 / 0.7);
+}
+/* Lite is this project's other half, not a rival, and the grid says so with a
+   much fainter version of the same tint — read as a pair with the column it
+   sits beside, and plainly the smaller of the two. Loud enough to group them,
+   quiet enough that the reader still sees three independent tools scored
+   against one project rather than two products ganging up. */
+.matrix .is-kin {
+  background: oklch(0.24 0.075 50 / 0.2);
+}
+.matrix thead th.is-kin {
+  border-bottom-color: oklch(0.55 0.18 55 / 0.35);
+}
+/* The heading is the install link, because the reader who wants Lite wants it
+   from Foundry's package browser and nowhere else on this page says so. */
+.matrix thead th.is-kin a {
+  color: inherit;
+  text-decoration-color: oklch(0.55 0.18 55 / 0.65);
+  text-underline-offset: 0.22em;
+}
+.matrix thead th.is-kin a:hover {
+  color: var(--flame-bright);
 }
 .mark {
   font-style: normal;

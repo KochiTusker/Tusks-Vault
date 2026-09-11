@@ -4,28 +4,36 @@
 
 Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the current code — citations link to the source file that backs them. Each tool listed is good at what it's built for; this page is about helping you pick the right one for *your* table, not picking fights.
 
+**Arrived from the Foundry module?** [Lite and the full Vault](#lite-and-the-full-vault) is the section you want: what the module answers on its own, and what the application adds to it.
+
 ---
 
 <details class="docs-section" open>
 <summary><h2>🆚 At a glance</h2></summary>
 <div class="docs-section-body">
 
-| Tool | Local-first | Free forever | Source-grounded AI | Discord-native | Voice → chronicle | Open source | No terminal needed | Answers while your machine sleeps |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| **Tusk's Vault** | ✅ | ✅ | ✅ cited | ✅ | ✅ via [Tomes](../lore/tusks-tomes.md) | ✅ MIT | ❌ Node + Git | ❌ must be running |
-| **NotebookLM** (Google) | ❌ cloud | ✅ (with Google account) | ✅ cited | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **World Anvil** | ❌ cloud | Free tier; full features paid | ❌ no AI | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **LegendKeeper** | ❌ cloud | Subscription | ❌ no AI | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Kanka.io** | ❌ cloud | Free tier; subscription for advanced | ❌ no AI | ❌ | ❌ | ✅ self-host option | ✅ | ✅ |
-| **Obsidian + AI plugins** | ✅ | Variable | Plugin-dependent | ❌ | ❌ | Plugin-dependent | ✅ | Sync add-on |
-| **ChatGPT / Claude.ai direct** | ❌ cloud | Limited free tier | ❌ hallucinates | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **D&D Beyond** | ❌ cloud | Free for character sheets; paid for content | ❌ no AI | ❌ | ❌ | ❌ | ✅ | ✅ |
+| Tool | Where it runs | What it costs | How it answers | Where you ask it |
+|---|---|---|---|---|
+| **Tusk's Vault** | Your own machine | Free · MIT | Cited, from your own documents | Discord · Foundry · any MCP client |
+| **Tusk's Vault Lite** — [the Foundry module](https://foundryvtt.com/packages/tusks-vault) alone | Your browser, inside Foundry | Free · MIT | Cited, from journal entries in the folders you choose | Foundry's chat bar |
+| **NotebookLM** (Google) | Google's servers | Free with a Google account | Cited, from what you upload | Its own tab |
+| **World Anvil** | Their servers | Free tier · paid plans | You search and read it yourself | Its own tab |
+| **LegendKeeper** | Their servers | Subscription | You search and read it yourself | Its own tab |
+| **Kanka.io** | Their servers, or yours | Free tier · paid plans | You search your own records | Its own tab |
+| **Obsidian + AI plugins** | Your own machine | App free · plugins vary | Whatever the plugin does | Its own window |
+| **ChatGPT / Claude.ai direct** | Their servers | Free tier · paid plans | From whatever you attach — and invents when you haven't | Its own tab |
+| **D&D Beyond** | Their servers | Free sheets · paid books | Rules and characters, not your campaign | Its own tab |
 
-✅ = strong / built-in. ❌ = absent or significantly worse. The table compresses tradeoffs — the collapsible sections below have the nuance.
+**No ticks and crosses here.** Running in the cloud is not a defect, and
+neither is having no AI in it: a wiki that renders a setting beautifully is
+doing the job it was built for, and a research notebook is meant to be read
+alone. Half these tools are a better answer than this one for the thing they
+were built to do, and a grid of red crosses would only have hidden that. The
+table says what each one *is* — the sections below say who should pick it.
 
-**Read the last two columns first.** Every other column here is one this
-project was built to win, which is exactly what makes a row of ticks worth
-nothing on its own. What it loses:
+**It is still a table written by the person who made one of the rows**, which
+is what makes a flattering row worth nothing on its own. So, plainly, what
+this one loses:
 
 - **Setup.** It wants Node, Git and a terminal before it will do anything.
 - **Always available.** It answers from the machine it runs on, so a sleeping
@@ -38,9 +46,73 @@ nothing on its own. What it loses:
 Discord is Vault's oldest surface, not its only one: the same answer pipeline
 also serves **Foundry VTT** (via a companion module, `/tusk <question>` in the
 chat bar) and **any MCP client** — Claude Code, Claude Desktop, anything that
-speaks the protocol. See [Foundry VTT](../surfaces/foundry-vtt.md). "Free forever" means the
-software; you still pay whichever LLM provider you point it at, or nothing at
-all on Ollama.
+speaks the protocol. See [Foundry VTT](../surfaces/foundry-vtt.md). Session recordings become
+documents in that same folder by way of [Tomes](../lore/tusks-tomes.md), so
+what the table above calls "your own documents" grows without you writing it
+up. "Free" means the software — MIT, no account, no subscription. You still
+pay whichever model you point it at, or nothing at all on Ollama.
+
+</div>
+</details>
+
+<details class="docs-section" open>
+<summary><h2>🧩 Lite and the full Vault</h2></summary>
+<div class="docs-section-body">
+
+The [Foundry module](https://foundryvtt.com/packages/tusks-vault) runs two ways,
+chosen in its own settings. **Lite** answers on its own, out of the journal
+entries in the folders you choose, with nothing else installed at all.
+**Bridge** points the same chat bar at Tusk's Vault running on the GM's machine.
+Same `/tusk` command either way, and the same citation rules — what changes is
+what it is reading, and what it is allowed to do with it.
+
+If you came here from the module, this is the row-by-row version of what
+downloading Vault actually gets you.
+
+| | **Lite** — the module alone | **Tusk's Vault** — the application |
+|---|---|---|
+| To install | Nothing beyond the module | A free download, plus Node and Git |
+| Where your lore lives | Journal entries in the folders you choose — so wherever that world is hosted | The notes you already keep — Word, PDF, Markdown, or a whole [Obsidian vault](../lore/obsidian-vault.md) |
+| How much it can read | Only what fits into a single question | A folder of documents up to roughly 200 pages, all of it sent with every question; an [Obsidian vault](../lore/obsidian-vault.md) can be far larger, because past a budget it sends a map plus the notes each question actually needs |
+| Finding the right note | Matches the words you typed | Works out what you meant, so the page still turns up when you word it differently |
+| Models | Gemini, on your own key | Gemini, ~400 more through OpenRouter, a Claude Code subscription you may already pay for, or a local model for nothing |
+| With no API key at all | Still searches, and quotes the entries that match — nothing leaves your machine | A local model through Ollama answers in full, for nothing |
+| Where your API key sits | In your browser — which every other module you install can read | Encrypted on disk and tied to that machine, so a backup, a sync folder or a support bundle carries nothing usable; never in a browser. Software already running as you can still read it |
+| Voice | One archivist | Eight personas, or one you write |
+| Guessing | Won't, ever | Speculative Mode reasons from established traits, cites what it used, and tags the answer `[speculation]` so it is never mistaken later for something you wrote |
+| When it doesn't know | Tells you, and forgets | Records it as a lore gap; you answer once, and it applies your ruling to the same question asked differently |
+| Who may ask, and who sees it | A per-world ask policy. It can additionally filter by Foundry's own permissions, per asker — but that is opt-in and off by default: out of the box it answers from every entry in the folders it reads | A per-world access mode and a per-install ceiling, but no notion of Foundry's permissions: it answers from the whole archive |
+| Also answers in | — | Discord, and any MCP client — Claude Code, Claude Desktop, anything speaking the protocol |
+| Session recordings | — | [Tomes](../lore/tusks-tomes.md) turns them into chronicles, into the folder Vault reads |
+| Price | Free · MIT | Free · MIT |
+
+**Read the permissions row twice, and then go and set it.** Lite *can* be the
+safer of the two, but only once you choose it: the module ships with its lore
+scope set to answer from everything in the folders it reads, and the per-asker
+mode — where it asks Foundry what this particular player is allowed to open and
+answers only from that — is opt-in, in the module's own settings. Until you
+switch it on, a player asking Lite can be told about an entry they cannot open
+themselves.
+
+Vault has no notion of Foundry's permissions at all: it answers from your whole
+archive. So on either half, opening it to players is a decision about spoilers
+you make yourself — see [Foundry VTT](../surfaces/foundry-vtt.md) before
+switching that on.
+
+**Stay on Lite if** the campaign already lives in Foundry journals, it fits, and
+you would rather not run anything on your own machine. It is not a trial, it
+does not expire, and nothing nags you.
+
+**Download Vault when** you hit one of the walls above: notes that are not
+journal entries, a campaign too big for one question, a question worded
+differently from the note that answers it, or an API key you would rather was
+not sitting in a browser. Nothing is migrated and nothing is lost — you switch
+the module from Lite to Bridge in the same settings panel, and your journals
+stay exactly where they are.
+
+- 🎯 [Set up Foundry — pairing, who may ask, and the spoiler trade-off](../surfaces/foundry-vtt.md)
+- 🚀 [Install Vault](../getting-started/installation.md)
+- 🧩 [The module on Foundry's package registry](https://foundryvtt.com/packages/tusks-vault)
 
 </div>
 </details>
@@ -49,7 +121,7 @@ all on Ollama.
 <summary><h2>🔍 Vault's claims — verified against the code</h2></summary>
 <div class="docs-section-body">
 
-Every row of the Vault column is backed by code that exists in this repo:
+Every claim made for Vault above is backed by code that exists in this repo:
 
 | Claim | Where it's enforced |
 |---|---|
@@ -62,6 +134,12 @@ Every row of the Vault column is backed by code that exists in this repo:
 | **MIT open-source** | [LICENSE](../../LICENSE). |
 | **One outbound network call per answer** | The LLM adapter — [`openrouter.ts`](../../src/server/llm/openrouter.ts) or [`gemini.ts`](../../src/server/llm/gemini.ts), Ollama over loopback, or a local Claude Code process that talks to Anthropic on your behalf. Discord adds its gateway connection when that surface is on; Foundry and MCP add none. No telemetry, no analytics, no phone-home. |
 | **Nothing to install inside the app** | Local models and personas are ordinary features, not modules. There is no plugin system to learn and nothing to enable. |
+
+Lite's half is not in this repository — the module is its own codebase, and the
+rules it holds itself to are restated there. The version-pinned contract covers
+the *Bridge* wire protocol, which is the part the two share; Lite never talks to
+Vault, so its citation and refusal rules are asserted in the module's own suite
+rather than cross-checked from here.
 
 </div>
 </details>
@@ -126,6 +204,9 @@ that stops improving next to a folder of files that never depended on it.
 <div class="docs-section-body">
 
 One caveat before the list: everything said about Vault below is checked against this repository's code, but everything said about the *other* tools is a snapshot of products that are actively developed and priced by other people. Several of them are adding AI features. Check the current state of anything you are about to pay for rather than taking this page's word for it.
+
+Lite is not in this list — it is the same project rather than an alternative to
+it, and it has [its own section](#lite-and-the-full-vault) above.
 
 ### NotebookLM (Google)
 
@@ -253,7 +334,11 @@ NotebookLM and running Vault at the table.
 
 **Different category, and for Foundry, a shipped integration.** These are virtual tabletops with chat as a side feature — they host the game, they don't answer questions about it.
 
-For **Foundry VTT** the two are already joined. A companion module (its own repository, installed through Foundry) puts `/tusk <question>` in the chat bar, and the answer comes back cited — whispered or public — from the same corpus Discord queries. Pairing is a matching-code handshake, who may ask is set per world, and Vault keeps a separate per-install ceiling on answering non-GMs.
+For **Foundry VTT** the two are already joined. A companion module — [on Foundry's package registry](https://foundryvtt.com/packages/tusks-vault), searchable by name in the *Install Module* browser — puts `/tusk <question>` in the chat bar, and the answer comes back cited, whispered or public, from the same corpus Discord queries. Pairing is a matching-code handshake, who may ask is set per world, and Vault keeps a separate per-install ceiling on answering non-GMs.
+
+That module also answers with no Vault behind it at all, from the journal
+entries in the folders you choose — [Lite and the full
+Vault](#lite-and-the-full-vault) is what each half can do.
 
 Read [Foundry VTT](../surfaces/foundry-vtt.md) before switching it on: Foundry's chat log *is* the table, so a whispered answer still hands the asker lore you have not revealed.
 
@@ -267,5 +352,6 @@ Read [Foundry VTT](../surfaces/foundry-vtt.md) before switching it on: Foundry's
 - 🎲 [Use cases — what players and DMs actually ask](use-cases.md)
 - 🚀 [Setup — get answering in 5 minutes](../getting-started/installation.md)
 - 🎯 [Foundry VTT — `/tusk` in the chat bar, and who may use it](../surfaces/foundry-vtt.md)
+- 🧩 [The Foundry module](https://foundryvtt.com/packages/tusks-vault) — answers on its own, or bridges to Vault
 - 🪶 [Tomes companion project →](../lore/tusks-tomes.md)
 - ❓ [FAQ — including honest costs](../troubleshooting/faq.md)

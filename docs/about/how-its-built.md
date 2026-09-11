@@ -79,7 +79,18 @@ Step by step, in the order it actually happens.
        question selected. See [Obsidian vault](../lore/obsidian-vault.md).
    - **Top-K clarifications** — only those whose embedding matched the question
      above a similarity threshold.
-   - **The player's question.**
+   - **The player's question**, quoted between a marker generated fresh for
+     this one request. The question and the text of any file they attached go
+     inside it, and the rules that follow say the region is data, not
+     instructions. A PDF handed to Gemini is the one thing that cannot be
+     quoted — it travels as a document, so the rules cover it instead; every
+     other provider has its text extracted and defanged like any other
+     attachment. Those rules are
+     emitted last, because the final thing a model reads carries the most
+     weight. A retrieved DM clarification is treated as genuine only if its
+     header carries that same per-request marker, so a clarifications block
+     pasted into a question or an attachment cannot pass as one: the marker is
+     not in the source, not in any answer, and not guessable.
 
    The corpus is marked `cacheable` and the clarifications deliberately are not: the lore bytes are stable between questions, so a caching adapter can put its prompt-cache breakpoint there and re-bill only the per-question tail.
 

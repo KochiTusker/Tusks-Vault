@@ -99,7 +99,14 @@ differently the next person phrases the question.
   stored, and there is no transcript of your server being kept.
 - If you attach a file to a message that mentions it, that file is downloaded
   and read so it can answer about it — images, PDFs, DOCX and plain text. Those
-  bytes go to whichever model is answering, like the question itself.
+  bytes go to whichever model is answering, like the question itself. Uploads
+  are capped at 64 MB per file and 64 MB per message; anything larger is
+  refused, and the archivist is told the file could not be read rather than
+  answering as though it were empty.
+- **What you attach is treated as a question, not as lore.** Its text is
+  quoted to the model the same way your message is, so a file cannot add a
+  ruling, grant a permission or change how the archivist answers. Attaching a
+  document does not add it to your campaign — use the lore folder for that.
 - It answers from your lore and nothing else — the `Tusks-Lore/` folder, or
   your Obsidian vault if you have pointed it there instead. It has no memory of
   previous conversations beyond the rulings you record deliberately.

@@ -13,6 +13,32 @@ where each secret is stored — see [Privacy](docs/security/privacy.md).
 
 ---
 
+## 👥 Who this is built for
+
+Tusk's Vault assumes **you know and trust the people who can ask it questions.**
+
+It is built for:
+
+- a **small private Discord** — your table's own server, invite-only, people you
+  actually game with;
+- a **Foundry game with trusted players**, where the GM decides who may ask at
+  all.
+
+It is **not** built for a public Discord, an open community server, a
+convention table of strangers, or any game where you would hesitate to hand
+someone your campaign notes directly. There is no per-player lore scoping yet:
+anyone allowed to ask can reach the whole corpus, and a determined player can
+do so deliberately. That is a current design limit, stated plainly rather than
+buried — *What a prompt injection can and cannot do*, below, spells out exactly
+what it means at the table.
+
+The Foundry surface and its player ceiling both ship **off**. Discord ships on but
+inert — it does nothing until you supply a bot token, and *which* channels the bot
+can read is decided in Discord, not here. A bot that cannot see a channel never
+receives the question at all.
+
+---
+
 <details class="docs-section" open>
 <summary><h2>🛡️ Lightweight STRIDE threat model (base product)</h2></summary>
 <div class="docs-section-body">
@@ -64,6 +90,104 @@ sales page.
 </div>
 </details>
 
+<details class="docs-section" open>
+<summary><h2>🧪 What a prompt injection can and cannot do</h2></summary>
+<div class="docs-section-body">
+
+Sooner or later somebody at your table will type *"ignore all previous
+instructions"* at the bot. This is the honest answer to what happens next, split
+into the part that is structurally prevented and the part that is not.
+
+### What it cannot do: touch your machine
+
+No connection Vault ships gives the model tools. Gemini, OpenRouter and Ollama
+are text in, text out — there is no function-calling surface for an injected
+instruction to reach in the first place.
+
+The Claude Code connection is the one that runs a real CLI on your machine, and
+it is invoked with its tool surface denied outright: no filesystem, no shell, no
+network, and none of your own MCP servers registered on a call that carries
+untrusted text. The child environment is cut to infrastructure variables, so it
+never holds your Discord token or your provider keys. Its working directory is a
+fresh, unguessable temporary directory per call, removed afterwards; if no such
+directory can be created the call fails rather than falling back to a shared
+one.
+
+This is verified rather than asserted, and the two halves are worth separating
+because only one of them is a control.
+
+**Enforced by the gate, and reproducible.** File reads (absolute, relative,
+traversal, extended-length paths), file writes, shell execution, environment
+disclosure, outbound network calls, MCP tool invocation and scheduled-task
+persistence are refused because the tool surface is not there to reach. The
+flags are pinned as a test contract — asserted at the call sites, not by
+searching the file for their names — so they cannot be quietly removed. The
+same checks were run against a host configuration that pre-approves every tool,
+because a guarantee that only holds for careful users is not much of a
+guarantee.
+
+**Attempted, and declined by the model — which is judgement, not a boundary.**
+Base64-obfuscated instructions, instructions planted *inside* a lore document,
+forged claims of prior GM approval, and emotional-pressure framing were all
+tried, and the archivist declined them. That is worth knowing and it is not a
+guarantee: there is no gate behind those, only the model's reading of the
+prompt, and a model's judgement is not a security boundary. The prompt is
+structured to make them harder — the asker's question, and the text of
+anything they attach, are quoted inside a per-request marker they cannot
+predict, and a retrieved DM clarification counts as genuine only if it carries
+that marker. A PDF sent to Gemini is the exception: it travels as a document
+rather than as text, so it cannot be quoted, and the rules block covers it
+instead. Treat resistance to forged *content* as mitigation, not closure.
+
+Two honest limits on the enforced half: it covers the connections and CLI
+version shipping today, and a future CLI release that adds a brand-new tool
+name is not covered until the list is updated.
+
+### What it can do: read your lore
+
+This is the real exposure, and no amount of hardening removes it.
+
+Your campaign material is *in* the prompt — that is how the bot answers at all.
+So anyone allowed to ask can reach it, and they do not need a successful
+injection to get there: retrieval happens before the model decides anything.
+
+Three consequences worth stating plainly:
+
+- **The player steers what gets retrieved.** Notes are selected by similarity to
+  the question, and the player writes the question. Asking about a mystery pulls
+  the notes about that mystery.
+- **In Obsidian-vault mode, every prompt carries an index of the whole vault.** A
+  one-line digest of every note travels with each question so the model knows
+  what exists. That index doubles as a table of contents, and it tells a curious
+  player exactly what to ask for next.
+- **A refusal is not silence.** "I won't tell you who the traitor is" confirms
+  that there is a traitor.
+
+The bot's persona is **not** a security boundary. It will often decline — but
+that is a model's judgement on the day, not a control, and a different phrasing
+on a different day may get a different answer. Do not design a mystery around
+the assumption that it will hold.
+
+### What actually protects a mystery
+
+- **Leave the Foundry player ceiling off.** It ships off, and it is the control
+  that genuinely works. On Discord the equivalent is channel permissions: keep the
+  bot out of channels your players can read.
+- **Point Vault at a player-safe subset.** The lore folder and the Obsidian
+  vault path both accept any directory, so a subtree that excludes your secrets
+  is a real reduction in what can be reached.
+- **Choose who may *ask*, not who may *see*.** Whispering an answer hides it from
+  the table, not from the player who asked — see [Foundry VTT](docs/surfaces/foundry-vtt.md)
+  for the full version of that trade-off.
+
+Per-note visibility — marking material GM-only so it is excluded from both the
+index and retrieval — is the actual fix, and it is tracked in
+[ROADMAP.md](ROADMAP.md). Until it ships, *who may ask* is the whole of the
+access model.
+
+</div>
+</details>
+
 <details class="docs-section">
 <summary><h2>🧩 Per-feature impact addenda</h2></summary>
 <div class="docs-section-body">
@@ -86,8 +210,8 @@ A few features change the surface in a small, specific way. This section is the 
 **Threat-surface change:**
 - **E — Elevation of privilege** — the endpoint that spawns it is `loopbackOnly`. Under the documented `HOST=0.0.0.0` option a LAN visitor reaches every other route by design; this one they must not. The gate checks the peer socket address, not a header.
 - **T — Tampering** — the model id is the only request-derived value that reaches argv and is charset-validated before spawn (`shell:true` is required for the Windows `.cmd` shim, and Node concatenates argv into one shell string without escaping). The prompt — lore plus an untrusted Discord message — travels via stdin and never touches a shell.
-- **I — Information disclosure** — the child's cwd is pinned to an empty temp directory, away from the repo. If the user has pre-approved tools in their own `~/.claude` config, a prompt-injected tool call sees an empty sandbox rather than `.git`, `.env.local`, or the source tree.
-- **Billing** — not a STRIDE category, but the one that costs money: `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN` and `ANTHROPIC_BASE_URL` are stripped from the child environment case-insensitively. A stray key otherwise takes precedence inside the CLI and bills the API instead of the subscription.
+- **I — Information disclosure** — the CLI is invoked with its tool surface denied: no filesystem, shell or network tools, and `--strict-mcp-config` so the user's own MCP servers are never registered on a call carrying untrusted text. This does not depend on the user's own `~/.claude` allow-list, which Vault neither sets nor can read — the denial was checked against a configuration that pre-approves everything. The child environment is an **allow-list** of infrastructure variables: by the time this runs `.env.local` has been loaded into the process environment, so passing it through would have handed the child `DISCORD_TOKEN` and every provider key. The working directory is a fresh `mkdtemp` directory per call, removed afterwards — a fixed name in a world-writable `/tmp` would let another account on a shared machine pre-create it and leave instructions the CLI reads before it reads the prompt.
+- **Billing** — not a STRIDE category, but the one that costs money: the environment allow-list excludes `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN` and `ANTHROPIC_BASE_URL` by construction. A stray key otherwise takes precedence inside the CLI and bills the API instead of the subscription you already pay for.
 
 ### 📚 Obsidian vault as a lore source
 
