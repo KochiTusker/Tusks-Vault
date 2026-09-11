@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation — Tusk's Vault</title>
+<meta name="description" content="Tusk's Vault is a local-first lore assistant for tabletop campaigns. You point it at the notes you already keep, and it answers questions about them from…">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Documentation — Tusk's Vault">
+<meta property="og:description" content="Tusk's Vault is a local-first lore assistant for tabletop campaigns. You point it at the notes you already keep, and it answers questions about them from…">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Documentation — Tusk's Vault">
+<meta name="twitter:description" content="Tusk's Vault is a local-first lore assistant for tabletop campaigns. You point it at the notes you already keep, and it answers questions about them from…">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Documentation",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Documentation",
+  "description": "Tusk's Vault is a local-first lore assistant for tabletop campaigns. You point it at the notes you already keep, and it answers questions about them from…",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Documentation</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#getting-started">Getting started</a></li><li><a href="#asking-from-your-table">Asking from your table</a></li><li><a href="#your-lore">Your lore</a></li><li><a href="#privacy-safety">Privacy &amp; safety</a></li><li><a href="#help">Help</a></li><li><a href="#about-the-project">About the project</a></li></ul></aside>
+    <article class="prose">
+<h1>Documentation — Tusk's Vault</h1>
+<p>Tusk's Vault is a local-first lore assistant for tabletop campaigns. You point
+it at the notes you already keep, and it answers questions about them from
+Discord, from Foundry VTT's chat bar, or from any MCP client — citing the file
+each claim came from, and refusing when your notes don't cover it.</p>
+<p>These pages are the same ones the app shows under its <strong>Help</strong> tab, so you can
+read them offline once Vault is installed.</p>
+<h2 id="getting-started">Getting started</h2>
+<ul>
+<li><strong><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></strong> — clone to first cited
+answer, including what to do when a step stalls.</li>
+<li><strong><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></strong> —
+OpenRouter, Gemini, Claude Code or Ollama: what each costs, what it sees,
+and which to start with.</li>
+<li><strong><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></strong> — what the uninstaller
+removes, what it deliberately keeps, and the four things you must finish
+yourself.</li>
+</ul>
+<h2 id="asking-from-your-table">Asking from your table</h2>
+<ul>
+<li><strong><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></strong> — four steps in Discord's developer
+portal, then one paste into Vault.</li>
+<li><strong><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></strong> — <code>/tusk</code> in the chat bar
+mid-session, and the two separate controls over who may ask.</li>
+</ul>
+<h2 id="your-lore">Your lore</h2>
+<ul>
+<li><strong><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></strong> — point Vault at a vault you
+already keep. Read-only, enforced by a test that scans for writes.</li>
+<li><strong><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></strong> — the companion that records
+sessions and writes the chronicles Vault then answers from.</li>
+</ul>
+<h2 id="privacy-safety">Privacy &#x26; safety</h2>
+<ul>
+<li><strong><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></strong> — what stays on disk, what reaches a
+provider, and what is never sent. Written to be checkable, not reassuring.</li>
+<li><strong><a href="/Tusks-Vault/docs/security-policy/">Security policy</a></strong> — what counts as a vulnerability here
+and how to report one.</li>
+</ul>
+<h2 id="help">Help</h2>
+<ul>
+<li><strong><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></strong> — the questions that come up first.</li>
+<li><strong><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></strong> — what is broken or
+missing today, stated plainly.</li>
+</ul>
+<h2 id="about-the-project">About the project</h2>
+<ul>
+<li><strong><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></strong> — retrieval, prompt assembly,
+and where every outbound call goes.</li>
+<li><strong><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></strong> — six workflows end to end.</li>
+<li><strong><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></strong> — per-session estimates for every
+provider, the one lever that moves the bill, and where to set a cap.</li>
+<li><strong><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></strong> — against hosted bots, wiki SaaS, and
+pasting your notes into a chatbot.</li>
+<li><strong><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></strong> — every library and why it earns
+its place.</li>
+<li><strong><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></strong> — shipped, next, and deliberately not planned.</li>
+<li><strong><a href="/Tusks-Vault/docs/contributing/">Contributing</a></strong> — how to file an issue or send a
+change.</li>
+</ul>
+<hr>
+<p>Vault is MIT-licensed and runs entirely on your own machine. There is no
+account, no subscription, and no telemetry.</p>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/README.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What GMs and Players Actually Ask a Campaign Lore Bot — Tusk's Vault</title>
+<meta name="description" content="Mid-session recall, worldbuilding consistency checks, onboarding a new player into a long campaign, and catching up after a missed session.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/about/use-cases/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="What GMs and Players Actually Ask a Campaign Lore Bot — Tusk's Vault">
+<meta property="og:description" content="Mid-session recall, worldbuilding consistency checks, onboarding a new player into a long campaign, and catching up after a missed session.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/about/use-cases/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What GMs and Players Actually Ask a Campaign Lore Bot — Tusk's Vault">
+<meta name="twitter:description" content="Mid-session recall, worldbuilding consistency checks, onboarding a new player into a long campaign, and catching up after a missed session.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Use cases",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/about/use-cases/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Use cases",
+  "description": "Mid-session recall, worldbuilding consistency checks, onboarding a new player into a long campaign, and catching up after a missed session.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/about/use-cases/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07",
+  "keywords": "D&D campaign question bot, session recall tool, worldbuilding consistency check, onboard new D&D player"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/" aria-current="page">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Use cases</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#who-its-for">👥 Who it's for</a></li><li><a href="#what-people-actually-ask">🎲 What people actually ask</a></li><li><a href="#common-workflows">🔄 Common workflows</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Use cases — Tusk's Vault</h1>
+<p><strong>For TTRPG Game Masters and players who want to keep track of what goes on during sessions.</strong> What people actually ask the bot, who it's built for, and the workflows that show up most often in active campaigns.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="who-its-for">👥 Who it's for</h2></summary>
+<div class="docs-section-body">
+<h3 id="game-masters">🎭 Game Masters</h3>
+<ul>
+<li><strong>Mid-session recall</strong> without scrubbing through six Google Docs while four players wait.</li>
+<li><strong>Worldbuilding consistency check</strong> — query your own setting like an outsider would, and surface contradictions before players do.</li>
+<li><strong>Convert hallway-DM-conversations into canon</strong> — record the answer to "wait, is that elf the king's brother or his cousin?" once via Clarifications, and it stays remembered forever (even when future players paraphrase the question).</li>
+<li><strong>Player-onboarding co-pilot</strong> — new player joining a 30-session campaign? Tell them to ask Tusk what they want to know about the world, instead of writing them a primer.</li>
+</ul>
+<h3 id="players">🛡️ Players</h3>
+<ul>
+<li><strong>Catch up after missing a session</strong> without bothering the DM at 1am.</li>
+<li><strong>Verify what you actually agreed to</strong> ("did we tell the merchant we'd come back, or was that the other one?") with a citation, so debates stay short.</li>
+<li><strong>Lookup your own character's backstory</strong> during a roleplay moment without breaking out of the game.</li>
+</ul>
+<h3 id="worldbuilders">📜 Worldbuilders</h3>
+<ul>
+<li><strong>Stress-test new lore against existing canon</strong> — drop a draft document into <code>Tusks-Lore/</code>, ask the bot about it. Inconsistencies surface as contradictions because every claim is cited.</li>
+<li><strong>Find what you forgot you wrote</strong> — a 200-page worldbuilding bible becomes searchable for the first time.</li>
+</ul>
+<h3 id="streamers-actual-play-creators">🎮 Streamers + actual-play creators</h3>
+<ul>
+<li><strong>Answer chat questions live</strong> without breaking immersion. "Who's the duke again?" gets a one-line answer in your campaign Discord — or in Foundry's chat bar, if that's where you run — while you stay in the scene.</li>
+<li><strong>Episode recap generator</strong> — ask Tusk to summarise the last three sessions for your YouTube description.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-people-actually-ask">🎲 What people actually ask</h2></summary>
+<div class="docs-section-body">
+<p>The examples below are written as Discord mentions because that is the oldest
+surface. The same questions work verbatim in Foundry VTT's chat bar as
+<code>/tusk who is Ser Alric Vane?</code> (see <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a>), and as an
+<code>ask_lore</code> call from any MCP client — one pipeline answers all three, so the
+persona, the corpus and the citations are identical whichever you use.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Someone in your server asks...</th><th>Tusk's reply...</th></tr></thead><tbody><tr><td><code>@Tusk who is Ser Alric Vane?</code></td><td>Cited recall from session-3 notes plus any DM clarifications about him.</td></tr><tr><td><code>@Tusk what happened in session 7?</code></td><td>A summary citing the session-7 chronicle file (or the <a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a> chronicle, if you saved one into the shared folder).</td></tr><tr><td><code>@Tusk what factions are at war right now?</code></td><td>Faction-by-faction breakdown citing your worldbuilding docs.</td></tr><tr><td><code>@Tusk what's our cleric's god's domain?</code></td><td>Character recall from the party-sheet doc.</td></tr><tr><td><code>@Tusk what did we agree to last session about the cursed amulet?</code></td><td>Pulls the agreement out of the session log so the DM doesn't have to scroll back.</td></tr><tr><td><code>@Tusk who would most likely walk into a tavern and try to start a bar fight?</code></td><td><em>(Speculative Mode only)</em> A reasoned guess based on character personalities, tagged <code>[speculation]</code>.</td></tr><tr><td><code>@Tusk what's the capital of France?</code></td><td><em>"I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify."</em> — and the question lands in the dashboard's Lore Gaps tab.</td></tr><tr><td><code>@Tusk how does grappling work?</code></td><td>A 5e rules answer, tagged <code>[D&#x26;D 5e]</code>.</td></tr><tr><td><code>@Tusk does Lady Ismet Corrin know about the cult?</code></td><td>Honest "the chronicles don't say" if it's not in the lore, plus a flagged gap.</td></tr></tbody></table></div>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="common-workflows">🔄 Common workflows</h2></summary>
+<div class="docs-section-body">
+<h3 id="1-drop-in-lore-reference">1. Drop-in lore reference</h3>
+<ol>
+<li>Drag a session journal into your lore folder — the sibling <code>Tusks-Lore/</code> next to the Vault repo, or <code>&#x3C;repo>/Lore/</code> if you have not made one.</li>
+<li>Ask <code>@Tusk</code> about it in Discord.</li>
+<li>Done.</li>
+</ol>
+<p>The bot walks <code>Tusks-Lore/</code> recursively on every query, so updates are instant — no rebuild, no reindex. Sub-folders are fine; the file's relative path becomes its citation marker.</p>
+<h3 id="2-resolving-a-lore-gap">2. Resolving a lore gap</h3>
+<ol>
+<li>Someone asks something the bot doesn't know. Bot replies: <em>"I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify."</em></li>
+<li>The DM opens the dashboard → <strong>Home</strong> → the campaign card's <strong>Lore Gaps</strong> tab.</li>
+<li>Type the canonical answer.</li>
+<li>The clarification is embedded locally (via MiniLM on CPU) and stored as <code>clarifications.json</code> + <code>clarifications.embeddings.json</code> <strong>inside your <code>Tusks-Lore/</code> folder</strong> — so it follows your campaign and survives a clean reinstall of the app.</li>
+<li>The next time anyone asks anything semantically similar — even if they phrase it differently — the answer surfaces automatically. You only teach Tusk a fact once.</li>
+</ol>
+<p>A clarification outranks the knowledge base when the two disagree (rule 4 of the canonical rules block), which is what makes this the way to correct the archive rather than editing a document.</p>
+<h3 id="3-tomes-vault-session-loop-with-the-optional-companion-installed">3. Tomes → Vault session loop (with the optional companion installed)</h3>
+<p>The full <strong><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></strong> + Vault workflow:</p>
+<ol>
+<li><strong>Play</strong> your session.</li>
+<li><strong>Record</strong> the audio (Craig multitrack, OBS, phone — whatever you have).</li>
+<li><strong>Transcribe</strong> with Tomes' optional Audio Transcription module (offline Whisper), or paste in a transcript you produced yourself.</li>
+<li><strong>Chronicle</strong> via Tomes' six-phase LLM pipeline — produces a polished narrative chronicle.</li>
+<li><strong>Save it into the shared folder.</strong> On the finished chronicle in Tomes, <em>Save full .docx</em> writes it to <code>Tusks-Lore/Sessions/&#x3C;campaign>/</code>. One click, and nothing to import on the Vault side.</li>
+<li><strong>Query.</strong> From that moment on, "what happened in session 5?" cites the chronicle Tomes produced that morning — no rebuild, no reindex.</li>
+</ol>
+<p>Each step is independent — you can do steps 3-5 by hand without Tomes and the rest still works.</p>
+<h3 id="4-switching-llm-mid-campaign">4. Switching LLM mid-campaign</h3>
+<ol>
+<li>Hit Gemini's free-tier rate limit during a busy session?</li>
+<li>Open the dashboard → <strong>Home</strong> → <strong>Active Provider</strong> picker → switch to another key, to Claude Code, or to Ollama.</li>
+<li>Next message uses the new provider. No restart, no config file edit.</li>
+</ol>
+<p>A rate limit is a statement about the <em>key</em>, not the model — the retry layer holds the whole provider for the backoff, so swapping model within the same provider will not escape a 429. Switch provider, or wait.</p>
+<h3 id="5-reading-lore-from-your-obsidian-vault-instead">5. Reading lore from your Obsidian vault instead</h3>
+<ol>
+<li><strong>Lore → Lore source</strong> in the dashboard.</li>
+<li>Paste the vault's folder path and press <strong>Check</strong>. Vault reports what it found — notes, folders, frontmatter fields — so you can confirm it is the right one.</li>
+<li>Press <strong>Use this vault</strong>.</li>
+<li>For a large vault, press <strong>Build map</strong>: Vault reads every note once and reduces each to a line, so later questions carry the whole map plus only the notes they need.</li>
+</ol>
+<p>Vault never writes to your vault. Switch back to the folder at any time — nothing is moved or changed. See <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a>.</p>
+<h3 id="6-asking-from-inside-foundry-vtt">6. Asking from inside Foundry VTT</h3>
+<ol>
+<li>Dashboard → <strong>Home</strong> → <strong>Surfaces</strong> → switch <strong>Foundry VTT</strong> on.</li>
+<li>In Foundry, enable the <strong>Tusk's Vault</strong> module, then <em>Connect to Tusk's Vault</em> from its settings. Both ends show the same six-digit code; check they match and click <strong>Allow</strong>. There is no token to copy.</li>
+<li>Anyone the world's <strong>Who may ask</strong> setting admits types <code>/tusk who runs the harbour?</code> in the chat bar. The answer comes back cited, whispered to the asker and GMs by default.</li>
+</ol>
+<p>Two things to decide before you let players use it.</p>
+<ul>
+<li><strong>Who may ask</strong> is set per world, in Foundry. Vault holds a separate
+per-install ceiling (<em>Answer players, not just the GM</em>) that is <strong>off</strong> by
+default, so both ends must allow it.</li>
+<li><strong>Vault answers from the whole corpus</strong>, with no notion of what you have
+revealed. A whisper hides an answer from the rest of the table, not from the
+player who asked.</li>
+</ul>
+<p><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> covers both properly.</p>
+</div>
+</details>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>🚀 <a href="/Tusks-Vault/docs/getting-started/installation/">Setup → run your first query in 5 minutes</a></li>
+<li>🎯 <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT — <code>/tusk</code> at the virtual table</a></li>
+<li>🧠 <a href="/Tusks-Vault/docs/about/how-its-built/">Architecture — how citations actually work</a></li>
+<li>🔌 <a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Providers — OpenRouter, Gemini, Claude Code, Ollama</a></li>
+<li>📚 <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault as a lore source</a></li>
+<li>🆚 <a href="/Tusks-Vault/docs/about/comparison/">Comparison — why this beats raw ChatGPT for campaigns</a></li>
+<li>❓ <a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ — costs, privacy, troubleshooting</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/about/use-cases.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

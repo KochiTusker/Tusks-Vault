@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Set Up a Self-Hosted D&amp;D Lore Assistant — Install Guide — Tusk's Vault</title>
+<meta name="description" content="Install Tusk's Vault, point it at your campaign documents, connect a language model and a Discord bot. Free and open source, runs on your own machine.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-08">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Set Up a Self-Hosted D&amp;D Lore Assistant — Install Guide — Tusk's Vault">
+<meta property="og:description" content="Install Tusk's Vault, point it at your campaign documents, connect a language model and a Discord bot. Free and open source, runs on your own machine.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Set Up a Self-Hosted D&amp;D Lore Assistant — Install Guide — Tusk's Vault">
+<meta name="twitter:description" content="Install Tusk's Vault, point it at your campaign documents, connect a language model and a Discord bot. Free and open source, runs on your own machine.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Installation",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Installation",
+  "description": "Install Tusk's Vault, point it at your campaign documents, connect a language model and a Discord bot. Free and open source, runs on your own machine.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-08",
+  "keywords": "install D&D AI assistant, self-hosted campaign lore bot setup, Discord bot for D&D campaign notes, how to set up a lore assistant"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Install Tusk's Vault and connect it to your campaign",
+  "description": "Install Tusk's Vault, point it at your campaign documents, connect a language model and a Discord bot. Free and open source, runs on your own machine.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/",
+  "totalTime": "PT10M",
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "A folder of campaign documents"
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "Node.js 20 or newer"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "Git"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Install the prerequisites",
+      "text": "Install Node.js 20 or newer and Git. No Python, no Docker, no database.",
+      "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/#step-1-install-the-prerequisites-above"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Get the code onto your machine",
+      "text": "Clone the repository, or download and extract the ZIP if you would rather not use Git.",
+      "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/#step-2-get-the-code-onto-your-machine"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Launch",
+      "text": "Run the launcher. It installs dependencies the first time — about a minute — then starts the dashboard on localhost.",
+      "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/#step-3-launch"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Configure from the dashboard",
+      "text": "Choose a model provider, add a key if that provider needs one, and point Vault at the folder holding your campaign documents.",
+      "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/#step-4-configure-from-the-dashboard"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Test it",
+      "text": "Ask a question you know the answer to, and check the citation names the document it came from.",
+      "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/installation/#step-5-test-it"
+    }
+  ]
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/" aria-current="page">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Installation</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#which-machines-this-has-actually-been-run-on">Which machines this has actually been run on</a></li><li><a href="#quick-start-the-3-line-version">⚡ Quick start (the 3-line version)</a></li><li><a href="#prerequisites">📋 Prerequisites</a></li><li><a href="#first-time-on-github-a-5-minute-walkthrough">🧙 First time on GitHub? — a 5-minute walkthrough</a></li><li><a href="#macos-linux-terminal-equivalents">🍎 macOS / 🐧 Linux — terminal equivalents</a></li><li><a href="#updating-after-a-git-pull">🔄 Updating after a `git pull`</a></li><li><a href="#configuring-from-the-dashboard">🎛️ Configuring from the dashboard</a></li><li><a href="#local-models-and-claude-code">🔌 Local models and Claude Code</a></li><li><a href="#common-setup-issues">🐞 Common setup issues</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Installation — Tusk's Vault</h1>
+<p>This guide takes you from "nothing installed" to <strong>"the bot is answering in Discord"</strong>. Pick the section that matches you — every collapsible block starts closed so the page stays scannable. Open the ones you need.</p>
+<hr>
+<h2 id="which-machines-this-has-actually-been-run-on">Which machines this has actually been run on</h2>
+<p>Tusk's Vault is a Node application and nothing in it is Windows-specific, so it
+<em>should</em> run anywhere Node 20 does. But "should" is not "has been", and this is
+a one-maintainer project — so here is the honest state, before you spend time
+cloning it.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Platform</th><th>State</th><th>What that means for you</th></tr></thead><tbody><tr><td><strong>Windows 10 / 11, 64-bit (x64)</strong></td><td><strong>Supported.</strong> Developed and used here daily; a clean clone → install → boot is verified.</td><td>Use it. <code>setup.bat</code> and <code>run.bat</code> are the tested path.</td></tr><tr><td><strong>Windows on ARM</strong> (Snapdragon X, Surface Pro 11, Copilot+ PCs)</td><td><strong>Unverified.</strong> The dependency that used to make it fail at startup is fixed, but nobody has run it on real ARM hardware.</td><td>It may work. If it doesn't, installing the <strong>x64</strong> build of Node instead of the arm64 one will run it under emulation. Please <a href="https://github.com/KochiTusker/Tusks-Vault/issues" rel="noopener">open an issue</a> either way — a report from an ARM machine is genuinely useful.</td></tr><tr><td><strong>macOS</strong></td><td><strong>Untested.</strong> <code>run.sh</code> exists and the code has no Windows-only calls, but the app has never been started on a Mac.</td><td>Expect rough edges in the launcher scripts rather than in the app. Reports welcome.</td></tr><tr><td><strong>Linux</strong></td><td><strong>Partly tested.</strong> The full suite runs on Linux in CI on every commit, and CI also boots the real server there and checks it answers.</td><td>The code is exercised. What is not: the launcher script, the browser auto-open, and a first run driven by a person on a desktop.</td></tr></tbody></table></div>
+<div class="docs-alert docs-alert-warning">
+<div class="docs-alert-label">Notice</div>
+<p>Only 64-bit Windows is a <em>supported</em> platform today. Everything else is
+expected to work and has not been proven to. Nothing here will damage your
+machine — the worst case is that the server fails to start and you delete the
+folder — but please don't plan a session around an untested platform until
+you have seen it run.</p>
+</div>
+<p><strong>Before you clone, read <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues → Platform support</a>.</strong>
+It carries the same table plus what specifically went wrong on each platform and
+what was done about it — worth two minutes if you are not on 64-bit Windows.
+Windows-on-ARM and macOS support are both tracked on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</p>
+<hr>
+<h2 id="quick-start-the-3-line-version">⚡ Quick start (the 3-line version)</h2>
+<p>If you've used Git and Node before:</p>
+<p><strong>Mac / Linux</strong></p>
+<pre><code class="language-sh">git clone https://github.com/KochiTusker/Tusks-Vault.git
+cd Tusks-Vault &#x26;&#x26; bash run.sh
+</code></pre>
+<p><strong>Windows</strong> — clone or <a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">download the ZIP</a>, open the folder, double-click <code>run.bat</code>.</p>
+<p>Either platform can instead use the one-file installer — <code>install-tusks-vault.sh</code> / <code>install-tusks-vault.bat</code> at the repo root. It clones (never a tarball, because the in-app updater needs a git checkout), prints every location it will touch, and asks once before changing anything.</p>
+<p>Your browser opens to <a href="http://localhost:3000" rel="noopener">http://localhost:3000</a> — or to whichever port the server actually bound, if 3000 was busy. Add an LLM key + Discord token from the dashboard — no config files to edit.</p>
+<p>If anything above made you pause, expand <strong>🧙 First time on GitHub?</strong> below.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="prerequisites">📋 Prerequisites</h2></summary>
+<div class="docs-section-body">
+<p>You need two things installed on your computer <strong>before</strong> Tusk's Vault will run.</p>
+<h3 id="nodejs-20-or-newer-required">Node.js 20 or newer (required)</h3>
+<ul>
+<li>Go to <a href="https://nodejs.org" rel="noopener">https://nodejs.org</a></li>
+<li>Click the <strong>LTS</strong> button (LTS = Long-Term Support; the stable version).</li>
+<li>Run the installer. Defaults are fine — click Next, Next, Install.</li>
+<li>Restart your computer if it asks you to.</li>
+</ul>
+<p><strong>To check it worked:</strong> open a terminal and type <code>node --version</code>. You should see something like <code>v20.11.1</code> or higher.</p>
+<h3 id="git-strongly-recommended">Git (strongly recommended)</h3>
+<p>You can run Tusk's Vault from a ZIP download without Git, but the <strong>in-app updater needs Git installed</strong>. Without Git, updating means re-downloading the ZIP by hand.</p>
+<ul>
+<li>Go to <a href="https://git-scm.com" rel="noopener">https://git-scm.com</a></li>
+<li>Download for your OS. Defaults are fine throughout the installer.</li>
+</ul>
+<p><strong>To check it worked:</strong> open a terminal and type <code>git --version</code>. You should see something like <code>git version 2.43.0</code>.</p>
+<h3 id="what-you-do-not-need">What you do NOT need</h3>
+<ul>
+<li>❌ Python</li>
+<li>❌ Docker</li>
+<li>❌ A database</li>
+<li>❌ Admin / root privileges</li>
+<li>❌ A paid LLM key (Google Gemini's free tier works fine)</li>
+<li>❌ A cloud account of any kind</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="first-time-on-github-a-5-minute-walkthrough">🧙 First time on GitHub? — a 5-minute walkthrough</h2></summary>
+<div class="docs-section-body">
+<p>If you've never cloned a repo or used a terminal, follow these steps. Total time: about 5 minutes.</p>
+<h3 id="step-1-install-the-prerequisites-above">Step 1 — Install the prerequisites above</h3>
+<p>Open the <strong>📋 Prerequisites</strong> section above this one. Install Node and Git. Then come back here.</p>
+<h3 id="step-2-get-the-code-onto-your-machine">Step 2 — Get the code onto your machine</h3>
+<p>Pick the option that matches you.</p>
+<h4 id="option-a-download-a-zip-easiest-no-git-knowledge-required">Option A — Download a ZIP (easiest, no Git knowledge required)</h4>
+<ol>
+<li>Go to <a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">https://github.com/KochiTusker/Tusks-Vault</a>.</li>
+<li>Click the big green <strong><code>&#x3C; > Code</code></strong> button at the top, then <strong>Download ZIP</strong> at the bottom of the dropdown.</li>
+<li>Open your Downloads folder. <strong>Right-click → Extract All...</strong> Pick a folder you'll remember — e.g. <code>Documents\TusksVault</code>.</li>
+</ol>
+<h4 id="option-b-clone-with-git-one-click-updates-later">Option B — Clone with Git (one-click updates later)</h4>
+<ol>
+<li>Open a terminal in the folder where you want Tusk's Vault to live (right-click in any folder → <strong>Open in Terminal</strong> on Windows 11, or <code>cd</code> from Command Prompt).</li>
+<li>Type and press Enter:
+<pre><code class="language-sh">git clone https://github.com/KochiTusker/Tusks-Vault.git
+</code></pre>
+</li>
+<li>A <code>Tusks-Vault</code> subfolder is created. <code>cd Tusks-Vault</code> to enter it.</li>
+</ol>
+<h3 id="step-3-launch">Step 3 — Launch</h3>
+<ul>
+<li><strong>Windows:</strong> open the <code>Tusks-Vault</code> folder in Explorer, double-click <strong><code>run.bat</code></strong>. A console window opens. If you have Windows Terminal — standard on Windows 11 — it opens as a tab in a shared "tusks" window instead, so Vault and Tomes sit side by side; set <code>TUSKS_NO_WT=1</code> if you would rather have a plain <code>cmd</code> window.</li>
+<li><strong>Mac / Linux:</strong> in a terminal in the <code>Tusks-Vault</code> folder, type <code>bash run.sh</code> and press Enter. (<code>run.sh</code> is not checked in with the executable bit set, so plain <code>./run.sh</code> reports "Permission denied" on a fresh clone until you <code>chmod +x run.sh</code>. <code>bash run.sh</code> always works.)</li>
+</ul>
+<p>The launcher:</p>
+<ol>
+<li>Checks the folder is writable, so a clone into Program Files or a syncing OneDrive folder fails with an explanation rather than a cryptic npm error.</li>
+<li>Checks you have Node 20+ (refuses to start if not).</li>
+<li>Refuses to run as root on macOS / Linux (keeps <code>node_modules</code> user-owned).</li>
+<li>Installs dependencies when they're missing or <code>package-lock.json</code> has changed since the last successful install (<code>npm ci</code> on a truly fresh clone, <code>npm install</code> otherwise — both <code>--no-audit --no-fund</code>, and it warns you it takes about a minute).</li>
+<li>Starts the server.</li>
+<li><strong>Opens your browser</strong> automatically, at the port the server actually bound.</li>
+</ol>
+<p><strong>Keep the launcher window open.</strong> Closing it stops Tusk's Vault.</p>
+<h3 id="step-4-configure-from-the-dashboard">Step 4 — Configure from the dashboard</h3>
+<p>The Welcome banner walks you through three steps:</p>
+<ol>
+<li><strong>Add an LLM API key</strong> — click the Add-key card; pick a connection; paste the key. Gemini has a free tier and is the recommended first choice.</li>
+<li><strong>Connect Discord</strong> — click the Bot Status card. Paste your bot token — nothing else. The dashboard verifies it against Discord, reads the Application ID out of it, and generates an invite URL with the right permissions.</li>
+<li><strong>Upload lore</strong> — the <strong>Lore</strong> tab; drag your campaign documents in (PDF, DOCX, MD, etc.) or click <strong>Bulk Upload</strong>.</li>
+</ol>
+<h3 id="step-5-test-it">Step 5 — Test it</h3>
+<p>In your Discord server, type <code>@&#x3C;your bot name> who is &#x3C;a character from your notes>?</code></p>
+<p>You should get a cited answer. If you get <em>"I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify."</em>, that's normal — the bot only answers from your documents. The question lands under <strong>Home → Campaign Management → Gaps</strong> so you can answer it once and have it remembered.</p>
+<h3 id="stopping-starting-later">Stopping / starting later</h3>
+<ul>
+<li><strong>Stop:</strong> close the black launcher window (or <code>Ctrl+C</code> in the terminal).</li>
+<li><strong>Start again:</strong> double-click <code>run.bat</code> (or <code>bash run.sh</code>). Your keys, lore, and Discord token are all saved — you only set them up once.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="macos-linux-terminal-equivalents">🍎 macOS / 🐧 Linux — terminal equivalents</h2></summary>
+<div class="docs-section-body">
+<pre><code class="language-sh"># 1. Install Node 20+
+# macOS:  brew install node
+# Debian: sudo apt install nodejs npm
+# Fedora: sudo dnf install nodejs npm
+# Arch:   sudo pacman -S nodejs npm
+
+# 2. Clone
+git clone https://github.com/KochiTusker/Tusks-Vault.git
+cd Tusks-Vault
+
+# 3. Run (handles npm install on first launch automatically)
+bash run.sh
+</code></pre>
+<p><code>run.sh</code> sets <code>TUSKS_VAULT_OPEN_BROWSER=1</code>, which is what tells the server to open your browser once it has bound a port. Without that variable — <code>npm start</code> on its own, say — the server starts silently and you open the URL it prints yourself.</p>
+<p><strong>To stop:</strong> <code>Ctrl+C</code> in the terminal, or close the window.</p>
+<p><strong>Important — never <code>sudo</code> the launcher.</strong> <code>run.sh</code> refuses to start as root (or under <code>sudo</code>) so <code>node_modules/</code> stays user-owned and future updates don't break with permission errors. <code>setup.sh</code> refuses for the same reason.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="updating-after-a-git-pull">🔄 Updating after a `git pull`</h2></summary>
+<div class="docs-section-body">
+<p>There are two equivalent ways to update — pick whichever you prefer.</p>
+<h3 id="path-a-in-app-one-click">Path A — In-app (one click)</h3>
+<p>The dashboard's <strong>Settings → Maintenance → Updates</strong> card runs the updater for you:</p>
+<ol>
+<li>
+<p>Click <strong>Check for updates</strong>. The card shows you the remote HEAD (commit SHA + message) and every commit you're behind by.</p>
+</li>
+<li>
+<p>Click <strong>Apply update</strong> and confirm. The updater streams <code>git pull</code> output live; the running server stays on the old code throughout. One of two things then happens:</p>
+<ul>
+<li><strong>No dependency change</strong> — the card says "Update applied." and offers a <strong>Restart now</strong> button.</li>
+<li><strong>Dependency change</strong> — the card surfaces a copy-pasteable <code>npm install</code> command with a Copy button.</li>
+</ul>
+<p>The updater <strong>never runs <code>npm install</code> while the server is alive</strong>: that would collide with file handles the live process holds in <code>node_modules/</code> (Vite's file watcher, mainly).</p>
+</li>
+<li>
+<p>Restart Tusk's Vault via the <strong>Restart now</strong> button (or close the launcher window and re-run it). If you launched via <code>run.bat</code> / <code>run.sh</code>, the launcher catches the restart, refreshes dependencies if the lockfile changed, and relaunches on its own.</p>
+</li>
+</ol>
+<h3 id="path-b-from-a-terminal">Path B — From a terminal</h3>
+<pre><code class="language-sh">cd path/to/Tusks-Vault
+git pull
+npm install --no-audit --no-fund   # only if package-lock.json changed
+npm start
+</code></pre>
+<p>Vault's launcher also re-runs <code>npm install</code> automatically on next launch when <code>package-lock.json</code> differs from the copy it snapshotted after the last successful install (<code>node_modules/.tv-lockfile-snapshot</code>) — so <code>bash run.sh</code> / <code>run.bat</code> on its own is usually enough.</p>
+<h3 id="safety-guarantees">Safety guarantees</h3>
+<ul>
+<li>The updater refuses to update if you have <strong>uncommitted local edits</strong> on tracked files (so your debugging changes aren't clobbered). It does not stash them for you — it stops and tells you to commit or stash first, which is why nothing of yours can be lost in a stash you forget about.</li>
+<li>The updater is <strong>fast-forward-only</strong> — if your local main has diverged from the remote, it tells you how to recover instead of overwriting silently.</li>
+<li>The updater runs whatever git and npm you already have; it never downloads and executes a script. It inherits the server's user, and the launcher refuses to start as root, so in the normal flow it is never running as root either.</li>
+<li>Apply must echo back the exact remote SHA the card just showed you, so a tab left open overnight can't apply a different update than the one you read. There is also a five-minute wall-clock ceiling on the whole operation.</li>
+</ul>
+<p>Source: <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/scripts/update.mjs" rel="noopener">scripts/update.mjs</a> + <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/util/updater.ts" rel="noopener">src/server/util/updater.ts</a>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="configuring-from-the-dashboard">🎛️ Configuring from the dashboard</h2></summary>
+<div class="docs-section-body">
+<p>Four things, in this order. Only the first is required to get an answer out of
+it.</p>
+<p><strong>1 — A connection.</strong> <em>Settings → API keys.</em> Four connections, and only two
+take a key: <strong><a href="https://aistudio.google.com/app/apikey" rel="noopener">Gemini</a></strong> (free tier,
+the recommended start) and
+<strong><a href="https://openrouter.ai/keys" rel="noopener">OpenRouter</a></strong> (pay-as-you-go, ~400 models on one
+bill). <strong>Claude Code</strong> answers through a Claude subscription you already have,
+and <strong>Ollama</strong> runs locally — neither needs anything pasted. Pick which one
+answers from the <strong>Active Provider</strong> picker on Home; you can flip between them
+without restarting.</p>
+<p>Keys are stored encrypted (AES-256-GCM, machine-bound) in your platform config
+folder, never in the repo.</p>
+<blockquote>
+<p><strong>There is no Anthropic or OpenAI key slot</strong>, and do not put
+<code>ANTHROPIC_API_KEY</code> in <code>.env.local</code> — nothing reads it, and the Claude Code
+connection strips it from the CLI's environment on purpose, because a stray
+key there bills the API instead of your subscription.</p>
+</blockquote>
+<p>→ Which to choose, what each sees, and what each costs:
+<strong><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></strong>.</p>
+<p><strong>2 — Somewhere to ask from.</strong> Discord needs a bot token — four steps in
+Discord's developer portal, then one paste. Foundry and MCP ship <strong>off</strong> and
+stay off until you enable them and approve a pairing.</p>
+<p>→ <strong><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></strong> · <strong><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></strong></p>
+<p><strong>3 — Your lore.</strong> Drop documents into the <code>Tusks-Lore/</code> folder — PDF, DOCX,
+Markdown, plain text and more — or point Vault at an Obsidian vault you already
+keep, which it reads strictly read-only.</p>
+<p>→ <strong><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></strong></p>
+<p><strong>4 — Optional: a voice.</strong> <em>Settings → Personas.</em> Eight presets — the default
+Chronicler plus seven characters — and any you write or generate yourself. The
+citation rules survive every one of them.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="local-models-and-claude-code">🔌 Local models and Claude Code</h2></summary>
+<div class="docs-section-body">
+<p>Neither needs anything installed inside Vault, and there is nothing to enable. Both appear in the Active Provider picker as soon as Vault can see them.</p>
+<ul>
+<li><strong>🦙 Ollama</strong> — local inference on your own machine. Install Ollama, <code>ollama pull</code> a model, and the picker finds it. Its base URL lives under <strong>Settings → Integrations</strong>, and must be a loopback address.</li>
+<li><strong>🤖 Claude Code</strong> — answers through a Claude subscription you already pay for. Install the Claude Code CLI and run <code>claude login</code>; Vault never handles the login, it only invokes a binary you have already authenticated.</li>
+</ul>
+<p>Personas are an ordinary feature too, under <strong>Settings → Personas</strong>: eight presets — the default Chronicler voice plus seven characters — and any you write or generate yourself.</p>
+<p>Full guide, including the trade-offs of each: <strong><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></strong>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="common-setup-issues">🐞 Common setup issues</h2></summary>
+<div class="docs-section-body">
+<h3 id="node-version-too-low">"Node version too low"</h3>
+<p>The launcher refuses to start on Node &#x3C; 20. Run <code>node --version</code> to confirm what's installed; install the latest LTS from <a href="https://nodejs.org/" rel="noopener">https://nodejs.org/</a> if needed. On Windows, after a Node install you may need to close and re-open your terminal so the new version takes over the <code>PATH</code>.</p>
+<h3 id="port-3000-already-in-use">Port 3000 already in use</h3>
+<p>Vault auto-falls-back to 3001, 3002, and so on — twenty attempts in total, so 3000–3019. It opens your browser at whichever port it actually bound and prints that URL in the launcher window, so the fallback is normally invisible. If all twenty are taken it stops with an error naming the range; set <code>PORT=3500</code> (or anything free) in <code>.env.local</code> and re-launch.</p>
+<p>The bound port is also written to <code>.port-runtime</code> at the repo root. That file is written for other tools to read — nothing in the launch path consults it, so deleting it changes nothing about where your browser opens.</p>
+<h3 id="windows-running-scripts-is-disabled-on-this-system-powershell">Windows: "running scripts is disabled on this system" (PowerShell)</h3>
+<p>This is PowerShell's default Restricted execution policy blocking a <code>.ps1</code> script. It does <strong>not</strong> affect <code>run.bat</code> — batch files aren't governed by the execution policy, so double-clicking it, or running it from Command Prompt or PowerShell, works either way. What it does block is running <code>npm</code> directly inside PowerShell, because npm ships a <code>npm.ps1</code> shim. Two fixes:</p>
+<ul>
+<li>Use the regular Command Prompt for <code>npm</code> commands — or call <code>npm.cmd</code> explicitly from PowerShell.</li>
+<li>Or run <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code> once. <code>-Scope CurrentUser</code> does not need Administrator.</li>
+</ul>
+<h3 id="first-boot-minilm-download-fails">First-boot MiniLM download fails</h3>
+<p>Vault downloads ~25 MB of MiniLM embedding weights from Hugging Face on first launch, caching them into <code>models/</code> at the repo root. The download starts at boot, not at the first question, so if your network blocks <code>huggingface.co</code> you'll see <code>[embeddings] Failed to load model:</code> in the launcher window and in the dashboard's <strong>Home → Campaign Management → Logs</strong> tab. Unblock the network access (or use a VPN once to grab the model), then restart.</p>
+<h3 id="after-git-pull-errmodulenotfound">After <code>git pull</code>: <code>ERR_MODULE_NOT_FOUND</code></h3>
+<p>Dependencies changed in the last update. The launcher normally catches this itself by comparing <code>package-lock.json</code> to its snapshot — if it didn't, run <code>npm install --no-audit --no-fund</code> from a terminal in the repo root and re-launch. To force the launcher to re-install on its own, delete <code>node_modules/.tv-lockfile-snapshot</code>; the missing snapshot triggers a fresh install on the next start.</p>
+<p>More entries: see <strong><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ → Troubleshooting</a></strong>. If the
+server will not start at all, check <strong><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues → Platform support</a></strong>
+first — the cause may be that your platform has never been verified.</p>
+</div>
+</details>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>🧠 <a href="/Tusks-Vault/docs/about/how-its-built/">How retrieval actually works → Architecture.md</a></li>
+<li>🎲 <a href="/Tusks-Vault/docs/about/use-cases/">What people actually ask → UseCases.md</a></li>
+<li>🔌 <a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Providers → Providers.md</a></li>
+<li>💬 <a href="/Tusks-Vault/docs/surfaces/discord/">Discord, in more detail → Discord.md</a></li>
+<li>🐉 <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT — asking from the game chat bar → Foundry.md</a></li>
+<li>📚 <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault as a lore source → ObsidianVault.md</a></li>
+<li>🪶 <a href="/Tusks-Vault/docs/lore/tusks-tomes/">The Tomes companion → tomes.md</a></li>
+<li>❓ <a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ — including realistic costs → FAQ.md</a></li>
+<li>🐞 <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues — including which platforms are supported</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/getting-started/installation.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

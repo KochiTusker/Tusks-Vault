@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security Policy — Tusk's Vault</title>
+<meta name="description" content="Thanks for taking the time to help keep Tusk's Vault safe. This document does three things:">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/security-policy/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-11">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Security Policy — Tusk's Vault">
+<meta property="og:description" content="Thanks for taking the time to help keep Tusk's Vault safe. This document does three things:">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/security-policy/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security Policy — Tusk's Vault">
+<meta name="twitter:description" content="Thanks for taking the time to help keep Tusk's Vault safe. This document does three things:">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Security Policy",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/security-policy/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Security Policy",
+  "description": "Thanks for taking the time to help keep Tusk's Vault safe. This document does three things:",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/security-policy/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-11"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/" aria-current="page">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Security Policy</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#who-this-is-built-for">👥 Who this is built for</a></li><li><a href="#lightweight-stride-threat-model-base-product">🛡️ Lightweight STRIDE threat model (base product)</a></li><li><a href="#what-a-prompt-injection-can-and-cannot-do">🧪 What a prompt injection can and cannot do</a></li><li><a href="#per-feature-impact-addenda">🧩 Per-feature impact addenda</a></li><li><a href="#scope-of-in-scope-vulnerabilities">📜 Scope of in-scope vulnerabilities</a></li><li><a href="#reporting-a-vulnerability">📣 Reporting a vulnerability</a></li><li><a href="#what-to-expect-from-us">⏱️ What to expect from us</a></li><li><a href="#hardening-notes-for-users">🔧 Hardening notes for users</a></li></ul></aside>
+    <article class="prose">
+<h1>Security Policy</h1>
+<p>Thanks for taking the time to help keep Tusk's Vault safe.</p>
+<p>This document does three things:</p>
+<ol>
+<li>Lays out a <strong>lightweight STRIDE threat model</strong> so you know what Vault defends against, what it doesn't, and how to plug the gaps in your own environment.</li>
+<li>Explains the <strong>per-feature security impact</strong> — a few features change the threat surface in small, specific ways worth knowing.</li>
+<li>Describes how to <strong>report a vulnerability</strong> privately.</li>
+</ol>
+<p>For the <strong>data</strong> answer — what leaves your machine, every host it can reach, and
+where each secret is stored — see <a href="/Tusks-Vault/docs/security/privacy/">Privacy</a>.</p>
+<hr>
+<h2 id="who-this-is-built-for">👥 Who this is built for</h2>
+<p>Tusk's Vault assumes <strong>you know and trust the people who can ask it questions.</strong></p>
+<p>It is built for:</p>
+<ul>
+<li>a <strong>small private Discord</strong> — your table's own server, invite-only, people you
+actually game with;</li>
+<li>a <strong>Foundry game with trusted players</strong>, where the GM decides who may ask at
+all.</li>
+</ul>
+<p>It is <strong>not</strong> built for a public Discord, an open community server, a
+convention table of strangers, or any game where you would hesitate to hand
+someone your campaign notes directly. There is no per-player lore scoping yet:
+anyone allowed to ask can reach the whole corpus, and a determined player can
+do so deliberately. That is a current design limit, stated plainly rather than
+buried — <em>What a prompt injection can and cannot do</em>, below, spells out exactly
+what it means at the table.</p>
+<p>The Foundry surface and its player ceiling both ship <strong>off</strong>. Discord ships on but
+inert — it does nothing until you supply a bot token, and <em>which</em> channels the bot
+can read is decided in Discord, not here. A bot that cannot see a channel never
+receives the question at all.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="lightweight-stride-threat-model-base-product">🛡️ Lightweight STRIDE threat model (base product)</h2></summary>
+<div class="docs-section-body">
+<p>Tusk's Vault is <strong>a locally-installed application</strong> that binds to <code>127.0.0.1</code> by default. It's not a hosted service — there's no public endpoint to attack, no shared database, no other users sharing your install. That assumption shapes everything below.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Threat</th><th>What Vault does for you</th><th>What you should do</th></tr></thead><tbody><tr><td><strong>S — Spoofing</strong></td><td>Default bind is <code>127.0.0.1</code>; the <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/util/host-origin-guard.ts" rel="noopener">host/origin guard</a> refuses requests whose <code>Host</code> is not a loopback literal, and rejects non-GET writes whose <code>Origin</code>/<code>Referer</code> is non-loopback.</td><td>Don't flip <code>HOST=0.0.0.0</code> unless you fully trust your LAN — there's no auth yet, so widening the bind = widening trust. Be exact about the shape of that: a non-loopback bind switches the <code>Host</code> check <strong>off</strong> rather than widening it, and the <code>Origin</code> check only fires when an <code>Origin</code> or <code>Referer</code> is actually present — which is true of a browser and not of <code>curl</code>. What still holds against a headerless LAN client is <code>loopbackOnly()</code>, which reads the peer address, so that is the gate the host-acting routes are on.</td></tr><tr><td><strong>T — Tampering</strong></td><td>Atomic-write helper (<code>util/atomic-write.ts</code>) behind every key and settings write — unique temp name per call, then rename; <code>safe-slug</code> validator on every path-parameter route; <code>.env.local</code> writer refuses <code>\r</code> / <code>\n</code> / <code>\x00</code> injection.</td><td>Don't run untrusted scripts in this folder; keep <code>node_modules/</code> user-owned by <strong>not</strong> running the launcher as root.</td></tr><tr><td><strong>R — Repudiation</strong></td><td>Log capture with secret scrubbing (Anthropic / OpenAI / Gemini key shapes + Discord token shapes); clarifications + lore gaps are timestamped.</td><td>Keep <code>run.log</code> private if you ever attach it to a bug report — scrubbing is best-effort, not perfect.</td></tr><tr><td><strong>I — Information disclosure</strong></td><td>API keys are never returned to the dashboard in unmasked form; <code>0o600</code> mode on POSIX; loopback-only bind by default; CSP restricts <code>script-src</code> to <code>'self'</code>, so no third-party script can load; MiniLM embeddings run locally, never sent over the network.</td><td>API keys are encrypted at rest (AES-256-GCM), but the salt sits beside the ciphertext and the key is derived from <code>hostname::username::platform</code> — three usually-knowable values — so a backup that captures the whole config directory leaves scrypt as the only barrier. Treat that directory as sensitive. Don't drop hostile PDFs into <code>Tusks-Lore/</code> (no parse timeout yet).</td></tr><tr><td><strong>D — Denial of service</strong></td><td>Body-size limits per route (10 KB for IDs/flags, 200 KB for prose, 1 KB for one-shot triggers); 5 / min rate limit on the persona-generate endpoint; updater has a 5-minute wall-clock timeout.</td><td>Don't ingest hostile documents; <code>pdf-parse</code> / <code>mammoth</code> don't have parse-time bounds yet.</td></tr><tr><td><strong>E — Elevation of privilege</strong></td><td>Single-user model with no auth (intentional — the loopback bind is the access gate for most routes). The routes that act on the <strong>host</strong> rather than on data are gated harder, by <code>loopbackOnly()</code> on the peer address rather than on a header: spawning the Claude Code CLI, choosing which directory to read lore from (<code>/api/obsidian/*</code>, <code>/api/forge/*</code>, <code>/api/integrations/*</code>), the updater (<code>/api/updates/*</code>), which runs git and can restart the process, the MCP pairing-approval routes, and the routes that author a persona's prompt. <strong>Not</strong> in that set, deliberately: <code>/api/keys</code> and <code>/api/discord</code>, so under <code>HOST=0.0.0.0</code> a LAN peer can write API keys and the bot token — <code>.env.example</code> says so at the point where you widen the bind. Launcher refuses to run as root on POSIX.</td><td>Don't expose the dashboard publicly. If you must run on a shared machine, run under your own user account, not a service account. Note what <code>loopbackOnly()</code> costs under <code>HOST=0.0.0.0</code>: the Updates card stops working for LAN visitors, deliberately — updating is administration, and <code>npm run update</code> on the host still does it.</td></tr></tbody></table></div>
+<h3 id="how-to-think-about-it">How to think about it</h3>
+<p>The default install is <strong>as safe as the other software running on your machine</strong>. The host/origin guard means an attacker would need to be either:</p>
+<ul>
+<li>A process already running on your machine as your user (in which case they already have your data), or</li>
+<li>Something on your LAN <em>after</em> you've explicitly widened the bind (in which case you've consented to trust those devices).</li>
+</ul>
+<p>For a single DM running Vault on their personal laptop, that's the right tradeoff. For a shared host or a publicly-reachable server, the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a> tracks the auth-token + signed-update work that would close the remaining gaps.</p>
+<h3 id="what-is-still-open">What is still open</h3>
+<p>Named rather than implied, because a threat model that only lists wins is a
+sales page.</p>
+<ul>
+<li><strong>Another user on the same machine.</strong> Loopback is a machine boundary, not a
+user boundary. Anything that can open a socket to <code>127.0.0.1</code> reaches the
+API, and anything running <em>as you</em> can decrypt the key store outright.</li>
+<li><strong>A malicious browser tab while the dashboard is open.</strong> Some endpoints
+accept <code>multipart/form-data</code> uploads that bypass CORS preflight. The
+host/origin guard catches the obvious cases and the CSP blocks third-party
+scripts, but don't browse hostile sites with the dashboard open.</li>
+<li><strong>A client you already paired to the MCP bridge.</strong> A paired client can ask
+the archive anything. <code>/mcp</code> and the two pre-trust pairing calls are the only
+paths exempt from the cross-origin write check — three exact paths, never a
+prefix, and <code>/api/mcp/pair/approve</code> is deliberately not among them, because a
+page that could request <em>and</em> approve its own pairing has paired itself.
+Unpair anything you no longer recognise, under <strong>Surfaces</strong>.</li>
+<li><strong>A compromised upstream dependency.</strong> The updater uses <code>git pull --ff-only</code>
+and never runs <code>npm install</code> in-process. Tag mode (<code>updaterTrack: "tag"</code>)
+refuses to advance without a <code>v&#x3C;x.y.z></code> tag rather than following every push
+to <code>main</code> — but be clear about the limit: that forces a deliberate tagging
+step, it does <strong>not</strong> verify a signature. GPG verification is a future
+enhancement, not a shipped one.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-a-prompt-injection-can-and-cannot-do">🧪 What a prompt injection can and cannot do</h2></summary>
+<div class="docs-section-body">
+<p>Sooner or later somebody at your table will type <em>"ignore all previous
+instructions"</em> at the bot. This is the honest answer to what happens next, split
+into the part that is structurally prevented and the part that is not.</p>
+<h3 id="what-it-cannot-do-touch-your-machine">What it cannot do: touch your machine</h3>
+<p>No connection Vault ships gives the model tools. Gemini, OpenRouter and Ollama
+are text in, text out — there is no function-calling surface for an injected
+instruction to reach in the first place.</p>
+<p>The Claude Code connection is the one that runs a real CLI on your machine, and
+it is invoked with its tool surface denied outright: no filesystem, no shell, no
+network, and none of your own MCP servers registered on a call that carries
+untrusted text. The child environment is cut to infrastructure variables, so it
+never holds your Discord token or your provider keys. Its working directory is a
+fresh, unguessable temporary directory per call, removed afterwards; if no such
+directory can be created the call fails rather than falling back to a shared
+one.</p>
+<p>This is verified rather than asserted, and the two halves are worth separating
+because only one of them is a control.</p>
+<p><strong>Enforced by the gate, and reproducible.</strong> File reads (absolute, relative,
+traversal, extended-length paths), file writes, shell execution, environment
+disclosure, outbound network calls, MCP tool invocation and scheduled-task
+persistence are refused because the tool surface is not there to reach. The
+flags are pinned as a test contract — asserted at the call sites, not by
+searching the file for their names — so they cannot be quietly removed. The
+same checks were run against a host configuration that pre-approves every tool,
+because a guarantee that only holds for careful users is not much of a
+guarantee.</p>
+<p><strong>Attempted, and declined by the model — which is judgement, not a boundary.</strong>
+Base64-obfuscated instructions, instructions planted <em>inside</em> a lore document,
+forged claims of prior GM approval, and emotional-pressure framing were all
+tried, and the archivist declined them. That is worth knowing and it is not a
+guarantee: there is no gate behind those, only the model's reading of the
+prompt, and a model's judgement is not a security boundary. The prompt is
+structured to make them harder — the asker's question, and the text of
+anything they attach, are quoted inside a per-request marker they cannot
+predict, and a retrieved DM clarification counts as genuine only if it carries
+that marker. A PDF sent to Gemini is the exception: it travels as a document
+rather than as text, so it cannot be quoted, and the rules block covers it
+instead. Treat resistance to forged <em>content</em> as mitigation, not closure.</p>
+<p>Two honest limits on the enforced half: it covers the connections and CLI
+version shipping today, and a future CLI release that adds a brand-new tool
+name is not covered until the list is updated.</p>
+<h3 id="what-it-can-do-read-your-lore">What it can do: read your lore</h3>
+<p>This is the real exposure, and no amount of hardening removes it.</p>
+<p>Your campaign material is <em>in</em> the prompt — that is how the bot answers at all.
+So anyone allowed to ask can reach it, and they do not need a successful
+injection to get there: retrieval happens before the model decides anything.</p>
+<p>Three consequences worth stating plainly:</p>
+<ul>
+<li><strong>The player steers what gets retrieved.</strong> Notes are selected by similarity to
+the question, and the player writes the question. Asking about a mystery pulls
+the notes about that mystery.</li>
+<li><strong>In Obsidian-vault mode, every prompt carries an index of the whole vault.</strong> A
+one-line digest of every note travels with each question so the model knows
+what exists. That index doubles as a table of contents, and it tells a curious
+player exactly what to ask for next.</li>
+<li><strong>A refusal is not silence.</strong> "I won't tell you who the traitor is" confirms
+that there is a traitor.</li>
+</ul>
+<p>The bot's persona is <strong>not</strong> a security boundary. It will often decline — but
+that is a model's judgement on the day, not a control, and a different phrasing
+on a different day may get a different answer. Do not design a mystery around
+the assumption that it will hold.</p>
+<h3 id="what-actually-protects-a-mystery">What actually protects a mystery</h3>
+<ul>
+<li><strong>Leave the Foundry player ceiling off.</strong> It ships off, and it is the control
+that genuinely works. On Discord the equivalent is channel permissions: keep the
+bot out of channels your players can read.</li>
+<li><strong>Point Vault at a player-safe subset.</strong> The lore folder and the Obsidian
+vault path both accept any directory, so a subtree that excludes your secrets
+is a real reduction in what can be reached.</li>
+<li><strong>Choose who may <em>ask</em>, not who may <em>see</em>.</strong> Whispering an answer hides it from
+the table, not from the player who asked — see <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a>
+for the full version of that trade-off.</li>
+</ul>
+<p>Per-note visibility — marking material GM-only so it is excluded from both the
+index and retrieval — is the actual fix, and it is tracked in
+<a href="/Tusks-Vault/docs/roadmap/">ROADMAP.md</a>. Until it ships, <em>who may ask</em> is the whole of the
+access model.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="per-feature-impact-addenda">🧩 Per-feature impact addenda</h2></summary>
+<div class="docs-section-body">
+<p>A few features change the surface in a small, specific way. This section is the security-impact note for each.</p>
+<h3 id="ollama">🦙 Ollama</h3>
+<p><strong>Adds:</strong> an outbound HTTP call to <code>http://localhost:11434</code> (or whichever loopback URL you configured) for every Discord query routed to Ollama.</p>
+<p><strong>Threat-surface change:</strong></p>
+<ul>
+<li><strong>I — Information disclosure</strong> — the matched snippets + question now travel to your local Ollama process instead of (or in addition to) the cloud provider. Ollama is "your other process running as your user" — same trust boundary as the rest of your machine.</li>
+<li><strong>S — Spoofing</strong> — the <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/routes/settings.ts" rel="noopener">SSRF guard in <code>routes/settings.ts</code></a> restricts <code>ollamaBaseUrl</code> to <strong>loopback literals only</strong>. You cannot point Vault at a remote Ollama from the dashboard; you'd have to edit <code>settings.json</code> directly to bypass it (in which case you've made an explicit choice).</li>
+<li><strong>D — DoS</strong> — Ollama runs as a separate process with its own resource limits; if it hangs, the LLM adapter surfaces a clear error message rather than blocking the bot indefinitely.</li>
+</ul>
+<h3 id="claude-code">🖥 Claude Code</h3>
+<p><strong>Adds:</strong> a child process on the host, running the user's own <code>claude</code> CLI.</p>
+<p><strong>Threat-surface change:</strong></p>
+<ul>
+<li><strong>E — Elevation of privilege</strong> — the endpoint that spawns it is <code>loopbackOnly</code>. Under the documented <code>HOST=0.0.0.0</code> option a LAN visitor reaches every other route by design; this one they must not. The gate checks the peer socket address, not a header.</li>
+<li><strong>T — Tampering</strong> — the model id is the only request-derived value that reaches argv and is charset-validated before spawn (<code>shell:true</code> is required for the Windows <code>.cmd</code> shim, and Node concatenates argv into one shell string without escaping). The prompt — lore plus an untrusted Discord message — travels via stdin and never touches a shell.</li>
+<li><strong>I — Information disclosure</strong> — the CLI is invoked with its tool surface denied: no filesystem, shell or network tools, and <code>--strict-mcp-config</code> so the user's own MCP servers are never registered on a call carrying untrusted text. This does not depend on the user's own <code>~/.claude</code> allow-list, which Vault neither sets nor can read — the denial was checked against a configuration that pre-approves everything. The child environment is an <strong>allow-list</strong> of infrastructure variables: by the time this runs <code>.env.local</code> has been loaded into the process environment, so passing it through would have handed the child <code>DISCORD_TOKEN</code> and every provider key. The working directory is a fresh <code>mkdtemp</code> directory per call, removed afterwards — a fixed name in a world-writable <code>/tmp</code> would let another account on a shared machine pre-create it and leave instructions the CLI reads before it reads the prompt.</li>
+<li><strong>Billing</strong> — not a STRIDE category, but the one that costs money: the environment allow-list excludes <code>ANTHROPIC_API_KEY</code>, <code>ANTHROPIC_AUTH_TOKEN</code> and <code>ANTHROPIC_BASE_URL</code> by construction. A stray key otherwise takes precedence inside the CLI and bills the API instead of the subscription you already pay for.</li>
+</ul>
+<h3 id="obsidian-vault-as-a-lore-source">📚 Obsidian vault as a lore source</h3>
+<p><strong>Adds:</strong> reading an arbitrary directory the user names.</p>
+<p><strong>Threat-surface change:</strong></p>
+<ul>
+<li><strong>E — Elevation of privilege</strong> — every <code>/api/obsidian/*</code> and <code>/api/integrations/*</code> route is <code>loopbackOnly</code> (gated at the mount, so a route added later is covered the day it is added), as are the <code>loreSource</code>, <code>obsidianVaultPath</code> and <code>tomesSessionsPath</code> fields on <code>/api/settings</code>. Without that, a LAN visitor under <code>HOST=0.0.0.0</code> could point the vault at any directory and read it back through the map — a file-disclosure primitive.</li>
+<li><strong>T — Tampering</strong> — the vault is read <strong>strictly read-only</strong>, enforced mechanically: a test scans the vault-reading module's own source for filesystem mutators and fails if one appears. The user's notes are work that may exist nowhere else.</li>
+<li><strong>I — Information disclosure</strong> — derived data (the map, its embeddings) is written to the app's config directory, never beside the user's notes.</li>
+</ul>
+<h3 id="foundry-vtt-mcp-bridge">🎲 Foundry VTT / MCP bridge</h3>
+<p><strong>Adds:</strong> an authenticated MCP endpoint (<code>/mcp</code>) plus three unauthenticated pre-trust routes (<code>/api/mcp/hello</code>, <code>/api/mcp/pair/request</code>, <code>/api/mcp/pair/status</code>) that must answer cross-origin, because the GM's Foundry page is not served from loopback.</p>
+<p><strong>Threat-surface change:</strong></p>
+<ul>
+<li><strong>S — Spoofing</strong> — a bearer token minted at pairing, stored only as a SHA-256 hash, compared with <code>crypto.timingSafeEqual</code>, never logged and never echoed in an error. Every stored client is compared against so the work done does not depend on which token was presented. A token is additionally bound to the origin it paired from, so one that leaked out of a browser does not work from another page that also paired.</li>
+<li><strong>E — Elevation of privilege</strong> — two controls. The <code>Origin</code> allow-list is the set of origins that completed pairing: never a wildcard, never a value read from the request. The MCP transport spec makes this mandatory, and it is what stops a drive-by page, since a browser sets <code>Origin</code> itself and a page cannot forge it. Separately, the surface a credential speaks for (<code>foundry</code> vs <code>mcp</code>) is fixed at pairing, so a caller cannot pick its own policy by claiming a different one per request.</li>
+<li><strong>T — Tampering</strong> — the global host/origin guard delegates its cross-origin <em>write</em> check for exactly three paths, listed individually rather than by prefix. The pairing <strong>approval</strong> route is deliberately not among them: a page that could both request and approve a pairing would have paired itself. A test asserts that approval is refused cross-origin.</li>
+<li><strong>I — Information disclosure</strong> — <code>/api/mcp/hello</code> is the one unauthenticated probe and its payload is a contract: the app name, its version, the protocol revisions it speaks, and whether a pairing is already outstanding. Not which surfaces are enabled, not how much lore is loaded, nothing about the campaign. A test pins the exact field set.</li>
+<li><strong>D — DoS</strong> — the pre-trust routes are rate-limited per peer address with separate budgets for reads and writes; pairing requests are capped tightly, status polls generously, because a client legitimately polls on a timer for the whole approval window. Answering is queued per surface with a per-asker cooldown checked before any work is done, so a held-down Enter key costs nothing.</li>
+<li><strong>Spoilers</strong> — not a STRIDE category, and the one most likely to bite a real table: Foundry's chat log <em>is</em> the table, and Vault answers from the whole corpus with no notion of what has been revealed. Whisper mode bounds who sees an answer, not what a player can pull. The <code>allowPlayers</code> ceiling is off by default and <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> states the trade-off rather than implying whisper is a spoiler control.</li>
+</ul>
+<h3 id="personas">🎭 Personas</h3>
+<p><strong>Adds:</strong> user-editable system prompts stored in <code>&#x3C;configDir>/personas.user.json</code>, plus the AI-generate endpoint that drafts new personas via the active LLM.</p>
+<p><strong>Threat-surface change:</strong></p>
+<ul>
+<li><strong>T — Tampering</strong> — a malicious system prompt could try to weaken citation rules. <strong>Mitigation:</strong> the canonical seven-rule block in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/system.ts" rel="noopener">src/server/prompt/system.ts</a> is force-appended at assembly time whenever a custom persona doesn't already contain all seven rules. Citation discipline is structurally enforced, not configurable away.</li>
+<li><strong>D — DoS</strong> — the AI-generate endpoint hits a paid (or rate-limited free) LLM. <strong>Mitigation:</strong> in-memory token bucket caps the endpoint at 5 calls / min with a <code>Retry-After</code> response on overflow.</li>
+<li><strong>I — Information disclosure</strong> — none beyond the base product; persona prompts go to the same LLM provider you've already chosen.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="scope-of-in-scope-vulnerabilities">📜 Scope of in-scope vulnerabilities</h2></summary>
+<div class="docs-section-body">
+<p>The main classes of vulnerability we care about for this project:</p>
+<ul>
+<li>🔓 <strong>Local privilege issues</strong> — e.g. a way for code running on the same machine but in a different user context to read the encrypted key store.</li>
+<li>🌐 <strong>LAN-exposure flaws</strong> — if the user has set <code>HOST=0.0.0.0</code>, are there auth-bypass / SSRF / RCE issues another LAN device could exploit?</li>
+<li>📦 <strong>Supply-chain risks</strong> — typo-squatted dependency, malicious update path, dependency with a known CVE we should pin around.</li>
+<li>📜 <strong>Prompt-injection escalation</strong> — beyond "the LLM said something weird", a campaign-document injection that exfiltrates secrets, rewrites local files, or bypasses the canonical citation rules.</li>
+<li>🔑 <strong>Key-handling bugs</strong> — the dashboard accidentally returning unmasked keys, logs containing tokens, the env-file writer accepting injection, etc.</li>
+</ul>
+<p><strong>Out of scope:</strong></p>
+<ul>
+<li>The LLM occasionally hallucinating (use the lore-gap workflow).</li>
+<li>Issues that require an attacker to already have full shell access or physical access on the host.</li>
+<li>Social-engineering reports about the project owner.</li>
+<li>Cosmetic CSS / UX issues without a security impact.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="reporting-a-vulnerability">📣 Reporting a vulnerability</h2></summary>
+<div class="docs-section-body">
+<p><strong>Please do not open a public GitHub issue for a security report.</strong></p>
+<p>Use <strong>GitHub's private vulnerability reporting</strong> instead:</p>
+<ul>
+<li>Open <a href="https://github.com/KochiTusker/Tusks-Vault/security/advisories/new" rel="noopener">this repository's Security tab</a> and click <strong>Report a vulnerability</strong>.</li>
+<li>GitHub keeps the report private between you and the maintainers, and gives us a private fork to develop and review the fix in.</li>
+<li>Be specific, attach what you need to demonstrate the issue, and please don't post details publicly until a fix has landed.</li>
+</ul>
+<p>This is currently the only supported private channel. A community Discord with a moderator-DM route is on the <a href="/Tusks-Vault/docs/roadmap/">roadmap</a>, and this section will be updated if it launches.</p>
+<p>Include, where you can:</p>
+<ul>
+<li>A clear description of the issue and the impact you believe it has.</li>
+<li>Reproduction steps (commands, sample inputs, screenshots, video — anything that helps).</li>
+<li>Your environment (OS, Node version, branch / commit SHA).</li>
+<li>Any suggested mitigations or patches.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-to-expect-from-us">⏱️ What to expect from us</h2></summary>
+<div class="docs-section-body">
+<ul>
+<li><strong>Acknowledgement</strong> of your report within <strong>72 hours</strong>.</li>
+<li>A first <strong>triage assessment</strong> (likely severity, likely fix complexity) within <strong>7 days</strong>.</li>
+<li>For confirmed vulnerabilities: a fix landing on <code>main</code> and a coordinated public disclosure once users have had time to update. We'll keep you in the loop on the timeline.</li>
+<li><strong>Credit</strong> in the release notes (unless you'd prefer to remain anonymous — just let us know).</li>
+</ul>
+<p>If you don't hear back within a week, please add a comment to your own advisory thread — it is the only private channel this project has.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="hardening-notes-for-users">🔧 Hardening notes for users</h2></summary>
+<div class="docs-section-body">
+<p>A few quick things every Tusk's Vault user should know — distilled from <a href="/Tusks-Vault/docs/security/privacy/">Privacy</a>:</p>
+<ul>
+<li>The dashboard binds to <code>127.0.0.1</code> by default. Only flip <code>HOST=0.0.0.0</code> if you trust everyone on your LAN.</li>
+<li>The key store (<code>keys.enc</code>) is encrypted at rest and machine-bound. It is still worth treating the config directory like a password-manager export — don't commit it (already gitignored), don't email it, don't paste it into a chat.</li>
+<li>The bot makes exactly two outbound network calls per query: Discord's gateway and your chosen LLM provider's API. There is no other phone-home.</li>
+<li>Update via the in-app updater or <code>npm run update</code> to pick up security fixes promptly — both refuse to clobber uncommitted local edits.</li>
+<li>If you use Ollama, make sure it is also bound to loopback (Ollama's <code>OLLAMA_HOST</code> env var; default behaviour is loopback already).</li>
+</ul>
+<p>Thanks again for helping keep Tusk's Vault safe for everyone running it at their kitchen tables.</p>
+</div>
+</details>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/SECURITY.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

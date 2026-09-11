@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uninstalling — Tusk's Vault</title>
+<meta name="description" content="Vault ships an uninstaller that removes everything it created without touching your campaign documents. This page is what it does, what it deliberately…">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/getting-started/uninstalling/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Uninstalling — Tusk's Vault">
+<meta property="og:description" content="Vault ships an uninstaller that removes everything it created without touching your campaign documents. This page is what it does, what it deliberately…">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/getting-started/uninstalling/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Uninstalling — Tusk's Vault">
+<meta name="twitter:description" content="Vault ships an uninstaller that removes everything it created without touching your campaign documents. This page is what it does, what it deliberately…">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Uninstalling",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/uninstalling/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Uninstalling",
+  "description": "Vault ships an uninstaller that removes everything it created without touching your campaign documents. This page is what it does, what it deliberately…",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/uninstalling/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/" aria-current="page">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Uninstalling</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#what-goes-what-stays">What goes, what stays</a></li><li><a href="#run-it">Run it</a></li><li><a href="#by-hand-instead">By hand instead</a></li><li><a href="#four-things-it-cannot-reach">Four things it cannot reach</a></li><li><a href="#if-it-fails-partway">If it fails partway</a></li><li><a href="#how-you-can-tell-it-is-safe">How you can tell it is safe</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Uninstalling</h1>
+<p>Vault ships an uninstaller that removes everything it created <strong>without
+touching your campaign documents</strong>. This page is what it does, what it
+deliberately leaves, and the four things it cannot reach.</p>
+<hr>
+<h2 id="what-goes-what-stays">What goes, what stays</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Removed</th><th>Kept</th></tr></thead><tbody><tr><td><code>node_modules/</code>, <code>dist/</code></td><td><code>Tusks-Lore/</code> and every document in it</td></tr><tr><td>The MiniLM model cache (<code>models/</code>)</td><td>A repo-local <code>Lore/</code> folder</td></tr><tr><td><code>api-keys.json</code>, <code>settings.json</code>, <code>.env.local</code></td><td>Any custom lore folder set in <code>settings.json</code></td></tr><tr><td><code>run.log</code>, <code>.port-runtime</code></td><td>The repo itself — deleting it is your call</td></tr><tr><td>Every per-user <code>tusks-vault</code> directory (data, config, cache, log, temp)</td><td><code>clarifications.json</code>, <code>lore_gaps.json</code> and <code>logs/</code> inside your lore folder</td></tr></tbody></table></div>
+<p>Those last two are deliberate. The repo is left because deleting its own
+working directory is not the script's decision to make; the state files inside
+your lore folder are left because the script refuses to touch <em>anything</em> in a
+folder you may have written to yourself. Both are printed in the summary with
+the exact command to finish them off if you want a complete scrub.</p>
+<hr>
+<h2 id="run-it">Run it</h2>
+<p><strong>Windows</strong> — double-click <code>uninstall.bat</code> in the repo root. It wraps
+<code>uninstall.ps1</code>, so you do not have to change your execution policy.</p>
+<p><strong>macOS / Linux</strong> — from the repo root:</p>
+<pre><code class="language-sh">./uninstall.sh
+</code></pre>
+<p>Preview without changing anything:</p>
+<pre><code class="language-sh">./uninstall.sh --dry-run          # macOS / Linux
+pwsh ./uninstall.ps1 -DryRun      # Windows
+</code></pre>
+<p>It asks twice before deleting. First for the phrase
+<code>I understand and accept the risk</code> — the acknowledgement that you are running
+it from the repo root with the server stopped. Then for <code>yes</code>, against the
+specific list of paths. <strong>Anything else at either prompt</strong> — Enter, <code>no</code>,
+Ctrl+C — exits with no changes.</p>
+<hr>
+<h2 id="by-hand-instead">By hand instead</h2>
+<pre><code class="language-sh">pwsh ./uninstall.ps1 -Manual        # Windows
+./uninstall.sh --manual             # macOS / Linux
+</code></pre>
+<p>Prints a seven-step guide with copy-pasteable commands for your platform and
+exits without touching anything. It works even if you have already deleted the
+repo, because the instructions do not require being inside a clone.</p>
+<hr>
+<h2 id="four-things-it-cannot-reach">Four things it cannot reach</h2>
+<p>These live off your disk. The script prints all four at the end of its run.</p>
+<ul>
+<li><strong>Your Discord bot registration</strong> — delete the application at
+<a href="https://discord.com/developers/applications" rel="noopener">discord.com/developers/applications</a>.
+The bot stops responding the moment Vault is gone, but the registration
+lingers.</li>
+<li><strong>Your API keys</strong> — Vault deleted its local copy, but the key is still
+<strong>live at the provider</strong> and usable by anyone holding it. Revoke at
+<a href="https://aistudio.google.com/app/apikey" rel="noopener">Google</a> or
+<a href="https://openrouter.ai/keys" rel="noopener">OpenRouter</a>.</li>
+<li><strong>Browser state for <code>localhost:3000</code></strong> — localStorage, cookies and cached
+dashboard assets stay until you clear that origin's site settings.</li>
+<li><strong>Ollama</strong>, if you installed it. Vault never installed it; use Ollama's own
+uninstaller.</li>
+</ul>
+<hr>
+<h2 id="if-it-fails-partway">If it fails partway</h2>
+<p>Deletion fails on any file a running process holds open, usually inside
+<code>node_modules/</code>. Stop the server — close the <code>run.bat</code> / <code>run.sh</code> window, or
+Ctrl+C — and re-run.</p>
+<hr>
+<h2 id="how-you-can-tell-it-is-safe">How you can tell it is safe</h2>
+<p>Three layers of guard: the script must be inside a Vault repo, system roots
+are refused outright, and any path overlapping a preserved folder is skipped.
+Plus the two prompts and the dry run above.</p>
+<p>It has its own test harness, and you can run it before trusting the script:</p>
+<pre><code class="language-sh">npm run test:uninstall
+</code></pre>
+<p>23 tests — 18 against the Bash script and 5 PowerShell mirrors, skipped when
+no <code>pwsh</code> is on PATH. They build fake Vault clones in a sandbox and include
+<strong>real destructive runs</strong> that verify the lore folders and repo source survive
+while Vault's own state is removed.</p>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a> — if you are reinstalling rather than leaving.</li>
+<li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a> — what was on your disk in the first place.</li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/getting-started/uninstalling.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

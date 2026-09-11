@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — Tusk's Vault</title>
+<meta name="description" content="Short answers. Where a question has a page of its own, this points at it rather than repeating it — two copies of an answer is one copy that goes stale.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/faq/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="FAQ — Tusk's Vault">
+<meta property="og:description" content="Short answers. Where a question has a page of its own, this points at it rather than repeating it — two copies of an answer is one copy that goes stale.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/faq/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FAQ — Tusk's Vault">
+<meta name="twitter:description" content="Short answers. Where a question has a page of its own, this points at it rather than repeating it — two copies of an answer is one copy that goes stale.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "FAQ",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/faq/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "FAQ",
+  "description": "Short answers. Where a question has a page of its own, this points at it rather than repeating it — two copies of an answer is one copy that goes stale.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/faq/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do I need installed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Node.js 20+ and Git . Nothing else — no Python, no Docker, no database, no admin rights, no paid key. Full walkthrough in Installation ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the fastest path to a working bot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "git clone https://github.com/KochiTusker/Tusks-Vault.git cd Tusks-Vault bash run.sh # or double-click run.bat on Windows bash run.sh rather than ./run.sh : the script is not checked in executable, so the bare form reports \"Permission denied\" on a fresh clone. The launcher checks Node, installs dependencies, starts the server and opens http://localhost:3000 . Add a free Gemini key, paste a Discord token, drop in a document — about five minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to use Discord?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There are three places to ask: Discord , Foundry VTT (a companion module that pairs in one click), and any MCP client such as Claude Code or Claude Desktop. Each is switched on independently in the Surfaces card. Foundry and MCP ship off; Discord is on but does nothing without a token. The dashboard is where you manage the archive — upload lore, record clarifications, resolve gaps. There is no chat box in it; asking happens on one of the three surfaces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vault is free. You pay only your chosen model's tokens, and a free Gemini tier covers most home games. Full breakdown, per-session estimates and how to cap spending: What it costs ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I put my Claude or OpenAI key?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There are no direct Anthropic or OpenAI slots. OpenRouter reaches the same models on one key and one bill, and Gemini keeps a direct slot because it is cheaper called directly. See Choosing a provider ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do my keys live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Encrypted at rest (AES-256-GCM, bound to the machine) in your platform config directory — never in the repo, never in git. Details and the honest limits of that in Privacy ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What leaves my machine when I ask a question?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two calls: Discord's gateway (to read the mention and post the reply), and your chosen provider's API — which receives your question, the system prompt, matched clarifications, and your lore. Be clear about that last part: with the default folder source there is no per-question retrieval, so the entire parsed corpus goes with every question, capped at 500,000 characters. The Obsidian source is the only one that narrows, and only once a vault outgrows the prompt budget. Full accounting, including what is never sent: Privacy ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does it download a model on first launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "25 MB of MiniLM, once, from Hugging Face — the local embedding model that matches your clarifications to differently-worded questions. It runs on your CPU and never leaves the machine. The download is not awaited, so an offline first boot still starts; only semantic clarification matching is unavailable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need Tomes to use Vault?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Vault is fully usable alone. Tomes is a separate optional companion that records sessions and writes chronicle documents, which Vault then reads like any other lore. They pair well; neither depends on the other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Tomes use the same lore folder?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — that is the point of the pairing. Put both projects side by side and they share the sibling Tusks-Lore/ folder. Tomes writes into Tusks-Lore/Sessions/&#x3C;campaign>/ ; Vault walks the tree recursively and surfaces them on the next question. No sync step."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I get help?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open an issue with your OS, Node version, the command, and the error. Don't paste API keys. Known problems are listed in Known issues ."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/" aria-current="page">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>FAQ</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#getting-started">🚀 Getting started</a></li><li><a href="#money-and-keys">💸 Money and keys</a></li><li><a href="#privacy">🔐 Privacy</a></li><li><a href="#tusks-tomes">📜 Tusk's Tomes</a></li><li><a href="#something-is-wrong">🐞 Something is wrong</a></li><li><a href="#getting-rid-of-it">🗑️ Getting rid of it</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>FAQ — Tusk's Vault</h1>
+<p>Short answers. Where a question has a page of its own, this points at it
+rather than repeating it — two copies of an answer is one copy that goes
+stale.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="getting-started">🚀 Getting started</h2></summary>
+<div class="docs-section-body">
+<h3 id="what-do-i-need-installed">What do I need installed?</h3>
+<p><strong>Node.js 20+</strong> and <strong>Git</strong>. Nothing else — no Python, no Docker, no database,
+no admin rights, no paid key. Full walkthrough in
+<a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a>.</p>
+<h3 id="what-is-the-fastest-path-to-a-working-bot">What is the fastest path to a working bot?</h3>
+<pre><code class="language-sh">git clone https://github.com/KochiTusker/Tusks-Vault.git
+cd Tusks-Vault
+bash run.sh    # or double-click run.bat on Windows
+</code></pre>
+<p><code>bash run.sh</code> rather than <code>./run.sh</code>: the script is not checked in executable,
+so the bare form reports "Permission denied" on a fresh clone.</p>
+<p>The launcher checks Node, installs dependencies, starts the server and opens
+<a href="http://localhost:3000" rel="noopener">http://localhost:3000</a>. Add a free Gemini key, paste a Discord token, drop in
+a document — about five minutes.</p>
+<h3 id="do-i-have-to-use-discord">Do I have to use Discord?</h3>
+<p>No. There are three places to ask: <strong>Discord</strong>, <strong>Foundry VTT</strong> (a companion
+module that pairs in one click), and <strong>any MCP client</strong> such as Claude Code or
+Claude Desktop. Each is switched on independently in the <strong>Surfaces</strong> card.
+Foundry and MCP ship off; Discord is on but does nothing without a token.</p>
+<p>The dashboard is where you <em>manage</em> the archive — upload lore, record
+clarifications, resolve gaps. There is no chat box in it; asking happens on one
+of the three surfaces.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="money-and-keys">💸 Money and keys</h2></summary>
+<div class="docs-section-body">
+<h3 id="what-does-it-cost">What does it cost?</h3>
+<p>Vault is free. You pay only your chosen model's tokens, and a free Gemini tier
+covers most home games. Full breakdown, per-session estimates and how to cap
+spending: <a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a>.</p>
+<h3 id="where-do-i-put-my-claude-or-openai-key">Where do I put my Claude or OpenAI key?</h3>
+<p>There are no direct Anthropic or OpenAI slots. <strong>OpenRouter</strong> reaches the same
+models on one key and one bill, and Gemini keeps a direct slot because it is
+cheaper called directly. See
+<a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a>.</p>
+<h3 id="where-do-my-keys-live">Where do my keys live?</h3>
+<p>Encrypted at rest (AES-256-GCM, bound to the machine) in your platform config
+directory — never in the repo, never in git. Details and the honest limits of
+that in <a href="/Tusks-Vault/docs/security/privacy/">Privacy</a>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="privacy">🔐 Privacy</h2></summary>
+<div class="docs-section-body">
+<h3 id="what-leaves-my-machine-when-i-ask-a-question">What leaves my machine when I ask a question?</h3>
+<p>Two calls: <strong>Discord's gateway</strong> (to read the mention and post the reply), and
+<strong>your chosen provider's API</strong> — which receives your question, the system
+prompt, matched clarifications, and your lore.</p>
+<p>Be clear about that last part: with the default folder source there is no
+per-question retrieval, so the <strong>entire parsed corpus</strong> goes with every
+question, capped at 500,000 characters. The
+<a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian source</a> is the only one that narrows, and
+only once a vault outgrows the prompt budget.</p>
+<p>Full accounting, including what is never sent:
+<a href="/Tusks-Vault/docs/security/privacy/">Privacy</a>.</p>
+<h3 id="why-does-it-download-a-model-on-first-launch">Why does it download a model on first launch?</h3>
+<p>~25 MB of MiniLM, once, from Hugging Face — the local embedding model that
+matches your clarifications to differently-worded questions. It runs on your
+CPU and never leaves the machine. The download is not awaited, so an offline
+first boot still starts; only semantic clarification matching is unavailable.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="tusks-tomes">📜 Tusk's Tomes</h2></summary>
+<div class="docs-section-body">
+<h3 id="do-i-need-tomes-to-use-vault">Do I need Tomes to use Vault?</h3>
+<p>No. Vault is fully usable alone. <a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tomes</a> is a separate
+optional companion that records sessions and writes chronicle documents, which
+Vault then reads like any other lore. They pair well; neither depends on the
+other.</p>
+<h3 id="can-tomes-use-the-same-lore-folder">Can Tomes use the same lore folder?</h3>
+<p>Yes — that is the point of the pairing. Put both projects side by side and they
+share the sibling <code>Tusks-Lore/</code> folder. Tomes writes into
+<code>Tusks-Lore/Sessions/&#x3C;campaign>/</code>; Vault walks the tree recursively and
+surfaces them on the next question. No sync step.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="something-is-wrong">🐞 Something is wrong</h2></summary>
+<div class="docs-section-body">
+<p><strong>Install-time problems</strong> — wrong Node version, port 3000 taken, PowerShell
+execution policy, <code>ERR_MODULE_NOT_FOUND</code> after a pull, the MiniLM download
+failing — are answered where they happen, in
+<a href="/Tusks-Vault/docs/getting-started/installation/#common-setup-issues">Installation → Common setup issues</a>.</p>
+<h3 id="the-discord-bot-joined-but-never-replies">The Discord bot joined but never replies</h3>
+<p>Four things, in order:</p>
+<ol>
+<li><strong>Message Content Intent</strong> — Developer Portal → your app → Bot → <em>Privileged
+Gateway Intents</em>. Without it the bot cannot read messages.</li>
+<li><strong>A working connection</strong> — Settings → Key Vault. At least one key present and
+not flagged invalid. (Claude Code and Ollama need no key, but do need the CLI
+signed in / the server running.)</li>
+<li><strong>The Active Channel picker</strong> — not pointing at Ollama with nothing running,
+or a provider with a dead key.</li>
+<li><strong>Pause and Surfaces</strong> — either silences it completely and deliberately: no
+typing indicator, no reply, no spend, one line in the log saying why.</li>
+</ol>
+<h3 id="i-am-unsure-about-this-detail-i-have-recorded-this-as-a-lore-gap">"I am unsure about this detail. I have recorded this as a lore gap…"</h3>
+<p>That is the canonical refusal — nothing in your documents or clarifications
+answered it. The question is now in the <strong>Lore Gaps</strong> tab. Answer it once and
+that answer is reused for any semantically similar question afterwards.</p>
+<h3 id="where-do-i-get-help">Where do I get help?</h3>
+<p><a href="https://github.com/KochiTusker/Tusks-Vault/issues/new/choose" rel="noopener">Open an issue</a>
+with your OS, Node version, the command, and the error. Don't paste API keys.
+Known problems are listed in <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="getting-rid-of-it">🗑️ Getting rid of it</h2></summary>
+<div class="docs-section-body">
+<p>An uninstaller ships with the repo and removes everything Vault created
+without touching your campaign documents — plus the four things it cannot
+reach, which you have to finish yourself.</p>
+<p><strong><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling →</a></strong></p>
+</div>
+</details>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a> — what is broken or missing today</li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/troubleshooting/faq.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

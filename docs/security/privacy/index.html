@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy in a Self-Hosted TTRPG AI Assistant — Tusk's Vault</title>
+<meta name="description" content="What stays on your machine, every outbound network call enumerated, and how API keys are stored. Local-first by default with no telemetry.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/security/privacy/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Privacy in a Self-Hosted TTRPG AI Assistant — Tusk's Vault">
+<meta property="og:description" content="What stays on your machine, every outbound network call enumerated, and how API keys are stored. Local-first by default with no telemetry.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/security/privacy/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy in a Self-Hosted TTRPG AI Assistant — Tusk's Vault">
+<meta name="twitter:description" content="What stays on your machine, every outbound network call enumerated, and how API keys are stored. Local-first by default with no telemetry.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Privacy",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/security/privacy/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Privacy",
+  "description": "What stays on your machine, every outbound network call enumerated, and how API keys are stored. Local-first by default with no telemetry.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/security/privacy/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07",
+  "keywords": "private AI for D&D, self-hosted campaign privacy, local-first TTRPG tool"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/" aria-current="page">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Privacy</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#the-guarantees">🔐 The guarantees</a></li><li><a href="#every-host-it-can-reach">🌐 Every host it can reach</a></li><li><a href="#whats-in-a-fresh-clone-vs-whats-created-at-runtime">📂 What's in a fresh clone vs. what's created at runtime</a></li><li><a href="#what-this-does-not-protect-you-from">🛡️ What this does not protect you from</a></li><li><a href="#where-every-secret-lives">🔑 Where every secret lives</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Privacy — what leaves your machine</h1>
+<p>Tusk's Vault is local-first by design. This page is the <strong>data</strong> answer: what
+stays on your machine, what travels over the network, where every secret is
+stored, and what that does <em>not</em> protect you from.</p>
+<p>For the <strong>threat model</strong> — what counts as a vulnerability here, the STRIDE
+breakdown per feature, and how to report one — see
+<a href="/Tusks-Vault/docs/security-policy/">Security policy</a>.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="the-guarantees">🔐 The guarantees</h2></summary>
+<div class="docs-section-body">
+<p>Each claim first, then the part that qualifies it. Nothing here is a promise
+the code does not keep.</p>
+<p><strong>A fresh clone holds zero credentials, zero lore, zero personal state.</strong>
+Source and templates only — see the next section for the file-by-file split.</p>
+<p><strong>Your documents never leave your machine as files.</strong> What travels per
+question is the <em>text</em> the prompt carries: your question, the clarifications
+that matched it, and your lore.
+→ <em>The caveat that matters:</em> with the default folder source there is no
+per-question retrieval, so the <strong>whole parsed corpus</strong> goes into every prompt,
+truncated at a document boundary past 500,000 characters (<code>KB_CHAR_LIMIT</code>).
+The <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian source</a> narrows, and only once a vault
+outgrows the budget. <strong>Assume your provider sees your campaign.</strong></p>
+<p><strong>The dashboard binds to <code>127.0.0.1</code>.</strong> Other devices on your LAN cannot reach
+it.</p>
+<p>→ <em>If you set <code>HOST=0.0.0.0</code>:</em></p>
+<ul>
+<li>The API does not authenticate requests.</li>
+<li><code>host-origin-guard.ts</code> enforces its loopback <code>Host</code> check <strong>only while the
+bind is loopback</strong> — a non-loopback bind switches that check off rather than
+widening it.</li>
+<li>The cross-origin <code>Origin</code> check on writes still runs.</li>
+<li>The routes that act on the host — the Claude Code spawn, choosing a lore
+folder, updating, the diagnostics bundle, the log, approving an MCP pairing,
+and writing a persona's prompt — stay gated on the peer address by
+<code>loopbackOnly()</code>.</li>
+<li>Two writes are <strong>not</strong> gated, on purpose: <code>/api/keys</code> and <code>/api/discord</code>. On
+a widened bind, anyone who can reach the dashboard can set an API key or the
+bot token. That is the trade <code>HOST=0.0.0.0</code> asks you to accept, and it is why
+the recommendation is to widen it only on a network you control.</li>
+</ul>
+<p><strong>API keys are encrypted at rest</strong> — AES-256-GCM in your per-user config
+directory, key derived by scrypt from a machine identity. Masked in every
+response.</p>
+<p>→ <em>Honest framing, and <code>keys/crypto.ts</code> says the same:</em> this is obfuscation with
+authenticated encryption, not high-grade cryptography. The salt sits beside the
+ciphertext, and anything running as you can derive the key. What it defeats is a
+backup client or support bundle scooping up a readable key file — a likelier
+path to a leaked key than a local attacker.</p>
+<p><strong>Embeddings run locally</strong>, via
+<a href="https://huggingface.co/Xenova/all-MiniLM-L6-v2" rel="noopener">MiniLM-L6-v2</a>. Your
+clarification text is never sent anywhere to be embedded — though a
+clarification that matches a question is then quoted into that question's
+prompt, and reaches your provider the way your lore does.</p>
+<p><strong>No telemetry, no analytics, no phone-home.</strong> Every host this app can reach is
+listed in the next section, so you can check the list against the code.</p>
+<p><strong>OpenRouter requests pin a zero-data-retention floor</strong> — <code>zdr: true</code> and
+<code>data_collection: deny</code> on every call, including <code>model-probe.ts</code>, or a model
+would test reachable and then fail every real question. It is why most <code>:free</code>
+variants are unavailable: they run on hosts that keep prompts.
+→ <em>The one way past it</em> is deliberately awkward: an opt-in recorded <strong>per model
+id</strong>, visible everywhere that model is shown, revoked automatically when you
+pick a different model.</p>
+<p><strong>You can audit every byte.</strong> ~29,000 lines of TypeScript, plus ~9,700 of tests
+sitting next to the code they cover.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="every-host-it-can-reach">🌐 Every host it can reach</h2></summary>
+<div class="docs-section-body">
+<p><code>grep -rn 'fetch(' src/</code> finds every HTTP call in the app. The only one it
+misses is the updater, which goes out through <code>git</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>When</th><th>Where</th><th>Carries</th></tr></thead><tbody><tr><td>Per question</td><td>Discord's gateway</td><td>The mention and the reply</td></tr><tr><td>Per question</td><td>Your chosen provider's API</td><td>Question, system prompt, matched clarifications, lore</td></tr><tr><td>Per question, if a file is attached</td><td>Discord's CDN</td><td>Downloads the attachment to parse it</td></tr><tr><td>Model browser, keyless</td><td>OpenRouter catalogue + host-policy directory</td><td>Nothing. Cached 24 h</td></tr><tr><td>Model browser, ≤ once a day</td><td><code>kochitusker.github.io/…/grades.json</code></td><td>Nothing — a static file, no key, no query string, no identifier</td></tr><tr><td>Once, first boot</td><td>Hugging Face</td><td>Downloads MiniLM (~25 MB), then cached forever</td></tr><tr><td>When you update</td><td>GitHub, via <code>git fetch</code> / <code>pull --ff-only</code></td><td>The same traffic a manual <code>git pull</code> makes</td></tr><tr><td>Every dashboard load</td><td><code>fonts.googleapis.com</code> / <code>gstatic.com</code></td><td>Your IP, User-Agent, referring page</td></tr><tr><td><strong>Never</strong></td><td>Ollama</td><td>Loopback-only, enforced by the SSRF guard in <code>routes/settings.ts</code></td></tr></tbody></table></div>
+<p>Two of those deserve a note.</p>
+<ul>
+<li><strong>The grades feed</strong> exists so a model graded after your version shipped still
+shows a grade. If it fails you get the cached copy, then the grades your build
+shipped with — nothing breaks, nothing retries in the background.</li>
+<li><strong>The fonts</strong> are a plain <code>@import</code> on the first line of <code>src/index.css</code>: the
+one third-party request the dashboard makes on its own, and it happens before
+you configure any provider. If that bothers you — reasonably — delete that
+line and the dashboard falls back to system fonts.</li>
+</ul>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="whats-in-a-fresh-clone-vs-whats-created-at-runtime">📂 What's in a fresh clone vs. what's created at runtime</h2></summary>
+<div class="docs-section-body">
+<h3 id="a-fresh-clone-contains-357-tracked-files">A fresh clone contains (~357 tracked files)</h3>
+<p>Source code, setup scripts, the launcher, and configuration <strong>templates only</strong>. Nothing in this list contains personal data or credentials:</p>
+<ul>
+<li>Source code (<code>src/</code>, <code>server.ts</code>)</li>
+<li>Installer, setup + launcher scripts (<code>install-tusks-vault.bat</code> / <code>.sh</code>, <code>setup.bat</code>, <code>setup.sh</code>, <code>run.bat</code>, <code>run.sh</code>) and the uninstaller (<code>uninstall.bat</code>, <code>uninstall.ps1</code>, <code>uninstall.sh</code>)</li>
+<li>The updater script (<code>scripts/update.mjs</code>)</li>
+<li><code>.env.example</code> — env-var template, no values</li>
+<li><code>Lore/README.md</code> — placeholder README explaining the lore folder (the actual documents go in a sibling <code>Tusks-Lore/</code> directory; see <a href="/Tusks-Vault/docs/about/how-its-built/#-the-shared-tusks-lore-folder">How it's built</a> for details)</li>
+<li>Standard files (license, README, docs, package files, tsconfig, etc.)</li>
+</ul>
+<p>Verify the count yourself with <code>git ls-files | wc -l</code>; it moves with every release, so treat the figure as an order of magnitude rather than a checksum.</p>
+<h3 id="files-created-at-runtime-on-your-machine-gitignored">Files created at runtime, on your machine, gitignored</h3>
+<p>These files appear during use and never get pushed. They land in three places — the repo, your resolved lore folder, and your per-user config directory (<code>env-paths</code>' <code>tusks-vault</code> config location, overridable with <code>TUSKS_VAULT_CONFIG_DIR</code>). Which one a file lands in is a deliberate choice: campaign state follows the campaign, per-install state stays with the install.</p>
+<p><strong>In the repo:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>File / folder</th><th>When it's created</th><th>What it holds</th></tr></thead><tbody><tr><td><code>node_modules/</code></td><td>First <code>npm install</code></td><td>Dependencies.</td></tr><tr><td><code>node_modules/.tv-lockfile-snapshot</code></td><td>After every successful install</td><td>Copy of <code>package-lock.json</code> from the last successful install. <code>run.bat</code> / <code>run.sh</code> use it to auto-detect "deps changed since last boot" and re-run <code>npm install</code> before launch (fixes <code>ERR_MODULE_NOT_FOUND</code> after <code>git pull</code>).</td></tr><tr><td><code>models/</code></td><td>First server boot</td><td>Local embedding model cache (~25 MB).</td></tr><tr><td><code>.port-runtime</code></td><td>Every server boot</td><td>The port the server actually bound to.</td></tr><tr><td><code>.env.local</code></td><td>When you save your Discord token</td><td>Discord App ID + Bot Token.</td></tr><tr><td><code>settings.json</code></td><td>When you save settings</td><td>Bot name, models, thresholds, surface toggles, etc.</td></tr><tr><td><code>.diagnose/latest.md</code></td><td>Automatically when a Discord reply errors; on demand via <code>POST /api/diagnostics/bundle</code></td><td>Settings, lore-resolution state, git position and a scrubbed log tail. Keys appear only as 6-character SHA-256 fingerprints and lore <em>content</em> never appears — but it is written to be pasted into a chat window, so read it before you paste it.</td></tr><tr><td><code>run.log</code></td><td>Each <code>run.bat</code> invocation (optional)</td><td>A copy of the launcher's terminal output.</td></tr></tbody></table></div>
+<p><strong>In your lore folder</strong> — the sibling <code>Tusks-Lore/</code> if you have one, otherwise <code>&#x3C;repo>/Lore/</code> — so campaign state survives a clean reinstall:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>File / folder</th><th>When it's created</th><th>What it holds</th></tr></thead><tbody><tr><td>the folder itself</td><td>First "Create Tusks-Lore folder" click in the dashboard (or first dashboard upload, for the repo-local fallback)</td><td>Your campaign documents (PDFs, DOCX, MD, …), Tomes' <code>tusks-lore.json</code> metadata, Tomes-written session chronicles under <code>Sessions/&#x3C;campaign>/</code>.</td></tr><tr><td><code>clarifications.json</code></td><td>When you record your first clarification</td><td>DM clarifications.</td></tr><tr><td><code>clarifications.embeddings.json</code></td><td>When the first clarification is embedded</td><td>Base64-encoded 384-dim vectors for semantic matching.</td></tr><tr><td><code>lore_gaps.json</code></td><td>When the bot first hits an off-corpus question</td><td>Questions the bot couldn't answer.</td></tr><tr><td><code>logs/tusks-vault.log</code></td><td>First server boot</td><td>The captured server log, run through the secret scrubber.</td></tr></tbody></table></div>
+<p><strong>In your per-user config directory</strong> — per-install, machine-bound or rebuildable, and deliberately <em>not</em> carried around with a campaign folder:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>File</th><th>When it's created</th><th>What it holds</th></tr></thead><tbody><tr><td><code>keys.enc</code> + <code>keys.salt</code></td><td>When you add your first LLM key</td><td>Your provider keys, AES-256-GCM encrypted and machine-bound; written atomically, <code>0o600</code> on POSIX. Keys are never written to the repo.</td></tr><tr><td><code>mcp-clients.json</code></td><td>When you approve an MCP or Foundry pairing</td><td>One record per paired client: a SHA-256 hash of its bearer token (never the token), its origin, and which surface it speaks for.</td></tr><tr><td><code>openrouter-models.json</code></td><td>First time the model browser opens</td><td>The public OpenRouter catalogue, cached 24 h. Prices and capability flags — no account data.</td></tr><tr><td><code>vault-map.&#x3C;id>.json</code></td><td>When you build an Obsidian vault map</td><td>One-line digests of your notes plus their embeddings. This is derived from your vault and reads like your vault; the vault itself is never written to.</td></tr></tbody></table></div>
+<h3 id="need-to-verify-your-setup">Need to verify your setup?</h3>
+<p>Hit <code>GET /api/diagnostics</code> from the dashboard (or via curl) and you'll get a JSON report on the eight paths that hold your state — <code>keys.enc</code>, <code>.env.local</code>, <code>settings.json</code>, the two clarification files, <code>lore_gaps.json</code>, the resolved lore folder (with <em>which</em> resolution rule won), and the model cache — each with its absolute path, whether it exists, its size, and its last modified time. Useful for debugging "where did my settings go?" type questions.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-this-does-not-protect-you-from">🛡️ What this does not protect you from</h2></summary>
+<div class="docs-section-body">
+<p>The formal version lives in <strong><a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a></strong> — a STRIDE
+table of what Vault does for you and what you should do, per-feature addenda
+for Ollama, Claude Code, Obsidian, Foundry and personas, and the list of what
+is still open. It is one page rather than two because a second copy of a
+security posture is a copy that goes stale, and the stale one is the one
+somebody trusts.</p>
+<p>The short version, for a GM deciding whether to install:</p>
+<ul>
+<li><strong>Loopback is a machine boundary, not a user boundary.</strong> A second account on
+the same box is inside it.</li>
+<li><strong><code>HOST=0.0.0.0</code> widens trust, not just reach.</strong> There is no auth in front of
+state-changing endpoints. Keep the default bind unless you trust every device
+on your network.</li>
+<li><strong>Players can pull more than they have discovered.</strong> Vault answers from the
+whole corpus and has no notion of what your table has found. The
+<code>allowPlayers</code> ceiling is off by default, so a fresh install answers only the
+GM. See <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a>.</li>
+<li><strong>Document parsers are not sandboxed.</strong> Don't drop PDFs from strangers into
+your lore folder.</li>
+</ul>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="where-every-secret-lives">🔑 Where every secret lives</h2></summary>
+<div class="docs-section-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Secret</th><th>File</th><th>Format</th><th>Sent over the network to whom</th></tr></thead><tbody><tr><td>LLM API keys</td><td><code>keys.enc</code> + <code>keys.salt</code> in the per-user config dir</td><td>AES-256-GCM, machine-bound</td><td>Only to that provider's API, only when generating an answer that uses that key</td></tr><tr><td>Discord bot token</td><td><code>.env.local</code></td><td>Plaintext key=value</td><td>Only to Discord's gateway during bot login</td></tr><tr><td>MCP / Foundry bearer tokens</td><td><code>mcp-clients.json</code> in the per-user config dir</td><td>SHA-256 hash only — the token itself is handed to the client once at pairing and never stored</td><td>Never sent by Vault. The paired client presents it back on each request</td></tr><tr><td>GitHub PAT (maintainer dev-mode updates only)</td><td>Nowhere — memory only, wiped on restart</td><td>—</td><td>Only to <code>api.github.com</code>, to verify the token reaches the private dev repo</td></tr><tr><td>MiniLM model weights</td><td><code>models/</code></td><td>HuggingFace cache</td><td>Downloaded once from huggingface.co, then offline forever</td></tr><tr><td>Your campaign documents</td><td><code>Tusks-Lore/&#x3C;files></code> (or <code>&#x3C;repo>/Lore/&#x3C;files></code>)</td><td>Whatever you dropped in — PDF, DOCX, MD, etc.</td><td>The parsed text goes to the LLM provider you chose for that query. With the folder source that is the whole corpus, every query, up to the 500 K-character cap. The files themselves are never uploaded</td></tr><tr><td>Your clarifications</td><td><code>clarifications.json</code> + <code>.embeddings.json</code> in the lore folder</td><td>JSON + base64 Float32</td><td>The embeddings never leave this machine — matching runs locally. A clarification that matches a question is quoted into that question's prompt, so it goes to the same provider the answer comes from</td></tr><tr><td>Your Obsidian vault</td><td>Wherever you keep it — Vault only ever reads it</td><td>Your own notes</td><td>To your provider, as prompt text: the whole vault while it fits the prompt budget, and above that the map's digest plus the notes a question selects. The vault is opened read-only, enforced by <code>readonly-guard.test.ts</code>, which scans the reader's own source for filesystem mutators</td></tr></tbody></table></div>
+<p>Nothing in this table is sent to a Tusk's-Vault-controlled server. We don't run one.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="next-steps">Next steps</h2></summary>
+<div class="docs-section-body">
+<ul>
+<li>🐞 <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues + active hardening backlog</a></li>
+<li>🧠 <a href="/Tusks-Vault/docs/about/how-its-built/">How retrieval works under the hood</a></li>
+<li>💸 <a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a> — the pricing table that used to live on this page</li>
+<li>🔌 <a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a> — what each one sees</li>
+<li>📦 <a href="/Tusks-Vault/docs/about/dependencies/">Dependencies and why each is here</a></li>
+</ul>
+</div>
+</details>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/security/privacy.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

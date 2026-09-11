@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which AI Model to Use for a D&amp;D Lore Assistant — Tusk's Vault</title>
+<meta name="description" content="Four connections and only two take a key: free-tier Gemini, OpenRouter for ~400 models, a Claude Code subscription, or fully offline local models via Ollama.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/getting-started/choosing-a-provider/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Which AI Model to Use for a D&amp;D Lore Assistant — Tusk's Vault">
+<meta property="og:description" content="Four connections and only two take a key: free-tier Gemini, OpenRouter for ~400 models, a Claude Code subscription, or fully offline local models via Ollama.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/getting-started/choosing-a-provider/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Which AI Model to Use for a D&amp;D Lore Assistant — Tusk's Vault">
+<meta name="twitter:description" content="Four connections and only two take a key: free-tier Gemini, OpenRouter for ~400 models, a Claude Code subscription, or fully offline local models via Ollama.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Choosing a provider",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/choosing-a-provider/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Choosing a provider",
+  "description": "Four connections and only two take a key: free-tier Gemini, OpenRouter for ~400 models, a Claude Code subscription, or fully offline local models via Ollama.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/getting-started/choosing-a-provider/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07",
+  "keywords": "best LLM for D&D campaign, free AI for tabletop RPG, local LLM D&D assistant, OpenRouter D&D"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/" aria-current="page">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Choosing a provider</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#where-do-i-put-my-claude-or-openai-key">Where do I put my Claude or OpenAI key?</a></li><li><a href="#openrouter">OpenRouter</a></li><li><a href="#google-gemini">Google Gemini</a></li><li><a href="#claude-code">Claude Code</a></li><li><a href="#ollama">Ollama</a></li><li><a href="#testing-which-models-actually-work">Testing which models actually work</a></li><li><a href="#retries-and-rate-limits">Retries and rate limits</a></li><li><a href="#per-surface-providers">Per-surface providers</a></li></ul></aside>
+    <article class="prose">
+<h1>Choosing a provider — Tusk's Vault</h1>
+<p>Tusk's Vault talks to four kinds of model. You pick one from the Home tab and
+can change it whenever you like; nothing needs a restart.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Connection</th><th>Needs a key?</th><th>What it costs</th><th>Good for</th></tr></thead><tbody><tr><td><strong>OpenRouter</strong></td><td>Yes, one</td><td>Per token, billed by OpenRouter in USD</td><td>Almost everything. One key reaches Claude, GPT, Llama, Qwen and roughly four hundred others.</td></tr><tr><td><strong>Google Gemini</strong></td><td>Yes, one per project</td><td>Per token, billed by Google in USD. A free tier exists.</td><td>Getting started for nothing, and staying cheap afterwards.</td></tr><tr><td><strong>Claude Code</strong></td><td>No</td><td>Nothing extra — it draws on a Claude subscription you already pay for</td><td>Anyone who already has Claude Pro or Max.</td></tr><tr><td><strong>Ollama</strong></td><td>No</td><td>Nothing. Runs on your own machine.</td><td>Keeping the whole campaign offline.</td></tr></tbody></table></div>
+<p>Every price Vault shows you is in <strong>USD</strong> — both of the metered connections
+bill in dollars, and the dashboard never converts.</p>
+<hr>
+<h2 id="where-do-i-put-my-claude-or-openai-key">Where do I put my Claude or OpenAI key?</h2>
+<p>You don't — an OpenRouter key reaches both. Claude, GPT and around four
+hundred other models answer through that one key on one bill, so Vault has no
+per-lab slots: three credentials to talk to two labs is three things to
+rotate, three bills to reconcile, and no capability the single key doesn't
+already have.</p>
+<p>If what you have is a Claude <em>subscription</em> rather than an API key, that is
+the <strong>Claude Code</strong> connection instead. It runs the CLI you are already
+signed into and adds nothing to a bill.</p>
+<p>Gemini keeps its own slot deliberately. It is cheaper called directly than the
+same model through an aggregator, so routing it through OpenRouter would
+charge you more for identical output.</p>
+<hr>
+<h2 id="openrouter">OpenRouter</h2>
+<p>One key, one bill, and a catalogue of roughly four hundred models from every
+major lab. Get one at <a href="https://openrouter.ai/keys" rel="noopener">openrouter.ai/keys</a>.</p>
+<p><strong>Every request pins a privacy floor.</strong> Vault asks OpenRouter to route only to
+providers that do not retain prompts and do not train on them
+(<code>zdr: true</code>, <code>data_collection: deny</code>). Your campaign corpus goes out with
+every question, so that is the default on every single request and there is no
+global switch that turns it off.</p>
+<p>The trade-off is honest: a model whose only hosts retain prompts is
+unreachable under that floor, and reports exactly that — <em>"No zero-retention
+host serves it, so Vault's privacy floor excludes it"</em> — rather than failing
+mysteriously. This is most of the <code>:free</code> variants, which are free precisely
+<em>because</em> their hosts keep prompts.</p>
+<p>There is one way past it, and it is deliberately narrow. Picking a zero-priced
+model from the <strong>Home-tab model picker</strong> asks you first, names what you are
+giving up, and records the consent — with three limits:</p>
+<ul>
+<li><strong>Per model id.</strong> Choosing a different model later does not carry the consent
+with it.</li>
+<li><strong>Not a global flag.</strong> Every other model still routes under the floor.</li>
+<li><strong>Home tab only.</strong> The Settings model browser's <strong>Use</strong> button offers no such
+prompt, so a free model selected there keeps erroring until you pick it from
+the Home-tab picker.</li>
+</ul>
+<p>The <strong>model browser</strong> (Settings → API keys) shows the live catalogue before you
+have pasted any key at all — OpenRouter publishes it without auth. Per row: USD
+price per million input and output tokens, context window, whether the model's
+hosts moderate prompts, whether they retain or train on them, and Vault's own
+measured accuracy and mature-content grades. Prices come from OpenRouter
+itself, cached for 24 hours.</p>
+<hr>
+<h2 id="google-gemini">Google Gemini</h2>
+<p>Two slots, labelled <strong>Free</strong> and <strong>Paid</strong> in the picker, because a no-billing
+Google project and a billing-enabled one are different keys with genuinely
+different reach — and plenty of people have both. Get a key at
+<a href="https://aistudio.google.com/apikey" rel="noopener">aistudio.google.com</a>.</p>
+<p>The free tier is genuinely free and genuinely usable. The catch is that
+Google advertises the same model list to both kinds of key and only refuses at
+the moment you ask a question — as a 429 with <code>limit: 0</code> — which is why Vault
+can test them for you (see below).</p>
+<p>Each slot is tested with the key stored <em>in that slot</em>, not with whichever
+Gemini key happens to be first, so two keys give you two honest answers rather
+than the same one twice.</p>
+<hr>
+<h2 id="claude-code">Claude Code</h2>
+<p>If you already pay for Claude Pro or Max, Vault can answer through the
+<code>claude</code> command-line tool you are already signed into. No API key, no
+per-token bill; it draws on your plan's usage window like any other Claude
+Code session.</p>
+<p><strong>Setup</strong>: install the Claude Code CLI, run <code>claude login</code>, and the option
+appears in the Active Provider picker. Vault never handles your login — it
+only invokes a binary you have already authenticated.</p>
+<p><strong>What Vault does with the environment</strong>: it strips <code>ANTHROPIC_API_KEY</code>,
+<code>ANTHROPIC_AUTH_TOKEN</code> and <code>ANTHROPIC_BASE_URL</code> from the child process,
+case-insensitively. A stray key in your environment otherwise takes
+precedence inside the CLI and quietly bills the API instead of your
+subscription — the opposite of why anyone picks this option.</p>
+<p><strong>Limits worth knowing</strong>:</p>
+<ul>
+<li>Text only. The CLI has no binary channel: PDFs are extracted to text
+first, and an attached image is announced in the prompt — <em>"An image was
+attached… switch to OpenRouter or Gemini for image questions"</em> — rather than
+silently dropped.</li>
+<li>Answers are slower than a direct API call — 5–10 seconds of process
+startup on every question, and they run one at a time. Two at once is
+measurably slower than two in sequence, because both draw on the same
+subscription window, so further questions queue instead.</li>
+<li>When your usage window runs out you get a clear message saying so. It
+resets on a rolling schedule.</li>
+<li>The endpoint that runs the CLI only accepts requests from the machine
+running Vault, even if you have opened the dashboard to your LAN. Reading
+lore over the network is fine; starting a process on the host is not.</li>
+<li>The CLI is spawned in an empty temp directory rather than the repo, so a
+prompt-injected tool call — the question and the lore around it are both
+untrusted text — finds an empty sandbox instead of your source tree,
+<code>.git</code>, or <code>.env.local</code>.</li>
+</ul>
+<hr>
+<h2 id="ollama">Ollama</h2>
+<p>Local models on your own hardware, at no cost and with nothing leaving the
+machine. Install <a href="https://ollama.com" rel="noopener">Ollama</a>, <code>ollama pull</code> a model, and the
+option appears once Vault can see the server.</p>
+<p>There is nothing to install inside Vault and nothing to enable. Ollama is
+either answering on its port or it is not, and the picker asks that question
+rather than making you flip a switch.</p>
+<p>Set the base URL under Settings → Integrations if you have moved it from the
+default. It must be a loopback address — a remote URL would turn the
+dashboard into a way to make requests to your internal network.</p>
+<hr>
+<h2 id="testing-which-models-actually-work">Testing which models actually work</h2>
+<p>A catalogue is an advertisement, not a promise.</p>
+<ul>
+<li>Google returns the same model list to a free key and a paid one. The refusal
+arrives later, as a quota error, the first time you ask a real question.</li>
+<li>OpenRouter's catalogue lists every model on the platform, including ones
+that no zero-retention host serves — which Vault's privacy floor excludes.</li>
+</ul>
+<p>Both leave you with a model in the dropdown that cannot answer. So Vault can
+test them: <strong>Test which work</strong>, on the Home tab under the Active Provider
+picker, asks each connection the question that actually settles it and
+remembers the answer.</p>
+<p>What that means per connection, because they are not the same question:</p>
+<ul>
+<li><strong>Gemini</strong> — lists the models, then makes a real one-token call to each text
+model on the list.</li>
+<li><strong>OpenRouter</strong> — probes a <em>shortlist</em>: what you have configured now, plus
+whatever you are considering in the model browser. Probing four hundred
+models would take minutes and spend real money to answer a question nobody
+asked. Crucially the probe carries the same privacy-floor routing a real
+question does; probing without it would report a model reachable and then
+fail every actual question.</li>
+<li><strong>Claude Code</strong> — the three aliases (<code>sonnet</code>, <code>opus</code>, <code>haiku</code>); the question
+is whether the CLI answers at all.</li>
+<li><strong>Ollama</strong> — asks the server what you have pulled. That list <em>is</em> the answer,
+so nothing is generated and nothing is spent.</li>
+</ul>
+<p>Afterwards the picker marks each model:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Mark</th><th>Meaning</th></tr></thead><tbody><tr><td>✓</td><td>Tested, and it answered.</td></tr><tr><td>🔒</td><td>A Gemini Pro model sitting in front of a key filed under the free slot. Google removed Pro from the API free tier, so its quota there is zero. Shown but not selectable, with the fix on the row — this one needs no test to know. A probe that <em>does</em> reach the model overrides it, because "free slot" is a label you chose, not an entitlement Google issued.</td></tr><tr><td><em>(nothing)</em></td><td>Not tested. It may well work — nobody has checked.</td></tr><tr><td>✕</td><td>Tested, and it refused. The reason is on the row and the option is greyed out.</td></tr></tbody></table></div>
+<p>The untested state is deliberate. Hiding untested models would hide working
+ones; marking them as verified would promise something nobody tested.</p>
+<p>Models a probe has <em>proven</em> this key cannot call are <strong>dropped from the list</strong>,
+not greyed out. An unfiltered Gemini list on a free key is mostly paid-only
+entries, and reading as "these are your options" when they are not is worse
+than a shorter list. The count line below the dropdown says how many were
+hidden and why.</p>
+<p><strong>The one exception is the model you currently have selected</strong> — which is the
+usual place you'll see a ✕. If that is the one that stopped working, removing
+it silently would hide both your choice and the reason it now fails.</p>
+<p>The test costs one token of output per model on the metered connections, so it
+never runs on its own. Results are remembered until the key behind them
+changes, at which point they are discarded — an answer about a key you no
+longer have is worse than no answer.</p>
+<hr>
+<h2 id="retries-and-rate-limits">Retries and rate limits</h2>
+<p>Every cloud call goes through a shared retry layer that backs off on 429s and
+transient 5xx errors.</p>
+<p>A 429 is treated as a statement about the <strong>key</strong>, not the model: the backoff
+applies to every model on that provider, so switching model does not escape
+the wait. That is the truth of how rate limits work, and pretending otherwise
+would just produce a second failure.</p>
+<h2 id="per-surface-providers">Per-surface providers</h2>
+<p>Each of the three chat surfaces — Discord, Foundry, MCP — can pin its own
+provider and model, independently of what the dashboard uses for its own work
+(vault-map builds, persona generation). Resolution is surface override → global
+setting; a surface with no override just follows the global one.</p>
+<p>This is what makes "answer on a subscription" practical: point the Foundry and
+Discord surfaces at <strong>Claude Code</strong> and questions from the table cost nothing at
+the margin, while the dashboard keeps using whatever metered key you selected.</p>
+<p>The trade is real, and the Surfaces card spells it out on the Foundry and MCP
+rows whenever they resolve to Claude Code: <strong>5–10 seconds per answer, one at a
+time.</strong> Each answer spawns a CLI process drawing on one shared subscription
+window, so questions queue rather than run together.</p>
+<p><strong>There is no dashboard control for the override yet.</strong> The setting exists, the
+API accepts it and the resolution works, but the Surfaces card only shows you
+the consequence — it has no per-surface provider dropdown. Until it does, the
+override is set by <code>POST</code>ing to <code>/api/settings</code> (send
+<code>{"surfaces":{"foundry":{"provider":"claudeCode"}}}</code>; an empty string clears it
+back to "follow the global setting"). If you have not done that, every surface
+uses the connection selected on the Home tab.</p>
+<p>The same MCP endpoint the Foundry module uses also lets <strong>Claude Code or Claude
+Desktop query your corpus</strong> — the campaign becomes something you can ask about
+from an agent session, not just from chat. Switch <em>Surfaces → Other MCP clients</em>
+on and pair. See <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/#the-same-endpoint-serves-other-mcp-clients">Foundry VTT</a>.</p>
+<hr>
+<ul>
+<li>🏗 <a href="/Tusks-Vault/docs/about/how-its-built/">Architecture — how it all fits together →</a></li>
+<li>📚 <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Lore sources — the folder and the Obsidian vault →</a></li>
+<li>🎲 <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT — asking from the game chat bar →</a></li>
+<li>🔒 <a href="/Tusks-Vault/docs/security/privacy/">Privacy — what leaves your machine →</a></li>
+<li>🚀 <a href="/Tusks-Vault/docs/getting-started/installation/">Setup →</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/getting-started/choosing-a-provider.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

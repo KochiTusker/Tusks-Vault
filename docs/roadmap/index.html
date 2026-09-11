@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roadmap — Tusk's Vault</title>
+<meta name="description" content="What's next in Tusk's Vault, and why. What already works is in the README and the docs — this page is the queue.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/roadmap/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Roadmap — Tusk's Vault">
+<meta property="og:description" content="What's next in Tusk's Vault, and why. What already works is in the README and the docs — this page is the queue.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/roadmap/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Roadmap — Tusk's Vault">
+<meta name="twitter:description" content="What's next in Tusk's Vault, and why. What already works is in the README and the docs — this page is the queue.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Roadmap",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/roadmap/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Roadmap",
+  "description": "What's next in Tusk's Vault, and why. What already works is in the README and the docs — this page is the queue.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/roadmap/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/" aria-current="page">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Roadmap</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#table-of-contents">📚 Table of contents</a></li><li><a href="#project-north-star">🎯 Project north star</a></li><li><a href="#in-progress">🔨 In progress</a></li><li><a href="#up-next">🎯 Up next</a></li><li><a href="#wishlist-longer-term-ideas">💭 Wishlist &amp; longer-term ideas</a></li><li><a href="#explored-deferred">🧪 Explored &amp; deferred</a></li><li><a href="#already-shipped">✅ Already shipped</a></li><li><a href="#see-also">See also</a></li></ul></aside>
+    <article class="prose">
+<h1>🗺️ Tusk's Vault — Roadmap</h1>
+<p>What's next in Tusk's Vault, and why. What already works is in the
+<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/README.md" rel="noopener">README</a> and the <a href="/Tusks-Vault/docs/">docs</a> — this page is the queue.</p>
+<blockquote>
+<p>⚠️ Aspirational, not a contract. Items move between sections, get descoped, or
+get dropped when a better approach turns up.</p>
+</blockquote>
+<p><strong>To influence it:</strong> <a href="https://github.com/KochiTusker/Tusks-Vault/issues/new?template=feature_request.yml" rel="noopener">open an issue</a>
+and describe the situation, not just the feature — <em>"when Y happens in my
+campaign, I wish Z"</em> is what makes a priority concrete. Comments and reactions
+on an issue are what move something up.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="table-of-contents">📚 Table of contents</h2></summary>
+<div class="docs-section-body">
+<ul>
+<li><a href="#project-north-star">🎯 Project north star</a></li>
+<li><a href="#in-progress">🔨 In progress</a></li>
+<li><a href="#up-next">🎯 Up next</a></li>
+<li><a href="#wishlist-longer-term-ideas">💭 Wishlist &#x26; longer-term ideas</a></li>
+<li><a href="#explored-deferred">🧪 Explored &#x26; deferred</a></li>
+<li><a href="#already-shipped">✅ Already shipped</a></li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="project-north-star">🎯 Project north star</h2></summary>
+<div class="docs-section-body">
+<p>Two principles steer everything below.</p>
+<ol>
+<li><strong>Accessibility for non-developers.</strong> Tusk's Vault should be usable by
+someone who has never cloned a repository, run <code>npm</code>, or edited a config
+file. A setup step that needs CLI knowledge is a bug —
+<a href="https://github.com/KochiTusker/Tusks-Vault/issues" rel="noopener">report it</a>.</li>
+<li><strong>Cite-or-refuse, never invent.</strong> Every claim Tusk makes has to be backed by
+something you wrote. A feature that lets the model make things up does not
+belong here.</li>
+</ol>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="in-progress">🔨 In progress</h2></summary>
+<div class="docs-section-body">
+<p><em>Nothing actively in progress — between releases.</em></p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="up-next">🎯 Up next</h2></summary>
+<div class="docs-section-body">
+<p>Roughly prioritised. Everything here is "real soon" rather than "someday".</p>
+<h3 id="installation">🌐 Installation</h3>
+<p>Principle 1, made concrete.</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Zero-clone Windows installer</strong> — a signed <code>.exe</code> / <code>.msi</code> bundling Node
+and the app, so installing is opening one file.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>macOS / Linux first-run installers</strong> — <code>.pkg</code> / <code>.AppImage</code> equivalents.</li>
+</ul>
+<h3 id="cost-efficiency">💸 Cost efficiency</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Chunked retrieval over full-corpus embedding</strong> — embed once on ingest,
+retrieve only the top-K matching chunks per query, instead of stuffing
+every document into every prompt. See
+<a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a> for what that costs
+today.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Provider prompt-cache adoption</strong> — structure the prompt
+(system → corpus → question) so OpenRouter and Gemini caching applies
+across calls.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Per-phase model routing</strong> — Flash-tier for easy lookups, Pro/Opus only
+where it earns it.</li>
+</ul>
+<h3 id="knowledge-ingestion">📄 Knowledge ingestion</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Multi-campaign support</strong> — switch worlds without sharing one
+<code>Tusks-Lore/</code> folder.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>In-PDF image OCR</strong> — text is extracted today; images of text (scanned
+notes, labelled maps) are skipped.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>PDF / DOCX parse timeout + size cap</strong> — bound resource use on
+unfamiliar documents.</li>
+</ul>
+<h3 id="integrations">🔌 Integrations</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Player-vs-GM lore scoping</strong> — <strong>the blocker on letting players use the
+Foundry integration.</strong> Vault has no notion of what your table has already
+discovered, so whisper mode controls who <em>sees</em> an answer but not who can
+ask for one. Until it lands, the honest controls are GM-only mode and the
+<code>allowPlayers</code> ceiling —
+<a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> explains both.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Live Tomes push integration</strong> — accept a push when a chronicle
+finalises, instead of polling
+<a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a>' Sessions folder.</li>
+</ul>
+<h3 id="model-ux">🧠 Model UX</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Dynamic model dropdowns for OpenRouter / Ollama</strong> — the same
+auto-discovery Gemini already has.</li>
+</ul>
+<h3 id="auth-lan-exposure">🛡️ Auth + LAN exposure</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Setup-token + auth-middleware</strong> — a one-time token pasted from another
+device to authorise the dashboard, making <code>HOST=0.0.0.0</code> safe.</li>
+</ul>
+<h3 id="documentation">📚 Documentation</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Documentation site live</strong> — the site is built and staged; it goes live
+when the repository is public and Pages is enabled. The Foundry module's
+manifest already points at it, so those links resolve to nothing until
+then.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Video walkthrough + screenshots</strong> — visual onboarding for people who
+arrive from search.</li>
+</ul>
+<h3 id="community">🤝 Community</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Community Discord, if there is interest</strong> — shared with
+<a href="https://github.com/KochiTusker/Tusks-Tomes" rel="noopener">Tusk's Tomes</a>. Deliberately
+not launched: an unstaffed server with three people in it is worse than no
+server, and a public invite is a permanent link between the project and
+whoever answers in it. It goes up when issue traffic suggests it would be
+used.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="wishlist-longer-term-ideas">💭 Wishlist &#x26; longer-term ideas</h2></summary>
+<div class="docs-section-body">
+<p>Unscheduled. Open or comment on an issue if one of these matters to you.</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Optional vector-store backend</strong> — flat JSON is fine to a few thousand
+documents; <code>sqlite-vss</code> / <code>pgvector</code> / <code>chromadb</code> as an opt-in upgrade
+past that.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>In-Discord slash commands</strong> — <code>/lore-search</code>, <code>/clarify-this</code>,
+<code>/show-citations</code>, <code>/lore-gaps</code>, instead of everything going through
+<code>@mention</code>.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Roll20 chat-bar integration</strong> — same idea as Foundry, but their API is
+gated behind Roll20 Pro, so it would activate only with a user-supplied
+key.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>NPC voice profiles</strong> — tag an NPC with a personality so
+<code>@Tusk speak as Ser Alric Vane about X</code> returns Alric-flavoured cited
+summaries.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Player-vs-DM document scopes</strong> — which lore files a player query may
+see at all, beyond the answer-level scoping above.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Export to Obsidian / static site</strong> — a hyperlinked bundle generated
+from the indexed corpus.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Frontend test harness</strong> — fixtures-based, exercising the React panels
+without a real Discord token.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>i18n</strong> — strings extracted, community translations welcome.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="explored-deferred">🧪 Explored &#x26; deferred</h2></summary>
+<div class="docs-section-body">
+<p>Scoped or partly built, then set aside on purpose — recorded so nobody burns the
+same time learning the same lesson.</p>
+<h3 id="lazy-downloaded-add-on-code">Lazy-downloaded add-on code</h3>
+<p><strong>Superseded.</strong> The add-on layer this was built for no longer exists. The
+reasoning below is what eventually killed the layer itself, and is worth reading
+before anyone proposes a plugin system again.</p>
+<p><strong>The ambition.</strong> A fresh clone ships with zero add-on source. Install fetches a
+tarball from a GitHub Release, verifies a sha256, extracts to a per-user dir,
+runs postinstall, and <code>await import()</code>s the module at boot.</p>
+<p><strong>What landed</strong> (on a branch since deleted): the dynamic-loader
+scaffolding — manifest, sha256 verification of tarball and extracted tree,
+shape-validated dynamic import with a name cross-check, a route-registration
+hook, and two-pass boot with <code>pendingReinstall</code> / <code>integrityFailures</code> sets.</p>
+<p><strong>Why it stopped, before the install endpoint:</strong></p>
+<ul>
+<li><strong>Payoff was poor.</strong> Both add-ons had zero unique dependencies and ~30 KB of
+source. That is not worth a fetch/verify/extract/sandbox/stream/migrate
+pipeline.</li>
+<li><strong>Offline install regressed.</strong> Bundled add-ons need no network; lazy ones do.</li>
+<li><strong>Supply-chain surface grew.</strong> Postinstall scripts from a downloaded tarball
+add risk even with sha256. The honest mitigation — GPG-signed manifests — is
+its own project.</li>
+<li><strong>Isolation was leaky.</strong> The test plan alone needed an env var and tripped
+over PowerShell/cmd quoting. If maintainers fumble it, users will too.</li>
+<li><strong>No driving use case.</strong> The architecture earns its keep only when a payload
+is genuinely heavy.</li>
+</ul>
+<p><strong>What would unlock revisiting:</strong> an add-on needing heavy native deps or a
+Python sidecar; a signed-manifest design that does not mean juggling a release
+key by hand; or tarballs shipped beside the clone but loaded only on Install,
+which keeps the offline story.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="already-shipped">✅ Already shipped</h2></summary>
+<div class="docs-section-body">
+<p>Receipts, not the focus of this page. Each links to where it is documented
+properly.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Area</th><th>What exists</th></tr></thead><tbody><tr><td><strong>Providers</strong></td><td><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Four connections</a> — OpenRouter, Gemini, Claude Code, Ollama — swappable without restart. Multi-key vault with Free/Paid tiers. Real one-token model probing, so the picker shows what a key can actually reach. <code>npm run grade</code> scores models on accuracy and citation discipline.</td></tr><tr><td><strong>Lore sources</strong></td><td>The <code>Tusks-Lore/</code> folder, and an <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a> read strictly read-only, with an AI map so a large vault fits in a prompt without arbitrary truncation. <a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tomes</a> chronicles are indexed with no import step.</td></tr><tr><td><strong>Surfaces</strong></td><td><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a> with in-dashboard token setup, <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> via a companion module, and any MCP client. Personas — eight presets plus custom, from template, scratch, or AI-generated.</td></tr><tr><td><strong>Grounding</strong></td><td>The canonical seven-rule block is force-appended at prompt assembly, so a custom persona cannot disable citations. Unanswerable questions become lore gaps. Local MiniLM clarification matching, no cloud round-trip.</td></tr><tr><td><strong>Install &#x26; update</strong></td><td>Cross-platform launchers, one-time setup scripts, port auto-fallback, a first-run onboarding banner, and an <a href="/Tusks-Vault/docs/getting-started/installation/">in-app updater</a> that never runs <code>npm install</code> in-process. Optional tag-track pinning.</td></tr><tr><td><strong>Security</strong></td><td>Loopback bind by default, DNS-rebinding guard, defensive headers, atomic writes, path-traversal validation, env-file injection guard, log secret scrubbing, body-size limits, endpoint rate limiting. Full model: <a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a>.</td></tr><tr><td><strong>Tests</strong></td><td>Vitest over the server, scripts and libs. No frontend harness yet — it is on the wishlist above.</td></tr></tbody></table></div>
+<p><strong>Removed on purpose:</strong> the add-on layer that once gated Personas and Ollama. It
+turned out "installing" wrote a marker file and nothing else — no download, no
+build, no code that was not already in the clone. Both are ordinary features now.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="see-also">See also</h2></summary>
+<div class="docs-section-body">
+<ul>
+<li>📖 <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/README.md" rel="noopener">Main README</a> — what Tusk's Vault is and how to install it</li>
+<li>📚 <a href="/Tusks-Vault/docs/">Documentation index</a> — every page, grouped</li>
+<li>🐛 <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a> — current limits and by-design tradeoffs</li>
+<li>🤝 <a href="/Tusks-Vault/docs/contributing/">CONTRIBUTING.md</a> — how to ship code, and how to help without writing any</li>
+<li>🔎 <a href="https://github.com/KochiTusker/Tusks-Vault/issues" rel="noopener">Open issues</a> — bugs and requests from the community</li>
+</ul>
+</div>
+</details>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/ROADMAP.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1204 @@
+<!doctype html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tusk's Vault — Self-Hosted AI Lore Assistant for D&amp;D and TTRPG Campaigns</title>
+<meta name="description" content="Ask your D&amp;D, Pathfinder or TTRPG campaign anything and get answers cited from your own notes — never invented. Free, open source, runs on your machine, answers in Discord and Foundry VTT. Works for any folder of documents, not just campaigns.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Tusk's Vault — Self-Hosted AI Lore Assistant for D&amp;D and TTRPG Campaigns">
+<meta property="og:description" content="Ask your D&amp;D, Pathfinder or TTRPG campaign anything and get answers cited from your own notes — never invented. Free, open source, runs on your machine, answers in Discord and Foundry VTT. Works for any folder of documents, not just campaigns.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tusk's Vault — Self-Hosted AI Lore Assistant for D&amp;D and TTRPG Campaigns">
+<meta name="twitter:description" content="Ask your D&amp;D, Pathfinder or TTRPG campaign anything and get answers cited from your own notes — never invented. Free, open source, runs on your machine, answers in Discord and Foundry VTT. Works for any folder of documents, not just campaigns.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Tusk's Vault",
+  "url": "https://kochitusker.github.io/Tusks-Vault/",
+  "inLanguage": "en-GB"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Tusk's Vault",
+  "alternateName": "Tusks Vault",
+  "applicationCategory": "ReferenceApplication",
+  "applicationSubCategory": "Source-grounded AI question answering for tabletop RPG campaigns",
+  "operatingSystem": "Windows, macOS, Linux",
+  "softwareVersion": "1.1.0",
+  "keywords": "D&D AI assistant, campaign lore AI, self-hosted TTRPG assistant, NotebookLM alternative for D&D, Discord bot campaign lore, Foundry VTT AI module, source-grounded AI, retrieval augmented generation D&D, grounded Discord bot for your own documents, cited answers from your own docs, self-hosted RAG Discord bot, document Q&A bot",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Game masters, tabletop RPG players, worldbuilders, Foundry VTT and Discord campaign groups, and anyone wanting cited answers from their own documents"
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Tabletop role-playing games"
+    },
+    {
+      "@type": "Thing",
+      "name": "Dungeons & Dragons"
+    },
+    {
+      "@type": "Thing",
+      "name": "Retrieval-augmented generation"
+    },
+    {
+      "@type": "Thing",
+      "name": "Question answering"
+    },
+    {
+      "@type": "Thing",
+      "name": "Open-source software"
+    }
+  ],
+  "url": "https://kochitusker.github.io/Tusks-Vault/",
+  "downloadUrl": "https://github.com/KochiTusker/Tusks-Vault/releases",
+  "codeRepository": "https://github.com/KochiTusker/Tusks-Vault",
+  "license": "https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE",
+  "isAccessibleForFree": true,
+  "description": "Local-first, open-source AI lore assistant for D&D, Pathfinder and other tabletop RPGs. Answers questions about your campaign from your own documents, cites the file behind every claim, and refuses rather than inventing when your notes do not cover it.",
+  "featureList": [
+    "Cited answers drawn only from your own campaign documents",
+    "Refuses to answer off-corpus questions instead of inventing lore",
+    "Unanswered questions logged as lore gaps and answered once, then reused",
+    "Asks from Discord, Foundry VTT, the dashboard or any MCP client",
+    "Gemini, ~400 models via OpenRouter, a Claude subscription, or offline via Ollama",
+    "Reads an existing Obsidian vault read-only, without moving anything"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "image": "https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it make up lore when it does not know?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — that is the whole point of the design. A canonical rule block is appended to every prompt at assembly time, so citation discipline is structural rather than configurable. When the answer is not in your documents the bot emits a fixed refusal phrase, and the question is logged in the dashboard's Lore Gaps tab so you can answer it once and have that answer reused afterwards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do my campaign documents get uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your documents stay in a folder on your machine. Only the question and the snippets that answer it are sent to whichever model you chose, and if you run a local model through Ollama then nothing leaves the machine at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost to run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The software is MIT-licensed and free forever. The only cost is the model you pick: Google Gemini's free tier covers most home games, OpenRouter is pay-as-you-go at roughly $0.60 to $4 per three-hour session, a Claude Pro or Max subscription costs nothing extra, and a local model through Ollama costs nothing at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be technical to run it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need to be comfortable installing Node.js and running a script. On Windows there is a one-file installer that prints its whole plan and asks before it changes anything; on macOS and Linux it is a clone and one command."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can players use it, or only the GM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both, and how much players can see is yours to set. In Foundry VTT there is a per-world access mode controlling whether players may ask at all, and answers can be whispered rather than posted publicly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file formats can it read?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDF, DOCX, Markdown, plain text, JSON, YAML, CSV, HTML and RTF. It can also read an existing Obsidian vault directly, strictly read-only, without you having to move or copy anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with Foundry VTT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, through a companion module that pairs with your running Vault in one click. You ask with /tusk in the chat bar and the answer posts into the chat log, whispered or public depending on the world's access mode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from asking ChatGPT about my campaign?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A general chatbot will answer every question confidently, including the ones your documents say nothing about, and the invented answer reads exactly like a real one. Vault cites the document behind every claim and refuses when it has no source, which is the behaviour that makes it usable at the table."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it only work for tabletop campaigns?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is what it was built and tuned for — the prompts, citation styles and refusal wording all assume a game master and a table. But nothing in the machinery knows what a campaign is. It indexes a folder of documents, answers with citations, and refuses when the folder does not cover the question, so pointing it at a handbook, a wiki export, a set of house rules or any other body of documents gives you the same behaviour over those instead."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="landing">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="#writes">When it doesn't know</a>
+    <a href="#compare">How it compares</a>
+    <a href="#how">How it works</a>
+    <a href="#demo">Ask it anything</a>
+    <a href="#cost">What it costs</a>
+    <a href="#trust">What leaves your machine</a>
+    <a href="/Tusks-Vault/examples/">Real answers</a>
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Free · Open source · Runs on your own machine</p>
+      <h1>Ask your campaign anything</h1>
+      <p class="lede">
+        Point it at your D&amp;D, Pathfinder or Call of Cthulhu notes and ask from Discord,
+        Foundry's chat bar, or any MCP client. You bring the model — Vault does the wiring:
+        finding the passages that bear on the question, holding the model to your notes, and
+        citing the file every claim came from.
+      </p>
+      <p class="lede lede-2">
+        Which means you can ask it daft questions and still trust the answer.
+      </p>
+      <p class="cta">
+        <a class="btn primary" href="/Tusks-Vault/docs/getting-started/installation/">Install it</a>
+        <a class="btn" href="#demo">See what comes back</a>
+      </p>
+      <ul class="runestones">
+        <li><b>MIT</b> licensed</li>
+        <li><b>No</b> account</li>
+        <li><b>No</b> subscription</li>
+        <li><b>Zero</b> telemetry</li>
+        <li>v<b>1.1.0</b></li>
+      </ul>
+    </div>
+
+    
+    <figure class="answer" aria-labelledby="answer-cap">
+      <p class="answer-ask"><span class="answer-at">@Tusk</span> who's the party member least fit to be the ship's captain?</p>
+
+      <div class="answer-said">
+        <p>
+          Bryn Tallow. He cannot swim, has twice refused to board a boat — once at Dunmar, once
+          at the Kelmoor quay — and gets sick on still water<a class="cite" href="#answer-src-1"><span class="vh">source </span>1</a>,
+          which makes him the least seaworthy of the four regardless of any question of
+          leadership.
+        </p>
+      </div>
+
+      <ol class="answer-sources">
+        <li id="answer-src-1"><span class="src-n">1</span><code>Party.md</code></li>
+      </ol>
+
+      <figcaption id="answer-cap">
+        A daft question, answered from the file it came out of. That is the
+        whole trick: it is funny <em>because</em> it is true to your campaign.
+      </figcaption>
+    </figure>
+  </section>
+
+
+  
+  <section class="leaf" id="why" aria-labelledby="why-h">
+    <div class="rail">
+      <span class="numeral">I</span>
+      <p class="rail-label">Why this exists</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="why-h">The answer that sounds right is the dangerous one</h2>
+      <p class="measure">
+        My campaign notes were spread across six documents, two of which contradicted the other
+        four. Players asked me the same questions between sessions &mdash; who was that merchant,
+        what did we actually agree to, whose brother is the king &mdash; and I answered from memory,
+        badly, and sometimes differently than last time.
+      </p>
+      <p class="measure">
+        The obvious fix is to ask an AI, and it fails in a specific way: a general chatbot handed
+        your setting answers <em>every</em> question confidently, including the ones your documents
+        say nothing about.
+      </p>
+
+      
+      <figure class="tell" aria-labelledby="tell-cap">
+        <p class="tell-q"><span class="tell-at">@Tusk</span> what was the innkeeper at Greywater called?</p>
+        <div class="tell-pair">
+          <div class="tell-card">
+            <p class="tell-who">A general chatbot</p>
+            <p class="tell-said">Her name was <em>Mira Ashdown</em>, and she had run the Drowned Lantern since her father passed.</p>
+            <p class="tell-foot is-none"><span class="tell-mark" aria-hidden="true"></span>No source. Nothing in your notes says this.</p>
+          </div>
+          <div class="tell-card is-vault">
+            <p class="tell-who">Tusk's Vault</p>
+            <p class="tell-said">I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify.</p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Refused, and added to Lore Gaps</p>
+          </div>
+        </div>
+        <figcaption id="tell-cap">
+          Both read like an answer. Only one of them is one &mdash; and at the table, in front of
+          everyone, the citation is the only thing that tells you which.
+        </figcaption>
+      </figure>
+
+      <p class="measure">
+        So the whole design is one idea: <strong>it may only tell you what your documents say, and
+        it must show you where it got it.</strong> Answer a logged gap once and that answer is
+        reused from then on.
+      </p>
+
+      
+
+
+
+
+      <p class="marginalia">
+        Nobody needs this until the evening a player asks something specific and four people
+        remember it four different ways.
+        <span class="sign">Then it is the only thing you want.</span>
+      </p>
+    </div>
+  </section>
+
+
+  
+  <section class="leaf" id="writes" aria-labelledby="writes-h">
+    <div class="rail">
+      <span class="numeral">II</span>
+      <p class="rail-label">When it doesn't know</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="writes-h">The best thing it does is admit defeat</h2>
+      <p class="measure">
+        Any assistant can answer a question your documents cover. The one that decides whether you
+        can trust it at the table is the question they don't &mdash; and the useful behaviour there
+        is to stop, say so, and remember that you were asked.
+      </p>
+
+      
+      <figure class="gaploop" aria-labelledby="gaploop-cap">
+        <ol class="gaploop-steps">
+          <li class="gstep">
+            <p class="gstep-when">Wednesday, in a channel</p>
+            <h3>Someone asks</h3>
+            <p>&ldquo;Whose brother is the king?&rdquo; &mdash; a question your notes never actually settled.</p>
+          </li>
+          <li class="gstep is-refusal">
+            <p class="gstep-when">Two seconds later</p>
+            <h3>It says it doesn't know</h3>
+            <p>Not a guess dressed as an answer. A fixed phrase, so nobody mistakes it for canon.</p>
+          </li>
+          <li class="gstep">
+            <p class="gstep-when">Same moment</p>
+            <h3>The gap is logged</h3>
+            <p>The question lands in your dashboard, waiting for the one person who can settle it.</p>
+          </li>
+          <li class="gstep is-key">
+            <p class="gstep-when">Once, ever</p>
+            <h3>You answer it</h3>
+            <p>One sentence from you. That ruling is now part of the archive, cited like any document.</p>
+          </li>
+        </ol>
+        <p class="gaploop-return">
+          <span>and every later phrasing of that question &mdash; however differently it is asked &mdash; gets your answer</span>
+        </p>
+        <figcaption id="gaploop-cap">
+          The archive gets better every time it admits it doesn't know something.
+          That only works because it is willing to admit it.
+        </figcaption>
+      </figure>
+
+      <p class="measure outro">
+        A ruling recorded this way is cited like any other source, so six months later nobody has
+        to remember whether it was decided or imagined.
+        <a href="/Tusks-Vault/docs/about/use-cases/">What people actually ask it &rarr;</a>
+      </p>
+      <p class="measure outro">
+        Real questions, real citations, and one refusal, against a corpus written to be published.
+        <a href="/Tusks-Vault/examples/">See the answers in full &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  
+  <section class="leaf" id="compare" aria-labelledby="compare-h">
+    <div class="rail">
+      <span class="numeral">III</span>
+      <p class="rail-label">How it compares</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="compare-h">Why not use something that already exists?</h2>
+      <p class="measure">
+        Often you should. Most people arrive here having already pasted their notes into
+        ChatGPT &mdash; good software, and for a question your documents genuinely answer it will
+        usually answer correctly. The trouble is the question they don't.
+      </p>
+      <p class="measure">
+        <strong>NotebookLM is the closest comparison, and on its own ground it is better than
+        this.</strong> Google's budget, excellent retrieval, exact citations, nothing to install.
+        If you are working alone through a pile of documents, use it. The difference is not
+        quality &mdash; it is what the two things are built for.
+      </p>
+
+      
+      <figure class="ledger" aria-labelledby="ledger-cap">
+        <div class="ledger-pair">
+          <div class="ledger-card">
+            <p class="ledger-head">What a research notebook isn't trying to do</p>
+            <ul>
+              <li>Put the answer where the whole table sees it</li>
+              <li>Turn up in Discord, or Foundry's chat bar</li>
+              <li>Sound like your table</li>
+              <li>Guess &mdash; and label the guess</li>
+              <li>Read a cruel scene back as written</li>
+            </ul>
+          </div>
+          <div class="ledger-card is-cost">
+            <p class="ledger-head">What this one charges you for that</p>
+            <ul>
+              <li>Node, Git and a terminal to begin</li>
+              <li>A machine that has to stay awake</li>
+              <li>A folder corpus that stops near 200 pages</li>
+              <li>One maintainer, and no support desk</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption id="ledger-cap">
+          Neither column is a failing. The left one is a tool built for a reader alone with a PDF;
+          the right one is the bill for being built for a table instead.
+        </figcaption>
+      </figure>
+      <p class="measure">
+        <strong>The second column is also this project.</strong> The
+        <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">Foundry module</a>
+        answers on its own, out of the journal entries in the folders you choose, with nothing
+        else installed &mdash; that is Lite, and for a campaign that already lives in Foundry it
+        may be the whole answer. It sits in the grid because the honest way to show what the full
+        application adds is to put the two beside each other and let the rows say it.
+      </p>
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <caption>What a table actually needs from a lore assistant</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="vh">Capability</span></th>
+              <th scope="col" class="is-us">Tusk&rsquo;s Vault <small>the full application</small></th>
+              <th scope="col" class="is-kin"><a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">Tusk&rsquo;s Vault Lite</a> <small>the Foundry module alone</small></th>
+              <th scope="col">NotebookLM <small>Google, in the cloud</small></th>
+              <th scope="col">ChatGPT / Claude <small>a general assistant</small></th>
+              <th scope="col">Obsidian + AI plugins <small>notes you already keep</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="matrix-band">
+              <th scope="row" colspan="6">At the table</th>
+            </tr>
+            <tr>
+              <th scope="row">Everyone at the table sees the answer</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Ask it from Discord, or Foundry&rsquo;s chat bar</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Answers in a voice your table picked</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr class="matrix-band">
+              <th scope="row" colspan="6">Whether it can play</th>
+            </tr>
+            <tr>
+              <th scope="row">Will speculate when you let it, and labels it</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Recounts a grim scene without sanding it down</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr class="matrix-band">
+              <th scope="row" colspan="6">Whether you can trust it</th>
+            </tr>
+            <tr>
+              <th scope="row">Says it doesn&rsquo;t know, instead of inventing</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Cites the document behind every claim</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">A ruling you make once is remembered and reused</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Your campaign documents never leave your machine</th>
+              <td class="m is-us"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m is-kin"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+            </tr>
+            <tr class="matrix-band">
+              <th scope="row" colspan="6">What it costs you</th>
+            </tr>
+            <tr>
+              <th scope="row">Holds a campaign bigger than about 200 pages</th>
+              <td class="m is-us"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Ready in five minutes, without a terminal</th>
+              <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m is-kin"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Still answers while your own machine is asleep</th>
+              <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+            </tr>
+            <tr>
+              <th scope="row">A team behind it, and somewhere to report a bug</th>
+              <td class="m is-us"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m is-kin"><i class="mark no" aria-hidden="true">&#10007;</i><span class="vh">No</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark yes" aria-hidden="true">&#10003;</i><span class="vh">Yes</span></td>
+              <td class="m"><i class="mark part" aria-hidden="true">&#9681;</i><span class="vh">Partly</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="measure outro">
+        Which is the honest shape of it. This is not a better NotebookLM &mdash; it is a worse one,
+        pointed somewhere NotebookLM is not pointed. Keep theirs for research; use this when the
+        question is being shouted across a table. Campaign wikis and your own GM are not in that
+        grid at all, because neither is a thing you ask &mdash; both, and the case for using them
+        instead, are in <a href="/Tusks-Vault/docs/about/comparison/">the full comparison</a>.
+      </p>
+      <p class="marginalia">
+        Nine of these rows go this project&rsquo;s way. Four do not.
+        <span class="sign">You would have found the four out on your own soon enough.</span>
+      </p>
+  </section>
+
+
+  
+  <section class="leaf" id="how" aria-labelledby="how-h">
+    <div class="rail">
+      <span class="numeral">IV</span>
+      <p class="rail-label">How it works</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="how-h">Four stages, and one of them is the point</h2>
+      <p class="measure">
+        A question goes in one end. Stage two is the one you cannot configure away, and the reason
+        the answer at the far end can be trusted.
+      </p>
+
+      <ol class="pipeline" aria-label="How a question is answered">
+        <li class="stage">
+          <span class="stage-n" aria-hidden="true">1</span>
+          <h3>Find what bears on the question</h3>
+          <p>
+            Reads a folder on your disk &mdash; PDF, DOCX, Markdown, plain text &mdash; or an
+            Obsidian vault, read-only, nothing moved. Passage-level retrieval then picks out the
+            parts that matter, so a large campaign is not a large bill.
+          </p>
+        </li>
+        <li class="stage is-key">
+          <span class="stage-n" aria-hidden="true">2</span>
+          <h3>Force the rules on top</h3>
+          <p>
+            Cite every claim; refuse rather than invent. The block is force-appended to every
+            prompt, so editing the system prompt &mdash; or picking a persona &mdash; cannot
+            remove it.
+          </p>
+          <p class="stage-note">The reason this exists</p>
+        </li>
+        <li class="stage">
+          <span class="stage-n" aria-hidden="true">3</span>
+          <h3>Ask your model</h3>
+          <p>
+            Gemini, ~400 models through OpenRouter, a Claude subscription, or one running on your
+            own machine. Swappable mid-campaign.
+          </p>
+        </li>
+        <li class="stage">
+          <span class="stage-n" aria-hidden="true">4</span>
+          <h3>Check what came back</h3>
+          <p>
+            A refusal is labelled rather than served as content in the archivist's voice &mdash;
+            and the question it could not answer lands in your dashboard as a lore gap.
+          </p>
+        </li>
+      </ol>
+
+      <p class="measure outro">
+        The corpus travels with every question, so every cloud request pins a zero-data-retention
+        routing floor.
+        <a href="/Tusks-Vault/docs/about/how-its-built/">How the retrieval pipeline works →</a>
+      </p>
+    </div>
+  </section>
+
+
+  
+  <section class="leaf" id="demo" aria-labelledby="demo-h">
+    <div class="rail">
+      <span class="numeral">V</span>
+      <p class="rail-label">Ask it anything</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="demo-h">Not every question is a lookup</h2>
+      <p class="measure">
+        Most of what gets asked at a table is not "when did Dunmar fall". It is an argument two
+        players are having, or a joke someone wants settled with evidence. Those work — and they
+        work for the same reason the serious ones do. It can only answer from what you wrote
+        down, and it shows you where.
+      </p>
+
+      
+      <figure class="answer is-inline" aria-labelledby="daft-cap-1">
+        <p class="answer-ask"><span class="answer-at">@Tusk</span> who's most likely to start a tavern fight?</p>
+        <div class="answer-said">
+          <p>
+            Roswyn Kett is the likeliest — she has already put one person in the water after an
+            argument with the harbourmaster at Kelmoor, and has since been barred from the
+            Ninefold Rest twice (and readmitted twice)<a class="cite" href="#daft-src-1"><span class="vh">source </span>1</a>.
+          </p>
+        </div>
+        <ol class="answer-sources">
+          <li id="daft-src-1"><span class="src-n">1</span><code>Party.md</code></li>
+        </ol>
+        <figcaption id="daft-cap-1">
+          Nobody wrote "Roswyn starts fights" anywhere. It read two incidents and drew the
+          obvious conclusion — then told you which file they were in.
+        </figcaption>
+      </figure>
+
+      <figure class="answer is-inline" aria-labelledby="daft-cap-2">
+        <p class="answer-ask"><span class="answer-at">@Tusk</span> would Ser Alric get on with Vesper?</p>
+        <div class="answer-said">
+          <p>
+            Unlikely, and pointedly so. Vesper has read every surviving account of the fall of
+            Dunmar, and corrects people who have not — including, on one occasion, Ser Alric
+            Vane<a class="cite" href="#daft-src-2"><span class="vh">source </span>1</a>. Ser Alric
+            would not discuss Dunmar when the party found him at the Ninefold
+            Rest<a class="cite" href="#daft-src-3"><span class="vh">source </span>2</a>, and
+            refuses to speak of the siege at
+            all<a class="cite" href="#daft-src-4"><span class="vh">source </span>3</a>. A scholar
+            who has already corrected the Grey Knight on the one subject he won't touch is not a
+            natural friend for him.
+          </p>
+        </div>
+        <ol class="answer-sources">
+          <li id="daft-src-2"><span class="src-n">1</span><code>Party.md</code></li>
+          <li id="daft-src-3"><span class="src-n">2</span><code>Sessions.md</code></li>
+          <li id="daft-src-4"><span class="src-n">3</span><code>Houses.md</code></li>
+        </ol>
+        <figcaption id="daft-cap-2">
+          Three files, joined into one answer about two people who have never
+          shared a scene. This is the kind of thing a table argues about for
+          twenty minutes.
+        </figcaption>
+      </figure>
+
+      <h3 class="trust-sub">And it doesn't have to sound like a librarian</h3>
+      <p class="measure">
+        A persona replaces the whole voice, and the citation rules survive it. Same question,
+        same corpus, same sources — two of the eight that ship:
+      </p>
+
+      
+      <figure class="tell" aria-labelledby="persona-cap">
+        <p class="tell-q"><span class="tell-at">@Tusk</span> who's least fit to be the ship's captain?</p>
+        <div class="tell-pair">
+          <div class="tell-card is-vault">
+            <p class="tell-who">The Archmage</p>
+            <p class="tell-said">
+              Ah, a question of seamanship, not of secrecy — this one the chronicle answers
+              plainly. Bryn Tallow is the least fit hand to stand at the helm. He cannot swim,
+              and has twice refused to board a boat at all — once at Dunmar, once at the Kelmoor
+              quay — and takes ill even on still water. A captain who will not set foot on his
+              own ship is no captain at all.
+            </p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Cited <code>Party.md</code></p>
+          </div>
+          <div class="tell-card is-vault">
+            <p class="tell-who">The Sellsword</p>
+            <p class="tell-said">
+              Bryn Tallow, and it ain't close — the poor bastard can't swim, gets sick on still
+              water, and has flat-out refused to board a boat twice, once at Dunmar and once at
+              the Kelmoor quay. Roswyn's the only one of the four who's ever actually crewed a
+              boat, so hand her the wheel instead.
+            </p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Cited <code>Party.md</code></p>
+          </div>
+        </div>
+        <figcaption id="persona-cap">
+          Same facts, same file, same refusal to invent. Only the register moved.
+          <a href="/Tusks-Vault/examples/">The rest of the answers, in full &rarr;</a>
+        </figcaption>
+      </figure>
+
+      <h3 class="trust-sub">And you decide whether it's allowed to guess</h3>
+      <p class="measure">
+        "Who would lose a duel to a chicken" is not in anybody's notes, so by default it is
+        refused like any other question the documents don't answer. Turn on
+        <strong>Speculative Mode</strong> and it will reason from what the chronicle establishes
+        about each character &mdash; then cite the evidence it used and tag the conclusion, so a
+        guess can never be mistaken later for something you wrote down.
+      </p>
+
+      
+      <figure class="tell" aria-labelledby="spec-cap">
+        <p class="tell-q"><span class="tell-at">@Tusk</span> which of them is most likely to lose a duel to a chicken?</p>
+        <div class="tell-pair">
+          <div class="tell-card">
+            <p class="tell-who">Speculative Mode off &mdash; the default</p>
+            <p class="tell-said">I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify.</p>
+            <p class="tell-foot is-none"><span class="tell-mark" aria-hidden="true"></span>Refused. It isn't in your notes.</p>
+          </div>
+          <div class="tell-card is-vault">
+            <p class="tell-who">Speculative Mode on</p>
+            <p class="tell-said">
+              Bryn Tallow &mdash; he's the one party member who's never drawn a weapon in any
+              recorded session, can't swim, and has twice refused to even board a boat because
+              still water makes him sick. A creature this jumpy and non-combative would fold
+              against a chicken's raw aggression before a blade ever cleared its sheath.
+            </p>
+            <p class="tell-foot is-cite"><span class="tell-mark" aria-hidden="true"></span>Cited <code>Party.md</code>, tagged <code>[speculation]</code></p>
+          </div>
+        </div>
+        <figcaption id="spec-cap">
+          The evidence is real even when the conclusion isn't &mdash; and it says which is which.
+          A factual question still gets the refusal, whichever way the switch is set.
+        </figcaption>
+      </figure>
+
+<div class="video-pending">
+  <div class="video-pending-frame">
+    <p class="video-pending-tag">Being recorded</p>
+    <p class="video-pending-title">A video walkthrough is on the way</p>
+    <p class="video-pending-sub">Install to first cited answer, start to finish &mdash; including the moment it refuses one.</p>
+  </div>
+  <p class="video-pending-alt">
+    Until it lands, <a href="/Tusks-Vault/docs/getting-started/installation/">the setup guide</a>
+    walks the same path in writing.
+  </p>
+</div>
+
+
+    </div>
+  </section>
+
+
+  
+  <section class="leaf" id="routes" aria-labelledby="routes-h">
+    <div class="rail">
+      <span class="numeral">VI</span>
+      <p class="rail-label">Getting a session in</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="routes-h">Three ways in, one answer</h2>
+      <p class="measure">
+        A lore assistant nobody opens is a lore assistant nobody uses, so it answers where the
+        question already gets asked.
+      </p>
+
+      
+      <figure class="converge">
+        <div class="cv">
+          <ul class="cv-ins">
+            <li>Discord</li>
+            <li>Foundry VTT</li>
+            <li>MCP client</li>
+          </ul>
+          <span class="cv-arrow" aria-hidden="true"></span>
+          <div class="cv-core">
+            <span>one corpus</span>
+            <span>one rule block</span>
+          </div>
+          <span class="cv-arrow" aria-hidden="true"></span>
+          <div class="cv-out">
+            <span class="cv-out-t">cited answer</span>
+            <span class="cv-out-s">or a refusal</span>
+          </div>
+        </div>
+        <figcaption>
+          The surface only decides where the question comes from and who sees the reply. Persona,
+          corpus and citation discipline are identical on all three.
+        </figcaption>
+      </figure>
+
+      <div class="choice">
+        <article class="option">
+          <p class="option-flow"><span>Discord</span><span>@mention the bot</span><span>Cited answer</span></p>
+          <h3>In your campaign Discord</h3>
+          <p>
+            Between sessions, which is when most of the questions actually arrive. Mention the bot
+            and the answer lands in the channel, citations and all, where everyone can see it &mdash;
+            so the same question doesn't get asked three more times that week.
+          </p>
+          <p class="option-needs"><strong>Wants</strong> a bot token. You paste one string; the rest is derived.</p>
+          <p class="cta"><a class="btn" href="/Tusks-Vault/docs/surfaces/discord/">Set up Discord</a></p>
+        </article>
+
+        <article class="option">
+          <p class="option-flow"><span>Foundry VTT</span><span>/tusk your question</span><span>Cited answer</span></p>
+          <h3>Mid-session, in the chat bar</h3>
+          <p>
+            Type <code>/tusk</code> and the answer posts into the chat log without anyone leaving the
+            game. A per-world access mode decides whether players may ask at all, and whether the
+            answer is whispered to them or posted for the table &mdash; because not every answer is
+            one the party should have.
+          </p>
+          
+          <p class="option-needs">
+            <strong>Wants</strong> a second, separate install &mdash; the
+            <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">Tusk&rsquo;s Vault module</a>,
+            searchable by name in Foundry&rsquo;s own <em>Install Module</em> browser, or from
+            <a href="https://github.com/KochiTusker/Tusks-Vault-Foundry" rel="noopener">its repository</a>.
+            It runs two ways, chosen in Module Settings.
+          </p>
+          <p class="option-needs">
+            <strong>Lite</strong> needs nothing else at all: it answers from the journal entries in
+            one Foundry folder, citing the entry it quoted and honouring your journal permissions,
+            so a GM-only note stays GM-only. That is a working archivist in about two minutes,
+            without downloading Vault.
+          </p>
+          <p class="option-needs">
+            <strong>Bridge</strong> is where this page comes in. Point the module at Vault running
+            on the GM&rsquo;s machine and the answers stop being limited to one journal folder
+            &mdash; they come from everything you keep, Word and PDF and Markdown and a whole
+            Obsidian vault, with your model of choice and your API key never in a browser.
+            Lite is the trial; Bridge is the archive.
+          </p>
+          <p class="cta"><a class="btn" href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Set up Foundry</a></p>
+        </article>
+      </div>
+
+      <p class="measure outro">
+        The third route needs no setup screen at all: any MCP client &mdash; Claude Code, Claude
+        Desktop, anything speaking the protocol &mdash; can pair and ask directly.
+        <a href="/Tusks-Vault/docs/about/use-cases/">What people actually ask it →</a>
+      </p>
+
+      <p class="measure outro">
+        <strong>And it doesn't have to be a campaign.</strong> Nothing in the machinery knows what
+        a campaign is &mdash; it indexes a folder, cites what it finds, and refuses what isn't
+        there. Point it at a handbook or a wiki export and you get the same bot.
+      </p>
+      <p class="marginalia">
+        The prompts, the citation styles and the refusal wording all assume a GM and a table.
+        <span class="sign">Everything else is a happy accident.</span>
+      </p>
+    </div>
+  </section>
+
+
+  
+  <section class="leaf" id="cost" aria-labelledby="cost-h">
+    <div class="rail">
+      <span class="numeral">VII</span>
+      <p class="rail-label">What it costs</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="cost-h">A question, not a month</h2>
+      <p class="measure">
+        Tusk's Vault is free. The only money involved is whatever your chosen model charges for the
+        tokens, and a single question is a very small number of them &mdash; one retrieval-augmented
+        request, not a generation pipeline. Gemini's free tier covers most home games outright, and a
+        local model costs nothing at all.
+      </p>
+
+<div class="ledger">
+      <div class="ledger-row is-zero">
+        <p class="ledger-what">On a Claude plan you already pay for</p>
+        <p class="ledger-cost">$0</p>
+      </div>
+      <div class="ledger-row is-zero">
+        <p class="ledger-what">On Gemini's free tier, which covers most home games</p>
+        <p class="ledger-cost">$0</p>
+      </div>
+      <div class="ledger-row is-zero">
+        <p class="ledger-what">On a model running on your own machine</p>
+        <p class="ledger-cost">$0</p>
+      </div>
+      <div class="ledger-row">
+        <p class="ledger-what">Through one OpenRouter key, a session of questions</p>
+        <p class="ledger-cost">pennies</p>
+      </div>
+      <div class="ledger-row is-them">
+        <p class="ledger-what">A campaign wiki subscription, every month, whether you play or not</p>
+        <p class="ledger-cost">$5-15</p>
+      </div>
+    </div>
+
+      
+      <figure class="year" aria-labelledby="year-cap">
+        <div class="year-row">
+          <p class="year-who">Tusk's Vault</p>
+          <ol class="year-months" aria-label="Months you are charged with Tusk's Vault: eight of twelve">
+            <li class="on"></li><li class="on"></li><li></li><li class="on"></li>
+            <li class="on"></li><li></li><li class="on"></li><li class="on"></li>
+            <li></li><li class="on"></li><li class="on"></li><li></li>
+          </ol>
+          <p class="year-sum">only when you played</p>
+        </div>
+        <div class="year-row is-them">
+          <p class="year-who">A wiki subscription</p>
+          <ol class="year-months" aria-label="Months you are charged with a wiki subscription: twelve of twelve">
+            <li class="on"></li><li class="on"></li><li class="on"></li><li class="on"></li>
+            <li class="on"></li><li class="on"></li><li class="on"></li><li class="on"></li>
+            <li class="on"></li><li class="on"></li><li class="on"></li><li class="on"></li>
+          </ol>
+          <p class="year-sum">every month, regardless</p>
+        </div>
+        <figcaption id="year-cap">
+          Twelve months, for a table that played through eight of them and lost four to
+          scheduling. The four gaps are the whole difference: a subscription bills them,
+          and a per-question cost doesn't exist to bill.
+        </figcaption>
+      </figure>
+
+      <p class="measure outro">
+        <a href="/Tusks-Vault/docs/troubleshooting/faq/">The full cost breakdown →</a>
+      </p>
+    </div>
+  </section>
+
+
+  
+  <section class="leaf" id="trust" aria-labelledby="trust-h">
+    <div class="rail">
+      <span class="numeral">VIII</span>
+      <p class="rail-label">What leaves your machine</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="trust-h">You're handing this your whole campaign</h2>
+      <p class="measure">
+        Years of somebody's worldbuilding, and often things said at a table that were never meant to
+        leave it. So it's worth being exact about where everything goes. Almost all of it stays on
+        the machine you installed it on.
+      </p>
+
+      <figure class="boundary" aria-labelledby="boundary-cap">
+        <div class="boundary-box">
+          <p class="boundary-title">Your machine</p>
+          <ul class="boundary-items">
+            <li>Every campaign document</li>
+            <li>The index built from them</li>
+            <li>Your rulings and lore gaps</li>
+            <li>The embedding model, running locally</li>
+            <li>Your API keys, encrypted</li>
+          </ul>
+        </div>
+        <div class="boundary-link" aria-hidden="true">
+          <span class="boundary-arrow"></span>
+          <span class="boundary-what">the question, and the passages that answer it</span>
+        </div>
+        <div class="boundary-box is-remote">
+          <p class="boundary-title">The model you chose</p>
+          <ul class="boundary-items">
+            <li>Reads those passages</li>
+            <li>Writes the answer</li>
+            <li>Pinned to keep nothing</li>
+          </ul>
+        </div>
+        <figcaption id="boundary-cap">
+          Choose a model that runs on your own machine and the right-hand side disappears entirely &mdash;
+          nothing leaves at all.
+        </figcaption>
+      </figure>
+
+      <ul class="nevers">
+        <li>No account, no sign-up, no licence check.</li>
+        <li>No telemetry, no analytics, nothing phoning home. Ever.</li>
+        <li>Keys encrypted at rest and tied to the machine — copying the file elsewhere gains nothing.</li>
+        <li>Cloud requests pin a zero-data-retention floor, because the corpus travels with the question.</li>
+        <li>MIT licensed, every line readable, including the setup scripts.</li>
+      </ul>
+
+      <p class="marginalia">
+        One person, one Windows PC, no support desk &mdash; which is why the feedback button sits
+        next to the coffee one in the app. Telling me what broke gets it seen; it does not promise
+        the fix sticks.
+        <a href="/Tusks-Vault/docs/security/privacy/">The unvarnished version is here.</a>
+      </p>
+
+      <h3 class="trust-sub">So what happens if I stop?</h3>
+      <p class="measure">
+        Worth asking of anything you hand years of worldbuilding. The answer splits cleanly.
+      </p>
+
+      <figure class="fate" aria-labelledby="fate-cap">
+        <div class="fate-col is-keep">
+          <p class="fate-head">Stays yours</p>
+          <ul>
+            <li><strong>Your documents</strong> &mdash; the same folder, never converted or imported</li>
+            <li><strong>Your rulings and gaps</strong> &mdash; readable JSON, sitting beside them</li>
+            <li><strong>The code</strong> &mdash; MIT, fork it or hand it on</li>
+            <li><strong>Your install</strong> &mdash; nothing runs on my servers, so there is nothing to switch off</li>
+          </ul>
+          <p class="fate-note">No export step, because nothing was ever captured.</p>
+        </div>
+        <div class="fate-col is-lose">
+          <p class="fate-head">Stops</p>
+          <ul>
+            <li><strong>Fixes</strong> &mdash; known issues stay known issues</li>
+            <li><strong>Adapting</strong> &mdash; Discord or a provider changes something and nothing follows it</li>
+            <li><strong>Dependency triage</strong> &mdash; advisories stop being watched</li>
+          </ul>
+          <p class="fate-note">This is how it would actually die: drift, not deletion.</p>
+        </div>
+        <figcaption id="fate-cap">
+          A real risk, but a differently shaped one. A hosted tool fails by making your material
+          inaccessible on someone else's schedule. This fails as a tool that stops improving, next
+          to a folder that never depended on it.
+        </figcaption>
+      </figure>
+
+      <h3 class="trust-sub">And who should be allowed to ask?</h3>
+      <p class="measure">
+        A different question from where the data goes, and the one more likely to matter at a
+        table. Anyone who can ask reaches the whole corpus, because retrieval follows the
+        question &mdash; ask about a mystery and you get the notes about that mystery. That is
+        what makes it useful, and it is worth knowing before you point it at a group.
+      </p>
+      <p class="measure">
+        Players will also try talking it into simply reciting what it was handed. Some of them
+        will manage it. What comes out is <em>your own lore</em> &mdash; not your keys, your
+        files, or anything else on the machine. The archivist has no filesystem, no shell and no
+        network of its own, and that is tested rather than hoped for. So the thing to plan
+        around is spoilers and timing, not a breach.
+      </p>
+      <p class="measure">
+        Which makes this a tool for <strong>a private Discord</strong> or <strong>a Foundry
+        table of trusted players</strong> rather than a public server. Player questions are off
+        by default on Foundry; on Discord the bot only reads the channels you put it in.
+        <a href="/Tusks-Vault/docs/security-policy/">What a prompt injection can and cannot do</a>
+        spells out both halves.
+      </p>
+    </div>
+  </section>
+
+
+  
+  <section class="leaf" id="faq" aria-labelledby="faq-h">
+    <div class="rail">
+      <span class="numeral">IX</span>
+      <p class="rail-label">Questions</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="faq-h">The ones people actually ask</h2>
+<div class="faq">
+  <details class="faq-item" id="faq-does-it-make-up-lore-when-it-does-not-know">
+    <summary>Does it make up lore when it does not know?</summary>
+    <div class="faq-answer">No — that is the whole point of the design. A canonical rule block is appended to every prompt at assembly time, so citation discipline is structural rather than configurable. When the answer is not in your documents the bot emits a fixed refusal phrase, and the question is logged in the dashboard's Lore Gaps tab so you can answer it once and have that answer reused afterwards.</div>
+  </details>
+  <details class="faq-item" id="faq-do-my-campaign-documents-get-uploaded-anywhere">
+    <summary>Do my campaign documents get uploaded anywhere?</summary>
+    <div class="faq-answer">Your documents stay in a folder on your machine. Only the question and the snippets that answer it are sent to whichever model you chose, and if you run a local model through Ollama then nothing leaves the machine at all.</div>
+  </details>
+  <details class="faq-item" id="faq-what-does-it-cost-to-run">
+    <summary>What does it cost to run?</summary>
+    <div class="faq-answer">The software is MIT-licensed and free forever. The only cost is the model you pick: Google Gemini's free tier covers most home games, OpenRouter is pay-as-you-go at roughly $0.60 to $4 per three-hour session, a Claude Pro or Max subscription costs nothing extra, and a local model through Ollama costs nothing at all.</div>
+  </details>
+  <details class="faq-item" id="faq-do-i-need-to-be-technical-to-run-it">
+    <summary>Do I need to be technical to run it?</summary>
+    <div class="faq-answer">You need to be comfortable installing Node.js and running a script. On Windows there is a one-file installer that prints its whole plan and asks before it changes anything; on macOS and Linux it is a clone and one command.</div>
+  </details>
+  <details class="faq-item" id="faq-can-players-use-it-or-only-the-gm">
+    <summary>Can players use it, or only the GM?</summary>
+    <div class="faq-answer">Both, and how much players can see is yours to set. In Foundry VTT there is a per-world access mode controlling whether players may ask at all, and answers can be whispered rather than posted publicly.</div>
+  </details>
+  <details class="faq-item" id="faq-what-file-formats-can-it-read">
+    <summary>What file formats can it read?</summary>
+    <div class="faq-answer">PDF, DOCX, Markdown, plain text, JSON, YAML, CSV, HTML and RTF. It can also read an existing Obsidian vault directly, strictly read-only, without you having to move or copy anything.</div>
+  </details>
+  <details class="faq-item" id="faq-does-it-work-with-foundry-vtt">
+    <summary>Does it work with Foundry VTT?</summary>
+    <div class="faq-answer">Yes, through a companion module that pairs with your running Vault in one click. You ask with /tusk in the chat bar and the answer posts into the chat log, whispered or public depending on the world's access mode.</div>
+  </details>
+  <details class="faq-item" id="faq-how-is-this-different-from-asking-chatgpt-about-my-campaign">
+    <summary>How is this different from asking ChatGPT about my campaign?</summary>
+    <div class="faq-answer">A general chatbot will answer every question confidently, including the ones your documents say nothing about, and the invented answer reads exactly like a real one. Vault cites the document behind every claim and refuses when it has no source, which is the behaviour that makes it usable at the table.</div>
+  </details>
+  <details class="faq-item" id="faq-does-it-only-work-for-tabletop-campaigns">
+    <summary>Does it only work for tabletop campaigns?</summary>
+    <div class="faq-answer">That is what it was built and tuned for — the prompts, citation styles and refusal wording all assume a game master and a table. But nothing in the machinery knows what a campaign is. It indexes a folder of documents, answers with citations, and refuses when the folder does not cover the question, so pointing it at a handbook, a wiki export, a set of house rules or any other body of documents gives you the same behaviour over those instead.</div>
+  </details>
+</div>
+    </div>
+  </section>
+
+
+  
+  <section class="leaf is-final" id="start" aria-labelledby="start-h">
+    <div class="rail">
+      <span class="numeral">X</span>
+      <p class="rail-label">Start</p>
+    </div>
+    <div class="leaf-body">
+      <h2 id="start-h">Two things, then one command</h2>
+      <p class="measure">
+        You need <strong>Node 20 or newer</strong> and <strong>Git</strong>. That is the whole
+        requirement &mdash; no Python, no Docker, no database, no admin rights, and no paid key: a
+        free Gemini tier covers most home games, and a local model costs nothing at all.
+      </p>
+
+      
+      <div class="notice warn">
+        <h3>One machine is supported so far</h3>
+        <p class="measure">
+          Tusk&rsquo;s Vault is built and used daily on <strong>64-bit Windows 10 / 11</strong>, and
+          that is the only platform where a clean install has been run start to finish.
+          <strong>Windows on ARM, macOS and Linux should work but are unverified</strong> &mdash;
+          nothing in the code is Windows-only and the test suite runs on Linux on every commit, but
+          nobody has yet booted the app on a Mac, a Linux desktop, or an ARM laptop.
+        </p>
+        <p class="measure">
+          Nothing here can harm your computer; the realistic failure is that the server does not
+          start. If you try one of those, please
+          <a href="https://github.com/KochiTusker/Tusks-Vault/issues">say what happened</a> &mdash;
+          that is exactly what moves a platform to supported.
+          <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">The full platform table &rarr;</a>
+        </p>
+      </div>
+
+      <p class="cta">
+        <a class="btn primary" href="/Tusks-Vault/docs/getting-started/installation/">Install it</a>
+        <a class="btn" href="/Tusks-Vault/docs/surfaces/discord/">Connect it to Discord</a>
+      </p>
+
+      <div class="doc-index">
+<details class="doc-group"><summary><h3>Getting started <span class="doc-count">3</span></h3></summary><ul><li class="doc-item" data-search="choosing a provider tusk's vault talks to four kinds of model. you pick one from the home tab and can change it whenever you…"><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a><span class="doc-item-note">Tusk's Vault talks to four kinds of model. You pick one from the Home tab and can change it whenever you…</span></li><li class="doc-item" data-search="installation this guide takes you from &quot;nothing installed&quot; to &quot;the bot is answering in discord&quot;. pick the section that…"><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a><span class="doc-item-note">This guide takes you from &quot;nothing installed&quot; to &quot;the bot is answering in Discord&quot;. Pick the section that…</span></li><li class="doc-item" data-search="uninstalling vault ships an uninstaller that removes everything it created without touching your campaign documents. this…"><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a><span class="doc-item-note">Vault ships an uninstaller that removes everything it created without touching your campaign documents. This…</span></li></ul></details>
+<details class="doc-group"><summary><h3>Asking from your table <span class="doc-count">2</span></h3></summary><ul><li class="doc-item" data-search="discord most campaign questions don't arrive at the table. they arrive on a wednesday, in a channel, three days after…"><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a><span class="doc-item-note">Most campaign questions don't arrive at the table. They arrive on a Wednesday, in a channel, three days after…</span></li><li class="doc-item" data-search="foundry vtt vault can answer questions typed into foundry's chat bar. this document covers how that works, what it costs…"><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a><span class="doc-item-note">Vault can answer questions typed into Foundry's chat bar. This document covers how that works, what it costs…</span></li></ul></details>
+<details class="doc-group"><summary><h3>Your lore <span class="doc-count">2</span></h3></summary><ul><li class="doc-item" data-search="obsidian vault vault reads your campaign from one of two places: the tusks-lore folder — documents you upload through the…"><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a><span class="doc-item-note">Vault reads your campaign from one of two places: the Tusks-Lore folder — documents you upload through the…</span></li><li class="doc-item" data-search="tusk's tomes --- vault is only as good as what you feed it, and the hardest campaign material to produce is a record of…"><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a><span class="doc-item-note">--- Vault is only as good as what you feed it, and the hardest campaign material to produce is a record of…</span></li></ul></details>
+<details class="doc-group"><summary><h3>Privacy &amp; safety <span class="doc-count">2</span></h3></summary><ul><li class="doc-item" data-search="privacy tusk's vault is local-first by design. this page is the data answer: what stays on your machine, what travels…"><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a><span class="doc-item-note">Tusk's Vault is local-first by design. This page is the data answer: what stays on your machine, what travels…</span></li><li class="doc-item" data-search="security policy thanks for taking the time to help keep tusk's vault safe. this document does three things:"><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a><span class="doc-item-note">Thanks for taking the time to help keep Tusk's Vault safe. This document does three things:</span></li></ul></details>
+<details class="doc-group"><summary><h3>Help <span class="doc-count">2</span></h3></summary><ul><li class="doc-item" data-search="faq short answers. where a question has a page of its own, this points at it rather than repeating it — two…"><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a><span class="doc-item-note">Short answers. Where a question has a page of its own, this points at it rather than repeating it — two…</span></li><li class="doc-item" data-search="known issues honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. if something here…"><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a><span class="doc-item-note">Honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. If something here…</span></li></ul></details>
+<details class="doc-group"><summary><h3>About Tusk's Vault <span class="doc-count">8</span></h3></summary><ul><li class="doc-item" data-search="code of conduct tusk's vault is a small project maintained by one person. this is short on purpose — a four-tier enforcement…"><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a><span class="doc-item-note">Tusk's Vault is a small project maintained by one person. This is short on purpose — a four-tier enforcement…</span></li><li class="doc-item" data-search="comparison honest comparison to the tools ttrpg groups actually use today. every claim here is verified against the…"><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a><span class="doc-item-note">Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the…</span></li><li class="doc-item" data-search="contributing first — thank you. tusk's vault is a community-shaped project, and the contributions that matter most aren't…"><a href="/Tusks-Vault/docs/contributing/">Contributing</a><span class="doc-item-note">First — thank you. Tusk's Vault is a community-shaped project, and the contributions that matter most aren't…</span></li><li class="doc-item" data-search="dependencies every package vault depends on, with the rationale for each choice. skip to why these choices for the…"><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a><span class="doc-item-note">Every package Vault depends on, with the rationale for each choice. Skip to Why these choices for the…</span></li><li class="doc-item" data-search="how it's built how tusk's vault turns &quot;an @-mention in discord&quot; into a cited, source-grounded answer. this page is written…"><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a><span class="doc-item-note">How Tusk's Vault turns &quot;an @-mention in Discord&quot; into a cited, source-grounded answer. This page is written…</span></li><li class="doc-item" data-search="roadmap what's next in tusk's vault, and why. what already works is in the readme and the docs — this page is the…"><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a><span class="doc-item-note">What's next in Tusk's Vault, and why. What already works is in the README and the docs — this page is the…</span></li><li class="doc-item" data-search="use cases for ttrpg game masters and players who want to keep track of what goes on during sessions. what people…"><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a><span class="doc-item-note">For TTRPG Game Masters and players who want to keep track of what goes on during sessions. What people…</span></li><li class="doc-item" data-search="what it costs vault itself is free. mit-licensed, no subscription, no account, no telemetry, no paywalled features. the…"><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a><span class="doc-item-note">Vault itself is free. MIT-licensed, no subscription, no account, no telemetry, no paywalled features. The…</span></li></ul></details>
+<details class="doc-group"><summary><h3>Docs <span class="doc-count">1</span></h3></summary><ul><li class="doc-item" data-search="documentation tusk's vault is a local-first lore assistant for tabletop campaigns. you point it at the notes you already…"><a href="/Tusks-Vault/docs/">Documentation</a><span class="doc-item-note">Tusk's Vault is a local-first lore assistant for tabletop campaigns. You point it at the notes you already…</span></li></ul></details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <p>Tusk's Vault &mdash; free, open source, MIT licensed. Runs on your own machine. No telemetry.</p>
+  <p>
+    <a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> ·
+    <a href="/Tusks-Vault/docs/">Documentation</a> ·
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Setup</a> ·
+    <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a> ·
+    <a href="https://buymeacoffee.com/kochitusker" rel="noopener">Buy me a coffee</a>
+  </p>
+</footer>
+
+<script src="/Tusks-Vault/site.js" defer></script>
+</body>
+</html>

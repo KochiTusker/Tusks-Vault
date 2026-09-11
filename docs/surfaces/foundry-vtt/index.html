@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Your Campaign Lore From Foundry VTT — Module Setup — Tusk's Vault</title>
+<meta name="description" content="Pair the Tusk's Vault module with your running Vault and ask lore questions from Foundry's chat bar with /tusk. Per-world control over what players can pull from the archive.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/surfaces/foundry-vtt/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-11">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Ask Your Campaign Lore From Foundry VTT — Module Setup — Tusk's Vault">
+<meta property="og:description" content="Pair the Tusk's Vault module with your running Vault and ask lore questions from Foundry's chat bar with /tusk. Per-world control over what players can pull from the archive.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/surfaces/foundry-vtt/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ask Your Campaign Lore From Foundry VTT — Module Setup — Tusk's Vault">
+<meta name="twitter:description" content="Pair the Tusk's Vault module with your running Vault and ask lore questions from Foundry's chat bar with /tusk. Per-world control over what players can pull from the archive.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Foundry VTT",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/surfaces/foundry-vtt/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Foundry VTT",
+  "description": "Pair the Tusk's Vault module with your running Vault and ask lore questions from Foundry's chat bar with /tusk. Per-world control over what players can pull from the archive.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/surfaces/foundry-vtt/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-11",
+  "keywords": "Foundry VTT AI module, Foundry lore assistant, Foundry VTT campaign question bot, ask lore from Foundry chat"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/" aria-current="page">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Foundry VTT</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#the-shape-of-it">The shape of it</a></li><li><a href="#setting-it-up">Setting it up</a></li><li><a href="#who-may-ask-and-who-sees-the-answer">Who may ask, and who sees the answer</a></li><li><a href="#the-spoiler-problem-read-this-before-enabling-player-questions">The spoiler problem — read this before enabling player questions</a></li><li><a href="#what-it-costs">What it costs</a></li><li><a href="#security-notes">Security notes</a></li><li><a href="#the-same-endpoint-serves-other-mcp-clients">The same endpoint serves other MCP clients</a></li><li><a href="#troubleshooting">Troubleshooting</a></li></ul></aside>
+    <article class="prose">
+<h1>Foundry VTT — Tusk's Vault</h1>
+<p>Vault can answer questions typed into Foundry's chat bar. This document covers
+how that works, what it costs, and — the part worth reading before you switch it
+on — what a player can pull out of the archive.</p>
+<p>The Foundry-facing half is a separate artifact in its own repository: the
+<strong>Tusk's Vault module</strong>, installed through Foundry. This page is about the
+Vault side; the wire contract between the two is in
+<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/tooling/foundry-contract.md" rel="noopener">Foundry contract</a>.</p>
+<hr>
+<h2 id="the-shape-of-it">The shape of it</h2>
+<pre><code>  player types /tusk …
+         │
+         ▼
+  their client posts a marked ChatMessage        (no network — Vault is not
+         │                                        reachable from their machine)
+         ▼
+  the ACTIVE GM's client sees that document
+         │
+         ▼  MCP over HTTP, to 127.0.0.1
+  Vault  ──► chat/ask.ts ──► the same corpus, persona and citation
+         │                    discipline that answers a Discord mention
+         ▼
+  the GM's client posts the answer, whispered or public
+</code></pre>
+<p>Two facts decide that shape:</p>
+<p><strong>Foundry has no server-side API.</strong> A Foundry module is a <code>module.json</code> plus
+JavaScript that runs in the <em>browser</em>. There is no REST endpoint and no
+supported way for an outside process to inject a chat message, so the direction
+of travel is fixed: the module dials out to Vault, never the reverse.</p>
+<p><strong>A player's browser cannot reach Vault.</strong> Vault listens on the GM's loopback
+address. So the asker's client swallows the command and posts a question
+document, and <code>game.users.activeGM</code> — which returns exactly one active GM —
+elects the single client that relays it. Without that election, two connected
+GMs would each relay and the table would get the answer twice, billed twice.</p>
+<p>If no GM is connected, nothing can reach the archive. The module says so rather
+than swallowing the question.</p>
+<hr>
+<h2 id="setting-it-up">Setting it up</h2>
+<ol>
+<li>
+<p><strong>Switch the surface on.</strong> Dashboard → <strong>Home</strong> → <strong>Surfaces</strong> → <strong>Foundry VTT</strong>. Off by default, as is the player ceiling below it.</p>
+</li>
+<li>
+<p><strong>Install the module.</strong> Vault answers in Foundry through a separate
+companion module. It runs in two modes, picked under <em>Module Settings →
+Where answers come from</em>: <strong>Lite</strong> answers from the journal entries in the
+Foundry folders you choose and needs nothing else installed, and <strong>Bridge</strong> relays to
+Vault running on the GM's machine so the answers come from your whole
+archive instead. This page is about Bridge — for Lite, the module's own
+<a href="https://github.com/KochiTusker/Tusks-Vault-Foundry" rel="noopener">README</a> is the guide.</p>
+<p>In Foundry: <strong>Setup → Add-on Modules → Install Module</strong>, then search the
+package list for <em>Tusk's Vault</em>. It is
+<a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">listed on the Foundry package registry</a>,
+so searching is the shortest route and updates arrive through Foundry's own
+update check.</p>
+<p>If you would rather paste a manifest, this is the URL:</p>
+<pre><code>https://github.com/KochiTusker/Tusks-Vault-Foundry/releases/latest/download/module.json
+</code></pre>
+<p>The module lives in its own repository,
+<a href="https://github.com/KochiTusker/Tusks-Vault-Foundry" rel="noopener">Tusks-Vault-Foundry</a>,
+and versions independently of this app — a Vault release does not imply a
+module release, or the reverse.</p>
+</li>
+<li>
+<p><strong>Enable it.</strong> In your world: Settings sidebar → <strong>Module Management</strong> →
+tick <strong>Tusk's Vault</strong> → <em>Save Module Settings</em>. Foundry reloads every
+connected client when you do this, so pick a moment between scenes.</p>
+</li>
+<li>
+<p><strong>Pair.</strong> Settings sidebar → <strong>Game Settings</strong> → <strong>Module Settings</strong> →
+<strong>Tusk's Vault</strong> → <em>Connect to Tusk's Vault</em>. Foundry
+shows a six-digit code; the dashboard shows the same code beside
+<strong>Allow</strong> / <strong>Deny</strong>. Check they match, then Allow.</p>
+</li>
+</ol>
+<p>There is no token to copy. The code is what makes the approval <em>specific</em>:
+without it, a page the GM happened to have open could fire its own pairing
+request at the same moment and they would have no way to tell which prompt they
+were approving. A hostile page can raise a prompt — it cannot make Foundry
+display its code.</p>
+<p>Requests expire after two minutes, only one may be outstanding at a time, and a
+denial is remembered for an hour so a page cannot grind the GM into a mis-click.</p>
+<hr>
+<h2 id="who-may-ask-and-who-sees-the-answer">Who may ask, and who sees the answer</h2>
+<p>There are two controls and they are deliberately <strong>not</strong> copies of each other.</p>
+<h3 id="the-access-policy-in-foundry-per-world">The access policy — in Foundry, per world</h3>
+<p>Two controls, deliberately independent of each other. A single tri-state welded
+them together, produced one combination nobody wanted (GM-only questions
+answered publicly) and could not express the one tables kept asking for:
+players may ask, but the GM reads the answer first.</p>
+<p><strong>Who may ask</strong> — a floor on the asker's Foundry role:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Rank</th><th>Who it admits</th></tr></thead><tbody><tr><td><code>nobody</code></td><td>Only the chosen askers below.</td></tr><tr><td><code>gamemaster</code></td><td>Full Gamemasters. <em>Not</em> Assistant GMs.</td></tr><tr><td><code>gm</code></td><td>Assistant GM and above — what Foundry's own <code>isGM</code> means.</td></tr><tr><td><code>trusted</code></td><td>Trusted Player and above.</td></tr><tr><td><code>everyone</code> (default)</td><td>Anyone at the table.</td></tr></tbody></table></div>
+<p><strong>Chosen askers</strong> — a tick-list of named users, <em>added</em> to whatever the rank
+allows. Additive on purpose: a deny list would need a precedence rule, and every
+such rule is one more thing a GM must hold in their head to predict what their
+own table can do. Set the rank to <code>nobody</code> and the list becomes the whole
+policy.</p>
+<p><strong>Who sees the answer</strong> — <code>asker</code> (default; whispered to the asker and connected
+GMs), <code>gm</code> (whispered to GMs only, and the asker is told where their answer
+went), or <code>public</code>.</p>
+<p>It lives in the module, world-scoped, for two reasons.</p>
+<ul>
+<li><strong>Vault cannot independently verify who asked.</strong> Its only channel to Foundry
+<em>is</em> the module, so enforcing this in Vault would mean trusting an <code>isGM</code> flag
+the module sent — not enforcement, but a second copy of the same trust with
+the authoritative data one process further away.</li>
+<li><strong>Access mode is a property of the world.</strong> A GM running two campaigns can
+want different answers for each, which a Vault-side setting cannot express.</li>
+</ul>
+<p>The module derives the asker from the ChatMessage document's <code>author</code> —
+Foundry's own server-side attribution — and never from anything in the message
+payload. A player can set arbitrary flags on a message they create, so a flag
+claiming <code>isGM: true</code> proves nothing.</p>
+<h3 id="the-ceiling-in-vault-per-install">The ceiling — in Vault, per install</h3>
+<p><strong>Home → Surfaces → Foundry VTT → "Answer players, not just the GM."</strong> Off by default.</p>
+<p>One boolean, asking a different question: <em>may this install answer non-GMs at
+all?</em> With it off, Vault refuses any question whose asker is not a GM, whatever
+the module is set to.</p>
+<p>This is not redundancy. Two copies of one tri-state is the classic "why isn't my
+setting working" trap. This covers the exact residual risk in <code>isGM</code> being a
+claim: forging GM authorship gets a player nothing they could not already get by
+asking normally, unless the install has opted into answering players.</p>
+<hr>
+<h2 id="the-spoiler-problem-read-this-before-enabling-player-questions">The spoiler problem — read this before enabling player questions</h2>
+<p>Discord lets a DM put the bot in a channel players cannot read. <strong>Foundry's
+chat log is the table.</strong></p>
+<p>Vault answers from the <em>whole</em> corpus and has no notion of what has been
+revealed. The three access modes bound <strong>who sees</strong> an answer. They do not bound
+<strong>what a player can pull</strong>: even in whisper mode, the player who asked receives
+lore the GM has not disclosed. The whisper hides it from everyone else — not
+from them.</p>
+<p>So:</p>
+<ul>
+<li>Restricting <strong>who may ask</strong>, or leaving Vault's ceiling off, is what actually
+protects a mystery. Setting <strong>who sees the answer</strong> to <code>gm</code> protects one too,
+by a different route: the question is asked, and you decide what to say.</li>
+<li>Whispering is about keeping the chat log tidy and answers attributable. It is
+<strong>not</strong> a spoiler control, and this documentation will not imply it is.</li>
+</ul>
+<p>Per-player lore scoping is the real fix. It is tracked in
+<a href="/Tusks-Vault/docs/roadmap/">ROADMAP.md</a> as the blocking follow-on for this feature rather
+than a nicety.</p>
+<hr>
+<h2 id="what-it-costs">What it costs</h2>
+<p>Every question is a full answer through the normal pipeline: the corpus, the
+active persona, the citation rules. It costs whatever your configured provider
+charges, and a table asking casually will ask a lot.</p>
+<p>Two mitigations are built in:</p>
+<ul>
+<li><strong>A queue, per surface.</strong> Four players typing at once do not start four
+generations. Concurrency defaults to 1 on Claude Code — each answer is a
+spawned CLI process drawing on one shared subscription window, and two at once
+is measurably slower than two in sequence — and 2 elsewhere.</li>
+<li><strong>A per-asker cooldown</strong> of a few seconds, so one person cannot occupy the
+queue by holding down Enter. Checked before any work, so a refused question
+costs nothing at all.</li>
+</ul>
+<p>You can pin the Foundry surface to a different provider than the dashboard uses.
+Pinning it to Claude Code answers on your subscription with no metered billing —
+at 5–10 seconds per answer, one at a time. The dashboard says so where you make
+the choice; it is a real trade and you should make it knowingly.</p>
+<hr>
+<h2 id="security-notes">Security notes</h2>
+<p>The MCP endpoint is a <strong>pre-auth surface</strong> — reachable in principle by any page
+the GM has open. Three independent defences hold it, none decorative:</p>
+<ol>
+<li><strong>A bearer token</strong> minted at pairing, stored only as a hash, never logged.</li>
+<li><strong>An origin allow-list</strong>, narrowed to the origins that completed a pairing
+you approved by hand.</li>
+<li><strong>A handshake code</strong> you have to read off one screen and type into another.</li>
+</ol>
+<p>Each defeats a different attacker, which is why all three are there. The full
+analysis — how each is implemented, what it does and does not stop, and why
+the approval route is deliberately <em>not</em> cross-origin exempt — is in
+<strong><a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a></strong>.</p>
+<p>Two things worth acting on rather than reading about:</p>
+<ul>
+<li><strong>Unpair anything you do not recognise</strong>, under <em>Surfaces</em> in the dashboard.
+A paired client can ask the archive anything.</li>
+<li><strong>The token is <code>client</code>-scoped in Foundry, not world-scoped.</strong> A world-scoped
+setting is one every player can read out of <code>game.settings</code> and use to query
+your campaign directly. The module's own test suite asserts that scope,
+because it is the sharpest trap in the integration and it fails silently.</li>
+</ul>
+<h2 id="the-same-endpoint-serves-other-mcp-clients">The same endpoint serves other MCP clients</h2>
+<p>Vault's MCP server was built for Foundry but is not specific to it. Anything
+that speaks MCP — Claude Code, Claude Desktop — can query the same corpus
+through the same three tools:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody><tr><td><code>ask_lore</code></td><td>A question in, a cited answer out. What Foundry calls.</td></tr><tr><td><code>search_lore</code></td><td>Which documents and clarifications match, without generating. Costs no model tokens.</td></tr><tr><td><code>list_sources</code></td><td>What the corpus contains.</td></tr></tbody></table></div>
+<p>Switch <strong>Home → Surfaces → Other MCP clients</strong> on, then pair. For a client that expects
+a stdio subprocess rather than HTTP, <code>scripts/mcp-stdio.mjs</code> is a shim — see the
+comment at the top of that file for the configuration.</p>
+<p>That surface has its own toggle and its own credential. A client paired as an
+MCP client is governed by the MCP toggle and never inherits the Foundry
+surface's policy, because the surface is fixed at pairing rather than claimed
+per request.</p>
+<hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Symptom</th><th>Cause</th></tr></thead><tbody><tr><td>"Could not find Tusk's Vault"</td><td>Not running, or on a port outside 3000–3019. Set the address by hand under Game Settings → Module Settings.</td></tr><tr><td>"No GM is connected"</td><td>Nobody with GM rights is online, so nothing can relay.</td></tr><tr><td>"The archivist does not take questions from you"</td><td>The asker is below the world's <strong>Who may ask</strong> rank and is not a chosen asker.</td></tr><tr><td>A player is refused despite the rank allowing it</td><td>Vault's player ceiling is off. Both ends must allow it.</td></tr><tr><td>"This surface is switched off"</td><td>Dashboard → Surfaces → Foundry VTT is off.</td></tr><tr><td>Pairing prompt never appears</td><td>Another request is already outstanding, or this origin was denied within the last hour.</td></tr><tr><td>Answers take 10s+</td><td>The surface is pinned to Claude Code. Expected — see <em>What it costs</em>.</td></tr></tbody></table></div>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/surfaces/foundry-vtt.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contributing — Tusk's Vault</title>
+<meta name="description" content="First — thank you. Tusk's Vault is a community-shaped project, and the contributions that matter most aren't always code. There's a list below.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/contributing/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Contributing — Tusk's Vault">
+<meta property="og:description" content="First — thank you. Tusk's Vault is a community-shaped project, and the contributions that matter most aren't always code. There's a list below.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/contributing/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contributing — Tusk's Vault">
+<meta name="twitter:description" content="First — thank you. Tusk's Vault is a community-shaped project, and the contributions that matter most aren't always code. There's a list below.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Contributing",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/contributing/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Contributing",
+  "description": "First — thank you. Tusk's Vault is a community-shaped project, and the contributions that matter most aren't always code. There's a list below.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/contributing/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/" aria-current="page">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Contributing</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#ways-to-contribute-no-code-required">Ways to contribute (no code required)</a></li><li><a href="#contributing-code">Contributing code</a></li><li><a href="#reporting-a-security-vulnerability">Reporting a security vulnerability</a></li><li><a href="#questions">Questions?</a></li></ul></aside>
+    <article class="prose">
+<h1>Contributing to Tusk's Vault</h1>
+<p>First — thank you. Tusk's Vault is a community-shaped project, and the contributions that matter most aren't always code. There's a list below.</p>
+<p>By participating you agree to abide by our <a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a>.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="ways-to-contribute-no-code-required">Ways to contribute (no code required)</h2></summary>
+<div class="docs-section-body">
+<p><strong>You don't need to ship a pull request to make this project better.</strong> A few of the most useful things anyone can do:</p>
+<ul>
+<li>🐛 <strong>File a bug.</strong> Found something broken? <a href="https://github.com/KochiTusker/Tusks-Vault/issues/new/choose" rel="noopener">Open an issue</a>. Include OS, Node version, the command you ran, and the error. Even a partial report helps.</li>
+<li>💡 <strong>Pitch a feature.</strong> Roadmap items come from real DMs asking for real things. <a href="https://github.com/KochiTusker/Tusks-Vault/issues/new/choose" rel="noopener">Open a feature-request issue</a> — the situation you want solved matters more than the feature you have in mind.</li>
+<li>📝 <strong>Improve the docs.</strong> Spotted a confusing step in the README or the setup walkthrough? Even one-sentence tweaks are welcome PRs.</li>
+<li>🎨 <strong>Design feedback.</strong> The dashboard is heavily themed. If something reads wrong, looks broken, or is hard to use, screenshot it and tell us.</li>
+<li>🌍 <strong>Help translate.</strong> A localised dashboard is on the wishlist — if you'd help with strings in another language, open an issue and say which language.</li>
+<li>📣 <strong>Spread the word.</strong> ⭐ Star the repo, mention it to your DM friends, write a blog post or tweet about how it worked for your campaign.</li>
+<li>☕ <strong>Sponsor.</strong> If the project saves your campaign night, <a href="https://buymeacoffee.com/kochitusker" rel="noopener">Buy me a coffee</a>. One-off or recurring both welcome.</li>
+</ul>
+<p>All of the above counts. None of it is optional or required.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="contributing-code">Contributing code</h2></summary>
+<div class="docs-section-body">
+<h3 id="before-you-start">Before you start</h3>
+<p>For anything bigger than a small fix:</p>
+<ol>
+<li><strong>Open an issue first</strong> so we can agree on the approach before you write code. This saves you from sinking hours into a PR that needs a rewrite.</li>
+<li><strong>Pick one thing.</strong> PRs are easier to land when they do one thing. If you're tempted to fix five unrelated issues in one PR, split them.</li>
+</ol>
+<p>For typo / docs / one-line fixes, skip step 1 and just open the PR.</p>
+<h3 id="setting-up-a-dev-environment">Setting up a dev environment</h3>
+<pre><code class="language-sh">git clone https://github.com/KochiTusker/Tusks-Vault.git
+cd Tusks-Vault
+npm install
+npm run dev    # starts the server + Vite middleware on http://localhost:3000
+</code></pre>
+<p>The server is a single TypeScript process running through <code>tsx</code> — no build step in dev. Frontend changes hot-reload through Vite middleware; backend changes need a server restart (<code>Ctrl+C</code> then <code>npm run dev</code>).</p>
+<h3 id="project-layout">Project layout</h3>
+<ul>
+<li><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/" rel="noopener">src/server/</a> — backend. One concern per file.
+<ul>
+<li><code>llm/</code> — provider adapters (Gemini, OpenRouter, Claude Code, Ollama). Adding a new provider = drop a file here that implements the same interface.</li>
+<li><code>routes/</code> — Express route handlers. One file per route group.</li>
+<li><code>knowledge/</code> — document loading and parsing.</li>
+<li><code>embeddings/</code> — local MiniLM embedding pipeline for clarifications.</li>
+<li><code>discord/</code> — bot client and message handler.</li>
+<li><code>prompt/</code> — system prompt + prompt assembly.</li>
+<li><code>config/</code> — env, paths, settings persistence.</li>
+</ul>
+</li>
+<li><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/" rel="noopener">src/</a> (outside <code>server/</code>) — React 19 dashboard. Component files live in <code>src/components/</code>.</li>
+<li><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/server.ts" rel="noopener">server.ts</a> — entrypoint that boots both Express and Vite.</li>
+<li><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/scripts/update.mjs" rel="noopener">scripts/update.mjs</a> — the in-app updater.</li>
+</ul>
+<h3 id="style-conventions">Style + conventions</h3>
+<ul>
+<li><strong>TypeScript throughout.</strong> Avoid <code>any</code>. Run <code>npm run lint</code> (which is <code>tsc --noEmit</code>) before pushing.</li>
+<li><strong>No new dependencies without discussion.</strong> We keep the dep tree small on purpose. If you need one, mention it in your issue.</li>
+<li><strong>Match the file's existing style.</strong> No new formatters or linters as part of feature PRs.</li>
+<li><strong>Comments</strong>: only when the <em>why</em> is non-obvious. Don't narrate what the code already says.</li>
+<li><strong>Commits</strong>: small, focused, with a one-line subject and (optional) longer body explaining <em>why</em>. Match the style of existing commits in <code>git log</code>.</li>
+</ul>
+<h3 id="adding-a-new-llm-provider-base-product-cloud">Adding a new LLM provider (base-product, cloud)</h3>
+<ol>
+<li>Create <code>src/server/llm/&#x3C;name>.ts</code> that exports the same <code>LlmAdapter</code> interface as <code>gemini.ts</code> / <code>openrouter.ts</code> / <code>ollama.ts</code>, and wrap the API call in <code>withRetry</code> from <code>llm/retry.ts</code>.</li>
+<li>Register it in <code>src/server/llm/registry.ts</code>.</li>
+<li>Add a Key Vault entry in the dashboard (<code>src/types/keys.ts</code> for the type, <code>src/components/panels/KeyVaultPanel.tsx</code> for the UI) if the provider needs an API key.</li>
+<li>Update the relevant docs (<a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a>, <a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a>) and the <code>.env.example</code> file.</li>
+</ol>
+<h3 id="adding-a-new-provider">Adding a new provider</h3>
+<p>There is no plugin system to learn. Vault had one; it gated features that were
+always present, so it was removed. A provider is just a file.</p>
+<ol>
+<li>Add <code>src/server/llm/&#x3C;name>.ts</code> exporting a factory that returns an <code>LlmAdapter</code> — the interface is in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/types.ts" rel="noopener">src/server/llm/types.ts</a>.</li>
+<li>Wrap the outbound call in <code>withRetry</code> from <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/retry.ts" rel="noopener">src/server/llm/retry.ts</a>, so rate limits behave like every other provider's.</li>
+<li>Add a case to the switch in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/registry.ts" rel="noopener">src/server/llm/registry.ts</a>, and the provider to <code>LlmProvider</code> in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/config/settings.ts" rel="noopener">src/server/config/settings.ts</a>.</li>
+<li>Pick a reference: <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/gemini.ts" rel="noopener"><code>gemini.ts</code></a> for a cloud provider with an SDK, <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/ollama.ts" rel="noopener"><code>ollama.ts</code></a> for one that is plain HTTP, <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/claude-code.ts" rel="noopener"><code>claude-code.ts</code></a> for one that shells out.</li>
+<li>Add it to the probe in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/model-probe.ts" rel="noopener">src/server/llm/model-probe.ts</a> if "which models can this key call" has a non-obvious answer — it usually does.</li>
+<li>Update <a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a> with what it costs and what it needs.</li>
+</ol>
+<p><strong>Don't add a dependency unless the provider genuinely needs one</strong>, and never lazy-load packages — that makes whether a feature works depend on whether the network is up.</p>
+<h3 id="adding-a-new-ingester-file-format">Adding a new ingester (file format)</h3>
+<ol>
+<li>Add the parser in <code>src/server/knowledge/loader.ts</code> — keep parsers small and side-effect-free.</li>
+<li>Add an entry to the supported-formats table in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/Lore/README.md" rel="noopener">Lore/README.md</a>.</li>
+</ol>
+<h3 id="tests">Tests</h3>
+<p>Backend has a Vitest suite (<code>npm test</code>) covering security middleware, path resolution, key store, persona store, prompt assembly, atomic writes, and the Obsidian reader's read-only guard. The React dashboard is intentionally untested today — manual smoke-testing is the standard for frontend changes.</p>
+<p>If you're touching backend code, add or update the relevant <code>*.test.ts</code> next to your source file. If you're touching parsing or prompt assembly, include a couple of example documents and queries in the PR description that demonstrate the change behaving as advertised.</p>
+<p>A proper frontend test harness is on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>. Contributions toward that are particularly welcome.</p>
+<h3 id="pull-request-checklist">Pull request checklist</h3>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Issue opened first (for non-trivial changes), and approach agreed</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code>npm run lint</code> passes locally</li>
+<li class="task-list-item"><input type="checkbox" disabled> One thing per PR</li>
+<li class="task-list-item"><input type="checkbox" disabled> PR description explains <em>why</em> and includes a brief test plan</li>
+<li class="task-list-item"><input type="checkbox" disabled> If you added an LLM provider or file format, the README + <code>.env.example</code> are updated</li>
+<li class="task-list-item"><input type="checkbox" disabled> No secrets, lore folders, <code>api-keys.json</code>, or <code>.env*</code> files in the diff</li>
+</ul>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="reporting-a-security-vulnerability">Reporting a security vulnerability</h2></summary>
+<div class="docs-section-body">
+<p>Please <strong>don't</strong> open a public issue. See <a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a> for the disclosure process.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="questions">Questions?</h2></summary>
+<div class="docs-section-body">
+<p><a href="https://github.com/KochiTusker/Tusks-Vault/issues/new/choose" rel="noopener">Open an issue</a> — new-contributor questions are welcome and get answered with a smile, not a sigh. A community Discord with a dedicated support channel is on the <a href="/Tusks-Vault/docs/roadmap/">roadmap</a>.</p>
+</div>
+</details>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/CONTRIBUTING.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

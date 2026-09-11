@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Known issues — Tusk's Vault</title>
+<meta name="description" content="Honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. If something here is blocking you, file an issue — we prioritise…">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/known-issues/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-11">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Known issues — Tusk's Vault">
+<meta property="og:description" content="Honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. If something here is blocking you, file an issue — we prioritise…">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/known-issues/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Known issues — Tusk's Vault">
+<meta name="twitter:description" content="Honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. If something here is blocking you, file an issue — we prioritise…">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Known issues",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/known-issues/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Known issues",
+  "description": "Honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. If something here is blocking you, file an issue — we prioritise…",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/troubleshooting/known-issues/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-11"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/" aria-current="page">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Known issues</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#platform-support">💻 Platform support</a></li><li><a href="#known-limitations">⚠️ Known limitations</a></li><li><a href="#by-design-tradeoffs">🔒 By-design tradeoffs</a></li><li><a href="#how-to-file-an-issue">🐞 How to file an issue</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Known issues — Tusk's Vault</h1>
+<p>Honest list of what doesn't work yet, what's a limitation by design, and how to file a bug. If something here is blocking you, <a href="https://github.com/KochiTusker/Tusks-Vault/issues" rel="noopener">file an issue</a> — we prioritise what gets reported.</p>
+<p>For the security threat model, see <a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a>. For the planned-features list see <a href="/Tusks-Vault/docs/roadmap/">ROADMAP.md</a>.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="platform-support">💻 Platform support</h2></summary>
+<div class="docs-section-body">
+<p>The single most useful thing to know before you install. Full table with the
+reasoning in <a href="/Tusks-Vault/docs/getting-started/installation/#which-machines-this-has-actually-been-run-on">Installation</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Platform</th><th>State</th><th>Detail</th></tr></thead><tbody><tr><td><strong>Windows 10 / 11 (x64)</strong></td><td><strong>Supported</strong></td><td>The developed-and-used-daily platform. A clean clone → <code>npm ci</code> → boot is verified, and the test suite runs on Windows in CI on every commit.</td></tr><tr><td><strong>Windows on ARM</strong></td><td><strong>Unverified</strong></td><td>Until v1.0.2 this could not start at all: <code>pdf-parse</code> depends on <code>@napi-rs/canvas</code>, whose pinned 0.1.80 ships no <code>win32-arm64</code> binary, and the failed load surfaced as <code>DOMMatrix is not defined</code> at boot. Fixed two ways — the canvas version is pinned forward via <code>overrides</code>, and PDF support now loads lazily so a missing binary costs you PDF ingest instead of the whole server. <strong>Not yet run on real ARM hardware.</strong> If it fails, install the <strong>x64</strong> Node build and it will run emulated. Reports very welcome.</td></tr><tr><td><strong>macOS</strong></td><td><strong>Untested</strong></td><td><code>run.sh</code> exists and nothing in the code is Windows-only, but the app has never been started on a Mac. Expect any problems in the launcher scripts rather than the app.</td></tr><tr><td><strong>Linux</strong></td><td><strong>Partly tested</strong></td><td>The full suite runs on Linux in CI every commit, and since v1.0.2 CI also starts the real server on Linux and checks it answers. So the code boots; what is untested is the desktop experience — the launcher script, the browser auto-open, and a first run driven by a person rather than a script.</td></tr></tbody></table></div>
+<div class="docs-alert docs-alert-warning">
+<div class="docs-alert-label">Notice</div>
+<p>Only 64-bit Windows is <em>supported</em> today. The rest are expected to work and
+have not been proven to. Please don't plan a session around an untested
+platform before you've watched it run.</p>
+</div>
+<p><strong>What "untested" does and doesn't mean.</strong> The risk is that the program fails
+to start or a launcher script misbehaves — not that anything on your machine is
+harmed. Vault writes only to its own folder, its config directory, and the lore
+folder you point it at.</p>
+</div>
+</details>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="known-limitations">⚠️ Known limitations</h2></summary>
+<div class="docs-section-body">
+<p>Things that work but have known edges. None of these block normal use.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Limitation</th><th>What it costs you</th><th>Status</th></tr></thead><tbody><tr><td><strong>The folder source re-parses on every question.</strong> No cache, no per-question retrieval — the whole corpus goes into every prompt.</td><td>~10–30 s and a full-corpus token bill at around 50 PDFs.</td><td>The <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian source</a> already narrows once a vault outgrows the budget. Bringing that to the folder source is the biggest token reduction the architecture can deliver — on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</td></tr><tr><td><strong><code>KB_CHAR_LIMIT</code> caps the folder corpus at 500,000 characters</strong> (~200 pages).</td><td>Documents past the cap are dropped rather than retrieved.</td><td>It cuts on a document boundary, never mid-sentence, and the prompt names the files that did not fit and tells the model not to cite them — so you get "I don't have that document", not a fabrication. Same fix path as above.</td></tr><tr><td><strong>The stricter production CSP never activates.</strong> It is selected by <code>NODE_ENV=production</code>, and nothing sets it — <code>npm start</code> is identical to <code>npm run dev</code>, and the launchers do not build.</td><td>Little, in practice. Scripts are limited to the app's own origin under both policies, so no third-party script can load either way; what the running policy additionally permits is inline scripts and <code>eval</code>, which Vite needs. Nothing renders lore, model output or user content as raw HTML, so there is no paired XSS sink.</td><td>A missing layer of defence in depth, not a live hole. Making the modes real means <code>npm start</code> would serve a build the documented install never produces, so it is a v1.0.1 change rather than a release-eve one.</td></tr><tr><td><strong>A DOCX parse cannot be interrupted once it starts.</strong></td><td>A crafted DOCX could occupy the parser for as long as it takes to finish.</td><td>Bounded rather than closed. Uploads are capped at 64 MB each and 64 MB per message, and DOCX extraction carries the same 60-second ceiling as PDF — but a timeout cannot interrupt synchronous work, so the size cap is what actually holds. Only ingest documents you trust.</td></tr><tr><td><strong>The refusal detector matches a substring</strong> — <code>"i am unsure about this detail"</code>.</td><td>If a model paraphrases, the lore gap may not get logged.</td><td>It still refuses to invent; it just does not record the question. Rule 3 instructs the exact phrase, so this is rare.</td></tr><tr><td><strong>Discord replies over 2000 characters are sliced on a regex boundary.</strong></td><td>Occasionally cuts a citation marker across two messages.</td><td>Cosmetic.</td></tr><tr><td><strong>First boot downloads ~25 MB</strong> of the MiniLM model from Hugging Face.</td><td>On an air-gapped machine you get <code>[embeddings] Failed to load model</code>.</td><td>The server still starts; everything except semantic clarification matching works. Copy <code>models/</code> from a networked machine.</td></tr><tr><td><strong>Foundry answers are not scoped to what your table has discovered.</strong></td><td>A player can pull a secret the party has not found. Whisper mode bounds who <em>sees</em> an answer, not what they can <em>ask for</em>.</td><td><code>allowPlayers</code> is <strong>off by default</strong>, so a fresh install answers only the GM. The module's <code>isGM</code> flag is a claim Vault cannot verify — that ceiling is what makes forging it worthless.</td></tr><tr><td><strong>No automated frontend tests.</strong></td><td>The React dashboard is verified by manual smoke-testing.</td><td>The Vitest suite covers <code>src/server/**</code>, <code>src/lib/</code>, and <code>scripts/</code>. A frontend harness is on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</td></tr></tbody></table></div>
+<p>A stale <code>.port-runtime</code> is harmless, incidentally — nothing in the launch path
+reads it back. If auto-open lands on a refused connection, the server failed to
+start; check the console.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="by-design-tradeoffs">🔒 By-design tradeoffs</h2></summary>
+<div class="docs-section-body">
+<p>Documented choices, not bugs. Listed so you can decide whether the tradeoff
+fits your setup. Security reasoning for all of them:
+<a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Choice</th><th>Why</th><th>What it means for you</th></tr></thead><tbody><tr><td><strong>Keys are encrypted at rest but not from you.</strong></td><td>AES-256-GCM, key derived from a machine identity, salt beside the ciphertext.</td><td>It defeats a backup client or support bundle scooping up readable keys — not anything already running as you. Treat the config directory like a password-manager export.</td></tr><tr><td><strong>No auth on the local dashboard.</strong></td><td>The <code>127.0.0.1</code> bind is the access boundary — a machine boundary, not a user one.</td><td><code>HOST=0.0.0.0</code> widens trust, not just reach. Under it the Updates card and Logs view stop working for LAN visitors, deliberately; <code>npm run update</code> on the host still updates. A setup-token story is on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</td></tr><tr><td><strong>The MCP bridge is a second inbound surface, and the only pre-auth one.</strong></td><td>Three exact paths accept cross-origin requests, because a GM's Foundry page is not served from loopback.</td><td>Approval is deliberately not one of them. Pairing needs a bearer token, an origin allow-list built one approval at a time, and a handshake code. A paired client can ask anything — read the list under <strong>Surfaces</strong> occasionally.</td></tr><tr><td><strong>Only one campaign per install.</strong></td><td>Single-user, single-collection model.</td><td>Multi-campaign is on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</td></tr><tr><td><strong>The updater needs Git.</strong></td><td>It calls <code>git pull --ff-only</code>.</td><td>ZIP installs update by re-downloading and overwriting; gitignored files survive. Auto-detected, with a clear message.</td></tr><tr><td><strong><code>pdf-parse</code> and <code>mammoth</code> are unsandboxed.</strong></td><td>Best-in-class for Node; neither isolates documents.</td><td>The threat model assumes you only ingest documents you trust.</td></tr><tr><td><strong>Ollama must be on loopback.</strong></td><td>The SSRF guard in <code>routes/settings.ts</code> refuses anything else.</td><td>You cannot point Vault at a remote Ollama. Deliberate — it keeps the threat surface at "trust your own machine".</td></tr><tr><td><strong>Two <code>npm audit</code> high advisories have no fix.</strong></td><td>Both reach us through <code>@huggingface/transformers</code>, which runs the local embedding model: <code>sharp</code> (libvips image CVEs) and <code>adm-zip</code> via <code>onnxruntime-node</code>.</td><td>Neither path is reachable — Vault uses that package for text feature-extraction only, so it never decodes an image or opens a zip you supplied. CI accepts them by name, with a reason and a review date, and still fails on anything unlisted.</td></tr></tbody></table></div>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="how-to-file-an-issue">🐞 How to file an issue</h2></summary>
+<div class="docs-section-body">
+<p>If you've hit something not in this list:</p>
+<ol>
+<li>
+<p><strong><a href="https://github.com/KochiTusker/Tusks-Vault/issues/new" rel="noopener">Open a GitHub issue</a></strong>.</p>
+</li>
+<li>
+<p>Include:</p>
+<ul>
+<li><strong>What you expected</strong> to happen, and <strong>what actually happened.</strong></li>
+<li><strong>Version</strong> — the one on the About page, plus <code>git log -1 --oneline</code> if you cloned. The exact commit is far more useful than the release number.</li>
+<li><strong>Your OS</strong> (Windows / macOS / Linux + version).</li>
+<li><strong>Which LLM provider</strong> — Gemini, OpenRouter, Claude Code, or Ollama.</li>
+<li><strong>The relevant lines</strong> from the dashboard's <strong>Logs</strong> panel.</li>
+</ul>
+<p><strong>Easier: attach the diagnostic bundle.</strong> Vault writes <code>.diagnose/latest.md</code> automatically whenever a Discord reply errors, and you can build one on demand:</p>
+<pre><code class="language-sh">curl -X POST http://localhost:3000/api/diagnostics/bundle
+</code></pre>
+<p>It holds settings, lore resolution, git position and a scrubbed log tail — keys reduced to 6-character fingerprints, no lore content.</p>
+<p><strong>Spot-check either one before pasting.</strong> The secret-scrubber masks the documented key shapes automatically (Anthropic, OpenAI, Google, Discord, Slack, GitHub, AWS, Stripe, plus JWTs and PEM private-key armour), but it is a best-effort filter, not a guarantee.</p>
+</li>
+<li>
+<p>If it's a security report, <strong>don't post exploit details publicly</strong> — follow the disclosure process in <a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a>.</p>
+</li>
+</ol>
+<p>For questions, feature requests, or "is this normal?" type checks, <a href="https://github.com/KochiTusker/Tusks-Vault/issues/new/choose" rel="noopener">open an issue</a> — that is the fastest path today. A community Discord is on the <a href="/Tusks-Vault/docs/roadmap/">roadmap</a>.</p>
+</div>
+</details>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>🗺️ <a href="/Tusks-Vault/docs/roadmap/">Roadmap — what's planned next</a></li>
+<li>🔐 <a href="/Tusks-Vault/docs/security-policy/">Privacy &#x26; security threat model</a> · <a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li>📦 <a href="/Tusks-Vault/docs/about/dependencies/">Dependencies — what's installed and why</a></li>
+<li>❓ <a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ — common questions</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/troubleshooting/known-issues.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

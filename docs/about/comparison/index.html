@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparison — Tusk's Vault</title>
+<meta name="description" content="Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the current code — citations link to the source file…">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/about/comparison/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-11">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Comparison — Tusk's Vault">
+<meta property="og:description" content="Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the current code — citations link to the source file…">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/about/comparison/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comparison — Tusk's Vault">
+<meta name="twitter:description" content="Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the current code — citations link to the source file…">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Comparison",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/about/comparison/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Comparison",
+  "description": "Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the current code — citations link to the source file…",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/about/comparison/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-11"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/" aria-current="page">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Comparison</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#at-a-glance">🆚 At a glance</a></li><li><a href="#lite-and-the-full-vault">🧩 Lite and the full Vault</a></li><li><a href="#vaults-claims-verified-against-the-code">🔍 Vault's claims — verified against the code</a></li><li><a href="#what-happens-if-this-project-dies">⚰️ What happens if this project dies</a></li><li><a href="#tool-by-tool-the-nuance">🧭 Tool-by-tool — the nuance</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Comparison — Tusk's Vault vs the alternatives</h1>
+<p>Honest comparison to the tools TTRPG groups actually use today. Every claim here is verified against the current code — citations link to the source file that backs them. Each tool listed is good at what it's built for; this page is about helping you pick the right one for <em>your</em> table, not picking fights.</p>
+<p><strong>Arrived from the Foundry module?</strong> <a href="#lite-and-the-full-vault">Lite and the full Vault</a> is the section you want: what the module answers on its own, and what the application adds to it.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="at-a-glance">🆚 At a glance</h2></summary>
+<div class="docs-section-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Where it runs</th><th>What it costs</th><th>How it answers</th><th>Where you ask it</th></tr></thead><tbody><tr><td><strong>Tusk's Vault</strong></td><td>Your own machine</td><td>Free · MIT</td><td>Cited, from your own documents</td><td>Discord · Foundry · any MCP client</td></tr><tr><td><strong>Tusk's Vault Lite</strong> — <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">the Foundry module</a> alone</td><td>Your browser, inside Foundry</td><td>Free · MIT</td><td>Cited, from journal entries in the folders you choose</td><td>Foundry's chat bar</td></tr><tr><td><strong>NotebookLM</strong> (Google)</td><td>Google's servers</td><td>Free with a Google account</td><td>Cited, from what you upload</td><td>Its own tab</td></tr><tr><td><strong>World Anvil</strong></td><td>Their servers</td><td>Free tier · paid plans</td><td>You search and read it yourself</td><td>Its own tab</td></tr><tr><td><strong>LegendKeeper</strong></td><td>Their servers</td><td>Subscription</td><td>You search and read it yourself</td><td>Its own tab</td></tr><tr><td><strong>Kanka.io</strong></td><td>Their servers, or yours</td><td>Free tier · paid plans</td><td>You search your own records</td><td>Its own tab</td></tr><tr><td><strong>Obsidian + AI plugins</strong></td><td>Your own machine</td><td>App free · plugins vary</td><td>Whatever the plugin does</td><td>Its own window</td></tr><tr><td><strong>ChatGPT / Claude.ai direct</strong></td><td>Their servers</td><td>Free tier · paid plans</td><td>From whatever you attach — and invents when you haven't</td><td>Its own tab</td></tr><tr><td><strong>D&#x26;D Beyond</strong></td><td>Their servers</td><td>Free sheets · paid books</td><td>Rules and characters, not your campaign</td><td>Its own tab</td></tr></tbody></table></div>
+<p><strong>No ticks and crosses here.</strong> Running in the cloud is not a defect, and
+neither is having no AI in it: a wiki that renders a setting beautifully is
+doing the job it was built for, and a research notebook is meant to be read
+alone. Half these tools are a better answer than this one for the thing they
+were built to do, and a grid of red crosses would only have hidden that. The
+table says what each one <em>is</em> — the sections below say who should pick it.</p>
+<p><strong>It is still a table written by the person who made one of the rows</strong>, which
+is what makes a flattering row worth nothing on its own. So, plainly, what
+this one loses:</p>
+<ul>
+<li><strong>Setup.</strong> It wants Node, Git and a terminal before it will do anything.</li>
+<li><strong>Always available.</strong> It answers from the machine it runs on, so a sleeping
+PC is a silent bot. (You can still ask from a phone via Discord — as long as
+that machine is awake.)</li>
+<li><strong>Corpus size.</strong> The folder source stops including documents past roughly 200
+pages (<a href="/Tusks-Vault/docs/troubleshooting/known-issues/">known issues</a>).</li>
+<li><strong>Support.</strong> There is no team behind it and nobody to escalate to.</li>
+</ul>
+<p>Discord is Vault's oldest surface, not its only one: the same answer pipeline
+also serves <strong>Foundry VTT</strong> (via a companion module, <code>/tusk &#x3C;question></code> in the
+chat bar) and <strong>any MCP client</strong> — Claude Code, Claude Desktop, anything that
+speaks the protocol. See <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a>. Session recordings become
+documents in that same folder by way of <a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tomes</a>, so
+what the table above calls "your own documents" grows without you writing it
+up. "Free" means the software — MIT, no account, no subscription. You still
+pay whichever model you point it at, or nothing at all on Ollama.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="lite-and-the-full-vault">🧩 Lite and the full Vault</h2></summary>
+<div class="docs-section-body">
+<p>The <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">Foundry module</a> runs two ways,
+chosen in its own settings. <strong>Lite</strong> answers on its own, out of the journal
+entries in the folders you choose, with nothing else installed at all.
+<strong>Bridge</strong> points the same chat bar at Tusk's Vault running on the GM's machine.
+Same <code>/tusk</code> command either way, and the same citation rules — what changes is
+what it is reading, and what it is allowed to do with it.</p>
+<p>If you came here from the module, this is the row-by-row version of what
+downloading Vault actually gets you.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th></th><th><strong>Lite</strong> — the module alone</th><th><strong>Tusk's Vault</strong> — the application</th></tr></thead><tbody><tr><td>To install</td><td>Nothing beyond the module</td><td>A free download, plus Node and Git</td></tr><tr><td>Where your lore lives</td><td>Journal entries in the folders you choose — so wherever that world is hosted</td><td>The notes you already keep — Word, PDF, Markdown, or a whole <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></td></tr><tr><td>How much it can read</td><td>Only what fits into a single question</td><td>A folder of documents up to roughly 200 pages, all of it sent with every question; an <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a> can be far larger, because past a budget it sends a map plus the notes each question actually needs</td></tr><tr><td>Finding the right note</td><td>Matches the words you typed</td><td>Works out what you meant, so the page still turns up when you word it differently</td></tr><tr><td>Models</td><td>Gemini, on your own key</td><td>Gemini, ~400 more through OpenRouter, a Claude Code subscription you may already pay for, or a local model for nothing</td></tr><tr><td>With no API key at all</td><td>Still searches, and quotes the entries that match — nothing leaves your machine</td><td>A local model through Ollama answers in full, for nothing</td></tr><tr><td>Where your API key sits</td><td>In your browser — which every other module you install can read</td><td>Encrypted on disk and tied to that machine, so a backup, a sync folder or a support bundle carries nothing usable; never in a browser. Software already running as you can still read it</td></tr><tr><td>Voice</td><td>One archivist</td><td>Eight personas, or one you write</td></tr><tr><td>Guessing</td><td>Won't, ever</td><td>Speculative Mode reasons from established traits, cites what it used, and tags the answer <code>[speculation]</code> so it is never mistaken later for something you wrote</td></tr><tr><td>When it doesn't know</td><td>Tells you, and forgets</td><td>Records it as a lore gap; you answer once, and it applies your ruling to the same question asked differently</td></tr><tr><td>Who may ask, and who sees it</td><td>A per-world ask policy. It can additionally filter by Foundry's own permissions, per asker — but that is opt-in and off by default: out of the box it answers from every entry in the folders it reads</td><td>A per-world access mode and a per-install ceiling, but no notion of Foundry's permissions: it answers from the whole archive</td></tr><tr><td>Also answers in</td><td>—</td><td>Discord, and any MCP client — Claude Code, Claude Desktop, anything speaking the protocol</td></tr><tr><td>Session recordings</td><td>—</td><td><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tomes</a> turns them into chronicles, into the folder Vault reads</td></tr><tr><td>Price</td><td>Free · MIT</td><td>Free · MIT</td></tr></tbody></table></div>
+<p><strong>Read the permissions row twice, and then go and set it.</strong> Lite <em>can</em> be the
+safer of the two, but only once you choose it: the module ships with its lore
+scope set to answer from everything in the folders it reads, and the per-asker
+mode — where it asks Foundry what this particular player is allowed to open and
+answers only from that — is opt-in, in the module's own settings. Until you
+switch it on, a player asking Lite can be told about an entry they cannot open
+themselves.</p>
+<p>Vault has no notion of Foundry's permissions at all: it answers from your whole
+archive. So on either half, opening it to players is a decision about spoilers
+you make yourself — see <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> before
+switching that on.</p>
+<p><strong>Stay on Lite if</strong> the campaign already lives in Foundry journals, it fits, and
+you would rather not run anything on your own machine. It is not a trial, it
+does not expire, and nothing nags you.</p>
+<p><strong>Download Vault when</strong> you hit one of the walls above: notes that are not
+journal entries, a campaign too big for one question, a question worded
+differently from the note that answers it, or an API key you would rather was
+not sitting in a browser. Nothing is migrated and nothing is lost — you switch
+the module from Lite to Bridge in the same settings panel, and your journals
+stay exactly where they are.</p>
+<ul>
+<li>🎯 <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Set up Foundry — pairing, who may ask, and the spoiler trade-off</a></li>
+<li>🚀 <a href="/Tusks-Vault/docs/getting-started/installation/">Install Vault</a></li>
+<li>🧩 <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">The module on Foundry's package registry</a></li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="vaults-claims-verified-against-the-code">🔍 Vault's claims — verified against the code</h2></summary>
+<div class="docs-section-body">
+<p>Every claim made for Vault above is backed by code that exists in this repo:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Claim</th><th>Where it's enforced</th></tr></thead><tbody><tr><td><strong>Local-first</strong></td><td>Default bind is <code>127.0.0.1</code> — see <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/util/host-origin-guard.ts" rel="noopener"><code>host-origin-guard.ts</code></a>, which refuses requests whose <code>Host</code> is not a loopback literal.</td></tr><tr><td><strong>Source-grounded</strong></td><td>Canonical seven-rule block in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/system.ts" rel="noopener"><code>prompt/system.ts → CANONICAL_RULES_BLOCK</code></a> is force-appended whenever the chosen system prompt doesn't already contain it — citation discipline is structurally guaranteed, not configurable away.</td></tr><tr><td><strong>Off-corpus refusal</strong></td><td>Rule 3 requires the bot to emit the canonical refusal phrase verbatim; the lore-gap detector picks it up via <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/system.ts" rel="noopener"><code>LORE_GAP_TRIGGER_FRAGMENT</code></a> and routes the question to the dashboard's Lore Gaps tab.</td></tr><tr><td><strong>Discord-native</strong></td><td>Bot client in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/discord" rel="noopener"><code>src/server/discord/</code></a>, message handling in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/surfaces/discord.ts" rel="noopener"><code>src/server/surfaces/discord.ts</code></a>.</td></tr><tr><td><strong>Three ask surfaces, one pipeline</strong></td><td><code>SurfaceId</code> is <code>discord | foundry | mcp</code> (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/chat/types.ts" rel="noopener"><code>chat/types.ts</code></a>); all three call the same <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/chat/ask.ts" rel="noopener"><code>chat/ask.ts</code></a>, so persona, corpus and citation discipline are identical wherever the question came from.</td></tr><tr><td><strong>Encrypted keys</strong></td><td>AES-256-GCM, machine-bound, in the platform config dir — see <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/keys/crypto.ts" rel="noopener"><code>keys/crypto.ts</code></a>. Never plaintext on disk.</td></tr><tr><td><strong>MIT open-source</strong></td><td><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">LICENSE</a>.</td></tr><tr><td><strong>One outbound network call per answer</strong></td><td>The LLM adapter — <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/openrouter.ts" rel="noopener"><code>openrouter.ts</code></a> or <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/gemini.ts" rel="noopener"><code>gemini.ts</code></a>, Ollama over loopback, or a local Claude Code process that talks to Anthropic on your behalf. Discord adds its gateway connection when that surface is on; Foundry and MCP add none. No telemetry, no analytics, no phone-home.</td></tr><tr><td><strong>Nothing to install inside the app</strong></td><td>Local models and personas are ordinary features, not modules. There is no plugin system to learn and nothing to enable.</td></tr></tbody></table></div>
+<p>Lite's half is not in this repository — the module is its own codebase, and the
+rules it holds itself to are restated there. The version-pinned contract covers
+the <em>Bridge</em> wire protocol, which is the part the two share; Lite never talks to
+Vault, so its citation and refusal rules are asserted in the module's own suite
+rather than cross-checked from here.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-happens-if-this-project-dies">⚰️ What happens if this project dies</h2></summary>
+<div class="docs-section-body">
+<p>Worth asking of anything you are about to trust with years of worldbuilding,
+and it is the fair question to put to a project maintained by one person.</p>
+<p><strong>Your source material is untouched.</strong> Vault reads the folder you pointed it
+at. It does not convert your documents, import them into a database, or move
+them — there is no database, and <code>Tusks-Lore/</code> after a year of use contains
+the same files you put there. Delete Vault and the folder is exactly what it
+was.</p>
+<p><strong>There is no export step, because nothing was captured.</strong> Everything Vault
+adds sits beside your documents as plain, pretty-printed JSON you can open in
+any editor:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>File</th><th>What it holds</th></tr></thead><tbody><tr><td><code>clarifications.json</code></td><td>The rulings you recorded, question and answer as text</td></tr><tr><td><code>lore_gaps.json</code></td><td>Questions your notes did not cover</td></tr><tr><td><code>clarifications.embeddings.json</code></td><td>Base64 vectors used for matching — derived data, regenerable</td></tr></tbody></table></div>
+<p>An export button exists in hosted tools because the tool is holding something
+of yours. Nothing here is holding anything.</p>
+<p><strong>Nothing switches off, because nothing is running anywhere else.</strong> There are
+no servers, no account, no licence check and no phone-home, so there is no
+lever anyone can pull to stop an install that already works. It keeps working
+whether or not the project does.</p>
+<p><strong>The code is MIT.</strong> Fork it, patch it, hand it to whoever wants to keep it
+going, or lift the one part you liked. <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">LICENSE</a>.</p>
+<h3 id="what-you-would-actually-lose">What you would actually lose</h3>
+<p>Not nothing, and the honest version matters more than the reassuring one:</p>
+<ul>
+<li><strong>Fixes stop.</strong> Bugs on the <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">known issues</a>
+list stay there.</li>
+<li><strong>Nothing adapts around it.</strong> If Discord changes its gateway, or a provider
+changes its API or retires a model, an unmaintained Vault breaks at that
+surface and stays broken until someone patches it. This is the realistic
+way it dies — not deletion, but drift.</li>
+<li><strong>Dependencies rot.</strong> The security advisories that ship in any Node project
+stop being triaged.</li>
+</ul>
+<p>So the risk is real, but it is bounded, and it is a different shape from the
+one hosted tools carry. There, the failure mode is your material becoming
+inaccessible on somebody else's schedule. Here, the failure mode is a tool
+that stops improving next to a folder of files that never depended on it.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="tool-by-tool-the-nuance">🧭 Tool-by-tool — the nuance</h2></summary>
+<div class="docs-section-body">
+<p>One caveat before the list: everything said about Vault below is checked against this repository's code, but everything said about the <em>other</em> tools is a snapshot of products that are actively developed and priced by other people. Several of them are adding AI features. Check the current state of anything you are about to pay for rather than taking this page's word for it.</p>
+<p>Lite is not in this list — it is the same project rather than an alternative to
+it, and it has <a href="#lite-and-the-full-vault">its own section</a> above.</p>
+<h3 id="notebooklm-google">NotebookLM (Google)</h3>
+<p>This is the closest comparison, so it gets the longest entry — and the concession first.</p>
+<p><strong>What it's great at, and better at than this:</strong> cloud-hosted retrieval over
+documents you upload, with exact source citations and a genuinely excellent
+interface. Free with a Google account, nothing to install, and built by a large
+team with a budget — it will keep improving faster than a one-person project
+can.</p>
+<p>If what you want is to interrogate a pile of documents carefully and on your
+own, use NotebookLM. This is not trying to beat it at that.</p>
+<p><strong>What it does not attempt.</strong> The distinction worth drawing is not quality, it is
+purpose. NotebookLM is built for a reader alone with their sources. Almost everything
+below is something a research notebook has no reason to have an opinion about:</p>
+<ul>
+<li><strong>It is a tab you visit, not a place answers appear.</strong> Vault answers in your campaign
+Discord and in Foundry's chat bar, where the argument is already happening and
+everyone at the table sees the reply. That is the difference between settling a
+question and looking one up. (A per-world access mode decides whether players may ask
+at all, and whether answers are whispered or posted — see
+<a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a>.)</li>
+<li><strong>It has one voice.</strong> Vault ships eight personas, from a scholarly archivist to a
+foul-mouthed sellsword, and the citation rules survive all of them. A table's tone is
+half of why anyone enjoys asking.</li>
+<li><strong>It will not speculate, deliberately.</strong> "Who is most likely to start a tavern fight"
+has no answer in anybody's notes. Vault's Speculative Mode reasons from established
+character traits, cites the evidence it used, and tags the conclusion <code>[speculation]</code>
+so a guess is never mistaken later for something the GM wrote. NotebookLM's grounding
+is a design commitment, and a correct one for research; it just rules out the
+questions a table most enjoys.</li>
+<li><strong>It sanitises grim material.</strong> Campaign fiction inherits its genre — war, cruelty,
+horror, grief. Vault's prompt states plainly what the corpus is (authored fiction, the
+asker is one of its authors, the task is recitation) and recounts a scene as written.
+A summariser that softens the author's own writing back to them is failing at the job.</li>
+<li><strong>A GM ruling is not a first-class thing.</strong> Vault's clarifications persist, embed, and
+get re-applied to differently-worded questions later, outranking the documents when
+they disagree. NotebookLM has no concept of "the GM overrides the source".</li>
+<li><strong>Your documents leave your machine.</strong> Uploads live on Google's infrastructure. Vault
+keeps the corpus and the index local, sends only matched passages to the model you
+chose, and can run entirely offline against a local model.</li>
+<li><strong>You cannot change it.</strong> Vault is MIT, forkable, and lets you pick the model — or
+swap it mid-campaign.</li>
+</ul>
+<p><strong>Pick NotebookLM if</strong> you want a polished cloud research notebook, you are mostly
+working alone, and you are content for Google to hold your campaign.</p>
+<p><strong>Pick Vault if</strong> the answer needs to land where your group can see it, in a voice they
+picked, about material a cloud summariser would flinch at — and you would rather the
+whole thing ran on your own machine.</p>
+<p><strong>Honestly: both.</strong> They are not substitutes. Nothing stops you researching a setting in
+NotebookLM and running Vault at the table.</p>
+<h3 id="world-anvil">World Anvil</h3>
+<p><strong>What it's great at:</strong> worldbuilding as a hypertext wiki. Beautiful presentation. Excellent for setting publication.</p>
+<p><strong>Where Vault fits a different niche:</strong></p>
+<ul>
+<li>World Anvil is for <em>building</em> worlds and <em>presenting</em> them. Vault is for <em>querying</em> them at the table. Complementary, not competitive.</li>
+<li>World Anvil is a wiki, not a question-answering system. Mid-session lookups still mean searching and clicking through articles by hand.</li>
+<li>The free tier is a real, usable worldbuilding tier — you can write and publish articles on it. Presentation, privacy and organisational features are what the paid tiers add.</li>
+<li>You can export World Anvil articles and drop them into <code>Tusks-Lore/</code> — they come out as Markdown or HTML, both of which Vault's loader ingests (see <code>INGESTIBLE_EXTENSIONS</code> in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/knowledge/loader.ts" rel="noopener"><code>loader.ts</code></a>).</li>
+</ul>
+<p><strong>Pick World Anvil if</strong> you want a beautiful public-facing wiki for your setting.
+<strong>Pick Vault if</strong> you want to query an already-written setting from inside Discord during play.</p>
+<h3 id="legendkeeper">LegendKeeper</h3>
+<p><strong>What it's great at:</strong> tree-structured world wikis with timelines, maps, relationship graphs. Solid private-campaign UX.</p>
+<p><strong>Where Vault fits a different niche:</strong></p>
+<ul>
+<li>Subscription. Vault is free forever (MIT).</li>
+<li>LegendKeeper is a destination — players have to navigate to it. Vault is invoked where the conversation already is.</li>
+<li>No AI. No Discord. No voice integration.</li>
+</ul>
+<p><strong>Pick LegendKeeper if</strong> you love a structured private wiki and you want first-party tools for relationships/timelines.
+<strong>Pick Vault if</strong> you want zero subscription and you live in Discord during play.</p>
+<h3 id="kankaio">Kanka.io</h3>
+<p><strong>What it's great at:</strong> open-source campaign management with entities, relationships, calendars, journals. Self-host option exists. Generous free tier.</p>
+<p><strong>Where Vault fits a different niche:</strong></p>
+<ul>
+<li>Kanka is a structured CRM-for-campaigns. Great if you want forms and fields. Vault is unstructured — drop any document in <code>Tusks-Lore/</code> and the bot reads it.</li>
+<li>No AI retrieval, no Discord-native answer flow.</li>
+<li>Players have to open another tab to use Kanka. Vault is right where they already are.</li>
+</ul>
+<p><strong>Pick Kanka if</strong> you love structured entity tracking and a campaign-management UI.
+<strong>Pick Vault if</strong> your campaign already has 200 pages of free-form notes and you'd rather query them than re-enter them.</p>
+<h3 id="obsidian-ai-plugins-smart-connections-etc">Obsidian + AI plugins (Smart Connections, etc.)</h3>
+<p><strong>What it's great at:</strong> local-first markdown vault. Massive plugin ecosystem. Best-in-class personal knowledge management.</p>
+<p><strong>Where Vault fits a different niche:</strong></p>
+<ul>
+<li>Obsidian is for <em>you, the DM</em>, at your desk. Vault is for <em>everyone in your Discord</em>, during play.</li>
+<li>AI plugins for Obsidian vary widely in quality, citation behaviour, and refusal handling. Vault is purpose-built around "never invent campaign lore" with a Lore Gaps log when it doesn't know.</li>
+<li>No Discord integration in Obsidian.</li>
+<li>You can use both: keep your Obsidian vault as your DM workspace, then symlink or export the relevant notes into <code>Tusks-Lore/</code> for player-facing answers.</li>
+</ul>
+<p><strong>Pick Obsidian if</strong> you want a personal markdown brain.
+<strong>Pick Vault if</strong> you want a player-facing campaign brain.</p>
+<h3 id="chatgpt-claudeai-direct">ChatGPT / Claude.ai direct</h3>
+<p><strong>What it's great at:</strong> general-purpose AI conversation. Huge capabilities. Free tiers exist. Both have a Projects feature that keeps uploaded files attached across chats, so "no memory of your campaign" is no longer a fair charge.</p>
+<p><strong>Where Vault fits a different niche:</strong></p>
+<ul>
+<li><strong>Ungrounded, they will invent your campaign.</strong> Asked "who is Ser Alric Vane?" with nothing attached, both will confidently produce a Ser Alric Vane. Vault is built not to: the canonical seven-rule block is appended to every prompt whatever persona is active (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/system.ts" rel="noopener"><code>prompt/system.ts</code></a>), and an unanswerable question returns the refusal phrase, which Vault logs as a lore gap for you to fill. No prompt makes a model incapable of slipping — the difference is that here a slip breaks a stated rule, and leaves a citation you can go and check.</li>
+<li>Attaching files to a Project is a manual upload you keep re-doing as the campaign grows. Vault reads a folder or an Obsidian vault in place, re-walked on every question, so a note you edited two minutes ago is already current.</li>
+<li>Neither reaches your table. There is no Discord bot and nothing that answers in Foundry's chat bar.</li>
+<li>Whatever you attach lives on OpenAI's or Anthropic's servers. With Vault your documents stay on disk; only the question and the matched snippets travel to the provider you picked — or nothing leaves at all on Ollama.</li>
+</ul>
+<p><strong>Pick raw ChatGPT/Claude if</strong> you want general AI conversation, and you don't mind managing the uploads and re-checking the citations yourself.
+<strong>Pick Vault if</strong> you want answers tied to your actual campaign notes, cited by filename, delivered where your table already is.</p>
+<h3 id="dd-beyond">D&#x26;D Beyond</h3>
+<p><strong>Different category.</strong> D&#x26;D Beyond is for the <em>rules</em> and <em>characters</em>; Vault is for the <em>campaign-specific lore</em>. They don't overlap. Use both.</p>
+<h3 id="roll20-foundry-vtt-chat">Roll20 / Foundry VTT chat</h3>
+<p><strong>Different category, and for Foundry, a shipped integration.</strong> These are virtual tabletops with chat as a side feature — they host the game, they don't answer questions about it.</p>
+<p>For <strong>Foundry VTT</strong> the two are already joined. A companion module — <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">on Foundry's package registry</a>, searchable by name in the <em>Install Module</em> browser — puts <code>/tusk &#x3C;question></code> in the chat bar, and the answer comes back cited, whispered or public, from the same corpus Discord queries. Pairing is a matching-code handshake, who may ask is set per world, and Vault keeps a separate per-install ceiling on answering non-GMs.</p>
+<p>That module also answers with no Vault behind it at all, from the journal
+entries in the folders you choose — <a href="#lite-and-the-full-vault">Lite and the full
+Vault</a> is what each half can do.</p>
+<p>Read <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> before switching it on: Foundry's chat log <em>is</em> the table, so a whispered answer still hands the asker lore you have not revealed.</p>
+<p><strong>Roll20</strong> has no equivalent yet — it is on the <a href="/Tusks-Vault/docs/roadmap/">roadmap</a> wishlist, gated behind their Pro-only API.</p>
+</div>
+</details>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>🎲 <a href="/Tusks-Vault/docs/about/use-cases/">Use cases — what players and DMs actually ask</a></li>
+<li>🚀 <a href="/Tusks-Vault/docs/getting-started/installation/">Setup — get answering in 5 minutes</a></li>
+<li>🎯 <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT — <code>/tusk</code> in the chat bar, and who may use it</a></li>
+<li>🧩 <a href="https://foundryvtt.com/packages/tusks-vault" rel="noopener">The Foundry module</a> — answers on its own, or bridges to Vault</li>
+<li>🪶 <a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tomes companion project →</a></li>
+<li>❓ <a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ — including honest costs</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/about/comparison.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dependencies — Tusk's Vault</title>
+<meta name="description" content="Every package Vault depends on, with the rationale for each choice. Skip to Why these choices for the high-level reasoning.">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/about/dependencies/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-07">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="Dependencies — Tusk's Vault">
+<meta property="og:description" content="Every package Vault depends on, with the rationale for each choice. Skip to Why these choices for the high-level reasoning.">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/about/dependencies/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dependencies — Tusk's Vault">
+<meta name="twitter:description" content="Every package Vault depends on, with the rationale for each choice. Skip to Why these choices for the high-level reasoning.">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Dependencies",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/about/dependencies/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Dependencies",
+  "description": "Every package Vault depends on, with the rationale for each choice. Skip to Why these choices for the high-level reasoning.",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/about/dependencies/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-07"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/" aria-current="page">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>Dependencies</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#base-runtime-dependencies">🧱 Base runtime dependencies</a></li><li><a href="#what-the-optional-connections-need">🔌 What the optional connections need</a></li><li><a href="#dev-dependencies">🧪 Dev dependencies</a></li><li><a href="#why-these-choices">🤔 Why these choices</a></li><li><a href="#security-posture-of-dependencies">🔒 Security posture of dependencies</a></li><li><a href="#whats-not-in-here">🧮 What's NOT in here</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>Dependencies — Tusk's Vault</h1>
+<p>Every package Vault depends on, with the rationale for each choice. Skip to <a href="#why-these-choices">Why these choices</a> for the high-level reasoning.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="base-runtime-dependencies">🧱 Base runtime dependencies</h2></summary>
+<div class="docs-section-body">
+<p>These are required for Vault to run at all.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Package</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td><code>@google/genai</code></td><td><code>^1.29.0</code></td><td>Gemini provider adapter (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/gemini.ts" rel="noopener"><code>src/server/llm/gemini.ts</code></a>)</td></tr><tr><td><code>openai</code></td><td><code>^6.38.0</code></td><td>OpenRouter speaks the OpenAI wire format, so its adapter uses this SDK (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/openrouter.ts" rel="noopener"><code>src/server/llm/openrouter.ts</code></a>). Claude and GPT models are reached through it.</td></tr><tr><td><code>discord.js</code></td><td><code>^14.25.1</code></td><td>Discord bot client (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/discord" rel="noopener"><code>src/server/discord/</code></a>)</td></tr><tr><td><code>@huggingface/transformers</code></td><td><code>^4.2.0</code></td><td>Local MiniLM embeddings on CPU (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/embeddings" rel="noopener"><code>src/server/embeddings/</code></a>)</td></tr><tr><td><code>express</code></td><td><code>^4.21.2</code></td><td>HTTP server framework</td></tr><tr><td><code>vite</code></td><td><code>^6.2.0</code></td><td>Build tool + dev server (also used as Express middleware in dev)</td></tr><tr><td><code>@vitejs/plugin-react</code></td><td><code>^5.0.4</code></td><td>Vite plugin for React JSX/TSX</td></tr><tr><td><code>@tailwindcss/vite</code></td><td><code>^4.1.14</code></td><td>Tailwind CSS 4 build integration</td></tr><tr><td><code>react</code></td><td><code>^19.0.0</code></td><td>Dashboard UI</td></tr><tr><td><code>react-dom</code></td><td><code>^19.0.0</code></td><td>Dashboard UI</td></tr><tr><td><code>react-markdown</code></td><td><code>^10.1.0</code></td><td>Renders these very docs inside the dashboard's Help → Docs viewer (<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/components/DocsViewer.tsx" rel="noopener"><code>DocsViewer.tsx</code></a>)</td></tr><tr><td><code>remark-gfm</code></td><td><code>^4.0.1</code></td><td>GitHub-flavoured markdown extensions for <code>react-markdown</code> — tables and task lists</td></tr><tr><td><code>rehype-raw</code></td><td><code>^7.0.0</code></td><td>Lets the same renderer handle the raw <code>&#x3C;details class="docs-section"></code> blocks these pages are written with</td></tr><tr><td><code>motion</code></td><td><code>^12.23.24</code></td><td>UI animations (transitions, candle loader)</td></tr><tr><td><code>lucide-react</code></td><td><code>^0.546.0</code></td><td>Icon set used throughout the dashboard</td></tr><tr><td><code>mammoth</code></td><td><code>^1.12.0</code></td><td>DOCX → text extraction</td></tr><tr><td><code>pdf-parse</code></td><td><code>^2.4.5</code></td><td>PDF → text extraction</td></tr><tr><td><code>multer</code></td><td><code>^2.1.1</code></td><td>Multipart file upload handling</td></tr><tr><td><code>dotenv</code></td><td><code>^17.2.3</code></td><td>Load <code>.env.local</code> at boot</td></tr><tr><td><code>env-paths</code></td><td><code>^3.0.0</code></td><td>Cross-platform per-user config dir resolver — where the encrypted key store, personas, the OpenRouter catalogue cache, the model-availability cache, the paired-MCP-client list and the vault map live</td></tr><tr><td><code>@types/multer</code></td><td><code>^2.1.0</code></td><td>Type definitions for multer</td></tr></tbody></table></div>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-the-optional-connections-need">🔌 What the optional connections need</h2></summary>
+<div class="docs-section-body">
+<p><strong>None.</strong> Every provider Vault talks to reuses what is already here.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Connection</th><th>Extra dependencies pulled in</th><th>Why</th></tr></thead><tbody><tr><td>🦙 <strong>Ollama</strong></td><td>None</td><td>A raw <code>fetch</code> to <code>http://localhost:11434</code> — no SDK required. See <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/ollama.ts" rel="noopener"><code>src/server/llm/ollama.ts</code></a>.</td></tr><tr><td>🌐 <strong>OpenRouter</strong></td><td>None</td><td>Wire-compatible with the OpenAI API, so it uses the <code>openai</code> SDK already in the base table — the one dependency, shared. See <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/openrouter.ts" rel="noopener"><code>src/server/llm/openrouter.ts</code></a>.</td></tr><tr><td>🖥 <strong>Claude Code</strong></td><td>None</td><td>A child process running the CLI you already installed.</td></tr><tr><td>🎭 <strong>Personas</strong></td><td>None</td><td>Reuses the existing LLM adapter (via the active provider) for the AI-generate feature. Stores user personas in a plain JSON file via the base <code>fs</code> module.</td></tr><tr><td>🎲 <strong>Foundry VTT / MCP</strong></td><td>None</td><td>The bridge is hand-rolled JSON-RPC over Express — no MCP SDK. Three tools and one transport is less code than wiring a framework in. See <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/tooling/foundry-contract.md" rel="noopener">Foundry contract</a>.</td></tr></tbody></table></div>
+<p>A new provider that needs a package should declare it in this table and add it to <code>package.json</code> like any other dependency. Vault deliberately does not lazy-load packages at runtime — that would make whether a feature works depend on whether the network is up.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="dev-dependencies">🧪 Dev dependencies</h2></summary>
+<div class="docs-section-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Package</th><th>Version</th><th>Purpose</th></tr></thead><tbody><tr><td><code>@types/express</code></td><td><code>^4.17.21</code></td><td>Type definitions for Express</td></tr><tr><td><code>@types/node</code></td><td><code>^22.14.0</code></td><td>Type definitions for Node</td></tr><tr><td><code>autoprefixer</code></td><td><code>^10.4.21</code></td><td>PostCSS plugin for vendor prefixes</td></tr><tr><td><code>rehype-stringify</code></td><td><code>^10.0.1</code></td><td>Markdown → HTML, for the docs-site builder (maintainer tooling, not shipped)</td></tr><tr><td><code>remark-parse</code></td><td><code>^11.0.0</code></td><td>Markdown parser for the same builder</td></tr><tr><td><code>remark-rehype</code></td><td><code>^11.1.2</code></td><td>Bridges the markdown AST to the HTML AST for the same builder</td></tr><tr><td><code>tailwindcss</code></td><td><code>^4.1.14</code></td><td>CSS framework</td></tr><tr><td><code>tsx</code></td><td><code>^4.21.0</code></td><td>TypeScript runner — <code>npm start</code> is <code>tsx server.ts</code></td></tr><tr><td><code>typescript</code></td><td><code>~5.8.2</code></td><td>TypeScript compiler (<code>npm run lint</code> = <code>tsc --noEmit</code>)</td></tr><tr><td><code>unified</code></td><td><code>^11.0.5</code></td><td>The pipeline the three remark/rehype plugins above plug into</td></tr><tr><td><code>vite</code></td><td><code>^6.2.0</code></td><td>Build tool (also listed in runtime — npm handles the dedup)</td></tr><tr><td><code>vitest</code></td><td><code>^4.1.6</code></td><td>Test runner. <code>npm test</code> covers <code>src/server/**/*.test.ts</code> (path resolution, key store, prompt assembly, the Obsidian reader's read-only guard, atomic writes, security middleware, the MCP bridge and its Foundry wire contract), <code>src/lib/**/*.test.ts</code>, and <code>scripts/**/*.test.mjs</code>. <code>fileParallelism</code> is off so files run sequentially.</td></tr></tbody></table></div>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="why-these-choices">🤔 Why these choices</h2></summary>
+<div class="docs-section-body">
+<h3 id="why-only-two-cloud-llm-sdks">Why only two cloud LLM SDKs?</h3>
+<p>Vault is <strong>LLM-agnostic by design</strong> (see <a href="/Tusks-Vault/docs/about/how-its-built/">How it's built</a>), and the obvious shape is one SDK per lab. It isn't the one used: OpenRouter reaches Claude and GPT on one key and one bill, so a per-lab SDK would add a dependency, a key slot and a bill to reach models already reachable.</p>
+<p>What is left is <code>@google/genai</code> and <code>openai</code>. Gemini keeps a direct slot deliberately: it is meaningfully cheaper called directly than through the aggregator. <code>openai</code> stays because OpenRouter <em>is</em> the OpenAI wire format — that dependency is not drift, it is the OpenRouter client.</p>
+<p>Note that both are ordinary top-level imports, not lazy ones: <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/registry.ts" rel="noopener"><code>registry.ts</code></a> imports every adapter statically, so both SDKs load at boot regardless of which provider you have selected. That is the deliberate trade — see the note on lazy-loading in the connections table above. Adding a fifth provider is one new file in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm" rel="noopener"><code>src/server/llm/</code></a> implementing the <code>LlmAdapter</code> interface, plus a registry entry.</p>
+<h3 id="why-minilm-via-huggingfacetransformers">Why MiniLM via <code>@huggingface/transformers</code>?</h3>
+<p>We needed local, CPU-only embeddings. MiniLM-L6-v2 produces 384-dim vectors that are good enough for short-question semantic matching (clarification retrieval), runs in ~50–300 ms per embedding on CPU, and weighs ~25 MB cached. The transformers.js port lets us run it without a Python sidecar.</p>
+<p>Alternatives considered: OpenAI embeddings (cloud round-trip, conflicts with local-first), <code>e5-small</code> (similar quality, larger model), <code>nomic-embed-text</code> (better quality, much larger). MiniLM hit the sweet spot — clarifications are short, the embedding step has to be invisible to the user, and we can't assume a GPU.</p>
+<h3 id="why-pdf-parse-mammoth">Why pdf-parse + mammoth?</h3>
+<ul>
+<li><strong><code>pdf-parse</code></strong> takes a Buffer — exactly what the multer upload flow and
+<code>fs.readFileSync</code> already hand it — and needs no system-level PDF library, so
+an install doesn't turn into a Poppler hunt.</li>
+<li><strong><code>mammoth</code></strong> flattens complex tables, nested lists and embedded styles down
+to plain text, which is the only thing an LLM prompt wants from a DOCX.</li>
+</ul>
+<p>Both are widely used and actively maintained. Neither sandboxes documents, and
+neither has a per-parse timeout or size cap today — see
+<a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a>.</p>
+<h3 id="why-no-database">Why no database?</h3>
+<p>The data model is <strong>small files per concern</strong>, split by what should survive what.</p>
+<p>Campaign state lives inside the resolved <code>Tusks-Lore/</code> folder, so it survives a clean reinstall of the app:</p>
+<ul>
+<li><code>clarifications.json</code> + <code>clarifications.embeddings.json</code> — corrections + vectors.</li>
+<li><code>lore_gaps.json</code> — unanswered questions.</li>
+</ul>
+<p>Per-install state lives in the platform config directory — per-machine, rebuildable, and deliberately <em>not</em> following a campaign folder around:</p>
+<ul>
+<li><code>keys.enc</code> + <code>keys.salt</code> — your keys, encrypted (AES-256-GCM; the key is scrypt-derived from a stable machine identity). <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/keys/crypto.ts" rel="noopener"><code>keys/crypto.ts</code></a> is honest about what this is: obfuscation with authenticated encryption, not high-grade cryptography — anything running as you on this machine can derive the key. What it defeats is the realistic threat, a backup client or a support bundle hoovering up a file literally named <code>api-keys.json</code>.</li>
+<li><code>personas.user.json</code> — your own personas.</li>
+<li>The OpenRouter model-catalogue cache, the model-availability cache, and the per-vault AI vault map.</li>
+<li><code>mcp-clients.json</code> — paired MCP clients, tokens stored only as SHA-256 hashes.</li>
+</ul>
+<p>And <code>settings.json</code> stays at the repo root for dashboard preferences. Every one of these writes goes through the atomic-write helper, and on POSIX the key store is <code>0o600</code>.</p>
+<p>For a single-user local-first tool with hundreds (not millions) of records, JSON files are simpler, debuggable by hand, and have zero runtime cost. If your campaign grows to thousands of lore documents and the JSON stores get unwieldy, that's the trigger to add a real vector store / SQLite layer — tracked in the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</p>
+<h3 id="why-vite-as-express-middleware-in-dev">Why Vite as Express middleware in dev?</h3>
+<p>Vault runs <strong>one HTTP server</strong>, not two. Vite is registered as Express middleware in development mode (see <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/index.ts" rel="noopener"><code>src/server/index.ts</code></a>), so the React dashboard and the bot's HTTP API share the same socket. That means:</p>
+<ul>
+<li>No "Vite is on 5173, server is on 3000, why don't they talk to each other" confusion.</li>
+<li>One port to bind, one port to fall back from.</li>
+<li>Same <code>fetch("/api/...")</code> from the dashboard, no proxy config.</li>
+</ul>
+<p>In production (<code>npm run build</code>), Vite drops out entirely — Express serves the prebuilt static bundle directly.</p>
+<h3 id="why-react-19-tailwind-4-motion">Why React 19 + Tailwind 4 + Motion?</h3>
+<ul>
+<li><strong>React 19</strong> for the concurrent rendering improvements (matters for the multi-tab dashboard).</li>
+<li><strong>Tailwind 4</strong> because it's the current major and the new Vite plugin is meaningfully faster.</li>
+<li><strong>Motion</strong> (the rebranded Framer Motion) for the candle loaders, rune dividers, and panel transitions — light footprint, mature API.</li>
+</ul>
+<p>If you're forking and want a smaller bundle, the easiest cut is Motion. The fantasy animations are 60-80 KB; the rest of the dashboard is bone-stock React.</p>
+<h3 id="why-env-paths">Why <code>env-paths</code>?</h3>
+<p>Per-install state — the encrypted key store, personas, caches — lives in a cross-platform per-user config directory rather than the repo. Vault asks for <code>envPaths("tusks-vault", { suffix: "" }).config</code> (the empty suffix drops env-paths' default <code>-nodejs</code>), which resolves to:</p>
+<ul>
+<li>Windows: <code>%APPDATA%\tusks-vault\Config\</code></li>
+<li>macOS: <code>~/Library/Preferences/tusks-vault/</code></li>
+<li>Linux: <code>$XDG_CONFIG_HOME/tusks-vault/</code>, defaulting to <code>~/.config/tusks-vault/</code></li>
+</ul>
+<p>This means your keys and settings survive a <code>git clean -fdx</code> and can't be accidentally committed. <code>TUSKS_VAULT_CONFIG_DIR</code> overrides it, for a portable install or a test.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="security-posture-of-dependencies">🔒 Security posture of dependencies</h2></summary>
+<div class="docs-section-body">
+<p><strong>Check, don't assume.</strong> A "0 vulnerabilities as of this commit" line in a doc is true for about a week — advisories land against dependencies that have not changed. The current answer is whatever <code>npm audit --omit=dev</code> says on your checkout, and the honest thing for this page to record is the <em>policy</em>, not a number that quietly rots.</p>
+<p>The gate is <code>--omit=dev --audit-level=high</code>: shipping dependencies only, high and critical only. Dev-only tooling is excluded deliberately — a vulnerability in a test runner is not a vulnerability in what a user installs — and low/moderate findings in a locally-bound, single-user tool do not justify a forced major bump.</p>
+<p>Hardening practices:</p>
+<ul>
+<li><code>npm audit --omit=dev --audit-level=high</code> runs in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/.github/workflows/ci.yml" rel="noopener">CI</a> on every push to <code>main</code> and every pull request against it, scoped to the dependencies that actually ship.</li>
+<li>The two highest-risk parsers (<code>pdf-parse</code>, <code>mammoth</code>) will gain resource limits (timeout + size cap) in a future release — tracked in <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a>.</li>
+<li>The in-app updater already uses <code>git pull --ff-only</code> (refuses on diverged branches) and deliberately never runs <code>npm install</code> in-process — see <a href="/Tusks-Vault/docs/getting-started/installation/">Setup.md → Updating</a>.</li>
+</ul>
+<p>See <a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a> for the full threat model.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="whats-not-in-here">🧮 What's NOT in here</h2></summary>
+<div class="docs-section-body">
+<p>Choices we explicitly avoided, with reasons:</p>
+<ul>
+<li><strong>No telemetry / analytics SDK.</strong> Local-first means no phone-home.</li>
+<li><strong>No vector-database client</strong> (Pinecone / Weaviate / Chroma). Embeddings live in a 384-dim Float32Array on disk; we don't need a service.</li>
+<li><strong>No auth library</strong> (yet). The dashboard is loopback-only by default. A one-time setup token is on the roadmap for users who need LAN exposure.</li>
+<li><strong>No state management library</strong> (Redux / Zustand). The dashboard is small enough that <code>useState</code> + lifted state + a custom hook or two (<code>usePersonas</code>) is fine.</li>
+<li><strong>No CSS-in-JS runtime.</strong> Tailwind classes handle 100% of the styling.</li>
+<li><strong>No PostgreSQL / SQLite / Redis.</strong> See "Why no database" above.</li>
+<li><strong>No Python sidecar.</strong> Embeddings run via <code>@huggingface/transformers</code> in pure JS. A future feature might want one — offline speech-to-text, say — but it would be optional and never required to run Vault.</li>
+</ul>
+</div>
+</details>
+<hr>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>🧠 <a href="/Tusks-Vault/docs/about/how-its-built/">Architecture — how it all fits together</a></li>
+<li>🔌 <a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Providers — the four connections</a></li>
+<li>🔐 <a href="/Tusks-Vault/docs/security/privacy/">Privacy — what each dep does and doesn't see</a></li>
+<li>🐞 <a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Issues — known limitations</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/about/dependencies.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>

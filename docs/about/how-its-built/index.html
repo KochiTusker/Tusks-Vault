@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it's built — Tusk's Vault</title>
+<meta name="description" content="How Tusk's Vault turns &quot;an @-mention in Discord&quot; into a cited, source-grounded answer. This page is written to be readable by both seasoned developers and…">
+<link rel="canonical" href="https://kochitusker.github.io/Tusks-Vault/docs/about/how-its-built/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="article:modified_time" content="2026-09-11">
+<meta property="og:site_name" content="Tusk's Vault">
+<meta property="og:title" content="How it's built — Tusk's Vault">
+<meta property="og:description" content="How Tusk's Vault turns &quot;an @-mention in Discord&quot; into a cited, source-grounded answer. This page is written to be readable by both seasoned developers and…">
+<meta property="og:url" content="https://kochitusker.github.io/Tusks-Vault/docs/about/how-its-built/">
+<meta property="og:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How it's built — Tusk's Vault">
+<meta name="twitter:description" content="How Tusk's Vault turns &quot;an @-mention in Discord&quot; into a cited, source-grounded answer. This page is written to be readable by both seasoned developers and…">
+<meta name="twitter:image" content="https://kochitusker.github.io/Tusks-Vault/docs/assets/tusks-vault-social-card.jpg">
+<meta name="theme-color" content="#12100c">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="/Tusks-Vault/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/Tusks-Vault/styles.css">
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-decorative-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/cinzel-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/Tusks-Vault/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Tusk's Vault",
+      "item": "https://kochitusker.github.io/Tusks-Vault/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Docs",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How it's built",
+      "item": "https://kochitusker.github.io/Tusks-Vault/docs/about/how-its-built/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "How it's built",
+  "description": "How Tusk's Vault turns \"an @-mention in Discord\" into a cited, source-grounded answer. This page is written to be readable by both seasoned developers and…",
+  "url": "https://kochitusker.github.io/Tusks-Vault/docs/about/how-its-built/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Tusk's Vault",
+    "url": "https://kochitusker.github.io/Tusks-Vault/"
+  },
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "Tusk's Vault"
+  },
+  "inLanguage": "en-GB",
+  "dateModified": "2026-09-11"
+}
+</script>
+</head>
+<body class="docs">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="svg-defs" aria-hidden="true">
+  <symbol id="tt-tusk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 21.5 L 19 5.5"/><path d="M19 5.5 C 16.5 4.5, 14.2 5.4, 13.2 8"/>
+    <path d="M8 6 C 8 3.8, 9.8 2.5, 12 2.5 C 14.2 2.5, 16 3.8, 16 6 L 16 9.5 L 8 9.5 Z"/>
+    <path d="M9.8 6.8 Q 12 8.4, 14.2 6.8"/>
+    <path d="M8 9.5 L 6 19.5 M 16 9.5 L 18 19.5"/><path d="M6 19.5 Q 12 21, 18 19.5"/>
+    <path d="M8.5 13.5 L 12 12.5 L 15.5 13.5 L 15.5 17 L 12 16 L 8.5 17 Z"/>
+    <line x1="12" y1="12.5" x2="12" y2="16"/>
+  </symbol>
+  <symbol id="tt-star" viewBox="0 0 20 20"><path d="M10 1 L11.5 8.5 L19 10 L11.5 11.5 L10 19 L8.5 11.5 L1 10 L8.5 8.5 Z" fill="currentColor"/></symbol>
+  <symbol id="tt-gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+<div class="ember-field" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<header class="site-head">
+  <a class="brand" href="/Tusks-Vault/"><svg aria-hidden="true"><use href="#tt-tusk"/></svg> Tusk's Vault</a>
+  <nav aria-label="Primary">
+    <a href="/Tusks-Vault/docs/">Docs</a>
+    <a href="/Tusks-Vault/docs/getting-started/installation/">Install</a>
+    <a class="gh" href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener"><svg aria-hidden="true"><use href="#tt-gh"/></svg> GitHub</a>
+  </nav>
+</header>
+<div class="docs-layout">
+  <nav class="docs-nav" aria-label="Documentation"><h2>Getting started</h2>
+<ul><li><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/installation/">Installation</a></li>
+<li><a href="/Tusks-Vault/docs/getting-started/uninstalling/">Uninstalling</a></li></ul>
+<h2>Asking from your table</h2>
+<ul><li><a href="/Tusks-Vault/docs/surfaces/discord/">Discord</a></li>
+<li><a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a></li></ul>
+<h2>Your lore</h2>
+<ul><li><a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a></li>
+<li><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></li></ul>
+<h2>Privacy &amp; safety</h2>
+<ul><li><a href="/Tusks-Vault/docs/security/privacy/">Privacy</a></li>
+<li><a href="/Tusks-Vault/docs/security-policy/">Security Policy</a></li></ul>
+<h2>Help</h2>
+<ul><li><a href="/Tusks-Vault/docs/troubleshooting/faq/">FAQ</a></li>
+<li><a href="/Tusks-Vault/docs/troubleshooting/known-issues/">Known issues</a></li></ul>
+<h2>About Tusk's Vault</h2>
+<ul><li><a href="/Tusks-Vault/docs/code-of-conduct/">Code of Conduct</a></li>
+<li><a href="/Tusks-Vault/docs/about/comparison/">Comparison</a></li>
+<li><a href="/Tusks-Vault/docs/contributing/">Contributing</a></li>
+<li><a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a></li>
+<li><a href="/Tusks-Vault/docs/about/how-its-built/" aria-current="page">How it's built</a></li>
+<li><a href="/Tusks-Vault/docs/roadmap/">Roadmap</a></li>
+<li><a href="/Tusks-Vault/docs/about/use-cases/">Use cases</a></li>
+<li><a href="/Tusks-Vault/docs/about/what-it-costs/">What it costs</a></li></ul></nav>
+  <main id="main">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/Tusks-Vault/">Home</a> <span aria-hidden="true">/</span>
+      <a href="/Tusks-Vault/docs/">Docs</a> <span aria-hidden="true">/</span>
+      <span>How it's built</span>
+    </nav>
+    <aside class="toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#the-retrieval-pipeline-at-a-glance">🧠 The retrieval pipeline at a glance</a></li><li><a href="#walkthrough-what-happens-when-a-player--mentions-the-bot">🚶 Walkthrough — what happens when a player @-mentions the bot</a></li><li><a href="#what-ships-in-the-box">🏗️ What ships in the box</a></li><li><a href="#the-four-guarantees-worth-knowing">⚙️ The four guarantees worth knowing</a></li><li><a href="#tech-stack">🛠️ Tech stack</a></li><li><a href="#where-each-concern-lives-in-the-source-tree">📁 Where each concern lives in the source tree</a></li><li><a href="#the-shared-tusks-lore-folder">📚 The shared `Tusks-Lore/` folder</a></li><li><a href="#the-tusks-tomes-integration">🔌 The Tusk's Tomes integration</a></li><li><a href="#network-calls">📡 Network calls</a></li><li><a href="#security-middleware">🛡️ Security middleware</a></li><li><a href="#diagnostics-endpoint">🧰 Diagnostics endpoint</a></li><li><a href="#next-steps">Next steps</a></li></ul></aside>
+    <article class="prose">
+<h1>How it's built — Tusk's Vault</h1>
+<p>How Tusk's Vault turns "an <code>@</code>-mention in Discord" into a cited, source-grounded answer.</p>
+<p>This page is written to be readable by both seasoned developers and people who've never opened a TypeScript file. Code paths are linked inline so you can dive in where you want; the prose stands on its own if you don't.</p>
+<hr>
+<details class="docs-section" open>
+<summary><h2 id="the-retrieval-pipeline-at-a-glance">🧠 The retrieval pipeline at a glance</h2></summary>
+<div class="docs-section-body">
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                                                                        │
+│  Your Discord server          Tusk's Vault  (runs on your PC, 100%)    │
+│                                                                        │
+│   ┌──────────────┐             ┌──────────────────────────────────┐    │
+│   │ Player:      │             │  Discord bot listener            │    │
+│   │ @Tusk who is │ ─────────►  │      │                           │    │
+│   │ Ser Alric?   │             │      ▼                           │    │
+│   └──────────────┘             │  Semantic-match clarifications   │    │
+│                                │  (local MiniLM, on CPU)          │    │
+│                                │      │                           │    │
+│                                │      ▼                           │    │
+│                                │  Prompt assembly:                │    │
+│                                │  - your Tusks-Lore/ documents    │    │
+│                                │  - top-K relevant clarifications │    │
+│                                │  - canonical 7-rule block        │    │
+│                                │  - the player's question         │    │
+│                                │      │                           │    │
+│                                │      ▼                           │    │
+│                                │  LLM adapter (you pick one):     │    │
+│                                │  OpenRouter · Gemini ·           │    │
+│                                │  Claude Code · Ollama            │    │
+│                                │      │                           │    │
+│   ┌──────────────┐             │      ▼                           │    │
+│   │ Tusk: "Ser   │             │  Cited, source-grounded answer   │    │
+│   │ Alric was…   │ ◄─────────  │  + lore-gap detector             │    │
+│   │ [Session 3]" │             │                                  │    │
+│   └──────────────┘             └──────────────────────────────────┘    │
+│                                                                        │
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="walkthrough-what-happens-when-a-player--mentions-the-bot">🚶 Walkthrough — what happens when a player @-mentions the bot</h2></summary>
+<div class="docs-section-body">
+<p>Step by step, in the order it actually happens.</p>
+<ol>
+<li>
+<p><strong>A player types <code>@Tusk who is Ser Alric Vane?</code> in Discord.</strong>
+The bot's Discord.js client receives a <code>messageCreate</code> event — wired up in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/surfaces/discord.ts" rel="noopener">src/server/surfaces/discord.ts</a>.</p>
+</li>
+<li>
+<p><strong>The question is embedded locally</strong> using MiniLM-L6-v2 running on your CPU (no cloud round-trip). The embedding is compared against every stored DM clarification to find any that are <em>semantically</em> close — "what happened to Alric?" matches "Ser Alric Vane died in session 6" even though the words are different. See <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/clarifications/retrieve.ts" rel="noopener">src/server/clarifications/retrieve.ts</a>.</p>
+</li>
+<li>
+<p><strong>The prompt is assembled</strong>, in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/assemble.ts" rel="noopener">src/server/prompt/assemble.ts</a>, from four parts:</p>
+<ul>
+<li><strong>System instruction</strong> — the base Chronicler prompt, or the active persona.
+The seven core rules are guaranteed by <code>CANONICAL_RULES_BLOCK</code> in
+<a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/system.ts" rel="noopener">system.ts</a>: if a custom persona drops
+them, the block is force-appended at assembly time.</li>
+<li><strong>Lore corpus</strong> — every readable file under <code>Tusks-Lore/</code>, via the
+recursive walker in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/knowledge/loader.ts" rel="noopener">loader.ts</a>,
+each under a <code>[SOURCE DOCUMENT: &#x3C;relative path>]</code> header so the model
+knows which filename to cite.
+<ul>
+<li>Hard ceiling of <code>KB_CHAR_LIMIT</code> (500,000 characters), cut on a
+<strong>document boundary</strong>, never mid-sentence.</li>
+<li>The header then lists only the documents that survived, and names the
+ones that didn't — a header promising a file the model never received
+hands it a citation for free.</li>
+<li>On an Obsidian vault with the map switched on, this part is instead a
+one-line digest of every note plus the full text of the notes the
+question selected. See <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault</a>.</li>
+</ul>
+</li>
+<li><strong>Top-K clarifications</strong> — only those whose embedding matched the question
+above a similarity threshold.</li>
+<li><strong>The player's question</strong>, quoted between a marker generated fresh for
+this one request. The question and the text of any file they attached go
+inside it, and the rules that follow say the region is data, not
+instructions. A PDF handed to Gemini is the one thing that cannot be
+quoted — it travels as a document, so the rules cover it instead; every
+other provider has its text extracted and defanged like any other
+attachment. Those rules are
+emitted last, because the final thing a model reads carries the most
+weight. A retrieved DM clarification is treated as genuine only if its
+header carries that same per-request marker, so a clarifications block
+pasted into a question or an attachment cannot pass as one: the marker is
+not in the source, not in any answer, and not guessable.</li>
+</ul>
+<p>The corpus is marked <code>cacheable</code> and the clarifications deliberately are not: the lore bytes are stable between questions, so a caching adapter can put its prompt-cache breakpoint there and re-bill only the per-question tail.</p>
+</li>
+<li>
+<p><strong>The chosen LLM adapter is called.</strong></p>
+<ul>
+<li><strong>Which provider</strong> is resolved by <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/registry.ts" rel="noopener">registry.ts</a>. The active key in the Key Vault outranks the saved <code>provider</code> setting, and a surface may pin a provider and model of its own on top — so the chat surfaces can answer on a Claude Code subscription while the dashboard keeps using whatever is globally selected.</li>
+<li><strong>Which code</strong> is one file per provider in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm" rel="noopener">src/server/llm/</a>, each implementing the same <code>LlmAdapter</code> interface. Every <em>cloud</em> adapter wraps its call in the shared 429 / transient-5xx backoff in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/retry.ts" rel="noopener">retry.ts</a>.</li>
+<li><strong>Adding a provider</strong> is therefore one new file plus a registry entry.</li>
+</ul>
+</li>
+<li>
+<p><strong>The reply comes back</strong>, with a citation marker on every factual claim:</p>
+<ul>
+<li><code>[filename]</code> — content from one of your <code>Tusks-Lore/</code> documents (path relative to the lore root, e.g. <code>Sessions/Curse-of-Strahd/Session-03.docx</code>).</li>
+<li><code>[clarification: ID]</code> — a DM clarification you recorded via the dashboard.</li>
+<li><code>[D&#x26;D 5e]</code> — a generic 5th-edition rules answer (e.g. "rolls a d20").</li>
+<li><code>[speculation]</code> — only when Speculative Mode is on, for character-driven guesses.</li>
+</ul>
+<p>The dashboard's <code>includeReferences</code> toggle strips markers from the <em>displayed</em> text only. The model still emitted them, and still used them to ground the answer.</p>
+</li>
+<li>
+<p><strong>The lore-gap detector</strong> scans the reply for the canonical refusal phrase (<em>"I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify."</em>). If found, the question lands in the dashboard's <strong>Lore Gaps</strong> tab so the DM can answer it once and have it remembered forever via the clarification-embedding pipeline.</p>
+<p>A <em>model decline</em> is checked first and is deliberately not a lore gap: <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm/refusal.ts" rel="noopener">src/server/llm/refusal.ts</a> recognises "I won't answer that" as its own thing. It says nothing about the chronicle being incomplete, so recording it would put a question in the DM's queue that no clarification could ever close. The decline is still shown to the asker — it's the best explanation available — just labelled rather than filed.</p>
+</li>
+<li>
+<p><strong>The reply is posted back to Discord.</strong> Over-2000-character replies get chunked on a regex boundary so the Discord message limit doesn't truncate citations.</p>
+</li>
+</ol>
+<p>That's the whole flow — no database, no vector store, no remote services beyond the LLM provider itself.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="what-ships-in-the-box">🏗️ What ships in the box</h2></summary>
+<div class="docs-section-body">
+<p>Vault has two layers that are easy to mix up but worth keeping separate in your head.</p>
+<h3 id="the-base-product-what-runs-out-of-the-box">The base product (what runs out of the box)</h3>
+<ul>
+<li><strong>HTTP server</strong> — Express 4 + Vite middleware on a single socket. No separate frontend dev server.</li>
+<li><strong>Four LLM connections, of which two take a key</strong> — Gemini and OpenRouter (keyed), Claude Code and Ollama (keyless). Each is one file in <code>src/server/llm/&#x3C;provider>.ts</code> implementing the same <code>LlmAdapter</code> interface.</li>
+<li><strong>Discord bot</strong> — discord.js 14, one client, one message listener.</li>
+<li><strong>Chat surfaces</strong> — three of them (<code>discord</code>, <code>foundry</code>, <code>mcp</code>), all answering through one transport-agnostic <code>ask()</code> core in <code>src/server/chat/</code>. A surface owns presentation and nothing else; two surfaces that disagreed about what the bot knows would be two different bots. Each can be switched off independently, and each can pin its own provider and model.</li>
+<li><strong>MCP bridge</strong> — an authenticated Streamable-HTTP endpoint at <code>/mcp</code> exposing three tools (<code>ask_lore</code>, <code>search_lore</code>, <code>list_sources</code>). Built for the Foundry module, but any MCP client can use it. See <a href="/Tusks-Vault/docs/surfaces/foundry-vtt/">Foundry VTT</a> and the wire contract in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/tooling/foundry-contract.md" rel="noopener">Foundry contract</a>.</li>
+<li><strong>Local embeddings</strong> — <code>@huggingface/transformers</code> running MiniLM-L6-v2 on CPU.</li>
+<li><strong>Knowledge loader</strong> — recursive walk over <code>Tusks-Lore/</code>, with parsers for PDF, DOCX, MD, plain text, JSON, YAML, CSV, TSV, HTML, RTF. An Obsidian vault can be read instead, strictly read-only.</li>
+<li><strong>Source-grounded prompt</strong> — canonical seven-rule block, force-appended at assembly time.</li>
+<li><strong>Security middleware</strong> — host/origin guard, security headers, secret scrubbing, safe-slug guards, loopback-only gating on the routes that act on the host, atomic-write key store.</li>
+<li><strong>Persistence</strong> — JSON files on disk, split by what should survive what: campaign state inside the resolved <code>Tusks-Lore/</code> folder (so it survives clean reinstalls), per-install state in the platform config directory, and <code>settings.json</code> at the repo root.</li>
+<li><strong>Dashboard</strong> — React 19 + Tailwind CSS 4 served by the same Express process.</li>
+</ul>
+<p>None of this is optional and none of it is a plugin — a fresh clone gives you all of the above. The one thing fetched at runtime is the MiniLM model weights (~25 MB, once, on first boot); no <em>code</em> is ever downloaded outside <code>git pull</code> / <code>npm install</code>.</p>
+<h3 id="there-is-no-add-on-system">There is no add-on system</h3>
+<p>An early design had one, and it was cut before the first release. Personas
+and local LLMs were to be "add-ons" installed from the dashboard — except
+there was nothing to install: every one of them shipped in the clone already,
+so "installing" could only ever write a marker file. The mechanism existed to
+gate features that were always present.</p>
+<p>So there is no module layer. <strong>Personas</strong> ship as an ordinary feature, and
+<strong>Ollama</strong> is a connection the picker probes: it is either answering on its
+port or it is not, which is a live question rather than a module to opt into.
+Neither has anything to install, so neither needs a switch. Re-introducing a
+gate for something always present is the mistake to avoid here.</p>
+<p>Foundry VTT integration has since shipped — the module lives in its own
+repository and talks to the MCP bridge above. Planned work (in-PDF OCR, live
+Tomes push, player-vs-GM lore scoping) is on the <a href="/Tusks-Vault/docs/roadmap/">Roadmap</a>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="the-four-guarantees-worth-knowing">⚙️ The four guarantees worth knowing</h2></summary>
+<div class="docs-section-body">
+<h3 id="1-source-grounded-by-design">1. Source-grounded by design</h3>
+<p>Off-corpus questions don't get a guess. They get the canonical refusal — <strong>"I am unsure about this detail. I have recorded this as a lore gap for the DM to clarify."</strong> — and the question lands in the dashboard's Lore Gaps tab.</p>
+<p>The seven-rule block in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/prompt/system.ts" rel="noopener">src/server/prompt/system.ts</a> is <strong>structurally enforced</strong>: <code>buildSystemInstruction()</code> checks the finished prompt with <code>hasCanonicalRules()</code> and appends <code>CANONICAL_RULES_BLOCK</code> whenever any of the seven is missing, so a user-authored persona that dropped them still gets them. There's no configuration toggle that turns citation off.</p>
+<h3 id="2-semantic-clarification-memory">2. Semantic clarification memory</h3>
+<p>When a DM corrects an answer via the dashboard ("Actually, Ser Alric Vane died in session 6"), the correction is embedded <strong>locally</strong> using MiniLM-L6-v2 on the CPU — no cloud round-trip. The embedding lives next to the clarification in <code>clarifications.embeddings.json</code> (base64-encoded 384-dim Float32 vectors). The next time anyone asks anything semantically similar, the matching clarification gets pulled into the prompt automatically. You only have to teach Vault a fact once.</p>
+<h3 id="3-llm-agnostic">3. LLM-agnostic</h3>
+<p>Pick the model. Switch any time from the dashboard — no restart, no config file edit.</p>
+<ul>
+<li><strong>Almost everything</strong> → OpenRouter. One key reaches Claude, GPT, Llama and a few hundred others, on one bill.</li>
+<li><strong>Free tier, and cheap after it</strong> → Gemini, called directly because it is cheaper that way than through an aggregator.</li>
+<li><strong>Already paying for Claude Pro or Max</strong> → Claude Code, through the CLI you are already signed into. No API key, no extra bill.</li>
+<li><strong>Zero ongoing cost, runs offline</strong> → Ollama.</li>
+</ul>
+<p>There are no direct Anthropic or OpenAI key slots: OpenRouter reaches the same models on one key and one bill, so three credentials to talk to two labs would be work with nothing to show for it.</p>
+<p>The adapter pattern lives in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/llm" rel="noopener"><code>src/server/llm/</code></a> — each provider implements the same <code>LlmAdapter</code> interface, and the registry resolves a single adapter per call. Adding a provider is one new file in that folder plus a registry entry.</p>
+<p>Details: <strong><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></strong>.</p>
+<h3 id="4-models-are-tested-not-trusted">4. Models are tested, not trusted</h3>
+<p>A model id in a dropdown is a claim, not a capability. Vault probes the
+connection you picked — under the same routing policy a real question uses, or
+it would report a model reachable and then fail every question — and reports
+what that key can actually call.</p>
+<p>How to run a probe and read the result:
+<strong><a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Choosing a provider</a></strong>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="tech-stack">🛠️ Tech stack</h2></summary>
+<div class="docs-section-body">
+<p>Built with TypeScript end-to-end, ESM-only. <strong>No database</strong> — everything persists as JSON files on disk, none of it ever committed (repo-root state is gitignored; per-install state lives outside the repo entirely).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-wrap"><table><thead><tr><th>Layer</th><th>Technology</th></tr></thead><tbody><tr><td>Runtime</td><td>Node.js 20+</td></tr><tr><td>HTTP server</td><td>Express 4 + Vite middleware (shared HTTP socket — no separate Vite port to collide on)</td></tr><tr><td>Dashboard UI</td><td>React 19 + Tailwind CSS 4 + Motion</td></tr><tr><td>Discord bot</td><td>discord.js 14</td></tr><tr><td>LLM providers</td><td><code>@google/genai</code> for Gemini. <code>openai</code> for OpenRouter — it is wire-compatible with the OpenAI API, so the SDK is the honest client for it. Ollama goes over raw <code>fetch</code>. Claude Code is a child process.</td></tr><tr><td>Local embeddings</td><td><code>@huggingface/transformers</code> running MiniLM-L6-v2 on CPU</td></tr><tr><td>Document ingestion</td><td><code>pdf-parse</code> (PDF), <code>mammoth</code> (DOCX), built-in for text/markdown/HTML/RTF/JSON/YAML/CSV/TSV</td></tr><tr><td>File uploads</td><td><code>multer</code></td></tr><tr><td>Per-user config dir</td><td><code>env-paths</code> (cross-platform per-user config directory)</td></tr></tbody></table></div>
+<p>Full dependency rationale lives in <a href="/Tusks-Vault/docs/about/dependencies/">Dependencies</a>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="where-each-concern-lives-in-the-source-tree">📁 Where each concern lives in the source tree</h2></summary>
+<div class="docs-section-body">
+<pre><code>src/
+├── App.tsx                           Dashboard UI (React)
+├── components/
+│   ├── panels/                       One panel per dashboard card / tab
+│   │   ├── KeyVaultPanel.tsx         Settings → API keys
+│   │   ├── ObsidianVaultPanel.tsx    Lore → lore-source picker + vault map
+│   │   ├── PersonasPanel.tsx         Settings → Personas
+│   │   ├── SurfacesPanel.tsx         Home → per-surface switches + MCP pairing
+│   │   └── ...
+│   └── ...                           Other reusable UI components
+├── hooks/                            Dashboard data hooks (usePersonas, …)
+├── lib/                              Pure helpers shared with the frontend (and unit-tested)
+└── server/
+    ├── index.ts                      Express bootstrap (security middleware first, then routes)
+    ├── routes/                       HTTP API endpoints — one file per concern
+    ├── chat/                         Transport-agnostic ask() core, surface registry, queue
+    ├── surfaces/                     Per-surface plumbing (discord.ts: mentions, typing, chunking)
+    ├── mcp/                          Streamable-HTTP bridge at /mcp — auth, pairing, tools
+    ├── llm/                          Adapters + registry
+    │   ├── openrouter*.ts            OpenRouter adapter, catalogue cache, pricing
+    │   ├── gemini.ts                 Gemini adapter
+    │   ├── claude-code*.ts           Claude Code CLI wrapper + adapter
+    │   ├── ollama.ts                 Local models over HTTP
+    │   ├── model-probe.ts            One-token availability probe + its cache
+    │   ├── refusal.ts                Tells a model decline apart from a lore gap
+    │   └── retry.ts                  Shared 429 / 5xx backoff
+    ├── discord/                      Bot client + token inspection (the handler lives in surfaces/)
+    ├── knowledge/                    Lore loading
+    │   ├── loader.ts                 Tusks-Lore/ tree walker + document parsers
+    │   └── obsidian/                 Obsidian vault source (READ-ONLY) + the vault map
+    ├── embeddings/                   MiniLM embedding + cosine similarity
+    ├── clarifications/               DM corrections + semantic retrieval
+    ├── lore-gaps/                    Unanswered-question log
+    ├── prompt/                       System prompt + canonical rules + prompt assembly
+    ├── keys/                         API key vault (encrypted, atomic-write store)
+    ├── personas/                     Voice presets + user-authored personas
+    ├── forge/                        Builds an Obsidian vault out of the lore documents (verbatim, never invents)
+    ├── diagnose/                     Scrubbed diagnostic bundle → .diagnose/latest.md
+    ├── integrations/                 Tusk's Tomes companion-app detector + Tusks-Lore folder helper
+    ├── config/                       Settings, paths, env loader, per-user app data
+    └── util/                         Updater, port-fallback, browser-open, env-file writer,
+                                       host-origin-guard, security-headers, loopback-only,
+                                       safe-slug, atomic-write, scrub-secrets, log capture
+</code></pre>
+<p><code>server.ts</code> at the repo root is a six-line entry point that imports <code>src/server/index.ts</code> and calls <code>startServer()</code>.</p>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="the-shared-tusks-lore-folder">📚 The shared `Tusks-Lore/` folder</h2></summary>
+<div class="docs-section-body">
+<p>Vault's "knowledge directory" — the folder Vault scans for lore documents — resolves at boot via this priority order (implemented in <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/src/server/config/paths.ts" rel="noopener">src/server/config/paths.ts</a>):</p>
+<ol>
+<li><strong><code>TUSKS_VAULT_LORE_PATH</code></strong> env var (highest priority — useful for tests and unusual layouts).</li>
+<li><strong><code>loreFolderPath</code></strong> in <code>settings.json</code> (set from the dashboard).</li>
+<li><strong>Sibling <code>../Tusks-Lore/</code></strong> directory (recommended; auto-detected).</li>
+<li><strong>Repo-local <code>&#x3C;repo>/Lore/</code></strong> — the fallback when none of the above resolve, so a fresh clone has somewhere to put lore before you make a sibling folder.</li>
+</ol>
+<p>The recommended layout drops a <code>Tusks-Lore/</code> folder next to the app:</p>
+<pre><code>parent-dir/
+├── Tusks-Tomes/        (optional companion — see tomes.md)
+├── Tusks-Vault/        (this repo)
+└── Tusks-Lore/         ← knowledge directory
+    ├── tusks-lore.json (Tomes' consolidated glossary + speaker map;
+    │                    filtered from generic ingestion)
+    └── Sessions/       (Tomes writes session chronicles here)
+        └── &#x3C;campaign>/
+            ├── Session-NN-DATE-full.docx
+            └── Session-NN-DATE-condensed.docx
+</code></pre>
+<p>The dashboard's <strong>Lore</strong> tab has a <strong>"Tusks-Lore folder"</strong> card with a <em>"Create Tusks-Lore folder"</em> button — it <code>mkdir</code>s the sibling + the <code>Sessions/</code> subdir + a starter README, and prompts you to restart so the boot-time probe picks the new location up. (If a sibling already exists the button offers to adopt it instead.)</p>
+<p>Campaign-state files (<code>clarifications.json</code>, <code>clarifications.embeddings.json</code>, <code>lore_gaps.json</code>, <code>logs/tusks-vault.log</code>) also live inside the resolved lore folder, so a clean reinstall of Vault keeps all your work. If they are ever found at the repo root instead, boot moves them in once.</p>
+<p>Vault walks the entire <code>Tusks-Lore/</code> tree recursively, so files at any depth surface as lore — bounded at 5,000 files and 8 directory levels so a mis-pointed folder or a symlink loop can't run away. Some files are skipped from generic ingestion, matched <strong>by basename at any depth</strong> rather than only at the root:</p>
+<ul>
+<li><strong>Tomes-managed metadata</strong> — <code>tusks-lore.json</code>, and the legacy <code>glossary.json</code> / <code>speakers.json</code>. Reserved for grounding-context use in a future Vault release, not generic document scanning.</li>
+<li><strong>Vault's own state, written into the lore folder</strong> — <code>clarifications.json</code>, <code>clarifications.embeddings.json</code>, <code>lore_gaps.json</code>, <code>tusks-vault.log</code>, and the root <code>logs/</code> directory. Left unfiltered the bot reads its own list of unanswered questions back as campaign canon, and then cites it.</li>
+<li><strong>Conventional non-lore</strong> — READMEs, dotfiles and dot-directories, <code>_</code>-prefixed files.</li>
+<li><strong>A vault Vault forged itself</strong>, marked by a <code>.forged-by-tusks-vault</code> file in its root. Ingesting it would count every fact twice: once as the source document, again as the note derived from it.</li>
+</ul>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="the-tusks-tomes-integration">🔌 The Tusk's Tomes integration</h2></summary>
+<div class="docs-section-body">
+<p>Tomes writes session chronicles into <code>Tusks-Lore/Sessions/&#x3C;campaign>/</code>; Vault
+walks that tree recursively and surfaces them like any other document. No sync
+step, no import, no coupling in either direction — the shared folder is the
+whole interface.</p>
+<p>Setup and the recommended layout: <strong><a href="/Tusks-Vault/docs/lore/tusks-tomes/">Tusk's Tomes</a></strong>.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="network-calls">📡 Network calls</h2></summary>
+<div class="docs-section-body">
+<p>Every host this app can reach, when, and what the request carries is a table on
+<strong><a href="/Tusks-Vault/docs/security/privacy/#-every-host-it-can-reach">Privacy</a></strong>. It lives there
+because "what leaves my machine" is a privacy question, and keeping one copy
+means the answer cannot drift between two pages.</p>
+<p>The one architectural note worth repeating here: <code>grep -rn 'fetch(' src/</code> finds
+every HTTP call the app makes. The updater is the only omission, because it
+goes out through <code>git</code>.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="security-middleware">🛡️ Security middleware</h2></summary>
+<div class="docs-section-body">
+<p>Two middlewares are installed before the route table, so they cover every
+endpoint including the Vite dev server's:</p>
+<ul>
+<li><strong><code>host-origin-guard.ts</code></strong> — DNS-rebinding defence. Rejects requests whose
+<code>Host</code> is not a loopback literal, and non-GET writes from a non-loopback
+<code>Origin</code>/<code>Referer</code>.</li>
+<li><strong><code>security-headers.ts</code></strong> — clickjacking, MIME-sniff, referrer policy, and a
+CSP that limits scripts to the app's own origin. (There is a stricter policy
+in the file intended for a bundled production build, but nothing sets
+<code>NODE_ENV=production</code> today, so every install serves the permissive one. It
+allows inline scripts and <code>eval</code>, which Vite needs; it still blocks
+third-party origins. Listed in
+<a href="/Tusks-Vault/docs/troubleshooting/known-issues/">known issues</a>.)</li>
+</ul>
+<p>What each one does and does not defend against, with the exceptions the MCP
+bridge needs, is in <strong><a href="/Tusks-Vault/docs/security-policy/">SECURITY.md</a></strong>.</p>
+<hr>
+</div>
+</details>
+<details class="docs-section" open>
+<summary><h2 id="diagnostics-endpoint">🧰 Diagnostics endpoint</h2></summary>
+<div class="docs-section-body">
+<p><code>GET /api/diagnostics</code> reports the absolute path, existence, size and mtime of
+every file holding your state — including <em>which</em> lore-resolution rule won.
+Loopback-only, like every route that acts on the host.</p>
+<p>Full list of what it covers:
+<strong><a href="/Tusks-Vault/docs/security/privacy/">Privacy → verify your setup</a></strong>.</p>
+<hr>
+</div>
+</details>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>🔌 <a href="/Tusks-Vault/docs/getting-started/choosing-a-provider/">Providers — the four connections, in detail →</a></li>
+<li>📚 <a href="/Tusks-Vault/docs/lore/obsidian-vault/">Obsidian vault as a lore source →</a></li>
+<li>🎲 <a href="/Tusks-Vault/docs/about/use-cases/">Use cases — what people actually ask →</a></li>
+<li>📦 <a href="/Tusks-Vault/docs/about/dependencies/">Dependencies — every package and why →</a></li>
+<li>🔐 <a href="/Tusks-Vault/docs/security/privacy/">Privacy &#x26; security →</a> · <a href="/Tusks-Vault/docs/security-policy/">STRIDE threat model →</a></li>
+<li>🗺️ <a href="/Tusks-Vault/docs/roadmap/">Roadmap →</a></li>
+</ul>
+    </article>
+    <p class="edit-link"><a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/docs/about/how-its-built.md" rel="noopener">Improve this page on GitHub →</a></p>
+  </main>
+</div>
+<footer class="site-foot">
+  <p>Tusk's Vault — free, open source, MIT licensed. Runs on your own machine.</p>
+  <p><a href="https://github.com/KochiTusker/Tusks-Vault" rel="noopener">GitHub</a> · <a href="/Tusks-Vault/docs/">Documentation</a> · <a href="https://github.com/KochiTusker/Tusks-Vault/blob/main/LICENSE" rel="noopener">Licence</a></p>
+</footer>
+
+</body>
+</html>
